@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameColor" load_steps=2 format=3 uid="uid://6ckmn5nuj128"]
+
+[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="1_1ti0d"]
+
+[resource]
+resource_name = "DIMMED_GREEN"
+script = ExtResource("1_1ti0d")
+color = Color(0.170082, 0.2957, 0.197525, 1)

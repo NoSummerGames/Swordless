@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameColor" load_steps=2 format=3 uid="uid://e31m2ujj5bs0"]
+
+[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="1_xh2bu"]
+
+[resource]
+resource_name = "MOSS_WHITE"
+script = ExtResource("1_xh2bu")
+color = Color(0.819608, 0.968627, 0.843137, 1)

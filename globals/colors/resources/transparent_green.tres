@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameColor" load_steps=2 format=3 uid="uid://4l1x7kuaj828"]
+
+[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="1_edcdn"]
+
+[resource]
+resource_name = "TRANSPARENT_GREEN"
+script = ExtResource("1_edcdn")
+color = Color(0.509804, 0.772549, 0.580392, 0)

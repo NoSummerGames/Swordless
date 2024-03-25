@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameColor" load_steps=2 format=3 uid="uid://ditjff8ecirpg"]
+
+[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="1_leys5"]
+
+[resource]
+resource_name = "LIGHT_GREEN"
+script = ExtResource("1_leys5")
+color = Color(0.427451, 0.901961, 0.533333, 1)

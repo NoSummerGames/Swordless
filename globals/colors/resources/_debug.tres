@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameColor" load_steps=2 format=3 uid="uid://xkxdsqub2aoa"]
+
+[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="1_uhcwy"]
+
+[resource]
+resource_name = "_DEBUG"
+script = ExtResource("1_uhcwy")
+color = Color(1, 0, 1, 1)
