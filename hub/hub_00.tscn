@@ -1,0 +1,101 @@
+[gd_scene load_steps=22 format=3 uid="uid://dygyul8i3xpyu"]
+
+[ext_resource type="Script" path="res://hub/hub.gd" id="1_jbjhu"]
+[ext_resource type="PackedScene" uid="uid://c7uk2kbhwuvby" path="res://hub/objects/characters/_hub_character.tscn" id="2_d5gfh"]
+[ext_resource type="PackedScene" uid="uid://y2lbf5dl6y1v" path="res://hub/objects/passages/_hub_passage.tscn" id="3_te31o"]
+[ext_resource type="Script" path="res://hub/objects/resources/hub_object_state_res.gd" id="4_wqvcc"]
+[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="5_sfn1i"]
+[ext_resource type="Resource" uid="uid://caajn7iru0ii3" path="res://hub/objects/resources/state_busy.tres" id="6_28n30"]
+[ext_resource type="Resource" uid="uid://dxa4fdtjn5euq" path="res://hub/objects/resources/state_quiet.tres" id="7_etl24"]
+[ext_resource type="Resource" uid="uid://cvdn1a6mls7c3" path="res://hub/objects/resources/state_idle.tres" id="8_wiawn"]
+[ext_resource type="Resource" uid="uid://bon3lkr3sh3qk" path="res://hub/objects/resources/state_fresh.tres" id="9_m7cy3"]
+[ext_resource type="Script" path="res://data_sets/data_set.gd" id="10_d5m5q"]
+[ext_resource type="Script" path="res://ui/hub/src/hub_ui.gd" id="11_l22pu"]
+[ext_resource type="PackedScene" uid="uid://bpkrskyothbwv" path="res://ui/hub/hub_level_panel.tscn" id="12_84ox2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_seffu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_526fl"]
+sky_material = SubResource("ProceduralSkyMaterial_seffu")
+
+[sub_resource type="Environment" id="Environment_ct4mi"]
+background_mode = 2
+sky = SubResource("Sky_526fl")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k11f8"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p512h"]
+albedo_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[sub_resource type="Resource" id="Resource_yw5a4"]
+resource_name = "_DEBUG"
+script = ExtResource("5_sfn1i")
+color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_umlb3"]
+resource_name = "_DEBUG"
+script = ExtResource("5_sfn1i")
+color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_j7i4y"]
+resource_name = "_DEBUG"
+script = ExtResource("4_wqvcc")
+is_ray_pickable = true
+selected_color_res = SubResource("Resource_yw5a4")
+unselected_color_res = SubResource("Resource_umlb3")
+
+[sub_resource type="Resource" id="Resource_5uyxv"]
+script = ExtResource("10_d5m5q")
+type_name = &"HubObjectState"
+register_type = true
+resource_set = Array[Resource]([ExtResource("6_28n30"), ExtResource("7_etl24"), ExtResource("8_wiawn"), ExtResource("9_m7cy3")])
+debug_resource = SubResource("Resource_j7i4y")
+
+[node name="Hub" type="Node3D" node_paths=PackedStringArray("hub_ui")]
+script = ExtResource("1_jbjhu")
+hub_ui = NodePath("HubUI")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.939693, 0.116978, -0.321394, 0, 0.939693, 0.34202, 0.34202, -0.321394, 0.883022, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ct4mi")
+
+[node name="_floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_k11f8")
+surface_material_override/0 = SubResource("StandardMaterial3D_p512h")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 6, 10)
+current = true
+fov = 40.0
+
+[node name="Character" parent="." instance=ExtResource("2_d5gfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.651472, 0)
+
+[node name="HubPassage" parent="." instance=ExtResource("3_te31o")]
+transform = Transform3D(0.924026, 0, 0.382329, 0, 1, 0, -0.382329, 0, 0.924026, -5.0671, 0.705227, -3.13121)
+states = SubResource("Resource_5uyxv")
+
+[node name="HubUI" type="Control" parent="." node_paths=PackedStringArray("panel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("11_l22pu")
+panel = NodePath("HubLevelPanel")
+
+[node name="HubLevelPanel" parent="HubUI" instance=ExtResource("12_84ox2")]
+visible = false
+layout_mode = 0
+offset_right = 200.0
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

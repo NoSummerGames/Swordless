@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpkrskyothbwv"]
+
+[ext_resource type="Script" path="res://ui/hub/src/hub_level_panel.gd" id="1_cy0ma"]
+[ext_resource type="Theme" uid="uid://533jegoddfg8" path="res://ui/main_theme.tres" id="1_j3m0t"]
+
+[node name="HubLevelPanel" type="MarginContainer" node_paths=PackedStringArray("name_label", "description_label", "baseline_label", "variations")]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("1_cy0ma")
+name_label = NodePath("VBoxContainer/Name")
+description_label = NodePath("VBoxContainer/Description")
+baseline_label = NodePath("VBoxContainer/HBoxContainer/Baseline")
+variations = NodePath("VBoxContainer/HBoxContainer/Variations")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_type_variation = &"VariantPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelTitle"
+text = "Nom"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Description"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"VariantHBox"
+alignment = 1
+
+[node name="Baseline" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "La ville était..."
+
+[node name="Variations" type="HFlowContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_j3m0t")

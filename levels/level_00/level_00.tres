@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=5 format=3 uid="uid://byt4l7w33y588"]
+
+[ext_resource type="Script" path="res://levels/level_res.gd" id="1_rf7q6"]
+[ext_resource type="Resource" uid="uid://dwlay47txn6qt" path="res://levels/level_00/variations/level_00_A.tres" id="2_elkw7"]
+[ext_resource type="Resource" uid="uid://bp5kr02ysv3a1" path="res://levels/level_00/variations/level_00_B.tres" id="3_jgy4b"]
+[ext_resource type="Resource" uid="uid://btjhlm477a5vp" path="res://levels/level_00/variations/level_00_C.tres" id="4_0m4h2"]
+
+[resource]
+script = ExtResource("1_rf7q6")
+name = "Ville Basse"
+level_scene = ""
+description = "Lorem ipsum."
+baseline = "La ville était "
+variations = Array[Resource("res://levels/level_variaton_res.gd")]([ExtResource("2_elkw7"), ExtResource("3_jgy4b"), ExtResource("4_0m4h2")])

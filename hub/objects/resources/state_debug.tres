@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HubObjectState" load_steps=2 format=3 uid="uid://dpm32flfj0hqv"]
+
+[ext_resource type="Script" path="res://hub/objects/resources/hub_object_state_res.gd" id="1_qr1to"]
+
+[resource]
+resource_name = "_DEBUG"
+script = ExtResource("1_qr1to")
+is_ray_pickable = true

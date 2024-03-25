@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp0j7c58xe0d8"]
+[gd_scene load_steps=12 format=3 uid="uid://dp0j7c58xe0d8"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_72y5e"]
 [ext_resource type="Script" path="res://utils/fade_player.gd" id="3_laodv"]
+[ext_resource type="PackedScene" uid="uid://dygyul8i3xpyu" path="res://hub/hub_00.tscn" id="3_nc3lx"]
 [ext_resource type="PackedScene" uid="uid://c4frwiprla5sn" path="res://ui/main/menu_title.tscn" id="5_k63dp"]
 [ext_resource type="Script" path="res://main/world_loader.gd" id="5_ok13k"]
 [ext_resource type="PackedScene" uid="uid://br3cqwmkfpyd4" path="res://ui/main/menu_settings.tscn" id="6_2mpln"]
@@ -12,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +28,7 @@ resource_name = "fade_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,7 +44,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,6 +68,15 @@ world_loader = NodePath("WorldLoader")
 
 [node name="WorldLoader" type="Node" parent="."]
 script = ExtResource("5_ok13k")
+hub_scene = ExtResource("3_nc3lx")
+
+[node name="ColorRect" type="ColorRect" parent="WorldLoader"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WorldLoader" node_paths=PackedStringArray("master", "color_rect")]
 libraries = {
@@ -76,15 +86,7 @@ script = ExtResource("3_laodv")
 master = NodePath("..")
 fade_in_signal = "level_loading"
 fade_out_signal = "level_loaded"
-color_rect = NodePath("ColorRect")
-
-[node name="ColorRect" type="ColorRect" parent="WorldLoader/AnimationPlayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color_rect = NodePath("../ColorRect")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

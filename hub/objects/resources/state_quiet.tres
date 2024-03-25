@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="HubObjectState" load_steps=3 format=3 uid="uid://dxa4fdtjn5euq"]
+
+[ext_resource type="Script" path="res://hub/objects/resources/hub_object_state_res.gd" id="1_1spoe"]
+[ext_resource type="Resource" uid="uid://4l1x7kuaj828" path="res://globals/colors/resources/transparent_green.tres" id="2_j12m7"]
+
+[resource]
+resource_name = "QUIET"
+script = ExtResource("1_1spoe")
+is_ray_pickable = false
+selected_color_res = ExtResource("2_j12m7")
+unselected_color_res = ExtResource("2_j12m7")
