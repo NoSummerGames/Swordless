@@ -8,7 +8,13 @@ signal level_loaded
 
 var fade_player: AnimationPlayer
 
-var current_scene: Node3D = null
+var current_scene: Node3D = null:
+	set(value):
+		current_scene = value
+		if value is Hub:
+			(value as Hub).level_entered.connect(_on_level_entered)
+		if value is LevelVariation:
+			(value as LevelVariation).level_entered.connect(_on_level_entered)
 
 var current_packed_scene: PackedScene
 

@@ -8,7 +8,6 @@
 [resource]
 script = ExtResource("1_rf7q6")
 name = "Ville Basse"
-level_scene = ""
 description = "Lorem ipsum."
 baseline = "La ville était "
 variations = Array[Resource("res://levels/level_variaton_res.gd")]([ExtResource("2_elkw7"), ExtResource("3_jgy4b"), ExtResource("4_0m4h2")])

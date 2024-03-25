@@ -39,6 +39,7 @@ window/size/mode=3
 
 folder_colors={
 "res://hub/": "blue",
+"res://levels/": "red",
 "res://main/": "yellow",
 "res://ui/": "green"
 }
