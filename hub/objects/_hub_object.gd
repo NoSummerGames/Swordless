@@ -6,7 +6,7 @@ signal user_input
 signal state_changed
 
 @export var visual_instance: VisualInstance3D
-@export var states: DataSet
+@export var states: ResourceSet
 
 var fresh: bool = true:
 	set(value):

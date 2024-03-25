@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GameColor" load_steps=2 format=3 uid="uid://dfjwn7bnwxigu"]
+
+[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="1_3hrx8"]
+
+[resource]
+script = ExtResource("1_3hrx8")
+color = Color(0, 0, 0, 1)

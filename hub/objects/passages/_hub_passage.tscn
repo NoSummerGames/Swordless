@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://y2lbf5dl6y1v"]
 
 [ext_resource type="Script" path="res://hub/objects/passages/hub_passage.gd" id="1_07b8h"]
-[ext_resource type="Resource" uid="uid://b84t04rt2xyx1" path="res://data_sets/resources/hub_object_states_data_set.tres" id="2_3wrsd"]
+[ext_resource type="Resource" uid="uid://b84t04rt2xyx1" path="res://resource_sets/resources/hub_object_states_set.tres" id="2_3wrsd"]
 [ext_resource type="Resource" uid="uid://byt4l7w33y588" path="res://levels/level_00/level_00.tres" id="2_7pldu"]
 [ext_resource type="Script" path="res://hub/objects/components/collision_component.gd" id="2_axko7"]
 [ext_resource type="Script" path="res://hub/objects/components/outline_component.gd" id="3_uvfgs"]
