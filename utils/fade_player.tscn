@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://djwaiqpld0t2t"]
+
+[ext_resource type="Script" path="res://utils/fade_player.gd" id="1_tb3ng"]
+
+[sub_resource type="Animation" id="Animation_ti36p"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_gnex8"]
+resource_name = "fade_in"
+
+[sub_resource type="Animation" id="Animation_4g8l2"]
+resource_name = "fade_out"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hkpwx"]
+_data = {
+"RESET": SubResource("Animation_ti36p"),
+"fade_in": SubResource("Animation_gnex8"),
+"fade_out": SubResource("Animation_4g8l2")
+}
+
+[node name="FadePlayer" type="AnimationPlayer"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_hkpwx")
+}
+script = ExtResource("1_tb3ng")

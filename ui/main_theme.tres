@@ -1,0 +1,109 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://533jegoddfg8"]
+
+[ext_resource type="FontVariation" uid="uid://d18a1egnlw7ll" path="res://ui/fonts/_wayfinder_slightly_spaced.tres" id="2_80tjl"]
+[ext_resource type="FontFile" uid="uid://cabu3e2nm44tr" path="res://ui/fonts/_wayfinder_CF_regular.otf" id="2_ixiyv"]
+
+[sub_resource type="FontVariation" id="FontVariation_3wsn0"]
+base_font = ExtResource("2_ixiyv")
+spacing_glyph = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qfer"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dlfvk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxrrl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rw67y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rdlmx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdk0o"]
+bg_color = Color(0, 0, 0, 0.156863)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.623529, 0.447059, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[resource]
+default_font = ExtResource("2_ixiyv")
+Button/colors/font_color = Color(0.803922, 0.803922, 0.803922, 1)
+Button/colors/font_disabled_color = Color(0.901961, 0.901961, 0.901961, 0.196078)
+Button/colors/font_focus_color = Color(0.941176, 0.941176, 0.941176, 1)
+Button/colors/font_hover_color = Color(0.870588, 1, 0.870588, 1)
+Button/colors/font_hover_pressed_color = Color(0.666667, 0.921569, 0.654902, 1)
+Button/constants/h_separation = 2
+Button/fonts/font = SubResource("FontVariation_3wsn0")
+Button/styles/disabled = SubResource("StyleBoxEmpty_0qfer")
+Button/styles/focus = SubResource("StyleBoxEmpty_dlfvk")
+Button/styles/hover = SubResource("StyleBoxEmpty_gxrrl")
+Button/styles/normal = SubResource("StyleBoxEmpty_rw67y")
+Button/styles/pressed = SubResource("StyleBoxEmpty_rdlmx")
+ButtonMenu/base_type = &"Button"
+ButtonMenu/colors/font_color = Color(0.803922, 0.803922, 0.803922, 1)
+ButtonMenu/colors/font_disabled_color = Color(0.901961, 0.901961, 0.901961, 0.196078)
+ButtonMenu/colors/font_focus_color = Color(0.941176, 0.941176, 0.941176, 1)
+ButtonMenu/colors/font_hover_color = Color(0.870588, 1, 0.870588, 1)
+ButtonMenu/colors/font_hover_pressed_color = Color(0.666667, 0.921569, 0.654902, 1)
+ButtonMenu/colors/font_outline_color = Color(1, 1, 1, 1)
+ButtonMenu/colors/font_pressed_color = Color(1, 1, 1, 1)
+ButtonMenu/constants/h_separation = 2
+ButtonMenu/font_sizes/font_size = 30
+ButtonMenu/fonts/font = SubResource("FontVariation_3wsn0")
+ButtonMenu/styles/disabled = SubResource("StyleBoxEmpty_0qfer")
+ButtonMenu/styles/focus = SubResource("StyleBoxEmpty_dlfvk")
+ButtonMenu/styles/hover = SubResource("StyleBoxEmpty_gxrrl")
+ButtonMenu/styles/normal = SubResource("StyleBoxEmpty_rw67y")
+ButtonMenu/styles/pressed = SubResource("StyleBoxEmpty_rdlmx")
+Label/font_sizes/font_size = 18
+Label/fonts/font = ExtResource("2_80tjl")
+LabelTitle/base_type = &"Label"
+LabelTitle/font_sizes/font_size = 24
+SelectionBox/constants/box_scale = 15
+SelectionBox/constants/corner_radius = 50
+SelectionBox/constants/line_thickness = 3
+VBoxContainer/constants/separation = 20
+VariantButton/base_type = &"Button"
+VariantButton/colors/font_color = Color(0.4, 0.623529, 0.447059, 1)
+VariantButton/colors/font_disabled_color = Color(0.901961, 0.901961, 0.901961, 0.196078)
+VariantButton/colors/font_focus_color = Color(0.870588, 1, 0.870588, 1)
+VariantButton/colors/font_hover_color = Color(0.870588, 1, 0.870588, 1)
+VariantButton/colors/font_hover_pressed_color = Color(0.905882, 0.921569, 0.933333, 1)
+VariantButton/colors/font_outline_color = Color(1, 1, 1, 1)
+VariantButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+VariantButton/constants/h_separation = 2
+VariantButton/font_sizes/font_size = 18
+VariantButton/fonts/font = ExtResource("2_80tjl")
+VariantButton/styles/disabled = SubResource("StyleBoxEmpty_0qfer")
+VariantButton/styles/focus = SubResource("StyleBoxEmpty_dlfvk")
+VariantButton/styles/hover = SubResource("StyleBoxEmpty_gxrrl")
+VariantButton/styles/normal = SubResource("StyleBoxEmpty_rw67y")
+VariantButton/styles/pressed = SubResource("StyleBoxEmpty_rdlmx")
+VariantButtonFinished/base_type = &"Button"
+VariantButtonFinished/colors/font_color = Color(0.780392, 0.439216, 0.552941, 1)
+VariantButtonFinished/colors/font_disabled_color = Color(0.901961, 0.901961, 0.901961, 0.196078)
+VariantButtonFinished/colors/font_focus_color = Color(0.903391, 0.681082, 0.746342, 1)
+VariantButtonFinished/colors/font_hover_color = Color(0.919768, 0.729814, 0.784261, 1)
+VariantButtonFinished/colors/font_hover_pressed_color = Color(0.905882, 0.921569, 0.933333, 1)
+VariantButtonFinished/colors/font_outline_color = Color(1, 1, 1, 1)
+VariantButtonFinished/colors/font_pressed_color = Color(1, 1, 1, 1)
+VariantButtonFinished/constants/h_separation = 2
+VariantButtonFinished/font_sizes/font_size = 18
+VariantButtonFinished/fonts/font = ExtResource("2_80tjl")
+VariantButtonFinished/styles/disabled = SubResource("StyleBoxEmpty_0qfer")
+VariantButtonFinished/styles/focus = SubResource("StyleBoxEmpty_dlfvk")
+VariantButtonFinished/styles/hover = SubResource("StyleBoxEmpty_gxrrl")
+VariantButtonFinished/styles/normal = SubResource("StyleBoxEmpty_rw67y")
+VariantButtonFinished/styles/pressed = SubResource("StyleBoxEmpty_rdlmx")
+VariantHBox/base_type = &"HBoxContainer"
+VariantHBox/constants/separation = 10
+VariantPanel/base_type = &"PanelContainer"
+VariantPanel/styles/panel = SubResource("StyleBoxFlat_bdk0o")

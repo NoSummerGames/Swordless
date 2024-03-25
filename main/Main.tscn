@@ -1,3 +1,101 @@
-[gd_scene format=3 uid="uid://b1ji4iddllroj"]
+[gd_scene load_steps=11 format=3 uid="uid://dp0j7c58xe0d8"]
 
-[node name="Main" type="Node"]
+[ext_resource type="Script" path="res://main/main.gd" id="1_72y5e"]
+[ext_resource type="Script" path="res://utils/fade_player.gd" id="3_laodv"]
+[ext_resource type="PackedScene" uid="uid://c4frwiprla5sn" path="res://ui/main/menu_title.tscn" id="5_k63dp"]
+[ext_resource type="Script" path="res://main/world_loader.gd" id="5_ok13k"]
+[ext_resource type="PackedScene" uid="uid://br3cqwmkfpyd4" path="res://ui/main/menu_settings.tscn" id="6_2mpln"]
+[ext_resource type="Script" path="res://ui/main/src/main_ui.gd" id="7_v6ohu"]
+
+[sub_resource type="Animation" id="Animation_qq4e2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ijb74"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_583y6"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cejl6"]
+_data = {
+"RESET": SubResource("Animation_qq4e2"),
+"fade_in": SubResource("Animation_ijb74"),
+"fade_out": SubResource("Animation_583y6")
+}
+
+[node name="Main" type="Node" node_paths=PackedStringArray("UI", "world_loader")]
+script = ExtResource("1_72y5e")
+UI = NodePath("UI")
+world_loader = NodePath("WorldLoader")
+
+[node name="WorldLoader" type="Node" parent="."]
+script = ExtResource("5_ok13k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldLoader" node_paths=PackedStringArray("master", "color_rect")]
+libraries = {
+"": SubResource("AnimationLibrary_cejl6")
+}
+script = ExtResource("3_laodv")
+master = NodePath("..")
+fade_in_signal = "level_loading"
+fade_out_signal = "level_loaded"
+color_rect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="WorldLoader/AnimationPlayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_v6ohu")
+menus = {
+"Settings": ExtResource("6_2mpln"),
+"Title": ExtResource("5_k63dp")
+}
