@@ -1,0 +1,176 @@
+[gd_scene load_steps=24 format=3 uid="uid://dsk5r3lka7jsh"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_iit5d"]
+[ext_resource type="Resource" uid="uid://b40fpy6xu1hyh" path="res://player/resources/player_stats/stats_default.tres" id="2_oafph"]
+[ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="3_k8v4b"]
+[ext_resource type="Script" path="res://player/components/player_camera_component.gd" id="3_ovvsi"]
+[ext_resource type="Script" path="res://player/components/player_path_component.gd" id="4_l8spp"]
+[ext_resource type="Script" path="res://player/components/player_input_component.gd" id="5_2m8xq"]
+[ext_resource type="Script" path="res://player/actions_controller.gd" id="8_5ao6g"]
+[ext_resource type="Script" path="res://player/actions/action_double_jump.gd" id="8_liewp"]
+[ext_resource type="Script" path="res://player/actions/action_jump.gd" id="8_re7go"]
+[ext_resource type="Script" path="res://player/actions/action_run.gd" id="10_8wi00"]
+[ext_resource type="Script" path="res://player/actions/action_dash.gd" id="10_bda80"]
+[ext_resource type="Script" path="res://player/actions/action_strafe.gd" id="10_gw2de"]
+[ext_resource type="Script" path="res://player/misc/floor_raycast.gd" id="11_0qtew"]
+[ext_resource type="Script" path="res://player/actions/action_fall.gd" id="11_53bcr"]
+[ext_resource type="Script" path="res://player/actions/action_wall_jump.gd" id="13_v7mrk"]
+[ext_resource type="Script" path="res://player/actions/action_glide.gd" id="13_x6q5o"]
+[ext_resource type="Script" path="res://player/actions/action_slide.gd" id="14_obll8"]
+[ext_resource type="Script" path="res://player/actions/action_dive.gd" id="15_11odp"]
+[ext_resource type="Script" path="res://player/components/player_sprint_component.gd" id="19_en817"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
+size = Vector3(1, 1.6, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tt1qa"]
+size = Vector3(0.5, 1.6, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0bgg"]
+albedo_texture = ExtResource("3_k8v4b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2kdd8"]
+size = Vector3(0.5, 1.6, 0.5)
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+floor_snap_length = 0.5
+script = ExtResource("1_iit5d")
+player_stats = ExtResource("2_oafph")
+
+[node name="PlayerArea" type="Area3D" parent="."]
+
+[node name="AreaCollision" type="CollisionShape3D" parent="PlayerArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_bry1c")
+
+[node name="_PlayerMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("BoxMesh_tt1qa")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0bgg")
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.1)
+shape = SubResource("BoxShape3D_2kdd8")
+
+[node name="CameraPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82603, 2.67281)
+
+[node name="PlayerCamera" type="Camera3D" parent="CameraPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89941, 2.74201)
+current = true
+
+[node name="CameraComponent" type="Node" parent="." node_paths=PackedStringArray("camera", "camera_point")]
+script = ExtResource("3_ovvsi")
+camera = NodePath("../CameraPoint/PlayerCamera")
+camera_point = NodePath("../CameraPoint")
+
+[node name="PathComponent" type="Node" parent="."]
+script = ExtResource("4_l8spp")
+
+[node name="InputComponent" type="Node" parent="."]
+script = ExtResource("5_2m8xq")
+
+[node name="SprintComponent" type="Node" parent="."]
+script = ExtResource("19_en817")
+
+[node name="ActionsController" type="Node" parent="." node_paths=PackedStringArray("input_component", "air_default_action", "ground_default_action")]
+script = ExtResource("8_5ao6g")
+input_component = NodePath("../InputComponent")
+air_default_action = NodePath("Fall")
+ground_default_action = NodePath("Run")
+
+[node name="Jump" type="Node" parent="ActionsController"]
+script = ExtResource("8_re7go")
+prioritary = true
+speed_factor = 0.8
+cond_match_input = true
+cond_on_ground = true
+input_required = 1
+
+[node name="WallJump" type="Node" parent="ActionsController"]
+script = ExtResource("13_v7mrk")
+override_acceleration = true
+custom_acceleration = 3
+cond_match_input = true
+cond_on_wall = true
+cond_special = true
+input_required = 1
+
+[node name="DoubleJump" type="Node" parent="ActionsController"]
+script = ExtResource("8_liewp")
+prioritary = true
+speed_factor = 0.8
+cond_match_input = true
+cond_in_air = true
+cond_special = true
+input_required = 1
+
+[node name="Dash" type="Node" parent="ActionsController"]
+script = ExtResource("10_bda80")
+disabled = true
+prioritary = true
+speed_factor = 0.6
+exclusive = true
+cond_match_input = true
+cond_special = true
+cond_cooldown = true
+input_required = 3
+cooldown_time = 0.6
+
+[node name="Strafe" type="Node" parent="ActionsController"]
+script = ExtResource("10_gw2de")
+override_acceleration = true
+prioritary = true
+speed_factor = 0.6
+exclusive = true
+custom_acceleration = 1
+cond_match_input = true
+cond_special = true
+cond_cooldown = true
+input_required = 5
+cooldown_time = 0.25
+
+[node name="Slide" type="Node" parent="ActionsController"]
+script = ExtResource("14_obll8")
+prioritary = true
+speed_factor = 0.7
+exclusive = true
+cond_match_input = true
+cond_cooldown = true
+cond_strictly_on_ground = true
+input_required = 4
+cooldown_time = 1.0
+
+[node name="Glide" type="Node" parent="ActionsController"]
+script = ExtResource("13_x6q5o")
+speed_factor = 0.8
+exclusive = true
+cond_match_input = true
+cond_in_air = true
+input_required = 6
+
+[node name="Run" type="Node" parent="ActionsController"]
+script = ExtResource("10_8wi00")
+cond_strictly_on_ground = true
+
+[node name="Dive" type="Node" parent="ActionsController"]
+script = ExtResource("15_11odp")
+cond_match_input = true
+cond_in_air = true
+input_required = 4
+
+[node name="Fall" type="Node" parent="ActionsController"]
+script = ExtResource("11_53bcr")
+disabled = true
+
+[node name="RayCast3D" type="RayCast3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0.137606)
+target_position = Vector3(0, -0.2, 0)
+hit_back_faces = false
+script = ExtResource("11_0qtew")
+player = NodePath("..")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130779, 1.81808, 0)
+font_size = 72

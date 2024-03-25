@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbjx4qeaf824d"]
+[gd_scene load_steps=16 format=3 uid="uid://cbjx4qeaf824d"]
 
 [ext_resource type="Script" path="res://levels/level_variation.gd" id="1_3vs0d"]
 [ext_resource type="Script" path="res://levels/level_00/parts/entry_scene.gd" id="3_jaugl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://levels/level_00/parts/section.gd" id="4_cb1is"]
 [ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://levels/resources/blanks_mat.tres" id="5_f0kor"]
 [ext_resource type="PackedScene" uid="uid://d3ao81eah57lv" path="res://levels/level_00/parts/fixed/00_fixed_01.tscn" id="5_sa6m1"]
+[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="7_si85d"]
 
 [sub_resource type="Resource" id="Resource_8cy4q"]
 script = ExtResource("3_jaugl")
@@ -62,9 +63,9 @@ diffuse_mode = 3
 specular_mode = 2
 albedo_color = Color(0.945098, 0.941176, 0.894118, 1)
 
-[sub_resource type="Curve3D" id="Curve3D_nretj"]
+[sub_resource type="Curve3D" id="Curve3D_fpgia"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0.280641, 0, -9.39949, 0, 0, 0, 0, 0, 0, 0.774284, 0, -15.3791, 0, 0, 0, 0, 0, 0, 1.76157, 0, -27.3385, 0, 0, 0, 0, 0, 0, -1.13558, -0.932046, -36.1388, 0, 0, 0, 0, 0, 0, 0.377093, -1.62426, -42.3962, 0, 0, 0, 0, 0, 0, 3.88152, -3.22791, -56.8927, 0, 0, 0, 0, 0, 0, 7.38594, -4.83156, -71.3891, 0, 0, 0, 0, 0, 0, 5.15479, -6.19736, -80.6907, 0, 0, 0, 0, 0, 0, 4.64925, -6.42933, -88.6175, 0, 0, 0, 0, 0, 0, 4.39477, -6.5461, -92.6077, 0, 0, 0, 0, 0, 0, 4.26752, -6.60449, -94.6028, 0, 0, 0, 0, 0, 0, 3.8858, -6.77964, -100.588, 0, 0, 0, 0, 0, 0, 5.11665, -6.77964, -110.071, 0, 0, 0, 0, 0, 0, 4.55358, -6.77964, -118.95, 0, 0, 0, 0, 0, 0, 3.98402, -6.77964, -127.932, 0, 0, 0, 0, 0, 0, 3.2246, -6.77964, -139.908, 0, 0, 0, 0, 0, 0, -1.20323, -6.13806, -150.635, 0, 0, 0, 0, 0, 0, 1.98322, -7.39863, -159.287, 0, 0, 0, 0, 0, 0, 7.11983, -9.43069, -173.232, 0, 0, 0, 0, 0, 0, 9.17448, -10.2435, -178.811, 0, 0, 0, 0, 0, 0, 7.97411, -9.93781, -186.412, 0, 0, 0, 0, 0, 0, 6.31909, -10.5138, -197.155),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0, 0, 0.949154, 0, -11.2797, 0, 0, 0, 0, 0, 0, 2.89782, 0, -20.0662, 0, 0, 0, 0, 0, 0, 6.14561, 0, -34.7104, 0, 0, 0, 0, 0, 0, 9.26531, 0.0923028, -45.7015, 0, 0, 0, 0, 0, 0, 11.4599, 0.348701, -57.8121, 0, 0, 0, 0, 0, 0, 12.5295, 0.473665, -63.7147, 0, 0, 0, 0, 0, 0, 14.1339, 0.661112, -72.5686, 0, 0, 0, 0, 0, 0, 17.164, -0.549707, -78.9169, 0, 0, 0, 0, 0, 0, 15.2847, -0.00803316, -93.7784, 0, 0, 0, 0, 0, 0, 14.0309, 0.353333, -103.693, 0, 0, 0, 0, 0, 0, 13.7801, 0.425607, -105.676, 0, 0, 0, 0, 0, 0, 12.5264, 0.786973, -115.59, 0, 0, 0, 0, 0, 0, 13.555, 0.786973, -122.966, 0, 0, 0, 0, 0, 0, 13.806, 0.786973, -132.271, 0, 0, 0, 0, 0, 0, 14.0486, 0.786973, -141.268, 0, 0, 0, 0, 0, 0, 14.372, 0.786973, -153.263, 0, 0, 0, 0, 0, 0, 18.6404, 0.630092, -166.976, 0, 0, 0, 0, 0, 0, 18.0265, 0.734938, -174.848, 0, 0, 0, 0, 0, 0, 17.3267, 0.854427, -183.82, 0, 0, 0, 0, 0, 0, 16.3938, 1.01375, -195.783, 0, 0, 0, 0, 0, 0, 18.553, 1.12662, -208.614, 0, 0, 0, 0, 0, 0, 16.5655, 1.18841, -219.588),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 26
@@ -138,6 +139,9 @@ smooth_faces = true
 material = ExtResource("5_f0kor")
 
 [node name="Path3D" type="Path3D" parent="."]
-curve = SubResource("Curve3D_nretj")
+curve = SubResource("Curve3D_fpgia")
+
+[node name="Player" parent="." node_paths=PackedStringArray("path_for_testing_purpose") instance=ExtResource("7_si85d")]
+path_for_testing_purpose = NodePath("../Path3D")
 
 [connection signal="visibility_changed" from="LevelGenerator" to="LevelGenerator" method="_on_visibility_changed"]

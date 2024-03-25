@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="PlayerStatsResource" load_steps=2 format=3 uid="uid://b40fpy6xu1hyh"]
+
+[ext_resource type="Script" path="res://player/resources/player_stats/player_stats_res.gd" id="1_1buy4"]
+
+[resource]
+script = ExtResource("1_1buy4")
+speed = 20
+forward_speed = 30
+sprint_addition = 10
+sprint_acceleration = 40
+gravity = 35.0
+ground_acceleration = 15
+air_acceleration = 7
+coyote_time = 0.5
+jump_strength = 13
+dash_strength = 150
+strafe_strength = 60
+dash_duration = 0.1
+dash_acceleration = 20
+wall_jump_strength = 18
+slide_duration = 0.6
+glide_strength = 3.0
+glide_acceleration = 0.5
+max_glide_duration = 0.7
+dive_strength = 20.0
+max_specials = 2
+priority_buffer = 0.2
+half_jump_buffer = 0.2
+half_jump_deceleration = 2.0
+floor_detection_margin = 0.5
+dash_deceleration = 2.0
+wall_jump_angle_range = 0.9
+dash_direction_snap = 0.5
+interpolation_distance = 0.1
+path_inertia = 1.0
+camera_speed = 8.7
