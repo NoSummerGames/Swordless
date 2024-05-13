@@ -8,8 +8,6 @@ extends Path3D
 var dirty: bool = false
 var parts = []
 
-func _ready() -> void:
-	level.level_resource.level_edited.connect(_regenerate_level)
 func _process(delta: float) -> void:
 	if not dirty and level.level_resource != null:
 		call_deferred("_create_level", level.level_resource.sections)

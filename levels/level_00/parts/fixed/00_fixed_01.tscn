@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://d3ao81eah57lv"]
 
-[ext_resource type="Script" path="res://levels/level_00/parts/part.gd" id="1_0dt8y"]
-[ext_resource type="Material" uid="uid://qihvaa1n1jtj" path="res://levels/resources/fixed_mat.tres" id="1_8gsc3"]
+[ext_resource type="Script" path="res://levels/src/part.gd" id="1_0dt8y"]
+[ext_resource type="Material" uid="uid://qihvaa1n1jtj" path="res://levels/fixed_mat.tres" id="1_8gsc3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_spsr8"]
 material = ExtResource("1_8gsc3")
@@ -36,15 +36,15 @@ data = PackedVector3Array(-1.25, 2.5, 0.25, 1.25, 2.5, 0.25, -1.25, -2.5, 0.25, 
 
 [sub_resource type="Curve3D" id="Curve3D_ed12l"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -20),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
-[node name="00Fixed01" type="Node3D" node_paths=PackedStringArray("block_path")]
+[node name="00Fixed01" type="Node3D" node_paths=PackedStringArray("part_path")]
 script = ExtResource("1_0dt8y")
 has_path = true
-block_path = NodePath("@Path3D@100339")
+part_path = NodePath("@Path3D@100339")
 
 [node name="Entrance" type="Node3D" parent="."]
 

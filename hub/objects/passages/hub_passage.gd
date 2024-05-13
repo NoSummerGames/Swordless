@@ -3,7 +3,7 @@ extends HubObject
 
 signal passage_entered
 
-@export var level: LevelResource
+@export var passage_resource: PassageResource
 
 var panel: HubLevelPanel:
 	set(value):

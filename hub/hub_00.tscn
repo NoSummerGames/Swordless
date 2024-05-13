@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dygyul8i3xpyu"]
+[gd_scene load_steps=12 format=3 uid="uid://dygyul8i3xpyu"]
 
 [ext_resource type="Script" path="res://hub/hub.gd" id="1_jbjhu"]
 [ext_resource type="PackedScene" uid="uid://c7uk2kbhwuvby" path="res://hub/objects/characters/_hub_character.tscn" id="2_d5gfh"]
 [ext_resource type="PackedScene" uid="uid://y2lbf5dl6y1v" path="res://hub/objects/passages/_hub_passage.tscn" id="3_te31o"]
+[ext_resource type="Resource" uid="uid://dnjgn14wfwfb" path="res://hub/objects/passages/passage_00.tres" id="4_dwmj1"]
 [ext_resource type="Script" path="res://ui/hub/src/hub_ui.gd" id="11_l22pu"]
 [ext_resource type="PackedScene" uid="uid://bpkrskyothbwv" path="res://ui/hub/hub_level_panel.tscn" id="12_84ox2"]
 
@@ -44,11 +45,14 @@ transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0,
 current = true
 fov = 40.0
 
-[node name="Character" parent="." instance=ExtResource("2_d5gfh")]
+[node name="Character" parent="." node_paths=PackedStringArray("visual_instance") instance=ExtResource("2_d5gfh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.651472, 0)
+visual_instance = NodePath("DefaultSprite")
 
-[node name="HubPassage" parent="." instance=ExtResource("3_te31o")]
+[node name="HubPassage" parent="." node_paths=PackedStringArray("visual_instance") instance=ExtResource("3_te31o")]
 transform = Transform3D(0.924026, 0, 0.382329, 0, 1, 0, -0.382329, 0, 0.924026, -5.0671, 0.705227, -3.13121)
+passage_resource = ExtResource("4_dwmj1")
+visual_instance = NodePath("DefaultSprite")
 
 [node name="HubUI" type="Control" parent="." node_paths=PackedStringArray("panel")]
 layout_mode = 3
@@ -61,9 +65,12 @@ mouse_filter = 1
 script = ExtResource("11_l22pu")
 panel = NodePath("HubLevelPanel")
 
-[node name="HubLevelPanel" parent="HubUI" instance=ExtResource("12_84ox2")]
+[node name="HubLevelPanel" parent="HubUI" node_paths=PackedStringArray("name_label", "description_label", "level_container") instance=ExtResource("12_84ox2")]
 visible = false
 layout_mode = 0
 offset_right = 200.0
+name_label = NodePath("VBoxContainer/Name")
+description_label = NodePath("VBoxContainer/Description")
+level_container = NodePath("VBoxContainer/LevelContainer")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

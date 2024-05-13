@@ -1,13 +1,31 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=5 format=3 uid="uid://byt4l7w33y588"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=6 format=3 uid="uid://byt4l7w33y588"]
 
-[ext_resource type="Script" path="res://levels/level_res.gd" id="1_rf7q6"]
-[ext_resource type="Resource" uid="uid://dwlay47txn6qt" path="res://levels/level_00/variations/level_00_A.tres" id="2_elkw7"]
-[ext_resource type="Resource" uid="uid://bp5kr02ysv3a1" path="res://levels/level_00/variations/level_00_B.tres" id="3_jgy4b"]
-[ext_resource type="Resource" uid="uid://btjhlm477a5vp" path="res://levels/level_00/variations/level_00_C.tres" id="4_0m4h2"]
+[ext_resource type="Script" path="res://levels/src/entry_scene.gd" id="1_u5n04"]
+[ext_resource type="Script" path="res://levels/resources/level_res.gd" id="2_c33aa"]
+[ext_resource type="Script" path="res://levels/resources/section_res.gd" id="3_c1c7d"]
+
+[sub_resource type="Resource" id="Resource_lw1dq"]
+script = ExtResource("1_u5n04")
+x_delta = 0.5
+y_delta = Vector2(-0.5, 0.25)
+fixed = true
+scale = 1.0
+parts_distance = Vector2i(2, 5)
+max_segments = 2
+
+[sub_resource type="Resource" id="Resource_w108v"]
+script = ExtResource("3_c1c7d")
+length = 250
+x_delta = 0.5
+y_delta = Vector2(-0.5, 0.25)
+fixed = false
+scale = 3.0
+parts_distance = Vector2i(2, 5)
+max_segments = 2
+pool_dir = "res://levels/level_00/parts/pool"
+types = 0
 
 [resource]
-script = ExtResource("1_rf7q6")
-name = "Ville Basse"
-description = "Lorem ipsum."
-baseline = "La ville était "
-variations = Array[Resource("res://levels/level_variaton_res.gd")]([ExtResource("2_elkw7"), ExtResource("3_jgy4b"), ExtResource("4_0m4h2")])
+script = ExtResource("2_c33aa")
+entry_scene = SubResource("Resource_lw1dq")
+sections = Array[ExtResource("3_c1c7d")]([SubResource("Resource_w108v")])

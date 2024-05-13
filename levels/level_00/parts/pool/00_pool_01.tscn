@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c83kamvgg8sao"]
 
-[ext_resource type="Script" path="res://levels/level_00/parts/part.gd" id="1_3u15f"]
+[ext_resource type="Script" path="res://levels/src/part.gd" id="1_3u15f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7vbs6"]
 
@@ -9,7 +9,6 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="00Block01" type="Node3D"]
 script = ExtResource("1_3u15f")
-types = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

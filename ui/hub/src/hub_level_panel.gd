@@ -6,8 +6,7 @@ signal closed
 
 @export var name_label: Label
 @export var description_label: Label
-@export var baseline_label: Label
-@export var variations: HFlowContainer
+@export var level_container: Control
 
 static var y_margin: float = 2
 static var z_margin: float = 0
@@ -18,35 +17,36 @@ var target: HubObject:
 		target = value
 		position = _update_position(target)
 
-var level: LevelResource:
+var level: PassageResource:
 	set(value):
-		var last_value: LevelResource = level
-		level = value
-		if value != null and value != last_value:
+		if value != null and value != level:
 			value.level_updated.connect(_update_level_informations.bind(value))
 			_update_level_informations(value)
+			level = value
+			
 
-func _update_level_informations(_level: LevelResource) -> void:
+func _update_level_informations(_level: PassageResource) -> void:
 	name_label.text = _level.name
 	description_label.text = _level.description
-	baseline_label.text = _level.baseline
 
-	get_children().clear()
-	for i: LevelVariationResource in _level.variations:
-		var variant: VariantButton = VariantButton.new()
-		variant.text = i.variation_name
-
-		if (i as LevelVariationResource).discovered == false:
-			variant.visible = false
-		if (i as LevelVariationResource).finished == true:
-			variant.theme_type_variation = "VariantButtonFinished"
-
-		await get_tree().process_frame
-
-		variant.pressed.connect(target.emit_signal.bind("passage_entered", i.variation_level))
-		variant.pressed.connect(hide)
-
-		variations.add_child(variant)
+	level_container.get_children().clear()
+	
+	var classic_button: LevelButton = LevelButton.new()
+	classic_button.text = _level.classic_level
+	classic_button.pressed.connect(target.emit_signal.bind("passage_entered", _level.classic_level_scene))
+	classic_button.pressed.connect(hide)
+	level_container.add_child(classic_button)
+	if _level.classic_finished == true:
+		classic_button.theme_type_variation = "LevelButtonFinished"
+	
+	if _level.blackened_unlocked == true:
+		var blackened_button: LevelButton = LevelButton.new()
+		blackened_button.text = _level.blackened_level
+		blackened_button.pressed.connect(target.emit_signal.bind("passage_entered", _level.blackened_level_scene))
+		blackened_button.pressed.connect(hide)
+		level_container.add_child(blackened_button)
+		if _level.blackened_finished == true:
+			blackened_button.theme_type_variation = "LevelButtonFinished"
 
 
 func _update_position(_target: HubObject) -> Vector2:

@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbjx4qeaf824d"]
+
+[ext_resource type="Script" path="res://levels/src/level.gd" id="1_3vs0d"]
+[ext_resource type="Resource" uid="uid://byt4l7w33y588" path="res://levels/level_00/level_00.tres" id="2_sxx6m"]
+[ext_resource type="Script" path="res://levels/src/level_generator.gd" id="4_7aqnq"]
+[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://levels/blanks_mat.tres" id="5_f0kor"]
+[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="7_si85d"]
+[ext_resource type="PackedScene" path="res://utils/restart.tscn" id="9_n53j1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iqygv"]
+sky_top_color = Color(0.388235, 0.529412, 0.690196, 1)
+sky_horizon_color = Color(0.584314, 0.568627, 0.545098, 1)
+sky_curve = 0.0750002
+sky_energy_multiplier = 1.3
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_curve = 0.03249
+ground_energy_multiplier = 0.8
+
+[sub_resource type="Sky" id="Sky_7xxvs"]
+sky_material = SubResource("ProceduralSkyMaterial_iqygv")
+
+[sub_resource type="Environment" id="Environment_k0rdy"]
+background_mode = 2
+sky = SubResource("Sky_7xxvs")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gwye"]
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.945098, 0.941176, 0.894118, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_lugrh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, -0.154678, -0.0289133, -10.9618, 0, 0, 0, 0, 0, 0, -0.203227, -0.359017, -15.6928, 0, 0, 0, 0, 0, 0, 0.263371, -0.554028, -19.2911, 0, 0, 0, 0, 0, 0, -0.0755245, -0.772103, -21.7233, 0, 0, 0, 0, 0, 0, 0.204423, -0.649513, -24.0467, 0, 0, 0, 0, 0, 0, 0.0538815, -0.577895, -26.3728, 0, 0, 0, 0, 0, 0, -0.0107407, -0.516629, -29.783, 0, 0, 0, 0, 0, 0, -0.43296, -0.653064, -32.8278, 0, 0, 0, 0, 0, 0, -0.480402, -0.989502, -36.7704, 0, 0, 0, 0, 0, 0, -0.518388, -1.17168, -39.3766, 0, 0, 0, 0, 0, 0, -0.736461, -2.21753, -54.3385, 0, 0, 0, 0, 0, 0, -0.82369, -2.63587, -60.3233, 0, 0, 0, 0, 0, 0, -0.954534, -3.26338, -69.3004, 0, 0, 0, 0, 0, 0, -1.39153, -2.53524, -81.4566, 0, 0, 0, 0, 0, 0, -0.11184, -2.67417, -88.2389, 0, 0, 0, 0, 0, 0, 1.00039, -2.79492, -94.1337, 0, 0, 0, 0, 0, 0, 1.5565, -2.8553, -97.0811, 0, 0, 0, 0, 0, 0, 3.78096, -3.09679, -108.871, 0, 0, 0, 0, 0, 0, 3.02333, -3.98787, -122.242, 0, 0, 0, 0, 0, 0, 2.93776, -4.28887, -135.567, 0, 0, 0, 0, 0, 0, 2.89924, -4.42436, -141.565, 0, 0, 0, 0, 0, 0, 2.87998, -4.49211, -144.565, 0, 0, 0, 0, 0, 0, 2.8222, -4.69535, -153.562, 0, 0, 0, 0, 0, 0, 2.40225, -5.54885, -160.582, 0, 0, 0, 0, 0, 0, 2.91603, -5.98985, -168.175, 0, 0, 0, 0, 0, 0, 3.92707, -6.85767, -183.115, 0, 0, 0, 0, 0, 0, 4.33148, -7.20479, -189.092, 0, 0, 0, 0, 0, 0, 5.34252, -8.07261, -204.032, 0, 0, 0, 0, 0, 0, 5.38129, -8.02898, -211.312, 0, 0, 0, 0, 0, 0, 6.60012, -9.24593, -217.372, 0, 0, 0, 0, 0, 0, 9.50207, -12.1434, -231.8, 0, 0, 0, 0, 0, 0, 9.79226, -12.4332, -233.243, 0, 0, 0, 0, 0, 0, 11.5334, -14.1716, -241.9, 0, 0, 0, 0, 0, 0, 12.0037, -13.8247, -251.531, 0, 0, 0, 0, 0, 0, 13.062, -13.5168, -258.816, 0, 0, 0, 0, 0, 0, 13.9239, -13.2661, -264.749, 0, 0, 0, 0, 0, 0, 14.8218, -19.0101, -270.929, 0, 0, 0, 0, 0, 0, 16.1146, -18.6339, -279.828, 0, 0, 0, 0, 0, 0, 18.2692, -18.007, -294.659, 0, 0, 0, 0, 0, 0, 16.8922, -18.3767, -303.25, 0, 0, 0, 0, 0, 0, 16.4928, -19.2294, -311.585, 0, 0, 0, 0, 0, 0, 15.7785, -20.7543, -326.49, 0, 0, 0, 0, 0, 0, 15.4927, -21.3642, -332.452, 0, 0, 0, 0, 0, 0, 15.0641, -22.2792, -341.395, 0, 0, 0, 0, 0, 0, 16.5426, -22.2745, -351.157, 0, 0, 0, 0, 0, 0, 18.0029, -22.1463, -365.433),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 50
+
+[node name="Level00_A" type="Node3D"]
+script = ExtResource("1_3vs0d")
+level_resource = ExtResource("2_sxx6m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k0rdy")
+
+[node name="Floor" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(-15, -1, -15, 0, 15, 0, 15, -1)
+mode = 2
+path_node = NodePath("../LevelGenerator")
+path_interval_type = 1
+path_interval = 1.26
+path_simplify_angle = 0.0
+path_rotation = 1
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_7gwye")
+
+[node name="WallRight" type="CSGPolygon3D" parent="."]
+visible = false
+material_override = ExtResource("5_f0kor")
+use_collision = true
+polygon = PackedVector2Array(13, 10, 15, 10, 15, 0, 13, 0)
+mode = 2
+path_node = NodePath("../LevelGenerator")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 1
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("5_f0kor")
+
+[node name="WallLeft" type="CSGPolygon3D" parent="."]
+visible = false
+material_override = ExtResource("5_f0kor")
+use_collision = true
+polygon = PackedVector2Array(-15, 10, -13, 10, -13, 0, -15, 0)
+mode = 2
+path_node = NodePath("../LevelGenerator")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 0.1
+path_rotation = 0
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = ExtResource("5_f0kor")
+
+[node name="LevelGenerator" type="Path3D" parent="." node_paths=PackedStringArray("level")]
+curve = SubResource("Curve3D_lugrh")
+script = ExtResource("4_7aqnq")
+level = NodePath("..")
+
+[node name="Player" parent="." node_paths=PackedStringArray("path_for_testing_purpose") instance=ExtResource("7_si85d")]
+path_for_testing_purpose = NodePath("../LevelGenerator")
+
+[node name="Restart" parent="." node_paths=PackedStringArray("player", "level_generator") instance=ExtResource("9_n53j1")]
+player = NodePath("../Player")
+level_generator = NodePath("../LevelGenerator")
+
+[connection signal="visibility_changed" from="LevelGenerator" to="LevelGenerator" method="_on_visibility_changed"]

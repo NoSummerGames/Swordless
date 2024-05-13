@@ -4,7 +4,7 @@ extends EditorPlugin
 signal playing_changed
 
 var toolbox: Control
-var playing: bool = false
+#var playing: bool = false
 
 func _enter_tree() -> void:
 	toolbox = preload("res://addons/csg_toolbox/toolbox_scene.tscn").instantiate()
@@ -19,10 +19,10 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	remove_control_from_bottom_panel(toolbox)
 
-func _process(delta: float) -> void:
-	if EditorInterface.is_playing_scene() != playing:
-		make_bottom_panel_item_visible(toolbox)
-		playing = not playing
+#func _process(delta: float) -> void:
+	#if EditorInterface.is_playing_scene() != playing:
+		#make_bottom_panel_item_visible(toolbox)
+		#playing = not playing
 
 func _on_csg_added(csg: Node3D) -> void:
 	var current_scene = EditorInterface.get_edited_scene_root()
