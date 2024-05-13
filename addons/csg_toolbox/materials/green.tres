@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brucj41ccrmoh"]
+
+[ext_resource type="Texture2D" uid="uid://btq6qi4v6xejy" path="res://addons/csg_toolbox/materials/png/green.png" id="1_qsl8y"]
+
+[resource]
+albedo_texture = ExtResource("1_qsl8y")
+uv1_triplanar = true
+uv2_triplanar_sharpness = 0.0743256

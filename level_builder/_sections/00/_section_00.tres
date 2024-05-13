@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Section" load_steps=2 format=3 uid="uid://dmhke42o5wm5"]
+
+[ext_resource type="Script" path="res://levels/src/section.gd" id="1_clncy"]
+
+[resource]
+script = ExtResource("1_clncy")
+length = 100
+x_delta = 0.5
+y_delta = Vector2(-0.5, 0.25)
+fixed = false
+scale = 1.0
+parts_distance = Vector2i(2, 5)
+max_segments = 2
+pool_dir = "res://level_builder/_pool_blocks/00"
+types = 0

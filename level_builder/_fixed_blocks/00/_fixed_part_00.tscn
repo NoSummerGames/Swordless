@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlhoy1dwb7wi0"]
+
+[ext_resource type="Script" path="res://levels/src/part.gd" id="1_q2dxu"]
+[ext_resource type="Material" uid="uid://dcbs7m32su05y" path="res://addons/csg_toolbox/materials/dark.tres" id="2_pkytd"]
+
+[sub_resource type="Curve3D" id="Curve3D_m5i31"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="PoolBlockTemplate" type="Node3D"]
+script = ExtResource("1_q2dxu")
+
+[node name="@Path3D@18028" type="Path3D" parent="."]
+curve = SubResource("Curve3D_m5i31")
+
+[node name="@CSGBox3D@25723" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
+use_collision = true
+material = ExtResource("2_pkytd")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

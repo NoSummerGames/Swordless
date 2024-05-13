@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6fgo3mbfuk0r"]
+
+[ext_resource type="Script" path="res://levels/src/part.gd" id="1_hb5ps"]
+[ext_resource type="Material" uid="uid://dcbs7m32su05y" path="res://addons/csg_toolbox/materials/dark.tres" id="2_n80pp"]
+
+[node name="Part" type="Node3D"]
+script = ExtResource("1_hb5ps")
+
+[node name="@CSGBox3D@70547" type="CSGBox3D" parent="."]
+transform = Transform3D(0.718138, 0.6959, 0, -0.6959, 0.718138, 0, 0, 0, 1, -2.24414, -0.0144694, -5.0806)
+use_collision = true
+size = Vector3(1.50879, 1, 4.74426)
+material = ExtResource("2_n80pp")
+
+[node name="_CSGBox3D_70547" type="CSGBox3D" parent="."]
+transform = Transform3D(0.819142, -0.573591, 0, 0.573591, 0.819142, 0, 0, 0, 1, 1.45164, 0.43139, -10.1103)
+use_collision = true
+size = Vector3(1.50879, 1, 5.86697)
+material = ExtResource("2_n80pp")
+
+[node name="@CSGCombiner3D@95603" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.2061)
+use_collision = true
+
+[node name="_CSGBox3D_82845" type="CSGBox3D" parent="@CSGCombiner3D@95603"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.329742, 1.63336, -0.5)
+use_collision = true
+size = Vector3(5.23199, 3.26672, 1)
+material = ExtResource("2_n80pp")
+
+[node name="@CSGBox3D@98034" type="CSGBox3D" parent="@CSGCombiner3D@95603"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18457, 1.94293, -0.66452)
+operation = 2
+use_collision = true
+size = Vector3(1.0249, 1.1272, 1.97363)
+material = ExtResource("2_n80pp")

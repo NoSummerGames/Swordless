@@ -1,0 +1,232 @@
+[gd_scene load_steps=29 format=3 uid="uid://bycwee57saj87"]
+
+[ext_resource type="Script" path="res://addons/csg_toolbox/csg_toolbox.gd" id="1_bnlhj"]
+[ext_resource type="Texture2D" uid="uid://h8w2sxy20iq" path="res://addons/csg_toolbox/icons/CSGBox3D.svg" id="2_0qsy0"]
+[ext_resource type="Material" uid="uid://dcbs7m32su05y" path="res://addons/csg_toolbox/materials/dark.tres" id="2_8p6of"]
+[ext_resource type="Script" path="res://addons/csg_toolbox/create_button.gd" id="3_f47bv"]
+[ext_resource type="Material" uid="uid://brucj41ccrmoh" path="res://addons/csg_toolbox/materials/green.tres" id="3_sc3b3"]
+[ext_resource type="Texture2D" uid="uid://crp0iedwx1fhc" path="res://addons/csg_toolbox/icons/CSGCylinder3D.svg" id="4_3aqfb"]
+[ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="4_fp44d"]
+[ext_resource type="Material" uid="uid://dywpbw3xji40g" path="res://addons/csg_toolbox/materials/orange.tres" id="5_eolg7"]
+[ext_resource type="Texture2D" uid="uid://2e26vo25s0pg" path="res://addons/csg_toolbox/icons/CSGMesh3D.svg" id="5_umacy"]
+[ext_resource type="Texture2D" uid="uid://8ox1gfwibb81" path="res://addons/csg_toolbox/icons/CSGPolygon3D.svg" id="6_e54i7"]
+[ext_resource type="Material" uid="uid://dwyb7uxf6a18p" path="res://addons/csg_toolbox/materials/purple.tres" id="6_t8id4"]
+[ext_resource type="Texture2D" uid="uid://cwyvlmg7id0be" path="res://addons/csg_toolbox/icons/ProtoRamp.svg" id="7_de21y"]
+[ext_resource type="Material" uid="uid://cmtc52okkykfl" path="res://addons/csg_toolbox/materials/red.tres" id="7_pk0oy"]
+[ext_resource type="Texture2D" uid="uid://b8ia744mlryw8" path="res://addons/csg_toolbox/icons/CSGSphere3D.svg" id="7_wl1te"]
+[ext_resource type="Theme" uid="uid://d2dv1klfg02r" path="res://addons/csg_toolbox/toolbox_theme.tres" id="8_wqwo5"]
+[ext_resource type="Texture2D" uid="uid://dkbup0vfei56l" path="res://addons/csg_toolbox/icons/CSGTorus3D.svg" id="8_y6ojs"]
+[ext_resource type="Texture2D" uid="uid://cwuiety254pfw" path="res://addons/csg_toolbox/icons/CSGCombiner3D.svg" id="9_hgu5q"]
+[ext_resource type="Texture2D" uid="uid://lx8jqi4bq08y" path="res://addons/csg_toolbox/icons/Stairs.svg" id="9_ueggj"]
+[ext_resource type="Texture2D" uid="uid://b0bvwkx6n0bxs" path="res://addons/csg_toolbox/icons/Part.svg" id="19_7xnql"]
+[ext_resource type="Script" path="res://addons/csg_toolbox/material_button.gd" id="19_dn7pd"]
+[ext_resource type="Texture2D" uid="uid://btq6qi4v6xejy" path="res://addons/csg_toolbox/materials/png/green.png" id="21_7v6me"]
+[ext_resource type="Texture2D" uid="uid://iegyrtt8xhdn" path="res://addons/csg_toolbox/materials/png/light.png" id="22_oox5w"]
+[ext_resource type="Texture2D" uid="uid://b8ecp21mrepog" path="res://addons/csg_toolbox/materials/png/orange.png" id="23_gu26u"]
+[ext_resource type="Texture2D" uid="uid://bkwlbqyytm6dt" path="res://addons/csg_toolbox/materials/png/purple.png" id="24_x6e2q"]
+[ext_resource type="Texture2D" uid="uid://m4okieaxxohw" path="res://addons/csg_toolbox/materials/png/red.png" id="25_5gqsk"]
+[ext_resource type="Texture2D" uid="uid://c1cviojjvhfx3" path="res://addons/csg_toolbox/icons/LevelTester.svg" id="25_d66qg"]
+[ext_resource type="Texture2D" uid="uid://beu6ylc30jmy5" path="res://addons/csg_toolbox/icons/PartTester.svg" id="26_aovdr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3thae"]
+load_path = "res://.godot/imported/dark.png-f984c40242d4b14e828740a1ef9b6052.s3tc.ctex"
+
+[node name="Control" type="PanelContainer" node_paths=PackedStringArray("create_buttons", "material_buttons")]
+clip_contents = true
+custom_minimum_size = Vector2(0, 119)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_wqwo5")
+theme_type_variation = &"ToolboxPanel"
+script = ExtResource("1_bnlhj")
+create_buttons = NodePath("HBoxContainer")
+material_buttons = NodePath("HBoxContainer/PanelContainer/GridContainer")
+default_material = ExtResource("2_8p6of")
+materials = Array[StandardMaterial3D]([ExtResource("2_8p6of"), ExtResource("3_sc3b3"), ExtResource("4_fp44d"), ExtResource("5_eolg7"), ExtResource("6_t8id4"), ExtResource("7_pk0oy")])
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CSGBox" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Box"
+icon = ExtResource("2_0qsy0")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Box"
+
+[node name="CSGCylinder" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cylinder"
+icon = ExtResource("4_3aqfb")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Cylinder"
+
+[node name="CSGMesh" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mesh"
+icon = ExtResource("5_umacy")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Mesh"
+
+[node name="CSGPolygon" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Polygon"
+icon = ExtResource("6_e54i7")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Polygon"
+
+[node name="CSGRamp" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ramp"
+icon = ExtResource("7_de21y")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Ramp"
+
+[node name="CSGSphere" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Sphere"
+icon = ExtResource("7_wl1te")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Sphere"
+
+[node name="CSGStairs" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Stairs"
+icon = ExtResource("9_ueggj")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Stairs"
+
+[node name="CSGTorus" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Torus"
+icon = ExtResource("8_y6ojs")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Torus"
+
+[node name="CSGCombiner" type="Button" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Combiner"
+icon = ExtResource("9_hgu5q")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Combiner"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Part" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Part"
+icon = ExtResource("19_7xnql")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Part"
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_wqwo5")
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("8_wqwo5")
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
+
+[node name="Button" type="Button" parent="HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("8_wqwo5")
+theme_type_variation = &"MaterialButton"
+icon = SubResource("CompressedTexture2D_3thae")
+vertical_icon_alignment = 0
+script = ExtResource("19_dn7pd")
+button_material = ExtResource("2_8p6of")
+
+[node name="Button2" type="Button" parent="HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_type_variation = &"MaterialButton"
+icon = ExtResource("21_7v6me")
+script = ExtResource("19_dn7pd")
+button_material = ExtResource("3_sc3b3")
+
+[node name="Button3" type="Button" parent="HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_type_variation = &"MaterialButton"
+icon = ExtResource("22_oox5w")
+script = ExtResource("19_dn7pd")
+button_material = ExtResource("4_fp44d")
+
+[node name="Button4" type="Button" parent="HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_type_variation = &"MaterialButton"
+icon = ExtResource("23_gu26u")
+script = ExtResource("19_dn7pd")
+button_material = ExtResource("5_eolg7")
+
+[node name="Button5" type="Button" parent="HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_type_variation = &"MaterialButton"
+icon = ExtResource("24_x6e2q")
+script = ExtResource("19_dn7pd")
+button_material = ExtResource("6_t8id4")
+
+[node name="Button6" type="Button" parent="HBoxContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+theme_type_variation = &"MaterialButton"
+icon = ExtResource("25_5gqsk")
+script = ExtResource("19_dn7pd")
+button_material = ExtResource("7_pk0oy")
+
+[node name="VSeparator_2" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PartTester" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Part
+Tester"
+icon = ExtResource("26_aovdr")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Part Tester"
+
+[node name="LevelTester" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Level
+Tester"
+icon = ExtResource("25_d66qg")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Level Tester"

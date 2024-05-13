@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://cu11ecv4dqgl5"]
+
+[ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/level_tester.gd" id="1_6voa2"]
+[ext_resource type="PackedScene" uid="uid://d3ao81eah57lv" path="res://levels/level_00/parts/fixed/00_fixed_01.tscn" id="2_2o1i8"]
+[ext_resource type="Script" path="res://levels/src/entry_scene.gd" id="2_7otan"]
+[ext_resource type="Script" path="res://levels/src/level_res.gd" id="3_a2nix"]
+[ext_resource type="Script" path="res://levels/src/section.gd" id="5_ftf6v"]
+[ext_resource type="PackedScene" uid="uid://b033wom0pmhii" path="res://addons/csg_toolbox/testers/level_generator.tscn" id="7_mjqw5"]
+[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="7_xian1"]
+[ext_resource type="PackedScene" uid="uid://crq8d388gq7ml" path="res://utils/restart.tscn" id="8_p5ohv"]
+
+[sub_resource type="Resource" id="Resource_dl373"]
+script = ExtResource("2_7otan")
+x_delta = 0.5
+y_delta = Vector2(-0.5, 0.25)
+fixed = true
+scale = 1.0
+parts_distance = Vector2i(2, 5)
+max_segments = 2
+fixed_scene = ExtResource("2_2o1i8")
+
+[sub_resource type="Resource" id="Resource_yvm7d"]
+script = ExtResource("5_ftf6v")
+length = 100
+x_delta = 0.5
+y_delta = Vector2(-0.5, 0.25)
+fixed = false
+scale = 3.0
+parts_distance = Vector2i(2, 5)
+max_segments = 2
+pool_dir = "res://level_builder/_pool_blocks/00"
+types = 0
+
+[sub_resource type="Resource" id="Resource_s0tap"]
+script = ExtResource("3_a2nix")
+entry_scene = SubResource("Resource_dl373")
+sections = Array[ExtResource("5_ftf6v")]([SubResource("Resource_yvm7d")])
+
+[sub_resource type="Curve3D" id="Curve3D_nfxbh"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -20, 0, 0, 0, 0, 0, 0, 0, 0, -22, 0, 0, 0, 0, 0, 0, -0.44585, 0.185728, -26.294, 0, 0, 0, 0, 0, 0, -0.390764, -0.1326, -28.8578, 0, 0, 0, 0, 0, 0, -0.344114, -0.618098, -33.4666, 0, 0, 0, 0, 0, 0, -0.750441, -0.473323, -36.3124, 0, 0, 0, 0, 0, 0, -0.874148, -0.431973, -39.7838, 0, 0, 0, 0, 0, 0, -1.31004, -0.811875, -43.0651, 0, 0, 0, 0, 0, 0, -1.5485, -1.25967, -47.5605, 0, 0, 0, 0, 0, 0, -1.60577, -1.01249, -50.9738, 0, 0, 0, 0, 0, 0, -1.78136, -0.884854, -53.4145, 0, 0, 0, 0, 0, 0, -1.74488, -1.11514, -57.3193, 0, 0, 0, 0, 0, 0, -1.66094, -1.64498, -66.3033, 0, 0, 0, 0, 0, 0, -1.63296, -1.82159, -69.298, 0, 0, 0, 0, 0, 0, -1.49305, -2.70464, -84.2713, 0, 0, 0, 0, 0, 0, -0.176793, -2.55324, -91.4433, 0, 0, 0, 0, 0, 0, 0.576239, -3.00156, -104.526, 0, 0, 0, 0, 0, 0, 1.26539, -3.41185, -116.499, 0, 0, 0, 0, 0, 0, 2.21697, -3.97837, -133.032, 0, 0, 0, 0, 0, 0, 3.07841, -4.49123, -147.998, 0, 0, 0, 0, 0, 0, 2.22074, -5.67954, -160.974, 0, 0, 0, 0, 0, 0, 2.93288, -5.36367, -175.002, 0, 0, 0, 0, 0, 0, 3.69324, -5.02641, -189.979, 0, 0, 0, 0, 0, 0, 6.3011, -3.86969, -241.346, 0, 0, 0, 0, 0, 0, 6.60525, -3.73479, -247.337, 0, 0, 0, 0, 0, 0, 6.98239, -4.98135, -261.965, 0, 0, 0, 0, 0, 0, 7.66353, -4.41368, -268.188, 0, 0, 0, 0, 0, 0, 8.31373, -3.8718, -274.128, 0, 0, 0, 0, 0, 0, 11.3933, -1.30527, -302.262, 0, 0, 0, 0, 0, 0, 12.3686, -0.492449, -311.172, 0, 0, 0, 0, 0, 0, 11.9558, -0.213238, -323.333, 0, 0, 0, 0, 0, 0, 11.5408, -1.17417, -335.136, 0, 0, 0, 0, 0, 0, 11.3307, -1.66076, -341.112, 0, 0, 0, 0, 0, 0, 8.83386, -7.44213, -412.122, 0, 0, 0, 0, 0, 0, 8.41357, -8.41531, -424.075, 0, 0, 0, 0, 0, 0, 8.98184, -8.58145, -430.541, 0, 0, 0, 0, 0, 0, 10.4201, -8.20332, -442.808, 0, 0, 0, 0, 0, 0, 11.1185, -8.01972, -448.764, 0, 0, 0, 0, 0, 0, 22.2926, -5.08208, -544.067, 0, 0, 0, 0, 0, 0, 24.0385, -4.62307, -558.958, 0, 0, 0, 0, 0, 0, 23.3579, -4.35506, -566.579, 0, 0, 0, 0, 0, 0, 23.0179, -4.09653, -579.125, 0, 0, 0, 0, 0, 0, 22.6929, -3.84939, -591.118, 0, 0, 0, 0, 0, 0, 21.0686, -2.61422, -651.058, 0, 0, 0, 0, 0, 0, 20.8249, -2.42886, -660.053, 0, 0, 0, 0, 0, 0, 19.7643, -1.88745, -671.302, 0, 0, 0, 0, 0, 0, 19.8927, -2.94261, -680.496),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 48
+
+[node name="LevelTester" type="Node3D"]
+script = ExtResource("1_6voa2")
+level_resource = SubResource("Resource_s0tap")
+
+[node name="Player" parent="." node_paths=PackedStringArray("path_for_testing_purpose") instance=ExtResource("7_xian1")]
+path_for_testing_purpose = NodePath("../LevelGenerator")
+metadata/_edit_lock_ = true
+
+[node name="LevelGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("7_mjqw5")]
+curve = SubResource("Curve3D_nfxbh")
+level = NodePath("..")
+
+[node name="Restart" parent="." node_paths=PackedStringArray("player", "level_generator") instance=ExtResource("8_p5ohv")]
+player = NodePath("../Player")
+level_generator = NodePath("../LevelGenerator")
+
+[connection signal="child_entered_tree" from="LevelGenerator/PoolBlockTemplate" to="LevelGenerator/PoolBlockTemplate" method="_on_child_entered_tree"]

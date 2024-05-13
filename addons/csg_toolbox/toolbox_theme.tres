@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://xord5t24j3km"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78ghp"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 0.227451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.341176)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjcva"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.423529)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kp3mt"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.227451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.341176)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dp01x"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_j31g1"]
+color = Color(1, 1, 1, 0.341176)
+grow_begin = 0.0
+grow_end = 0.0
+vertical = true
+
+[resource]
+default_base_scale = 1.0
+Button/constants/icon_max_width = 60
+Button/styles/disabled = SubResource("StyleBoxFlat_78ghp")
+Button/styles/focus = SubResource("StyleBoxFlat_78ghp")
+Button/styles/hover = SubResource("StyleBoxFlat_78ghp")
+Button/styles/normal = SubResource("StyleBoxFlat_78ghp")
+Button/styles/pressed = SubResource("StyleBoxFlat_78ghp")
+MaterialButton/base_type = &"Button"
+MaterialButton/constants/icon_max_width = 43
+MaterialButton/styles/disabled = SubResource("StyleBoxFlat_xjcva")
+MaterialButton/styles/focus = SubResource("StyleBoxFlat_xjcva")
+MaterialButton/styles/hover = SubResource("StyleBoxFlat_xjcva")
+MaterialButton/styles/normal = SubResource("StyleBoxFlat_xjcva")
+MaterialButton/styles/pressed = SubResource("StyleBoxFlat_xjcva")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_kp3mt")
+ToolboxPanel/base_type = &"PanelContainer"
+ToolboxPanel/styles/panel = SubResource("StyleBoxEmpty_dp01x")
+VSeparator/styles/separator = SubResource("StyleBoxLine_j31g1")

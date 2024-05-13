@@ -1,0 +1,119 @@
+[gd_scene load_steps=3 format=3 uid="uid://1bx6ud0k6ghf"]
+
+[ext_resource type="Script" path="res://levels/src/part.gd" id="1_cv75e"]
+[ext_resource type="Material" uid="uid://dcbs7m32su05y" path="res://addons/csg_toolbox/materials/dark.tres" id="2_bsrk3"]
+
+[node name="Part" type="Node3D"]
+script = ExtResource("1_cv75e")
+
+[node name="@CSGCylinder3D@19415" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.887064, 0.200744, -2.69122)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19415" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36354, 0.200744, -2.69122)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19416" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216714, 0.200744, -5.53673)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19417" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.82309, 0.200744, -5.53673)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19418" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30371, 0.200744, -5.53673)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19419" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30371, 0.200744, -1.31395)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19420" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00793, 0.200744, -1.31395)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19421" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.854839, 0, -0.518893, 0, 1, 0, 0.518893, 0, 0.854839, -1.14715, 0.200744, -17.2548)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19422" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.854839, 0, -0.518893, 0, 1, 0, 0.518893, 0, 0.854839, 0.77675, 0.200744, -16.0869)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19423" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.854839, 0, -0.518893, 0, 1, 0, 0.518893, 0, 0.854839, 1.27291, 0.200744, -19.1145)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19424" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.854839, 0, -0.518893, 0, 1, 0, 0.518893, 0, 0.854839, 3.50094, 0.200744, -17.7621)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19425" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.854839, 0, -0.518893, 0, 1, 0, 0.518893, 0, 0.854839, -0.881647, 0.200744, -20.4223)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19426" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.854839, 0, -0.518893, 0, 1, 0, 0.518893, 0, 0.854839, -3.07282, 0.200744, -16.8125)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")
+
+[node name="_CSGCylinder3D_19427" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.854839, 0, -0.518893, 0, 1, 0, 0.518893, 0, 0.854839, 1.46779, 0.200744, -14.0563)
+use_collision = true
+radius = 0.372081
+height = 1.01684
+smooth_faces = false
+material = ExtResource("2_bsrk3")

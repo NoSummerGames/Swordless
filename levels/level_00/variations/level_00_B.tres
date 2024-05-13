@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="LevelVariationResource" load_steps=2 format=3 uid="uid://bp5kr02ysv3a1"]
-
-[ext_resource type="Script" path="res://levels/level_variaton_res.gd" id="1_bsv3e"]
-
-[resource]
-script = ExtResource("1_bsv3e")
-variation_name = "déserte."
-discovered = true
-finished = false

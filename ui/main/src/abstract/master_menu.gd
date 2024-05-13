@@ -27,7 +27,7 @@ func display_menu(menu_scene: PackedScene) -> void:
 		printerr("No menu found")
 
 func close_menus() -> void:
-	if current_menu != null:
+	if is_instance_valid(current_menu):
 		current_menu.queue_free()
 
 func _set_trigger(new_trigger: String) -> void:

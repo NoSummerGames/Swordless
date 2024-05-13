@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
+signal exited_path
 signal restarted
 
 ## FIXME : added for testing purpose before having a proper "paths finding" script
@@ -12,11 +13,7 @@ signal restarted
 		if value != player_stats:
 			_update_player_stats(value)
 
-var current_action: Action:
-	set(value):
-		current_action = value
-		var label: Label3D = $Label3D
-		label.text = value.name
+var current_action: Action
 
 var floor_raycast: RayCast3D
 
@@ -31,29 +28,23 @@ var acceleration: float:
 		else:
 			return player_stats.air_acceleration
 
-@onready var coyote_timer: Timer = Timer.new()
-
 @onready var forward_speed: float = player_stats.forward_speed :
 	get:
 			return current_action.speed_factor * player_stats.forward_speed
 
 @onready var speed: float = player_stats.speed:
 	get:
-			return current_action.speed_factor * player_stats.speed
+		return current_action.speed_factor * player_stats.speed
 
 func _ready() -> void:
-	add_child(coyote_timer)
-	coyote_timer.one_shot = true
-
 	## FIXME : added for testing purpose before having a proper "paths finding" script
 	position = path_for_testing_purpose.curve.get_point_position(0)
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
-		var prev_velocity : Vector3 = velocity
 		velocity.y += -player_stats.gravity * delta
-		velocity.x = lerp(prev_velocity.x, direction.normalized().x * speed, acceleration * delta)
-		velocity.z = lerp(prev_velocity.z, direction.normalized().z * forward_speed, player_stats.ground_acceleration * delta)
+		velocity.x = lerp(velocity.x, direction.normalized().x * speed, acceleration * delta)
+		velocity.z = lerp(velocity.z, direction.normalized().z * forward_speed, acceleration * delta)
 	move_and_slide()
 
 
@@ -66,14 +57,7 @@ func _update_player_stats(value: PlayerStatsResource) -> void:
 				set(property_name, value)
 
 func is_almost_on_floor() -> bool:
-	if coyote_timer != null:
-		if not coyote_timer.is_stopped():
-			return true
-		else:
-			if floor_raycast.is_colliding() or is_on_floor():
-				coyote_timer.start(player_stats.coyote_time)
-				return true
-			else:
-				return false
+	if floor_raycast.is_colliding() or is_on_floor():
+		return true
 	else:
 		return false

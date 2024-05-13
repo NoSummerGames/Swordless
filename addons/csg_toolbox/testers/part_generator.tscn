@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://rqkrvnevowmd"]
+
+[ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester_gen.gd" id="1_g6koo"]
+[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://addons/csg_toolbox/testers/resources/blanks_mat.tres" id="2_8bq8e"]
+[ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="2_mh35b"]
+
+[sub_resource type="Curve3D" id="Curve3D_sws0t"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_slbgx"]
+
+[sub_resource type="Sky" id="Sky_keb21"]
+sky_material = SubResource("ProceduralSkyMaterial_slbgx")
+
+[sub_resource type="Environment" id="Environment_i57vx"]
+background_mode = 2
+sky = SubResource("Sky_keb21")
+tonemap_mode = 2
+
+[node name="PartGenerator" type="Path3D"]
+curve = SubResource("Curve3D_sws0t")
+script = ExtResource("1_g6koo")
+
+[node name="Floor" type="CSGPolygon3D" parent="."]
+material_override = ExtResource("2_mh35b")
+use_collision = true
+polygon = PackedVector2Array(-10, -1, -10, 0, 10, 0, 10, -1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("2_mh35b")
+
+[node name="WallRight" type="CSGPolygon3D" parent="."]
+visible = false
+material_override = ExtResource("2_8bq8e")
+use_collision = true
+polygon = PackedVector2Array(8, 20, 10, 20, 10, 0, 8, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 3.0
+path_rotation = 1
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("2_8bq8e")
+
+[node name="WallLeft" type="CSGPolygon3D" parent="."]
+visible = false
+material_override = ExtResource("2_8bq8e")
+use_collision = true
+polygon = PackedVector2Array(-10, 20, -8, 20, -8, 0, -10, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 3.0
+path_rotation = 1
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("2_8bq8e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i57vx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true

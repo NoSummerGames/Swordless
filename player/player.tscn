@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://dsk5r3lka7jsh"]
+[gd_scene load_steps=27 format=3 uid="uid://dsk5r3lka7jsh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_iit5d"]
-[ext_resource type="Resource" uid="uid://b40fpy6xu1hyh" path="res://player/resources/player_stats/stats_default.tres" id="2_oafph"]
-[ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="3_k8v4b"]
+[ext_resource type="Script" path="res://player/resources/player_stats/player_stats_res.gd" id="2_cd87s"]
 [ext_resource type="Script" path="res://player/components/player_camera_component.gd" id="3_ovvsi"]
 [ext_resource type="Script" path="res://player/components/player_path_component.gd" id="4_l8spp"]
 [ext_resource type="Script" path="res://player/components/player_input_component.gd" id="5_2m8xq"]
@@ -15,28 +14,76 @@
 [ext_resource type="Script" path="res://player/misc/floor_raycast.gd" id="11_0qtew"]
 [ext_resource type="Script" path="res://player/actions/action_fall.gd" id="11_53bcr"]
 [ext_resource type="Script" path="res://player/actions/action_wall_jump.gd" id="13_v7mrk"]
-[ext_resource type="Script" path="res://player/actions/action_glide.gd" id="13_x6q5o"]
+[ext_resource type="Script" path="res://player/actions/action_freeze.gd" id="13_x6q5o"]
 [ext_resource type="Script" path="res://player/actions/action_slide.gd" id="14_obll8"]
 [ext_resource type="Script" path="res://player/actions/action_dive.gd" id="15_11odp"]
+[ext_resource type="Script" path="res://player/debug_component.gd" id="19_1qfhx"]
 [ext_resource type="Script" path="res://player/components/player_sprint_component.gd" id="19_en817"]
+
+[sub_resource type="Resource" id="Resource_e1sip"]
+script = ExtResource("2_cd87s")
+speed = 20
+forward_speed = 30
+sprint_factor = 4.0
+gravity = 35.0
+ground_acceleration = 15
+air_acceleration = 7
+coyote_time = 0.5
+jump_strength = 13
+dash_strength = 110
+strafe_strength = 45
+dash_duration = 0.13
+dash_acceleration = 20
+wall_jump_strength = 18
+slide_duration = 0.6
+glide_strength = 1.0
+glide_acceleration = 0.5
+max_glide_duration = 0.7
+dive_strength = 40.0
+freeze_scale = 0.7
+max_specials = 2
+input_buffer = 5
+priority_buffer = 0.2
+half_jump_buffer = 0.2
+half_jump_deceleration = 2.0
+floor_detection_margin = 0.5
+dash_deceleration = 2.0
+wall_jump_angle_range = 0.9
+dash_direction_snap = 0.25
+diagonal_strafe = true
+interpolation_distance = 0.1
+path_inertia = 2.0
+camera_speed = 8.7
+freeze_camera_speed = 2.7
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
 size = Vector3(1, 1.6, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_tt1qa"]
-size = Vector3(0.5, 1.6, 0.3)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8wet"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0bgg"]
-albedo_texture = ExtResource("3_k8v4b")
+[sub_resource type="BoxMesh" id="BoxMesh_tt1qa"]
+material = SubResource("StandardMaterial3D_p8wet")
+size = Vector3(0.5, 1.6, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kdd8"]
 size = Vector3(0.5, 1.6, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqyoc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uof3y"]
+material = SubResource("StandardMaterial3D_kqyoc")
+top_radius = 0.0
+bottom_radius = 0.12
+height = 1.62
+radial_segments = 4
+rings = 0
+
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+floor_block_on_wall = false
 floor_snap_length = 0.5
 script = ExtResource("1_iit5d")
-player_stats = ExtResource("2_oafph")
+player_stats = SubResource("Resource_e1sip")
 
 [node name="PlayerArea" type="Area3D" parent="."]
 
@@ -47,7 +94,6 @@ shape = SubResource("BoxShape3D_bry1c")
 [node name="_PlayerMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 mesh = SubResource("BoxMesh_tt1qa")
-surface_material_override/0 = SubResource("StandardMaterial3D_a0bgg")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.1)
@@ -80,6 +126,20 @@ input_component = NodePath("../InputComponent")
 air_default_action = NodePath("Fall")
 ground_default_action = NodePath("Run")
 
+[node name="Freeze" type="Node" parent="ActionsController"]
+script = ExtResource("13_x6q5o")
+override_acceleration = true
+prioritary = true
+speed_factor = 0.8
+exclusive = true
+disable_sprint = true
+custom_acceleration = 11
+cond_match_input = true
+cond_cooldown = true
+input_required = 6
+cooldown_time = 2.0
+debug_color = Color(1.15514e-06, 0.745551, 0.950813, 1)
+
 [node name="Jump" type="Node" parent="ActionsController"]
 script = ExtResource("8_re7go")
 prioritary = true
@@ -87,6 +147,7 @@ speed_factor = 0.8
 cond_match_input = true
 cond_on_ground = true
 input_required = 1
+debug_color = Color(0.998354, 0.791112, 0, 1)
 
 [node name="WallJump" type="Node" parent="ActionsController"]
 script = ExtResource("13_v7mrk")
@@ -96,6 +157,7 @@ cond_match_input = true
 cond_on_wall = true
 cond_special = true
 input_required = 1
+debug_color = Color(0.628591, 0.852273, 3.85046e-07, 1)
 
 [node name="DoubleJump" type="Node" parent="ActionsController"]
 script = ExtResource("8_liewp")
@@ -105,21 +167,24 @@ cond_match_input = true
 cond_in_air = true
 cond_special = true
 input_required = 1
+debug_color = Color(1, 0.566346, 0.0896527, 1)
 
 [node name="Dash" type="Node" parent="ActionsController"]
 script = ExtResource("10_bda80")
-disabled = true
 prioritary = true
 speed_factor = 0.6
 exclusive = true
+disable_sprint = true
 cond_match_input = true
 cond_special = true
 cond_cooldown = true
 input_required = 3
 cooldown_time = 0.6
+debug_color = Color(0.953985, 0.368983, 0.730241, 1)
 
 [node name="Strafe" type="Node" parent="ActionsController"]
 script = ExtResource("10_gw2de")
+disabled = true
 override_acceleration = true
 prioritary = true
 speed_factor = 0.6
@@ -130,6 +195,7 @@ cond_special = true
 cond_cooldown = true
 input_required = 5
 cooldown_time = 0.25
+debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
 
 [node name="Slide" type="Node" parent="ActionsController"]
 script = ExtResource("14_obll8")
@@ -137,40 +203,45 @@ prioritary = true
 speed_factor = 0.7
 exclusive = true
 cond_match_input = true
-cond_cooldown = true
 cond_strictly_on_ground = true
 input_required = 4
 cooldown_time = 1.0
-
-[node name="Glide" type="Node" parent="ActionsController"]
-script = ExtResource("13_x6q5o")
-speed_factor = 0.8
-exclusive = true
-cond_match_input = true
-cond_in_air = true
-input_required = 6
+debug_color = Color(0, 0.750218, 0.472003, 1)
 
 [node name="Run" type="Node" parent="ActionsController"]
 script = ExtResource("10_8wi00")
-cond_strictly_on_ground = true
+cond_on_ground = true
+debug_color = Color(0.591498, 0.836485, 0.823248, 1)
 
 [node name="Dive" type="Node" parent="ActionsController"]
 script = ExtResource("15_11odp")
 cond_match_input = true
 cond_in_air = true
 input_required = 4
+debug_color = Color(0.748874, 0.506265, 1, 1)
 
 [node name="Fall" type="Node" parent="ActionsController"]
 script = ExtResource("11_53bcr")
 disabled = true
+debug_color = Color(0.79179, 0, 0.11008, 1)
 
-[node name="RayCast3D" type="RayCast3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0.137606)
+[node name="FloorRaycast" type="RayCast3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.138)
 target_position = Vector3(0, -0.2, 0)
 hit_back_faces = false
 script = ExtResource("11_0qtew")
 player = NodePath("..")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Debug" type="Node3D" parent="." node_paths=PackedStringArray("player", "body", "action_label")]
+script = ExtResource("19_1qfhx")
+player = NodePath("..")
+body = NodePath("../_PlayerMesh")
+action_label = NodePath("Action")
+
+[node name="Action" type="Label3D" parent="Debug"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130779, 1.81808, 0)
 font_size = 72
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.351515, 0.936182, 0, -0.936182, 0.351515, 0, 1.72548, -0.651544)
+mesh = SubResource("CylinderMesh_uof3y")

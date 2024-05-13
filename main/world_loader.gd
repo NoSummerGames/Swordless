@@ -13,8 +13,8 @@ var current_scene: Node3D = null:
 		current_scene = value
 		if value is Hub:
 			(value as Hub).level_entered.connect(_on_level_entered)
-		if value is LevelVariation:
-			(value as LevelVariation).level_entered.connect(_on_level_entered)
+		if value is Level:
+			(value as Level).level_entered.connect(_on_level_entered)
 
 var current_packed_scene: PackedScene
 

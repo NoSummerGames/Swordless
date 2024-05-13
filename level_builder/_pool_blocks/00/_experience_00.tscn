@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://ii1rqaan468i"]
+
+[ext_resource type="Script" path="res://levels/src/part.gd" id="1_mfwye"]
+[ext_resource type="Material" uid="uid://dcbs7m32su05y" path="res://addons/csg_toolbox/materials/dark.tres" id="2_yyisv"]
+[ext_resource type="Script" path="res://addons/proto_shape/proto_ramp/proto_ramp.gd" id="3_hfeol"]
+
+[node name="Part" type="Node3D"]
+script = ExtResource("1_mfwye")
+
+[node name="@CSGBox3D@33066" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42746, 0.5, -0.5)
+use_collision = true
+material = ExtResource("2_yyisv")
+
+[node name="@CSGCombiner3D@33453" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.827464, 0, 0.1)
+use_collision = true
+script = ExtResource("3_hfeol")
+type = 0
+width = 2.20889
+height = 0.991927
+depth = 1.45082
+anchor = 0
+anchor_fixed = true
+material = ExtResource("2_yyisv")
+
+[node name="@CSGBox3D@38147" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45481, 0.0758972, -0.5)
+use_collision = true
+size = Vector3(2.44348, 0.151794, 1)
+material = ExtResource("2_yyisv")
+
+[node name="@CSGBox3D@41236" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.838658, 0.492126, -2.21129)
+use_collision = true
+size = Vector3(2.17761, 0.984253, 1.74109)
+material = ExtResource("2_yyisv")
+
+[node name="_CSGBox3D_41236" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989781, -0.142594, 0, 0.142594, 0.989781, 2.11118, 0.257811, -3.10837)
+use_collision = true
+size = Vector3(1.42852, 0.51062, 1.18668)
+material = ExtResource("2_yyisv")
+
+[node name="_CSGBox3D_41237" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.998159, 0.0606479, 0, -0.0606479, 0.998159, 1.91132, 0.0769317, -5.71681)
+use_collision = true
+size = Vector3(1.34825, 0.299316, 1.18668)
+material = ExtResource("2_yyisv")
+
+[node name="@CSGBox3D@43174" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44254, 1.30859, -1.18527)
+use_collision = true
+size = Vector3(1, 2.61719, 0.351685)
+material = ExtResource("2_yyisv")
+
+[node name="_CSGBox3D_43174" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.11072, 2.02734, -5.36433)
+use_collision = true
+size = Vector3(8.01672, 4.05469, 0.351685)
+material = ExtResource("2_yyisv")
+
+[node name="@CSGBox3D@45877" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.361599, 1.02328, -7.8586)
+use_collision = true
+size = Vector3(4.57812, 0.227539, 1)
+material = ExtResource("2_yyisv")
+
+[node name="@CSGTorus3D@63289" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.92197, -0.015568, -7.80379)
+use_collision = true
+smooth_faces = false
+material = ExtResource("2_yyisv")
+
+[node name="@CSGBox3D@63680" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.370758, 0.5, -8.03381)
+use_collision = true
+size = Vector3(3.21259, 1, 1.34082)
+material = ExtResource("2_yyisv")

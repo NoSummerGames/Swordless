@@ -1,6 +1,5 @@
 class_name ActionJump
 extends Action
-
 @onready var timer: Timer = Timer.new()
 
 func _ready() -> void:

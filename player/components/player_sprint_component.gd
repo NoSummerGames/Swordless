@@ -1,6 +1,5 @@
 extends PlayerComponent
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("dash"):
-		var velocity = player.velocity.z
-		player.velocity.z = lerpf(player.velocity.z, player.velocity.z -player_stats.sprint_addition, player_stats.sprint_acceleration * delta)
+	if Input.is_action_pressed("sprint") and player.current_action.disable_sprint == false:
+		player.velocity -= player.global_transform.basis.z * player_stats.sprint_factor

@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://b033wom0pmhii"]
+
+[ext_resource type="Script" path="res://levels/src/level_generator.gd" id="1_vik63"]
+[ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="2_cukwh"]
+[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://levels/resources/blanks_mat.tres" id="2_y3e8c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_73s8g"]
+
+[sub_resource type="Sky" id="Sky_7xxvs"]
+sky_material = SubResource("ProceduralSkyMaterial_73s8g")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_k0rdy"]
+background_mode = 2
+sky = SubResource("Sky_7xxvs")
+sky_custom_fov = 110.0
+sky_rotation = Vector3(-0.174533, 3.14159, 0)
+ambient_light_energy = 1.5
+tonemap_mode = 2
+
+[node name="LevelGenerator" type="Path3D"]
+script = ExtResource("1_vik63")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k0rdy")
+
+[node name="Floor" type="CSGPolygon3D" parent="."]
+use_collision = true
+polygon = PackedVector2Array(-10, -1, -10, 0, 10, 0, 10, -1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 1.0
+path_rotation = 1
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("2_cukwh")
+
+[node name="WallRight" type="CSGPolygon3D" parent="."]
+material_override = ExtResource("2_y3e8c")
+use_collision = true
+polygon = PackedVector2Array(8, 20, 10, 20, 10, 0, 8, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 1.0
+path_rotation = 1
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("2_y3e8c")
+
+[node name="WallLeft" type="CSGPolygon3D" parent="."]
+material_override = ExtResource("2_y3e8c")
+use_collision = true
+polygon = PackedVector2Array(-10, 20, -8, 20, -8, 0, -10, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 1.0
+path_simplify_angle = 1.0
+path_rotation = 1
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = ExtResource("2_y3e8c")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

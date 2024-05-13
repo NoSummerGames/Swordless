@@ -6,7 +6,8 @@ extends AbstractAction
 @export var override_acceleration: bool
 @export var prioritary: bool
 @export var speed_factor: float = 1
-@export var exclusive: bool
+@export var exclusive: bool = false
+@export var disable_sprint: bool = false
 
 @export_group("Properties parameters")
 @export var custom_acceleration: int
@@ -24,9 +25,11 @@ extends AbstractAction
 @export var input_required: Data.Actions
 @export var cooldown_time: float
 
+@export var debug_color: Color
+
 # Dictionary keys must be matching the above boolean var names
 var conditions : Dictionary = {
-	"cond_match_input" : func() -> bool: return false if input != input_required else true,
+	"cond_match_input" : func() -> bool: return false if input_required not in input else true,
 	"cond_on_ground" : func() -> bool: return player.is_almost_on_floor(),
 	"cond_strictly_on_ground" : func() -> bool: return player.is_on_floor(),
 	"cond_in_air": func() -> bool: return !player.is_on_floor(),
@@ -49,7 +52,6 @@ var conditions : Dictionary = {
 			return true
 ]
 
-
 var cooldown_over: bool = true
 
 func _physics_process(delta: float) -> void:
@@ -60,7 +62,7 @@ func _physics_process(delta: float) -> void:
 			return
 
 	if current_action != self:
-		if self.cond_match_input == true and input_required != input:
+		if self.cond_match_input == true and input_required not in input:
 			pass
 		else:
 			_check_conditions()
@@ -82,11 +84,12 @@ func _check_conditions() -> void:
 
 func set_current_action() -> void:
 	if current_action != self:
+		input.clear()
 		_enter()
 		current_action._exit()
 		current_action = self
 		player.current_action = current_action
-		input = Data.Actions.NONE
+		input.append(Data.Actions.NONE)
 
 		if current_action.exclusive:
 			done = false
@@ -96,12 +99,14 @@ func set_current_action() -> void:
 
 		if current_action.cond_cooldown:
 			cooldown_over = false
-			await Utilities.add_timer(true, cooldown_time)
+			var timer = await Utilities.add_timer(true, cooldown_time)
+			await timer.timeout
 			cooldown_over = true
 
 		if current_action.prioritary:
 			priority_time = true
-			await Utilities.add_timer(true, player_stats.priority_buffer)
+			var timer = await Utilities.add_timer(true, player_stats.priority_buffer)
+			await timer.timeout
 			priority_time = false
 
 func _enter() -> void:
