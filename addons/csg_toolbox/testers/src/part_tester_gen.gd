@@ -76,10 +76,7 @@ func _calculate_spatial_bounds(parent : Node, exclude_top_level_transform: bool)
 	return bounds
 
 func _on_visibility_changed() -> void:
-	for part in parts:
-		part.queue_free()
-	parts.clear()
-	dirty = false
+	regenerate_part()
 
 func _on_player_exited_path():
 	for part in parts:
@@ -88,6 +85,9 @@ func _on_player_exited_path():
 	dirty = false
 
 func _on_player_restarted():
+	regenerate_part()
+
+func regenerate_part() -> void:
 	for part in parts:
 		part.queue_free()
 	parts.clear()
@@ -96,3 +96,4 @@ func _on_player_restarted():
 	curve.add_point(Vector3.ZERO)
 	curve.add_point(Vector3.FORWARD)
 	dirty = false
+	

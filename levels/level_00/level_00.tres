@@ -1,31 +1,40 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=6 format=3 uid="uid://byt4l7w33y588"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=10 format=3 uid="uid://byt4l7w33y588"]
 
-[ext_resource type="Script" path="res://levels/src/entry_scene.gd" id="1_u5n04"]
+[ext_resource type="PackedScene" uid="uid://dlhoy1dwb7wi0" path="res://level_builder/_fixed_blocks/00/_fixed_part_00.tscn" id="1_2eyp0"]
+[ext_resource type="Script" path="res://levels/resources/entry_scene.gd" id="1_u5n04"]
+[ext_resource type="Script" path="res://levels/resources/exit_scene.gd" id="2_6atlx"]
 [ext_resource type="Script" path="res://levels/resources/level_res.gd" id="2_c33aa"]
 [ext_resource type="Script" path="res://levels/resources/section_res.gd" id="3_c1c7d"]
+[ext_resource type="PackedScene" uid="uid://dm1qp5de7rf3y" path="res://levels/level_00/parts/fixed/exit_scene.tscn" id="3_cflvx"]
 
-[sub_resource type="Resource" id="Resource_lw1dq"]
+[sub_resource type="Resource" id="Resource_awlff"]
 script = ExtResource("1_u5n04")
-x_delta = 0.5
-y_delta = Vector2(-0.5, 0.25)
-fixed = true
+fixed_scene = ExtResource("1_2eyp0")
 scale = 1.0
 parts_distance = Vector2i(2, 5)
-max_segments = 2
+
+[sub_resource type="Resource" id="Resource_541a2"]
+script = ExtResource("2_6atlx")
+fixed_scene = ExtResource("3_cflvx")
+scale = 1.0
+parts_distance = Vector2i(2, 5)
 
 [sub_resource type="Resource" id="Resource_w108v"]
 script = ExtResource("3_c1c7d")
 length = 250
 x_delta = 0.5
-y_delta = Vector2(-0.5, 0.25)
+low_delta = -0.5
+high_delta = 0.25
 fixed = false
-scale = 3.0
-parts_distance = Vector2i(2, 5)
 max_segments = 2
 pool_dir = "res://levels/level_00/parts/pool"
-types = 0
+scale = 3.0
+parts_distance = Vector2i(2, 5)
 
 [resource]
 script = ExtResource("2_c33aa")
-entry_scene = SubResource("Resource_lw1dq")
+entry_section = SubResource("Resource_awlff")
 sections = Array[ExtResource("3_c1c7d")]([SubResource("Resource_w108v")])
+exit_section = SubResource("Resource_541a2")
+smoothing_factor = 0
+starting_distance = 5

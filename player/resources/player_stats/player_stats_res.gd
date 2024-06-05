@@ -4,9 +4,9 @@ extends CustomResource
 var current_action: Action
 
 @export_group("Velocity")
-@export var speed: int = 20
-@export var forward_speed: int = 30
-@export var sprint_factor: float = 1.5
+@export var speed: int = 30
+@export var lateral_factor: float = 0.6
+@export var sprint_factor: float = 3
 @export var gravity: float = 35
 @export var ground_acceleration: int = 15
 @export var air_acceleration: int = 7
@@ -40,7 +40,8 @@ var current_action: Action
 
 @export_group("Path")
 @export var interpolation_distance: float = 0.1
-@export var path_inertia: float = 1
+@export var path_stiffness: float = 4
+@export var path_offset: int = 0
 
 @export_group("Camera")
 @export_exp_easing("positive_only") var camera_speed: float = 8.70

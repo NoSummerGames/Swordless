@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bpkrskyothbwv"]
 
-[ext_resource type="Script" path="res://ui/hub/src/hub_level_panel.gd" id="1_cy0ma"]
+[ext_resource type="Script" path="res://hub/ui/src/hub_level_panel.gd" id="1_cy0ma"]
 
 [node name="HubLevelPanel" type="MarginContainer" node_paths=PackedStringArray("name_label", "description_label", "level_container")]
 custom_minimum_size = Vector2(200, 0)

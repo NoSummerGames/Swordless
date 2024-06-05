@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://hub/objects/characters/hub_character.gd" id="1_wn2os"]
 [ext_resource type="Script" path="res://hub/objects/components/outline_component.gd" id="2_a08tp"]
-[ext_resource type="Resource" uid="uid://b84t04rt2xyx1" path="res://resource_sets/resources/hub_object_states_set.tres" id="2_fmylm"]
+[ext_resource type="Resource" uid="uid://b84t04rt2xyx1" path="res://hub/objects/resources/hub_object_states_set.tres" id="2_fmylm"]
 [ext_resource type="Script" path="res://hub/objects/components/collision_component.gd" id="3_8l88i"]
 [ext_resource type="Script" path="res://hub/objects/components/input_component.gd" id="4_1sg0i"]
 [ext_resource type="Script" path="res://hub/objects/components/input_color_component.gd" id="5_et73e"]

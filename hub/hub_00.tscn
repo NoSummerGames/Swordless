@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://c7uk2kbhwuvby" path="res://hub/objects/characters/_hub_character.tscn" id="2_d5gfh"]
 [ext_resource type="PackedScene" uid="uid://y2lbf5dl6y1v" path="res://hub/objects/passages/_hub_passage.tscn" id="3_te31o"]
 [ext_resource type="Resource" uid="uid://dnjgn14wfwfb" path="res://hub/objects/passages/passage_00.tres" id="4_dwmj1"]
-[ext_resource type="Script" path="res://ui/hub/src/hub_ui.gd" id="11_l22pu"]
-[ext_resource type="PackedScene" uid="uid://bpkrskyothbwv" path="res://ui/hub/hub_level_panel.tscn" id="12_84ox2"]
+[ext_resource type="Script" path="res://hub/ui/src/hub_ui.gd" id="11_l22pu"]
+[ext_resource type="PackedScene" uid="uid://bpkrskyothbwv" path="res://hub/ui/hub_level_panel.tscn" id="12_84ox2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_seffu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

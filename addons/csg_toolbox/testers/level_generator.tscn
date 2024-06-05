@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b033wom0pmhii"]
+[gd_scene load_steps=7 format=3 uid="uid://clki6hn2uymhx"]
 
 [ext_resource type="Script" path="res://levels/src/level_generator.gd" id="1_vik63"]
 [ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="2_cukwh"]
-[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://levels/resources/blanks_mat.tres" id="2_y3e8c"]
+[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://levels/blanks_mat.tres" id="2_y3e8c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_73s8g"]
 
@@ -29,6 +29,7 @@ shadow_enabled = true
 environment = SubResource("Environment_k0rdy")
 
 [node name="Floor" type="CSGPolygon3D" parent="."]
+visible = false
 use_collision = true
 polygon = PackedVector2Array(-10, -1, -10, 0, 10, 0, 10, -1)
 mode = 2

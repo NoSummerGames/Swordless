@@ -15,6 +15,7 @@ var current_scene: Node3D = null:
 			(value as Hub).level_entered.connect(_on_level_entered)
 		if value is Level:
 			(value as Level).level_entered.connect(_on_level_entered)
+			(value as Level).level_finished.connect(_on_level_finished)
 
 var current_packed_scene: PackedScene
 
@@ -26,6 +27,9 @@ func _on_level_entered(level: PackedScene) -> void:
 
 func _on_level_reloaded() -> void:
 	load_scene(current_packed_scene)
+
+func _on_level_finished() -> void:
+	load_scene(hub_scene)
 
 func load_scene(scene: PackedScene) -> void:
 	emit_signal("level_loading")

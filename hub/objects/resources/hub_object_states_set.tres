@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResourceSet" load_steps=7 format=3 uid="uid://b84t04rt2xyx1"]
+
+[ext_resource type="Resource" uid="uid://dpm32flfj0hqv" path="res://hub/objects/resources/state_debug.tres" id="1_7eatp"]
+[ext_resource type="Resource" uid="uid://caajn7iru0ii3" path="res://hub/objects/resources/state_busy.tres" id="2_u2ry1"]
+[ext_resource type="Resource" uid="uid://bon3lkr3sh3qk" path="res://hub/objects/resources/state_fresh.tres" id="3_i4bfw"]
+[ext_resource type="Resource" uid="uid://cvdn1a6mls7c3" path="res://hub/objects/resources/state_idle.tres" id="4_vds6m"]
+[ext_resource type="Resource" uid="uid://dxa4fdtjn5euq" path="res://hub/objects/resources/state_quiet.tres" id="5_yf2ss"]
+[ext_resource type="Script" path="res://utils/resource_set.gd" id="6_itla1"]
+
+[resource]
+script = ExtResource("6_itla1")
+type_name = &"HubObjectState"
+register_type = true
+resource_set = Array[Resource]([ExtResource("2_u2ry1"), ExtResource("3_i4bfw"), ExtResource("4_vds6m"), ExtResource("5_yf2ss")])
+debug_resource = ExtResource("1_7eatp")

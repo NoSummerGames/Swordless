@@ -6,7 +6,7 @@ extends PlayerComponent
 var initial_transform: Transform3D
 
 func _ready() -> void:
-	initial_transform =camera_point.global_transform
+	initial_transform = camera_point.global_transform
 	# Camera doesn't inherit position from its parents
 	player.restarted.connect(_on_player_restarted)
 	camera.top_level = true

@@ -5,7 +5,7 @@ signal exited_path
 signal restarted
 
 ## FIXME : added for testing purpose before having a proper "paths finding" script
-@export var path_for_testing_purpose: Path3D
+@export var path: Path3D
 
 @export var player_stats: PlayerStatsResource:
 	set(value):
@@ -28,23 +28,20 @@ var acceleration: float:
 		else:
 			return player_stats.air_acceleration
 
-@onready var forward_speed: float = player_stats.forward_speed :
-	get:
-			return current_action.speed_factor * player_stats.forward_speed
-
 @onready var speed: float = player_stats.speed:
 	get:
 		return current_action.speed_factor * player_stats.speed
 
 func _ready() -> void:
 	## FIXME : added for testing purpose before having a proper "paths finding" script
-	position = path_for_testing_purpose.curve.get_point_position(0)
+	position = path.curve.get_point_position(0)
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
 		velocity.y += -player_stats.gravity * delta
 		velocity.x = lerp(velocity.x, direction.normalized().x * speed, acceleration * delta)
-		velocity.z = lerp(velocity.z, direction.normalized().z * forward_speed, acceleration * delta)
+		velocity.z = lerp(velocity.z, direction.normalized().z * speed, acceleration * delta)
+
 	move_and_slide()
 
 

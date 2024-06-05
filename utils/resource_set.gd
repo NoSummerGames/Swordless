@@ -44,7 +44,7 @@ extends CustomResource
 	get:
 		if debug_resource == null:
 			if not Engine.is_editor_hint():
-				printerr("The debug_resource for the ResourceSet {} hasn't been set.".format([self.type_name]))
+				printerr("The debug_resource for the ResourceSet {} hasn't been set.".format([self.type_name], "{}"))
 			return null
 		else:
 			return debug_resource

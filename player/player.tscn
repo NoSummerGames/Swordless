@@ -22,9 +22,9 @@
 
 [sub_resource type="Resource" id="Resource_e1sip"]
 script = ExtResource("2_cd87s")
-speed = 20
-forward_speed = 30
-sprint_factor = 4.0
+speed = 30
+lateral_factor = 0.6
+sprint_factor = 3.0
 gravity = 35.0
 ground_acceleration = 15
 air_acceleration = 7
@@ -52,8 +52,9 @@ wall_jump_angle_range = 0.9
 dash_direction_snap = 0.25
 diagonal_strafe = true
 interpolation_distance = 0.1
-path_inertia = 2.0
-camera_speed = 8.7
+path_stiffness = 4.0
+path_offset = 0
+camera_speed = 12.0
 freeze_camera_speed = 2.7
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
@@ -80,7 +81,9 @@ radial_segments = 4
 rings = 0
 
 [node name="Player" type="CharacterBody3D"]
+floor_constant_speed = true
 floor_block_on_wall = false
+floor_max_angle = 1.0472
 floor_snap_length = 0.5
 script = ExtResource("1_iit5d")
 player_stats = SubResource("Resource_e1sip")

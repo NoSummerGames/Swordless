@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://rqkrvnevowmd"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester_gen.gd" id="1_g6koo"]
-[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://addons/csg_toolbox/testers/resources/blanks_mat.tres" id="2_8bq8e"]
+[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://levels/blanks_mat.tres" id="2_8bq8e"]
 [ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="2_mh35b"]
 
-[sub_resource type="Curve3D" id="Curve3D_sws0t"]
+[sub_resource type="Curve3D" id="Curve3D_u7wxt"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1),
 "tilts": PackedFloat32Array(0, 0)
@@ -22,10 +22,11 @@ sky = SubResource("Sky_keb21")
 tonemap_mode = 2
 
 [node name="PartGenerator" type="Path3D"]
-curve = SubResource("Curve3D_sws0t")
+curve = SubResource("Curve3D_u7wxt")
 script = ExtResource("1_g6koo")
 
 [node name="Floor" type="CSGPolygon3D" parent="."]
+visible = false
 material_override = ExtResource("2_mh35b")
 use_collision = true
 polygon = PackedVector2Array(-10, -1, -10, 0, 10, 0, 10, -1)

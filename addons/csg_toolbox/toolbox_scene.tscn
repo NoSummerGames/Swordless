@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bycwee57saj87"]
+[gd_scene load_steps=29 format=3 uid="uid://bdl3tewmdsd2r"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/csg_toolbox.gd" id="1_bnlhj"]
 [ext_resource type="Texture2D" uid="uid://h8w2sxy20iq" path="res://addons/csg_toolbox/icons/CSGBox3D.svg" id="2_0qsy0"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cwyvlmg7id0be" path="res://addons/csg_toolbox/icons/ProtoRamp.svg" id="7_de21y"]
 [ext_resource type="Material" uid="uid://cmtc52okkykfl" path="res://addons/csg_toolbox/materials/red.tres" id="7_pk0oy"]
 [ext_resource type="Texture2D" uid="uid://b8ia744mlryw8" path="res://addons/csg_toolbox/icons/CSGSphere3D.svg" id="7_wl1te"]
-[ext_resource type="Theme" uid="uid://d2dv1klfg02r" path="res://addons/csg_toolbox/toolbox_theme.tres" id="8_wqwo5"]
+[ext_resource type="Theme" uid="uid://xord5t24j3km" path="res://addons/csg_toolbox/toolbox_theme.tres" id="8_wqwo5"]
 [ext_resource type="Texture2D" uid="uid://dkbup0vfei56l" path="res://addons/csg_toolbox/icons/CSGTorus3D.svg" id="8_y6ojs"]
 [ext_resource type="Texture2D" uid="uid://cwuiety254pfw" path="res://addons/csg_toolbox/icons/CSGCombiner3D.svg" id="9_hgu5q"]
 [ext_resource type="Texture2D" uid="uid://lx8jqi4bq08y" path="res://addons/csg_toolbox/icons/Stairs.svg" id="9_ueggj"]
@@ -139,6 +139,19 @@ type = &"Combiner"
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
 
+[node name="ExitArea" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Exit"
+icon = ExtResource("19_7xnql")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"ExitArea"
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
 [node name="Part" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "Part"
@@ -148,7 +161,8 @@ vertical_icon_alignment = 0
 script = ExtResource("3_f47bv")
 type = &"Part"
 
-[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
+auto_translate_mode = 1
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]

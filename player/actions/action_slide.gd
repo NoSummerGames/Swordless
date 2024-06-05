@@ -10,8 +10,6 @@ func _enter() -> void:
 	var timer = await Utilities.add_timer(true, player_stats.slide_duration)
 	await timer.timeout
 	can_exit = true
-	player.scale.y = 1
-	_exit()
 
 
 func _execute(_delta: float):
@@ -26,5 +24,6 @@ func _execute(_delta: float):
 			for i: int in result.get_collision_count():
 				if result.get_collision_normal(i).dot(Vector3.DOWN) > 0:
 					return
+		has_slided = false
 		player.scale.y = 1
 		_exit()

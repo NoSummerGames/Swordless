@@ -28,9 +28,9 @@ func _physics_process(_delta: float) -> void:
 		input.pop_front()
 
 func _on_command_input(_input: Data.Actions, _action_param: Data.ActionParams) -> void:
-	if _action_param == Data.ActionParams.END:
-		has_slided = false
-	if _input == Data.Actions.SLIDE and has_slided == true:
+	#if _action_param == Data.ActionParams.END:
+		#has_slided = false
+	if has_slided == true:
 		pass
 	else:
 		input.append(_input)

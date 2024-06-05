@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm1qp5de7rf3y"]
+
+[ext_resource type="Script" path="res://levels/src/part.gd" id="1_vyb5s"]
+[ext_resource type="Material" uid="uid://brucj41ccrmoh" path="res://addons/csg_toolbox/materials/green.tres" id="2_w1bml"]
+[ext_resource type="Script" path="res://levels/objects/exit_area.gd" id="3_lfj3k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j4ly4"]
+size = Vector3(7, 5, 1)
+
+[node name="Block" type="Node3D"]
+script = ExtResource("1_vyb5s")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.486051)
+use_collision = true
+size = Vector3(7, 5, 1)
+material = ExtResource("2_w1bml")
+
+[node name="ExitArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+script = ExtResource("3_lfj3k")
+
+[node name="ExitCollision" type="CollisionShape3D" parent="ExitArea"]
+shape = SubResource("BoxShape3D_j4ly4")

@@ -53,7 +53,11 @@ var index : Dictionary = {
 
 	"Part": {"type": Part,
 			"attributes" : {}
-			}
+			},
+			
+	"ExitArea": {"type": ExitArea,
+			"attributes" : {}
+			},
 	}
 
 func _enter_tree() -> void:
@@ -85,8 +89,9 @@ func _on_create_button_pressed(button) -> void:
 	if object is CSGCombiner3D:
 		if object is ProtoRamp:
 			object.material = default_material
-	else:
+	elif object.get("material") != null:
 		object.material = default_material
+		
 	emit_signal("csg_added", object)
 
 func _on_material_button_pressed(mat: StandardMaterial3D) -> void:

@@ -9,10 +9,7 @@ var input_y: float = 0
 func _physics_process(delta: float) -> void:
 	get_command_inputs()
 	input_x = _get_lateral_input(delta)
-	player.direction += input_x * player.transform.basis.x
-	var raw_input_y: float = Input.get_action_strength("down")
-	input_y = lerp(input_y, raw_input_y, player.acceleration * delta)
-	player.direction -= input_y * player.transform.basis.y * 5
+	player.direction += input_x * player.transform.basis.x * player_stats.lateral_factor
 
 func _get_lateral_input(delta: float) -> float:
 	# Lerp between left and right user action strengh

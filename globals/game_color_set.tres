@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ResourceSet" load_steps=9 format=3 uid="uid://cm2wwtvsb4tkv"]
+
+[ext_resource type="Resource" uid="uid://xkxdsqub2aoa" path="res://globals/colors/resources/_debug.tres" id="1_51ten"]
+[ext_resource type="Resource" uid="uid://6ckmn5nuj128" path="res://globals/colors/resources/dimmed_green.tres" id="2_w53y1"]
+[ext_resource type="Resource" uid="uid://ditjff8ecirpg" path="res://globals/colors/resources/light_green.tres" id="3_ds84f"]
+[ext_resource type="Resource" uid="uid://e31m2ujj5bs0" path="res://globals/colors/resources/moss_white.tres" id="4_f7cbu"]
+[ext_resource type="Resource" uid="uid://cm8a0xshnn2xn" path="res://globals/colors/resources/neutral_green.tres" id="5_dl73t"]
+[ext_resource type="Resource" uid="uid://4l1x7kuaj828" path="res://globals/colors/resources/transparent_green.tres" id="6_x0lsy"]
+[ext_resource type="Resource" uid="uid://y6j3cfhwiulp" path="res://globals/colors/resources/vivid_green.tres" id="7_85rjm"]
+[ext_resource type="Script" path="res://utils/resource_set.gd" id="8_j2pl0"]
+
+[resource]
+script = ExtResource("8_j2pl0")
+type_name = &"GameColor"
+register_type = true
+resource_set = Array[Resource]([ExtResource("2_w53y1"), ExtResource("3_ds84f"), ExtResource("4_f7cbu"), ExtResource("5_dl73t"), ExtResource("6_x0lsy"), ExtResource("7_85rjm")])
+debug_resource = ExtResource("1_51ten")
