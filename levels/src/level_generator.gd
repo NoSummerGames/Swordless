@@ -174,15 +174,15 @@ func smooth_path():
 	await get_tree().process_frame
 	
 	for i in curve.point_count - 1:
-		if (i > 3) :
+		if (i > 1):
 			var previous_point = curve.get_point_position(i - 2)
 			var p_point = curve.get_point_position(i - 1)
 			var next_point = curve.get_point_position(i)
-
+			
 			var tangent_at_p = ((p_point - previous_point).normalized() + (next_point - p_point).normalized()) * level.level_resource.smoothing_factor
 
-			curve.set_point_in(i- 1, -tangent_at_p)
-			curve.set_point_out(i- 1, tangent_at_p)
+			curve.set_point_in(i - 1, -tangent_at_p)
+			curve.set_point_out(i - 1, tangent_at_p)
 
 func _on_visibility_changed() -> void:
 	_regenerate_level()

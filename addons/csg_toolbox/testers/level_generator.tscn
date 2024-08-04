@@ -29,7 +29,6 @@ shadow_enabled = true
 environment = SubResource("Environment_k0rdy")
 
 [node name="Floor" type="CSGPolygon3D" parent="."]
-visible = false
 use_collision = true
 polygon = PackedVector2Array(-10, -1, -10, 0, 10, 0, 10, -1)
 mode = 2

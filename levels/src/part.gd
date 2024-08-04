@@ -28,6 +28,7 @@ var path_id: int = 0
 
 @export var difficulty : Data.PartDifficulties
 
+@export_multiline var notes: String = ""
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "part_path" and has_path == false:

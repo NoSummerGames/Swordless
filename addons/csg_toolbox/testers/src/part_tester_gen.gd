@@ -14,7 +14,7 @@ func _ready() -> void:
 	curve.add_point(Vector3.FORWARD)
 
 func _process(delta: float) -> void:
-	if not dirty and level != null:
+	if not dirty and level != null and level.part != null:
 		call_deferred("_create_level", level.part)
 
 func _create_level(_part: PackedScene):

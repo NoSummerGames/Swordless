@@ -1,31 +1,27 @@
 [gd_scene load_steps=7 format=3 uid="uid://bmedatsx87v4o"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester.gd" id="1_1vda8"]
-[ext_resource type="PackedScene" uid="uid://1bx6ud0k6ghf" path="res://level_builder/_pool_blocks/00/_corridor_00.tscn" id="2_7g2jr"]
+[ext_resource type="PackedScene" uid="uid://cy71ctmh761uy" path="res://level_builder/_pool_blocks/00/_highwalls_00.tscn" id="2_xsyuv"]
 [ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="4_g4c6e"]
 [ext_resource type="PackedScene" uid="uid://rqkrvnevowmd" path="res://addons/csg_toolbox/testers/part_generator.tscn" id="5_60upc"]
 [ext_resource type="PackedScene" uid="uid://bb16gv65b0el7" path="res://utils/pause.tscn" id="5_apkcv"]
 
-[sub_resource type="Curve3D" id="Curve3D_vfyrj"]
+[sub_resource type="Curve3D" id="Curve3D_f16de"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -101, 0, 0, 0, 0, 0, 0, 0, 0, -106.523),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 2
+point_count = 4
 
 [node name="PartTester" type="Node3D"]
 script = ExtResource("1_1vda8")
-part = ExtResource("2_7g2jr")
-part_scale = 5
-starting_distance = 10
+part = ExtResource("2_xsyuv")
+
+[node name="PartGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("5_60upc")]
+curve = SubResource("Curve3D_f16de")
+level = NodePath("..")
+
+[node name="Pause" parent="." instance=ExtResource("5_apkcv")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("4_g4c6e")]
 path = NodePath("../PartGenerator")
-metadata/_edit_lock_ = true
-
-[node name="PartGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("5_60upc")]
-curve = SubResource("Curve3D_vfyrj")
-level = NodePath("..")
-metadata/_edit_lock_ = true
-
-[node name="Pause" parent="." instance=ExtResource("5_apkcv")]

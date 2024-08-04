@@ -5,8 +5,8 @@ var current_action: Action
 
 @export_group("Velocity")
 @export var speed: int = 30
+@export var sprint_speed: int = 45
 @export var lateral_factor: float = 0.6
-@export var sprint_factor: float = 3
 @export var gravity: float = 35
 @export var ground_acceleration: int = 15
 @export var air_acceleration: int = 7
@@ -17,7 +17,8 @@ var current_action: Action
 @export var dash_strength: int = 150
 @export var strafe_strength: int = 60
 @export var dash_duration: float = 0.1
-@export var dash_acceleration: int = 20
+@export var dash_sensitivity: float = 0.7
+@export var dash_acceleration: float = 0.5
 @export var wall_jump_strength: int = 18
 @export var slide_duration: float = 0.6
 @export var glide_strength: float = 3
@@ -35,7 +36,6 @@ var current_action: Action
 @export var floor_detection_margin: float = 0.5
 @export var dash_deceleration: float = 2.0
 @export_range(0.5, 1) var wall_jump_angle_range: float = 0.9
-@export var dash_direction_snap: float = 0.5
 @export var diagonal_strafe: bool = true
 
 @export_group("Path")

@@ -30,11 +30,14 @@ var acceleration: float:
 
 @onready var speed: float = player_stats.speed:
 	get:
-		return current_action.speed_factor * player_stats.speed
+		if Input.is_action_pressed("sprint") and current_action.disable_sprint == false:
+			return current_action.speed_factor * player_stats.sprint_speed
+		else:
+			return current_action.speed_factor * player_stats.speed
 
 func _ready() -> void:
 	## FIXME : added for testing purpose before having a proper "paths finding" script
-	position = path.curve.get_point_position(0)
+	position = path.curve.get_point_position(1)
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:

@@ -25,26 +25,25 @@ func _execute(_delta: float) -> void:
 
 
 func set_dash_values() -> void:
-	var direction: Vector3 = get_dash_input()
-	dash.direction = direction
-	dash.strength = -direction.z  * player_stats.dash_strength + abs(direction.x) * player_stats.strafe_strength
-	#dash.strength = player_stats.dash_strength
-#
-func get_dash_input() -> Vector3:
-	var lateral_input: float = Input.get_action_strength("right") - Input.get_action_strength("left")
-	var forward_input: float = -Input.get_action_strength("forward")
-	var direction: Vector3 = (Vector3(
-		snapped(lateral_input, player_stats.dash_direction_snap) as float,
-		0,
-		snapped(forward_input, player_stats.dash_direction_snap) as float
-		) + Vector3.FORWARD).normalized()
-	if not direction.is_zero_approx():
-		if Input.get_action_strength("down") > 0:
-			if direction.x > 0:
-				return Vector3.RIGHT
-			elif direction.x < 0:
-				return Vector3.LEFT
-		return direction
-	else:
-		return Vector3.FORWARD
-
+	dash.direction = -player.global_basis.z
+	dash.strength = player_stats.dash_strength
+	#var lateral_input: float = Input.get_action_strength("strafe_left") - Input.get_action_strength("strafe_right")
+	#var forward_input: float = Input.get_action_strength("forward")
+	#
+	#if forward_input > player_stats.dash_sensitivity or player_stats.diagonal_strafe == true:
+		#if abs(lateral_input) > player_stats.dash_sensitivity:
+			#dash.direction = (-player.global_basis.z + player.global_basis.x * lateral_input).normalized()
+			#if player_stats.diagonal_strafe == true:
+				#dash.strength = player_stats.strafe_strength
+			#else:
+				#dash.strength = (player_stats.dash_strength + player_stats.strafe_strength) / 2
+		#else :
+			#dash.direction = -player.global_basis.z
+			#dash.strength = player_stats.dash_strength
+	#else:
+		#if abs(lateral_input) > player_stats.dash_sensitivity:
+			#dash.direction = player.global_basis.x * lateral_input
+			#dash.strength = player_stats.strafe_strength
+		#else :
+			#dash.direction = -player.global_basis.z
+			#dash.strength = player_stats.dash_strength

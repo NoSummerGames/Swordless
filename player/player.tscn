@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsk5r3lka7jsh"]
+[gd_scene load_steps=26 format=3 uid="uid://dsk5r3lka7jsh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_iit5d"]
 [ext_resource type="Script" path="res://player/resources/player_stats/player_stats_res.gd" id="2_cd87s"]
@@ -18,22 +18,22 @@
 [ext_resource type="Script" path="res://player/actions/action_slide.gd" id="14_obll8"]
 [ext_resource type="Script" path="res://player/actions/action_dive.gd" id="15_11odp"]
 [ext_resource type="Script" path="res://player/debug_component.gd" id="19_1qfhx"]
-[ext_resource type="Script" path="res://player/components/player_sprint_component.gd" id="19_en817"]
 
 [sub_resource type="Resource" id="Resource_e1sip"]
 script = ExtResource("2_cd87s")
 speed = 30
+sprint_speed = 45
 lateral_factor = 0.6
-sprint_factor = 3.0
 gravity = 35.0
 ground_acceleration = 15
 air_acceleration = 7
 coyote_time = 0.5
 jump_strength = 13
-dash_strength = 110
-strafe_strength = 45
-dash_duration = 0.13
-dash_acceleration = 20
+dash_strength = 400
+strafe_strength = 100
+dash_duration = 0.05
+dash_sensitivity = 0.7
+dash_acceleration = 0.001
 wall_jump_strength = 18
 slide_duration = 0.6
 glide_strength = 1.0
@@ -49,12 +49,11 @@ half_jump_deceleration = 2.0
 floor_detection_margin = 0.5
 dash_deceleration = 2.0
 wall_jump_angle_range = 0.9
-dash_direction_snap = 0.25
 diagonal_strafe = true
 interpolation_distance = 0.1
 path_stiffness = 4.0
 path_offset = 0
-camera_speed = 12.0
+camera_speed = 5.0
 freeze_camera_speed = 2.7
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
@@ -103,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.1)
 shape = SubResource("BoxShape3D_2kdd8")
 
 [node name="CameraPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82603, 2.67281)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82603, 0.243305)
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89941, 2.74201)
@@ -119,9 +118,6 @@ script = ExtResource("4_l8spp")
 
 [node name="InputComponent" type="Node" parent="."]
 script = ExtResource("5_2m8xq")
-
-[node name="SprintComponent" type="Node" parent="."]
-script = ExtResource("19_en817")
 
 [node name="ActionsController" type="Node" parent="." node_paths=PackedStringArray("input_component", "air_default_action", "ground_default_action")]
 script = ExtResource("8_5ao6g")
@@ -187,7 +183,6 @@ debug_color = Color(0.953985, 0.368983, 0.730241, 1)
 
 [node name="Strafe" type="Node" parent="ActionsController"]
 script = ExtResource("10_gw2de")
-disabled = true
 override_acceleration = true
 prioritary = true
 speed_factor = 0.6

@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/csg_toolbox/icons/PartTester.svg")
 extends Node3D
 
 @export var part: PackedScene:
@@ -19,8 +20,9 @@ extends Node3D
 			$PartGenerator.call_deferred("regenerate_part")
 
 func _ready() -> void:
-	$Player.exited_path.connect($PartGenerator._on_player_exited_path)
-	$Player.restarted.connect($PartGenerator._on_player_restarted)
+	if not Engine.is_editor_hint():
+		$Player.exited_path.connect($PartGenerator._on_player_exited_path)
+		$Player.restarted.connect($PartGenerator._on_player_restarted)
 	
 
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bdl3tewmdsd2r"]
+[gd_scene load_steps=30 format=3 uid="uid://bdl3tewmdsd2r"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/csg_toolbox.gd" id="1_bnlhj"]
 [ext_resource type="Texture2D" uid="uid://h8w2sxy20iq" path="res://addons/csg_toolbox/icons/CSGBox3D.svg" id="2_0qsy0"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cwuiety254pfw" path="res://addons/csg_toolbox/icons/CSGCombiner3D.svg" id="9_hgu5q"]
 [ext_resource type="Texture2D" uid="uid://lx8jqi4bq08y" path="res://addons/csg_toolbox/icons/Stairs.svg" id="9_ueggj"]
 [ext_resource type="Texture2D" uid="uid://b0bvwkx6n0bxs" path="res://addons/csg_toolbox/icons/Part.svg" id="19_7xnql"]
+[ext_resource type="Texture2D" uid="uid://bpv3bdu6m4f44" path="res://addons/csg_toolbox/icons/ExitArea.svg" id="19_a14ms"]
 [ext_resource type="Script" path="res://addons/csg_toolbox/material_button.gd" id="19_dn7pd"]
 [ext_resource type="Texture2D" uid="uid://btq6qi4v6xejy" path="res://addons/csg_toolbox/materials/png/green.png" id="21_7v6me"]
 [ext_resource type="Texture2D" uid="uid://iegyrtt8xhdn" path="res://addons/csg_toolbox/materials/png/light.png" id="22_oox5w"]
@@ -143,7 +144,7 @@ layout_mode = 2
 auto_translate_mode = 1
 layout_mode = 2
 text = "Exit"
-icon = ExtResource("19_7xnql")
+icon = ExtResource("19_a14ms")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("3_f47bv")

@@ -1,10 +1,12 @@
 @tool
+@icon("res://addons/csg_toolbox/icons/ExitArea.svg")
 class_name ExitArea
 extends Area3D
 
 signal exit_area_entered
 
 func _ready() -> void:
+	self.name = "ExitArea"
 	if get_children() == []:
 		var collision_box = CollisionShape3D.new()
 		collision_box.shape = BoxShape3D.new()
