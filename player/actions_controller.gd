@@ -23,16 +23,18 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if player.is_almost_on_floor():
 		specials_count.clear()
+		wall_jumped_normal = 0
+
+	input.append(Data.Actions.NONE)
 
 	if input.size() > player_stats.input_buffer :
 		input.pop_front()
 
+
 func _on_command_input(_input: Data.Actions, _action_param: Data.ActionParams) -> void:
-	#if _action_param == Data.ActionParams.END:
-		#has_slided = false
-	if has_slided == true:
+	if done == false:
 		pass
 	else:
 		input.append(_input)
+
 	action_param = _action_param
-	input.append(Data.Actions.NONE)

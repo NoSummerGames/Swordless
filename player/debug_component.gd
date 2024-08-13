@@ -22,4 +22,3 @@ func _on_debug_changed(debug: bool):
 	else:
 		action_label.hide()
 		body.mesh.material.albedo_color = Color.WHITE
-

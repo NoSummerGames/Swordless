@@ -8,8 +8,8 @@ var current_action: Action
 @export var sprint_speed: int = 45
 @export var lateral_factor: float = 0.6
 @export var gravity: float = 35
-@export var ground_acceleration: int = 15
-@export var air_acceleration: int = 7
+@export var ground_acceleration: float = 15
+@export var air_acceleration: float = 7
 @export var coyote_time: float = 0.5
 
 @export_group("Actions")
@@ -20,12 +20,15 @@ var current_action: Action
 @export var dash_sensitivity: float = 0.7
 @export var dash_acceleration: float = 0.5
 @export var wall_jump_strength: int = 18
+@export var wall_jump_init_acceleration: float = 80
+@export var wall_jump_deceleration: float = 0.9
 @export var slide_duration: float = 0.6
 @export var glide_strength: float = 3
 @export var glide_acceleration: float = 0.5
 @export var max_glide_duration: float = 0.7
 @export var dive_strength: float = 20
 @export var freeze_scale: float = 0.7
+@export var max_freeze_duration: float = 0.7
 
 @export_group("Actions Misc")
 @export var max_specials: int = 2

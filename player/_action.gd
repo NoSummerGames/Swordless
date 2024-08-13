@@ -8,6 +8,7 @@ extends AbstractAction
 @export var speed_factor: float = 1
 @export var exclusive: bool = false
 @export var disable_sprint: bool = false
+@export var repeatable: bool = false
 
 @export_group("Properties parameters")
 @export var custom_acceleration: int
@@ -30,11 +31,12 @@ extends AbstractAction
 # Dictionary keys must be matching the above boolean var names
 var conditions : Dictionary = {
 	"cond_match_input" : func() -> bool: return false if input_required not in input else true,
-	"cond_on_ground" : func() -> bool: return player.is_almost_on_floor(),
+	"cond_on_ground" : func() -> bool: return true if player.is_almost_on_floor() or not player.coyote_timer.is_stopped() else false,
 	"cond_strictly_on_ground" : func() -> bool: return player.is_on_floor(),
 	"cond_in_air": func() -> bool: return !player.is_on_floor(),
 	"cond_on_wall": func() -> bool: return true if player.is_on_wall_only() and \
-	absf(player.get_last_slide_collision().get_normal().x) > player_stats.wall_jump_angle_range else false,
+	absf(player.get_last_slide_collision().get_normal().x) > player_stats.wall_jump_angle_range and \
+	signf(player.get_last_slide_collision().get_normal().x) != signf(wall_jumped_normal) else false,
 	"cond_special": func() -> bool:
 		return false if self in specials_count or specials_count.size() > player_stats.max_specials else true,
 	"cond_cooldown": func() -> bool: return cooldown_over
@@ -61,12 +63,11 @@ func _physics_process(delta: float) -> void:
 		if context.call() == false:
 			return
 
-	if current_action != self:
+	if current_action != self or get("current_action").repeatable:
 		if self.cond_match_input == true and input_required not in input:
 			pass
 		else:
 			_check_conditions()
-
 
 
 func _check_conditions() -> void:
@@ -79,35 +80,36 @@ func _check_conditions() -> void:
 					return
 			else:
 				continue
+
 	set_current_action()
 
 
 func set_current_action() -> void:
-	if current_action != self:
-		input.clear()
-		_enter()
-		current_action._exit()
-		current_action = self
-		player.current_action = current_action
-		input.append(Data.Actions.NONE)
+	input.clear()
+	_enter()
+	current_action._exit()
+	current_action = self
 
-		if current_action.exclusive:
-			done = false
+	player.current_action = current_action
+	player.coyote_timer.stop()
 
-		if current_action.cond_special:
-			specials_count.append(self)
+	if current_action.exclusive:
+		done = false
 
-		if current_action.cond_cooldown:
-			cooldown_over = false
-			var timer = await Utilities.add_timer(true, cooldown_time)
-			await timer.timeout
-			cooldown_over = true
+	if current_action.cond_special:
+		specials_count.append(self)
 
-		if current_action.prioritary:
-			priority_time = true
-			var timer = await Utilities.add_timer(true, player_stats.priority_buffer)
-			await timer.timeout
-			priority_time = false
+	if current_action.cond_cooldown:
+		cooldown_over = false
+		var timer = await Utilities.add_timer(true, cooldown_time)
+		await timer.timeout
+		cooldown_over = true
+
+	if current_action.prioritary:
+		priority_time = true
+		var timer = await Utilities.add_timer(true, player_stats.priority_buffer)
+		await timer.timeout
+		priority_time = false
 
 func _enter() -> void:
 	pass
@@ -119,4 +121,3 @@ func _exit() -> void:
 	if self != actions_controller.default_action:
 		current_action = actions_controller.default_action
 		player.current_action = current_action
-

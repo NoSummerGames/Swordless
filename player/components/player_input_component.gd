@@ -20,19 +20,24 @@ func _get_lateral_input(delta: float) -> float:
 func get_command_inputs() -> void:
 	if Input.is_action_just_pressed("jump"):
 		emit_signal("command_input", Data.Actions.JUMP, 0)
+
 	if Input.is_action_just_pressed("dash"):
 		emit_signal("command_input", Data.Actions.DASH, 0)
+
 	if Input.is_action_just_pressed("strafe_left"):
 		emit_signal("command_input", Data.Actions.STRAFE, Data.ActionParams.LEFT)
 	if Input.is_action_just_pressed("strafe_right"):
 		emit_signal("command_input", Data.Actions.STRAFE, Data.ActionParams.RIGHT)
-	#if Input.is_action_just_pressed("slide"):
-		#emit_signal("command_input", Data.Actions.SLIDE, Data.ActionParams.START)
-	if Input.is_action_just_released("slide"):
-		emit_signal("command_input", Data.Actions.NONE, Data.ActionParams.END)
-	if Input.is_action_pressed("slide"):
+
+	if Input.is_action_just_pressed("slide"):
 		emit_signal("command_input", Data.Actions.SLIDE, 0)
-	#if Input.is_action_pressed("freeze"):
-		#emit_signal("command_input", Data.Actions.FREEZE, Data.ActionParams.START)
-	#if Input.is_action_just_released("freeze"):
-		#emit_signal("command_input", Data.Actions.FREEZE, Data.ActionParams.END)
+
+	if Input.is_action_pressed("glide"):
+		emit_signal("command_input", Data.Actions.GLIDE, Data.ActionParams.START)
+	if Input.is_action_just_released("glide"):
+		emit_signal("command_input", Data.Actions.GLIDE, Data.ActionParams.END)
+
+	if Input.is_action_pressed("freeze"):
+		emit_signal("command_input", Data.Actions.FREEZE, Data.ActionParams.START)
+	if Input.is_action_just_released("freeze"):
+		emit_signal("command_input", Data.Actions.FREEZE, Data.ActionParams.END)

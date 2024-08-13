@@ -15,4 +15,6 @@ static var priority_time: bool
 
 static var done: bool = false
 
-static var has_slided: bool
+static var wall_jumped_normal = null
+
+static var wall_jumped = false

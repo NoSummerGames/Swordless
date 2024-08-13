@@ -14,13 +14,13 @@ func _enter() -> void:
 
 	add_child(dash)
 
-func _execute(_delta: float) -> void:
 	var timer = await Utilities.add_timer(true, player_stats.dash_duration)
 	await timer.timeout
 	if is_instance_valid(dash):
 		dash.queue_free()
 	player.velocity = velocity_cached
 	player.velocity_overridden = false
+
 	_exit()
 
 

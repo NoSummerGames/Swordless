@@ -15,7 +15,8 @@ enum Actions {
 	DASH = 3,
 	SLIDE = 4,
 	STRAFE = 5,
-	FREEZE = 6
+	FREEZE = 6,
+	GLIDE = 7
 
 }
 

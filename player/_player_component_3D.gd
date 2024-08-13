@@ -13,4 +13,3 @@ func _enter_tree() -> void:
 
 func _setup() ->void:
 	pass
-

@@ -6,7 +6,7 @@ signal restarted
 
 ## FIXME : added for testing purpose before having a proper "paths finding" script
 @export var path: Path3D
-
+@export var coyote_timer: Timer
 @export var player_stats: PlayerStatsResource:
 	set(value):
 		player_stats = value
@@ -14,8 +14,6 @@ signal restarted
 			_update_player_stats(value)
 
 var current_action: Action
-
-var floor_raycast: RayCast3D
 
 var velocity_overridden: bool = false
 var direction: Vector3
@@ -27,6 +25,8 @@ var acceleration: float:
 			return player_stats.ground_acceleration
 		else:
 			return player_stats.air_acceleration
+
+var on_floor: bool = true
 
 @onready var speed: float = player_stats.speed:
 	get:
@@ -57,7 +57,21 @@ func _update_player_stats(value: PlayerStatsResource) -> void:
 				set(property_name, value)
 
 func is_almost_on_floor() -> bool:
-	if floor_raycast.is_colliding() or is_on_floor():
-		return true
-	else:
-		return false
+	var almost_on_floor: bool
+	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
+	parameters.from = global_transform
+	parameters.motion = Vector3(0, -player_stats.floor_detection_margin, 0)
+	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
+	PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
+
+	if result.get_collision_count() > 0:
+		for i: int in result.get_collision_count():
+			if result.get_collision_normal(i).y > 0.5:
+				on_floor = true
+				return true
+
+	if on_floor == true:
+		coyote_timer.start(player_stats.coyote_time)
+
+	on_floor = false
+	return false

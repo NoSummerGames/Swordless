@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dsk5r3lka7jsh"]
+[gd_scene load_steps=27 format=3 uid="uid://dsk5r3lka7jsh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_iit5d"]
 [ext_resource type="Script" path="res://player/resources/player_stats/player_stats_res.gd" id="2_cd87s"]
@@ -8,39 +8,43 @@
 [ext_resource type="Script" path="res://player/actions_controller.gd" id="8_5ao6g"]
 [ext_resource type="Script" path="res://player/actions/action_double_jump.gd" id="8_liewp"]
 [ext_resource type="Script" path="res://player/actions/action_jump.gd" id="8_re7go"]
+[ext_resource type="Script" path="res://player/actions/action_glide.gd" id="8_rreng"]
 [ext_resource type="Script" path="res://player/actions/action_run.gd" id="10_8wi00"]
 [ext_resource type="Script" path="res://player/actions/action_dash.gd" id="10_bda80"]
 [ext_resource type="Script" path="res://player/actions/action_strafe.gd" id="10_gw2de"]
-[ext_resource type="Script" path="res://player/misc/floor_raycast.gd" id="11_0qtew"]
 [ext_resource type="Script" path="res://player/actions/action_fall.gd" id="11_53bcr"]
 [ext_resource type="Script" path="res://player/actions/action_wall_jump.gd" id="13_v7mrk"]
 [ext_resource type="Script" path="res://player/actions/action_freeze.gd" id="13_x6q5o"]
 [ext_resource type="Script" path="res://player/actions/action_slide.gd" id="14_obll8"]
 [ext_resource type="Script" path="res://player/actions/action_dive.gd" id="15_11odp"]
 [ext_resource type="Script" path="res://player/debug_component.gd" id="19_1qfhx"]
+[ext_resource type="Script" path="res://player/debug_ui.gd" id="20_681bt"]
 
 [sub_resource type="Resource" id="Resource_e1sip"]
 script = ExtResource("2_cd87s")
-speed = 30
-sprint_speed = 45
+speed = 25
+sprint_speed = 35
 lateral_factor = 0.6
 gravity = 35.0
-ground_acceleration = 15
-air_acceleration = 7
-coyote_time = 0.5
+ground_acceleration = 15.0
+air_acceleration = 6.0
+coyote_time = 0.2
 jump_strength = 13
-dash_strength = 400
+dash_strength = 300
 strafe_strength = 100
 dash_duration = 0.05
 dash_sensitivity = 0.7
 dash_acceleration = 0.001
-wall_jump_strength = 18
+wall_jump_strength = 10
+wall_jump_init_acceleration = 80.0
+wall_jump_deceleration = 0.8
 slide_duration = 0.6
-glide_strength = 1.0
+glide_strength = 4.0
 glide_acceleration = 0.5
 max_glide_duration = 0.7
 dive_strength = 40.0
 freeze_scale = 0.7
+max_freeze_duration = 0.7
 max_specials = 2
 input_buffer = 5
 priority_buffer = 0.2
@@ -48,13 +52,13 @@ half_jump_buffer = 0.2
 half_jump_deceleration = 2.0
 floor_detection_margin = 0.5
 dash_deceleration = 2.0
-wall_jump_angle_range = 0.9
+wall_jump_angle_range = 0.5
 diagonal_strafe = true
 interpolation_distance = 0.1
 path_stiffness = 4.0
 path_offset = 0
 camera_speed = 5.0
-freeze_camera_speed = 2.7
+freeze_camera_speed = 0.954594
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
 size = Vector3(1, 1.6, 1)
@@ -68,23 +72,33 @@ size = Vector3(0.5, 1.6, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kdd8"]
 size = Vector3(0.5, 1.6, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqyoc"]
-albedo_color = Color(1, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flyr5"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0.498039)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_uof3y"]
-material = SubResource("StandardMaterial3D_kqyoc")
-top_radius = 0.0
-bottom_radius = 0.12
-height = 1.62
-radial_segments = 4
-rings = 0
+[sub_resource type="LabelSettings" id="LabelSettings_josu6"]
+font_size = 20
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("coyote_timer")]
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.0472
 floor_snap_length = 0.5
 script = ExtResource("1_iit5d")
+coyote_timer = NodePath("CoyoteTimer")
 player_stats = SubResource("Resource_e1sip")
 
 [node name="PlayerArea" type="Area3D" parent="."]
@@ -102,7 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.1)
 shape = SubResource("BoxShape3D_2kdd8")
 
 [node name="CameraPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82603, 0.243305)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89941, 2.74201)
@@ -139,6 +153,19 @@ input_required = 6
 cooldown_time = 2.0
 debug_color = Color(1.15514e-06, 0.745551, 0.950813, 1)
 
+[node name="Glide" type="Node" parent="ActionsController"]
+script = ExtResource("8_rreng")
+override_acceleration = true
+speed_factor = 0.5
+disable_sprint = true
+custom_acceleration = 4
+cond_match_input = true
+cond_in_air = true
+cond_cooldown = true
+input_required = 7
+cooldown_time = 2.0
+debug_color = Color(0.534244, 0.701483, 0.830614, 1)
+
 [node name="Jump" type="Node" parent="ActionsController"]
 script = ExtResource("8_re7go")
 prioritary = true
@@ -151,10 +178,9 @@ debug_color = Color(0.998354, 0.791112, 0, 1)
 [node name="WallJump" type="Node" parent="ActionsController"]
 script = ExtResource("13_v7mrk")
 override_acceleration = true
-custom_acceleration = 3
+repeatable = true
 cond_match_input = true
 cond_on_wall = true
-cond_special = true
 input_required = 1
 debug_color = Color(0.628591, 0.852273, 3.85046e-07, 1)
 
@@ -200,15 +226,16 @@ script = ExtResource("14_obll8")
 prioritary = true
 speed_factor = 0.7
 exclusive = true
+disable_sprint = true
 cond_match_input = true
 cond_strictly_on_ground = true
 input_required = 4
-cooldown_time = 1.0
+cooldown_time = 2.0
 debug_color = Color(0, 0.750218, 0.472003, 1)
 
 [node name="Run" type="Node" parent="ActionsController"]
 script = ExtResource("10_8wi00")
-cond_on_ground = true
+cond_strictly_on_ground = true
 debug_color = Color(0.591498, 0.836485, 0.823248, 1)
 
 [node name="Dive" type="Node" parent="ActionsController"]
@@ -223,12 +250,9 @@ script = ExtResource("11_53bcr")
 disabled = true
 debug_color = Color(0.79179, 0, 0.11008, 1)
 
-[node name="FloorRaycast" type="RayCast3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.138)
-target_position = Vector3(0, -0.2, 0)
-hit_back_faces = false
-script = ExtResource("11_0qtew")
-player = NodePath("..")
+[node name="CoyoteTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
 
 [node name="Debug" type="Node3D" parent="." node_paths=PackedStringArray("player", "body", "action_label")]
 script = ExtResource("19_1qfhx")
@@ -236,10 +260,55 @@ player = NodePath("..")
 body = NodePath("../_PlayerMesh")
 action_label = NodePath("Action")
 
+[node name="DebugHeightRaycast" type="RayCast3D" parent="Debug"]
+unique_name_in_owner = true
+target_position = Vector3(0, -50, 0)
+
 [node name="Action" type="Label3D" parent="Debug"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130779, 1.81808, 0)
 font_size = 72
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.351515, 0.936182, 0, -0.936182, 0.351515, 0, 1.72548, -0.651544)
-mesh = SubResource("CylinderMesh_uof3y")
+[node name="DebugUI" type="Control" parent="." node_paths=PackedStringArray("target")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_681bt")
+target = NodePath("..")
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugUI"]
+layout_mode = 1
+offset_right = 52.0
+offset_bottom = 44.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="DebugUI/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_flyr5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="LabelSpeed" type="Label" parent="DebugUI/MarginContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Test"
+label_settings = SubResource("LabelSettings_josu6")
+
+[node name="LabelAltitude" type="Label" parent="DebugUI/MarginContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Test"
+label_settings = SubResource("LabelSettings_josu6")
+
+[node name="LabelTimer" type="Label" parent="DebugUI/MarginContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Test"
+label_settings = SubResource("LabelSettings_josu6")

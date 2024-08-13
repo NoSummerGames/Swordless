@@ -8,7 +8,7 @@ var previous_direction: Vector3:
 		else:
 			return previous_direction
 
-	
+
 # FIXME : added for testing purpose before having a proper "paths finding" script
 @onready var path: Path3D = player.path
 @onready var next_offset: float = player_stats.interpolation_distance
