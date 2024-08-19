@@ -4,9 +4,11 @@ extends Path3D
 
 @export var starting_distance: int = 10
 @export var level: Level
+#const DIR_TOLERANCE = 0.99
 
 var dirty: bool = false
 var parts = []
+var updated_length: float
 
 func _process(delta: float) -> void:
 	if not dirty and is_instance_valid(level):
@@ -17,11 +19,12 @@ func _create_level(sections: Array[Section]):
 	curve = Curve3D.new()
 	curve.add_point(Vector3.ZERO)
 	curve.add_point(Vector3.FORWARD)
-	
-	
+
+	updated_length = 0
+
 	if level.level_resource.entry_section == null:
 		level.level_resource.entry_section = EntrySection.new()
-		
+
 	if level.level_resource.entry_section.fixed_scene != null:
 		load_section(level.level_resource.entry_section)
 	else:
@@ -39,58 +42,69 @@ func _create_level(sections: Array[Section]):
 
 			else:
 				if section.pool_dir != null:
+					var curve_length = curve.get_baked_length()
 					var parts_paths: PackedStringArray = DirAccess.get_files_at(section.pool_dir)
 					var parts: Array[Part] = _load(parts_paths, section.pool_dir)
 					parts.shuffle()
 
 					for x: int in parts.size():
-						var part = parts.pop_front()
-						load_part(part, section)
-	
+						if updated_length < section.length :
+							var part = parts.pop_front()
+							load_part(part, section)
+
+		updated_length = 0
+
+
+
 	if level.level_resource.exit_section == null:
 		level.level_resource.exit_section = ExitSection.new()
-		
+
 	if level.level_resource.exit_section.fixed_scene != null:
 		load_section(level.level_resource.exit_section)
 	else:
 		printerr("No PackedScene set (ExitSection)")
-	
-	if level.level_resource.smoothing_factor != 0:
-			smooth_path()
+
+	smooth_path()
 
 	dirty = true
 
-	
+
 func load_section(_section: BaseSection):
 	var _part: Part = _section.fixed_scene.instantiate()
 
 	load_part(_part, _section)
-	
+
 	if _section is ExitSection:
 		for child in _part.get_children():
 			if child is ExitArea:
 				child.exit_area_entered.connect(Callable(level, "emit_signal").bind("level_finished"))
 				return
-				
+
 		printerr("No ExitArea found (ExitSection)")
-				
+
 	await get_tree().process_frame
-	
+
 	if _section is EntrySection:
 		## Add an empty path segment forward so that there isn't an angle just behind a part
 		var last_position = curve.get_point_position(curve.point_count -1)
 		var before_last_postion = curve.get_point_position(curve.point_count -2)
 		var direction = before_last_postion.direction_to(last_position)
-		
+
 		curve.add_point(last_position  + direction * level.level_resource.starting_distance * _section.scale)
 
 func load_part(_part: Part, _section):
 	await get_tree().process_frame
-	
+
+	if _section is Section:
+		if updated_length > _section.length :
+			return
+
+	var curve_length = curve.get_baked_length()
+
 	add_child(_part)
 	parts.append(_part)
 	_part.scale *= _section.scale
-	
+
 	# Get lastest two points in the curve and the direction between them
 	var last_position = curve.get_point_position(curve.point_count -1)
 	var before_last_postion = curve.get_point_position(curve.point_count -2)
@@ -119,10 +133,14 @@ func load_part(_part: Part, _section):
 		# Get part AABB to add next point at the end of the part
 		var part_aabb = _calculate_spatial_bounds(_part, true)
 		curve.add_point(last_position + (direction * part_aabb.size.z) * _section.scale)
-	
+
 	if _section is Section:
 		# Pursue path generation
 		add_segment(curve, _section.max_segments, _section)
+
+	updated_length += curve.get_baked_length() - curve_length
+
+
 
 
 func add_segment(_curve: Curve3D, count: int, _section: BaseSection):
@@ -170,17 +188,43 @@ func _calculate_spatial_bounds(parent : Node, exclude_top_level_transform: bool)
 		bounds = parent.transform * bounds
 	return bounds
 
+
 func smooth_path():
 	await get_tree().process_frame
-	
+
+	#var similar_points = []
+#
+	#for i in curve.point_count - 1:
+		#if (i > 1) :
+			#var prev_point = curve.get_point_position(i - 2)
+			#var p_point = curve.get_point_position(i - 1)
+			#var next_point = curve.get_point_position(i)
+#
+			#var direction_a = (p_point - prev_point).normalized()
+			#var direction_b = (next_point - p_point).normalized()
+#
+			#if direction_a.dot(direction_b) > DIR_TOLERANCE:
+				#similar_points.append(i)
+#
+	#var deleted = 0
+#
+	#for i in similar_points:
+		#curve.remove_point(i - deleted)
+		#deleted += 1
+
 	for i in curve.point_count - 1:
-		if (i > 1):
-			var previous_point = curve.get_point_position(i - 2)
+		if (i > 1) :
+			var prev_point = curve.get_point_position(i - 2)
 			var p_point = curve.get_point_position(i - 1)
 			var next_point = curve.get_point_position(i)
-			
-			var tangent_at_p = ((p_point - previous_point).normalized() + (next_point - p_point).normalized()) * level.level_resource.smoothing_factor
 
+			var direction_a = (p_point - prev_point).normalized()
+			var direction_b = (next_point - p_point).normalized()
+
+			var tangent_at_p = (direction_a + direction_b) * 2
+
+			tangent_at_p = tangent_at_p.limit_length((p_point - prev_point).length())
+			tangent_at_p = tangent_at_p.limit_length((next_point - p_point).length())
 			curve.set_point_in(i - 1, -tangent_at_p)
 			curve.set_point_out(i - 1, tangent_at_p)
 

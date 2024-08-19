@@ -12,7 +12,7 @@ extends Node3D
 		part_scale = value
 		if is_inside_tree():
 			$PartGenerator.call_deferred("regenerate_part")
-		
+
 @export var starting_distance: int = 100:
 	set(value):
 		starting_distance = value
@@ -23,7 +23,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		$Player.exited_path.connect($PartGenerator._on_player_exited_path)
 		$Player.restarted.connect($PartGenerator._on_player_restarted)
-	
+
 
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint():

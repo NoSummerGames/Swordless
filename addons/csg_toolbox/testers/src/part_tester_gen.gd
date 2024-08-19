@@ -52,6 +52,7 @@ func load_part(_part: Part):
 	else:
 		# Get part AABB to add next point at the end of the part
 		var part_aabb = _calculate_spatial_bounds(_part, true)
+		_part.global_position.z -= (part_aabb.position.z + part_aabb.size.z) * level.part_scale
 		curve.add_point(last_position + (direction * part_aabb.size.z) * level.part_scale)
 
 
@@ -96,4 +97,3 @@ func regenerate_part() -> void:
 	curve.add_point(Vector3.ZERO)
 	curve.add_point(Vector3.FORWARD)
 	dirty = false
-	

@@ -54,9 +54,9 @@ floor_detection_margin = 0.5
 dash_deceleration = 2.0
 wall_jump_angle_range = 0.5
 diagonal_strafe = true
-interpolation_distance = 0.1
-path_stiffness = 4.0
-path_offset = 0
+interpolation_distance = 5.0
+path_stiffness = 2.0
+path_offset = 5
 camera_speed = 5.0
 freeze_camera_speed = 0.954594
 

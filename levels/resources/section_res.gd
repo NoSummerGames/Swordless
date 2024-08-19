@@ -2,7 +2,7 @@
 class_name Section
 extends BaseSection
 
-@export_range(50, 250) var length: int = 100
+@export_range(50, 1000) var length: int = 250
 @export var x_delta: float = 0.5
 @export_range(-2, 2) var low_delta: float = -0.5
 @export_range(-2, 2) var high_delta: float = 0.25
