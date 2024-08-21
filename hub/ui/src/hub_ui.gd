@@ -1,4 +1,3 @@
-class_name HubUI
 extends Control
 
 @export var panel: HubLevelPanel

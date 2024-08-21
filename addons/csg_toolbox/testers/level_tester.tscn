@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://levels/resources/section_res.gd" id="5_ftf6v"]
 [ext_resource type="PackedScene" uid="uid://clki6hn2uymhx" path="res://addons/csg_toolbox/testers/level_generator.tscn" id="7_mjqw5"]
 [ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="7_xian1"]
-[ext_resource type="PackedScene" uid="uid://crq8d388gq7ml" path="res://utils/restart_lb.tscn" id="8_p5ohv"]
+[ext_resource type="PackedScene" uid="uid://crq8d388gq7ml" path="res://utils/restart.tscn" id="8_p5ohv"]
 [ext_resource type="PackedScene" uid="uid://bb16gv65b0el7" path="res://utils/pause.tscn" id="9_sccc6"]
 
 [sub_resource type="Resource" id="Resource_gayxb"]
@@ -67,5 +67,3 @@ level_generator = NodePath("../LevelGenerator")
 
 [node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("7_xian1")]
 path = NodePath("../LevelGenerator")
-
-[connection signal="child_entered_tree" from="LevelGenerator/PoolBlockTemplate" to="LevelGenerator/PoolBlockTemplate" method="_on_child_entered_tree"]

@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c2mtblwxa40ls"]
+
+[ext_resource type="FontFile" uid="uid://cabu3e2nm44tr" path="res://ui/assets/fonts/_wayfinder_CF_regular.otf" id="1_cy2wg"]
+
+[resource]
+font = ExtResource("1_cy2wg")
+font_size = 26
+font_color = Color(0.117647, 0.117647, 0.117647, 1)

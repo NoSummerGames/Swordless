@@ -2,9 +2,6 @@ extends Action
 
 
 func _enter() -> void:
-	#var collision: Vector3 = player.get_last_slide_collision().get_normal()
-	#var direction: Vector3 = (Vector3.UP + collision).normalized()
-	#player.velocity = direction * player_stats.wall_jump_strength
 	player.velocity = Vector3.UP * player_stats.wall_jump_strength
 	custom_acceleration = player_stats.wall_jump_init_acceleration
 	wall_jumped_normal = player.get_last_slide_collision().get_normal().x

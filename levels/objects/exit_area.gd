@@ -15,7 +15,7 @@ func _ready() -> void:
 		collision_box.owner = get_tree().edited_scene_root
 	if not body_entered.is_connected(_on_self_body_entered):
 		body_entered.connect(_on_self_body_entered)
-		
+
 func _on_self_body_entered(body: Node3D):
 	if body is Player:
 		emit_signal("exit_area_entered")

@@ -311,8 +311,7 @@ func refresh_type() -> void:
 		Type.STAIRCASE:
 			refresh_steps(steps)
 		Type.RAMP:
-			var previous_material: StandardMaterial3D = self.material
-			add_ramp(previous_material)
+			add_ramp()
 			refresh_step(0)
 
 ## Sets the calculation method and recalculates the dimensions of the ramp/staircase.
@@ -390,10 +389,14 @@ func set_steps(value: int) -> void:
 
 ## Deletes all children and generates new steps/ramp.
 func refresh_steps(new_steps: int) -> void:
-	var previous_material: StandardMaterial3D = self.material
 	for shape in csg_shapes:
 		shape.free()
 	csg_shapes.clear()
+
+	# Gracefully delete all steps related to the ramp/staircase
+	for child in get_children():
+		if child is CSGBox3D or child is CSGPolygon3D:
+			child.queue_free()
 
 	match type:
 		Type.STAIRCASE:
@@ -403,14 +406,14 @@ func refresh_steps(new_steps: int) -> void:
 				box.position = Vector3()
 				add_child(box)
 				csg_shapes.append(box)
-				self.material = previous_material
 		Type.RAMP:
 			if new_steps > 0:
-				add_ramp(previous_material)
+				add_ramp()
+
 	refresh_children()
 
 ## Adds a new ramp based on current dimensions (without any anchor offset).
-func add_ramp(mat: StandardMaterial3D) -> void:
+func add_ramp() -> void:
 	# Create a single CSGPolygon3D
 	var polygon := CSGPolygon3D.new()
 	var array := PackedVector2Array()
@@ -421,7 +424,6 @@ func add_ramp(mat: StandardMaterial3D) -> void:
 	polygon.rotate(Vector3.UP, -PI / 2.0)
 	polygon.translate(Vector3(0, 0, width / 2.0))
 	polygon.depth = width
-	polygon.material = mat
 	add_child(polygon)
 	csg_shapes.append(polygon)
 
@@ -464,6 +466,9 @@ func refresh_step(i: int) -> void:
 
 	# Restore anchor offset
 	translate_anchor(Anchor.BOTTOM_CENTER, anchor)
+
+func refresh_all() -> void:
+	set_steps(steps)
 
 func _enter_tree() -> void:
 	# is_entered_tree is used to avoid setting properties traditionally on initialization

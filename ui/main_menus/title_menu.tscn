@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://blaoaiud2cf7r"]
+
+[ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="1_5j4j8"]
+[ext_resource type="Script" path="res://ui/main_menus/src/trigger_button.gd" id="1_q8w38"]
+
+[node name="TitleMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NewGame" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../../../Foot/Credits")
+focus_neighbor_bottom = NodePath("../Settings")
+theme_type_variation = &"ButtonTitle"
+text = "Nouvelle Partie"
+script = ExtResource("1_q8w38")
+trigger = &"play"
+
+[node name="LoadGame" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("1_5j4j8")
+theme_type_variation = &"ButtonTitle"
+disabled = true
+text = "Sauvegardes"
+
+[node name="Settings" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../NewGame")
+focus_neighbor_bottom = NodePath("../QuitGame")
+theme = ExtResource("1_5j4j8")
+theme_type_variation = &"ButtonTitle"
+text = "Options"
+script = ExtResource("1_q8w38")
+trigger = &"settings"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_5j4j8")
+
+[node name="QuitGame" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../../../Foot/Credits")
+theme = ExtResource("1_5j4j8")
+theme_type_variation = &"ButtonTitle"
+text = "Quitter"
+script = ExtResource("1_q8w38")
+trigger = &"quit"
+
+[node name="Foot" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Credits" type="Button" parent="Foot"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../CenterContainer/Menu/QuitGame")
+focus_neighbor_bottom = NodePath("../../CenterContainer/Menu/NewGame")
+theme = ExtResource("1_5j4j8")
+theme_type_variation = &"ButtonTitle"
+text = "— crédits —"
+
+[node name="HSeparator" type="HSeparator" parent="Foot"]
+layout_mode = 2
+size_flags_horizontal = 4

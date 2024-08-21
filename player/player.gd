@@ -6,14 +6,13 @@ signal restarted
 
 ## FIXME : added for testing purpose before having a proper "paths finding" script
 @export var path: Path3D
+@export var player_stats: PlayerStatsResource
 @export var coyote_timer: Timer
-@export var player_stats: PlayerStatsResource:
-	set(value):
-		player_stats = value
-		if value != player_stats:
-			_update_player_stats(value)
+
+
 
 var current_action: Action
+var actions: Array[Action]
 
 var velocity_overridden: bool = false
 var direction: Vector3
@@ -47,14 +46,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
-func _update_player_stats(value: PlayerStatsResource) -> void:
-	# Update children who needs player_stats with the current player_stats if changed
-	for child: Node in get_tree().get_nodes_in_group("player_components"):
-		for property: Dictionary in child.get_property_list():
-			var property_name: StringName = property.name
-			if property_name == "player_stats":
-				set(property_name, value)
 
 func is_almost_on_floor() -> bool:
 	var almost_on_floor: bool

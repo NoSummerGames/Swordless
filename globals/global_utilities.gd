@@ -1,8 +1,5 @@
 extends Node
 
-signal debug_changed
-var debug: bool = false
-
 func add_timer(one_shot: bool, time: float) -> Timer:
 	var timer: Timer = Timer.new()
 	add_child(timer)
@@ -16,20 +13,9 @@ func _remove_timer(timer: Timer) -> void:
 	if is_instance_valid(timer):
 		timer.queue_free()
 
-func get_all_chidren(node: Node) -> Array[Node]:
-	var nodes : Array[Node] = []
-	var _get_all_children = func(_node: Node, lambda: Callable):
-		for child in _node.get_children():
-			if child.get_child_count() > 0:
-				nodes.append(child)
-				lambda.call(child, lambda)
-			else:
-				nodes.append(node)
-	if nodes.is_empty():
-		_get_all_children.call(node, _get_all_children)
-	return nodes
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug"):
-		debug = not debug
-		emit_signal("debug_changed", debug)
+func get_all_children(parent: Node, results: Array) -> Array :
+	results.push_back(parent)
+	for child in parent.get_children():
+		results = get_all_children(child, results)
+	return results

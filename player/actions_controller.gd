@@ -16,6 +16,8 @@ func _init() -> void:
 	actions_controller = self
 
 func _ready() -> void:
+	for action: Action in get_children():
+		player.actions.append(action)
 	current_action = default_action
 	player.current_action = default_action
 	input_component.command_input.connect(_on_command_input)

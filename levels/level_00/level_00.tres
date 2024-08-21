@@ -36,5 +36,4 @@ script = ExtResource("2_c33aa")
 entry_section = SubResource("Resource_awlff")
 sections = Array[ExtResource("3_c1c7d")]([SubResource("Resource_w108v")])
 exit_section = SubResource("Resource_541a2")
-smoothing_factor = 0
 starting_distance = 5

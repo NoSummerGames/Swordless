@@ -28,7 +28,7 @@ var current_action: Action
 @export var max_glide_duration: float = 0.7
 @export var dive_strength: float = 20
 @export var freeze_scale: float = 0.7
-@export var max_freeze_duration: float = 0.7
+@export var freeze_duration: float = 0.7
 
 @export_group("Actions Misc")
 @export var max_specials: int = 2
@@ -47,5 +47,5 @@ var current_action: Action
 @export var path_offset: int = 0
 
 @export_group("Camera")
-@export_exp_easing("positive_only") var camera_speed: float = 8.70
-@export_exp_easing("positive_only") var freeze_camera_speed: float = 2.70
+@export var camera_speed: float = 8.70
+@export var freeze_camera_speed: float = 2.70

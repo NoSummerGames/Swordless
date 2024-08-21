@@ -3,7 +3,7 @@ extends Node3D
 
 signal level_entered
 
-@export var hub_ui: HubUI
+@export var hub_ui: Control
 
 func _on_child_entered_tree(node: Node) -> void:
 	if node is HubPassage:

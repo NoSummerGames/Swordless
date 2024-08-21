@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dli7qo2kdbkch"]
+
+[sub_resource type="Environment" id="Environment_8laqp"]
+background_energy_multiplier = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mkm1w"]
+size = Vector2(100, 100)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ntkrp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o8kmd"]
+size = Vector3(0.25, 0.5, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rqk3b"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="LevelTitle" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8laqp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6, 8)
+fov = 37.8493
+
+[node name="_Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.285, 1.14, 0.365)
+light_color = Color(0.458819, 0.745509, 0.48291, 1)
+light_energy = 0.265
+light_volumetric_fog_energy = 0.0
+light_size = 0.232
+shadow_enabled = true
+distance_fade_begin = 5.9
+omni_range = 1.979
+omni_attenuation = 1.435
+
+[node name="_Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_mkm1w")
+
+[node name="_Fire" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ntkrp")
+
+[node name="_Fire2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.798636, 0, -0.601815, 0, 1, 0, 0.601815, 0, 0.798636, -0.9, 0.25, -0.315)
+mesh = SubResource("BoxMesh_o8kmd")
+
+[node name="_Fire3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.848048, 0, 0.529919, 0, 1, 0, -0.529919, 0, 0.848048, -0.85, 0.25, 0.73)
+mesh = SubResource("BoxMesh_rqk3b")

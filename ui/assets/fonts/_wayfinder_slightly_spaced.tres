@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://d18a1egnlw7ll"]
+
+[ext_resource type="FontFile" uid="uid://cabu3e2nm44tr" path="res://ui/assets/fonts/_wayfinder_CF_regular.otf" id="1_53p8u"]
+
+[resource]
+base_font = ExtResource("1_53p8u")
+spacing_glyph = 1
+spacing_space = 1

@@ -20,4 +20,3 @@ func _draw() -> void:
 	var target_pos_b = get_viewport().get_camera_3d().unproject_position(target.point_b)
 	draw_circle(target_pos, radius, color)
 	draw_circle(target_pos_b, radius, color)
-	

@@ -1,3 +1,4 @@
+[gd_scene load_steps=24 format=3 uid="uid://dsk5r3lka7jsh"]
 [gd_scene load_steps=27 format=3 uid="uid://dsk5r3lka7jsh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_iit5d"]
@@ -17,6 +18,7 @@
 [ext_resource type="Script" path="res://player/actions/action_freeze.gd" id="13_x6q5o"]
 [ext_resource type="Script" path="res://player/actions/action_slide.gd" id="14_obll8"]
 [ext_resource type="Script" path="res://player/actions/action_dive.gd" id="15_11odp"]
+[ext_resource type="Script" path="res://utils/debug/debug_emitter.gd" id="18_mlrfn"]
 [ext_resource type="Script" path="res://player/debug_component.gd" id="19_1qfhx"]
 [ext_resource type="Script" path="res://player/debug_ui.gd" id="20_681bt"]
 
@@ -44,7 +46,7 @@ glide_acceleration = 0.5
 max_glide_duration = 0.7
 dive_strength = 40.0
 freeze_scale = 0.7
-max_freeze_duration = 0.7
+freeze_duration = 0.7
 max_specials = 2
 input_buffer = 5
 priority_buffer = 0.2
@@ -100,6 +102,7 @@ floor_snap_length = 0.5
 script = ExtResource("1_iit5d")
 coyote_timer = NodePath("CoyoteTimer")
 player_stats = SubResource("Resource_e1sip")
+coyote_timer = NodePath("CoyoteTimer")
 
 [node name="PlayerArea" type="Area3D" parent="."]
 
@@ -254,61 +257,10 @@ debug_color = Color(0.79179, 0, 0.11008, 1)
 process_callback = 0
 one_shot = true
 
-[node name="Debug" type="Node3D" parent="." node_paths=PackedStringArray("player", "body", "action_label")]
-script = ExtResource("19_1qfhx")
-player = NodePath("..")
-body = NodePath("../_PlayerMesh")
-action_label = NodePath("Action")
-
-[node name="DebugHeightRaycast" type="RayCast3D" parent="Debug"]
-unique_name_in_owner = true
-target_position = Vector3(0, -50, 0)
-
-[node name="Action" type="Label3D" parent="Debug"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130779, 1.81808, 0)
-font_size = 72
-
-[node name="DebugUI" type="Control" parent="." node_paths=PackedStringArray("target")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("20_681bt")
-target = NodePath("..")
-
-[node name="MarginContainer" type="MarginContainer" parent="DebugUI"]
-layout_mode = 1
-offset_right = 52.0
-offset_bottom = 44.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="DebugUI/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_flyr5")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/MarginContainer/PanelContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-
-[node name="LabelSpeed" type="Label" parent="DebugUI/MarginContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Test"
-label_settings = SubResource("LabelSettings_josu6")
-
-[node name="LabelAltitude" type="Label" parent="DebugUI/MarginContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Test"
-label_settings = SubResource("LabelSettings_josu6")
-
-[node name="LabelTimer" type="Label" parent="DebugUI/MarginContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Test"
-label_settings = SubResource("LabelSettings_josu6")
+[node name="DebugEmitter" type="Node" parent="."]
+script = ExtResource("18_mlrfn")
+level = 2
+nodes = {
+"body": NodePath("../_PlayerMesh"),
+"player": NodePath("..")
+}

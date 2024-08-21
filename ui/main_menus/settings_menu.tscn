@@ -1,0 +1,310 @@
+[gd_scene load_steps=16 format=3 uid="uid://cchm1uusl0n0u"]
+
+[ext_resource type="Script" path="res://ui/main_menus/src/settings.gd" id="1_3pqdy"]
+[ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="2_3ro0h"]
+[ext_resource type="Script" path="res://ui/main_menus/src/toggle_button.gd" id="3_dnoxg"]
+[ext_resource type="LabelSettings" uid="uid://c2mtblwxa40ls" path="res://ui/res/menu_label.tres" id="3_kcat6"]
+[ext_resource type="Script" path="res://ui/main_menus/src/dropdown_button.gd" id="4_3gg6u"]
+[ext_resource type="FontFile" uid="uid://pxwsh76poo0m" path="res://ui/assets/fonts/WayfinderCF-ExtraBold.ttf" id="4_vg85t"]
+[ext_resource type="Script" path="res://ui/main_menus/src/slider_button.gd" id="6_phn2i"]
+[ext_resource type="Script" path="res://ui/main_menus/src/trigger_button.gd" id="7_yv02v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2x4tn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0iq7u"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5eie3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbyvj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nokc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r76m8"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhqpo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3pqdy")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.784314, 0.784314, 0.784314, 0.32549)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1308, 736)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 306.0
+offset_top = 172.0
+offset_right = -306.0
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ImageTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HeaderLarge"
+text = "Image"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ImageHSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HSeparatorLine"
+
+[node name="ImageSettings" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_3ro0h")
+alignment = 1
+
+[node name="LeftColumn" type="VBoxContainer" parent="VBoxContainer/ImageSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 2
+
+[node name="FullScreenLabel" type="Label" parent="VBoxContainer/ImageSettings/LeftColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"GraphNodeTitleLabel"
+text = "Plein écran"
+label_settings = ExtResource("3_kcat6")
+horizontal_alignment = 2
+
+[node name="ResolutionLabel" type="Label" parent="VBoxContainer/ImageSettings/LeftColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"GraphNodeTitleLabel"
+text = "Résolution"
+label_settings = ExtResource("3_kcat6")
+horizontal_alignment = 2
+
+[node name="ExposureLabel" type="Label" parent="VBoxContainer/ImageSettings/LeftColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"GraphNodeTitleLabel"
+text = "Exposition"
+label_settings = ExtResource("3_kcat6")
+horizontal_alignment = 2
+
+[node name="VEmptyA" type="VSeparator" parent="VBoxContainer/ImageSettings"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+
+[node name="RightColumn" type="VBoxContainer" parent="VBoxContainer/ImageSettings"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Fullscreen" type="CheckButton" parent="VBoxContainer/ImageSettings/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+button_pressed = true
+flat = true
+script = ExtResource("3_dnoxg")
+setting_name = "fullscreen"
+
+[node name="Resolution" type="OptionButton" parent="VBoxContainer/ImageSettings/RightColumn"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_3ro0h")
+flat = true
+alignment = 1
+icon_alignment = 1
+script = ExtResource("4_3gg6u")
+setting_name = "resolution"
+data_name = "Resolutions"
+
+[node name="Exposure" type="HSlider" parent="VBoxContainer/ImageSettings/RightColumn"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+script = ExtResource("6_phn2i")
+setting_name = "exposure"
+
+[node name="HEmptyA" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+
+[node name="AudioTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HeaderLarge"
+text = "Son"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HEmptyB" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HSeparatorLine"
+
+[node name="SoundSettings" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_3ro0h")
+alignment = 1
+
+[node name="LeftColumn" type="VBoxContainer" parent="VBoxContainer/SoundSettings"]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 2
+
+[node name="MusicVolum" type="Label" parent="VBoxContainer/SoundSettings/LeftColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"GraphNodeTitleLabel"
+text = "Volume Musique"
+label_settings = ExtResource("3_kcat6")
+horizontal_alignment = 2
+
+[node name="EffectsVolume" type="Label" parent="VBoxContainer/SoundSettings/LeftColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"GraphNodeTitleLabel"
+text = "Volume Effets"
+label_settings = ExtResource("3_kcat6")
+horizontal_alignment = 2
+
+[node name="VEmptyB" type="VSeparator" parent="VBoxContainer/SoundSettings"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+
+[node name="RightColumn" type="VBoxContainer" parent="VBoxContainer/SoundSettings"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="MusicVolume" type="HSlider" parent="VBoxContainer/SoundSettings/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.1
+value = 1.0
+script = ExtResource("6_phn2i")
+setting_name = "music_volume"
+
+[node name="SoundVolume" type="HSlider" parent="VBoxContainer/SoundSettings/RightColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.1
+value = 1.0
+script = ExtResource("6_phn2i")
+setting_name = "sound_volume"
+
+[node name="HEmptyC" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+
+[node name="Language" type="OptionButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(606, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme = ExtResource("2_3ro0h")
+theme_override_colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_focus_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_fonts/font = ExtResource("4_vg85t")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2x4tn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0iq7u")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5eie3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pbyvj")
+alignment = 1
+script = ExtResource("4_3gg6u")
+setting_name = "language"
+data_name = "Languages"
+
+[node name="LanguageHSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HSeparatorLine"
+
+[node name="HEmptyD" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+theme_override_constants/separation = 13
+
+[node name="Commands" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_focus_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2nokc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r76m8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nhqpo")
+text = "Commandes"
+script = ExtResource("7_yv02v")
+trigger = &"commands"
+
+[node name="CommandsHSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HSeparatorLine"
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_3ro0h")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_focus_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2nokc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r76m8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nhqpo")
+text = "Retour"
+script = ExtResource("7_yv02v")
+trigger = &"main_back"

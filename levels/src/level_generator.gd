@@ -191,6 +191,7 @@ func _calculate_spatial_bounds(parent : Node, exclude_top_level_transform: bool)
 
 func smooth_path():
 	await get_tree().process_frame
+#
 
 	#var similar_points = []
 #
@@ -221,6 +222,7 @@ func smooth_path():
 			var direction_a = (p_point - prev_point).normalized()
 			var direction_b = (next_point - p_point).normalized()
 
+			var tangent_at_p = (direction_a + direction_b).normalized()
 			var tangent_at_p = (direction_a + direction_b) * 2
 
 			tangent_at_p = tangent_at_p.limit_length((p_point - prev_point).length())

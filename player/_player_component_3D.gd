@@ -2,12 +2,13 @@ class_name PlayerComponent
 extends Node
 
 var player: Player
-var player_stats: PlayerStatsResource
+var player_stats: PlayerStatsResource:
+	get:
+		return player.player_stats
 
 
 func _enter_tree() -> void:
 	player = owner
-	player_stats = player.player_stats
 	call_deferred("_setup")
 
 
