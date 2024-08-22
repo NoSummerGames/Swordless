@@ -40,9 +40,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
-		velocity.y += -player_stats.gravity * delta
-		velocity.x = lerp(velocity.x, direction.normalized().x * speed, acceleration * delta)
+		up_direction = global_basis.y
+		if not is_on_floor():
+			velocity.y -= player_stats.gravity * delta
+
 		velocity.z = lerp(velocity.z, direction.normalized().z * speed, acceleration * delta)
+		velocity.x = lerp(velocity.x, direction.normalized().x * speed, acceleration * delta)
 
 	move_and_slide()
 
@@ -57,7 +60,8 @@ func is_almost_on_floor() -> bool:
 
 	if result.get_collision_count() > 0:
 		for i: int in result.get_collision_count():
-			if result.get_collision_normal(i).y > 0.5:
+			var normal = result.get_collision_normal(i)
+			if normal.y > 0.5:
 				on_floor = true
 				return true
 

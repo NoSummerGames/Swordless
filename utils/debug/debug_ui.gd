@@ -50,6 +50,8 @@ var previous_position: Vector3
 var collision_raycast: RayCast3D
 var time: float
 
+var highest_altitude: float = 0
+
 @onready var action_label: Label = %ActionLabel
 @onready var speed_label: Label = %SpeedLabel
 @onready var altitude_label: Label = %AltitudeLabel
@@ -97,9 +99,17 @@ func _physics_process(delta: float) -> void:
 
 			if get_setting("altitude") == true:
 				if collision_raycast:
-					var collision_point = collision_raycast.get_collision_point()
-					var altitude = player.global_position.distance_to(collision_point)
-					altitude_label.text = "Altitude : {}".format([snappedf(altitude, 0.1)], "{}")
+					if collision_raycast.is_colliding():
+						var collision_point = collision_raycast.get_collision_point()
+						var altitude = player.global_position.distance_to(collision_point)
+						altitude_label.text = "Altitude : {}".format([snappedf(altitude, 0.1)], "{}")
+						if snappedf(altitude, 0.1) > highest_altitude :
+							highest_altitude = snappedf(altitude, 0.1)
+							#print(highest_altitude)
+					else:
+						altitude_label.text = "Altitude : 0"
+
+
 
 			if not get_tree().paused:
 				time += delta

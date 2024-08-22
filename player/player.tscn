@@ -1,5 +1,4 @@
 [gd_scene load_steps=24 format=3 uid="uid://dsk5r3lka7jsh"]
-[gd_scene load_steps=27 format=3 uid="uid://dsk5r3lka7jsh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_iit5d"]
 [ext_resource type="Script" path="res://player/resources/player_stats/player_stats_res.gd" id="2_cd87s"]
@@ -19,12 +18,10 @@
 [ext_resource type="Script" path="res://player/actions/action_slide.gd" id="14_obll8"]
 [ext_resource type="Script" path="res://player/actions/action_dive.gd" id="15_11odp"]
 [ext_resource type="Script" path="res://utils/debug/debug_emitter.gd" id="18_mlrfn"]
-[ext_resource type="Script" path="res://player/debug_component.gd" id="19_1qfhx"]
-[ext_resource type="Script" path="res://player/debug_ui.gd" id="20_681bt"]
 
 [sub_resource type="Resource" id="Resource_e1sip"]
 script = ExtResource("2_cd87s")
-speed = 25
+speed = 30
 sprint_speed = 35
 lateral_factor = 0.6
 gravity = 35.0
@@ -32,7 +29,8 @@ ground_acceleration = 15.0
 air_acceleration = 6.0
 coyote_time = 0.2
 jump_strength = 13
-dash_strength = 300
+double_jump_strength = 13
+dash_strength = 150
 strafe_strength = 100
 dash_duration = 0.05
 dash_sensitivity = 0.7
@@ -51,7 +49,7 @@ max_specials = 2
 input_buffer = 5
 priority_buffer = 0.2
 half_jump_buffer = 0.2
-half_jump_deceleration = 2.0
+half_jump_deceleration = 1.5
 floor_detection_margin = 0.5
 dash_deceleration = 2.0
 wall_jump_angle_range = 0.5
@@ -61,6 +59,9 @@ path_stiffness = 2.0
 path_offset = 5
 camera_speed = 5.0
 freeze_camera_speed = 0.954594
+strafe_camera_speed = 20.0
+camera_height = 2.0
+camera_pitch = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
 size = Vector3(1, 1.6, 1)
@@ -74,33 +75,12 @@ size = Vector3(0.5, 1.6, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kdd8"]
 size = Vector3(0.5, 1.6, 0.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_flyr5"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 0.498039)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="LabelSettings" id="LabelSettings_josu6"]
-font_size = 20
-
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("coyote_timer")]
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.0472
 floor_snap_length = 0.5
 script = ExtResource("1_iit5d")
-coyote_timer = NodePath("CoyoteTimer")
 player_stats = SubResource("Resource_e1sip")
 coyote_timer = NodePath("CoyoteTimer")
 
@@ -149,7 +129,7 @@ prioritary = true
 speed_factor = 0.8
 exclusive = true
 disable_sprint = true
-custom_acceleration = 11
+custom_acceleration = 8
 cond_match_input = true
 cond_cooldown = true
 input_required = 6
@@ -159,6 +139,7 @@ debug_color = Color(1.15514e-06, 0.745551, 0.950813, 1)
 [node name="Glide" type="Node" parent="ActionsController"]
 script = ExtResource("8_rreng")
 override_acceleration = true
+prioritary = true
 speed_factor = 0.5
 disable_sprint = true
 custom_acceleration = 4
@@ -181,6 +162,7 @@ debug_color = Color(0.998354, 0.791112, 0, 1)
 [node name="WallJump" type="Node" parent="ActionsController"]
 script = ExtResource("13_v7mrk")
 override_acceleration = true
+speed_factor = 0.8
 repeatable = true
 cond_match_input = true
 cond_on_wall = true
@@ -216,6 +198,7 @@ override_acceleration = true
 prioritary = true
 speed_factor = 0.6
 exclusive = true
+disable_sprint = true
 custom_acceleration = 1
 cond_match_input = true
 cond_special = true
@@ -236,17 +219,17 @@ input_required = 4
 cooldown_time = 2.0
 debug_color = Color(0, 0.750218, 0.472003, 1)
 
-[node name="Run" type="Node" parent="ActionsController"]
-script = ExtResource("10_8wi00")
-cond_strictly_on_ground = true
-debug_color = Color(0.591498, 0.836485, 0.823248, 1)
-
 [node name="Dive" type="Node" parent="ActionsController"]
 script = ExtResource("15_11odp")
 cond_match_input = true
 cond_in_air = true
 input_required = 4
 debug_color = Color(0.748874, 0.506265, 1, 1)
+
+[node name="Run" type="Node" parent="ActionsController"]
+script = ExtResource("10_8wi00")
+cond_strictly_on_ground = true
+debug_color = Color(0.591498, 0.836485, 0.823248, 1)
 
 [node name="Fall" type="Node" parent="ActionsController"]
 script = ExtResource("11_53bcr")

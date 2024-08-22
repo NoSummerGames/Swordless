@@ -101,13 +101,13 @@ func set_current_action() -> void:
 
 	if current_action.cond_cooldown:
 		cooldown_over = false
-		var timer = await Utilities.add_timer(true, cooldown_time)
+		var timer = Utilities.add_timer(true, cooldown_time)
 		await timer.timeout
 		cooldown_over = true
 
 	if current_action.prioritary:
 		priority_time = true
-		var timer = await Utilities.add_timer(true, player_stats.priority_buffer)
+		var timer = Utilities.add_timer(true, player_stats.priority_buffer)
 		await timer.timeout
 		priority_time = false
 

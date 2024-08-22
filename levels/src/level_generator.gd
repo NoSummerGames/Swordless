@@ -223,7 +223,6 @@ func smooth_path():
 			var direction_b = (next_point - p_point).normalized()
 
 			var tangent_at_p = (direction_a + direction_b).normalized()
-			var tangent_at_p = (direction_a + direction_b) * 2
 
 			tangent_at_p = tangent_at_p.limit_length((p_point - prev_point).length())
 			tangent_at_p = tangent_at_p.limit_length((next_point - p_point).length())

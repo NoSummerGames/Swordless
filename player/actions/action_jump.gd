@@ -7,11 +7,10 @@ func _ready() -> void:
 	timer.one_shot = true
 
 func _enter() -> void:
-	player.velocity.y = 0
-	player.velocity.y += player_stats.jump_strength
+	player.velocity.y = player.direction.y * player.speed + player_stats.double_jump_strength
 	timer.wait_time = player_stats.half_jump_buffer
 	timer.start()
 
 func _execute(delta: float) -> void:
 	if Input.is_action_just_released("jump") and not timer.is_stopped():
-		player.velocity.y = lerpf(player.velocity.y, -player.velocity.y, player_stats.half_jump_deceleration * delta)
+		player.velocity.y = lerpf(player.velocity.y, player.direction.y, player_stats.half_jump_deceleration * delta)

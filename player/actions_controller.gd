@@ -34,9 +34,5 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_command_input(_input: Data.Actions, _action_param: Data.ActionParams) -> void:
-	if done == false:
-		pass
-	else:
-		input.append(_input)
-
+	input.append(_input)
 	action_param = _action_param

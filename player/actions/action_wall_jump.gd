@@ -2,7 +2,7 @@ extends Action
 
 
 func _enter() -> void:
-	player.velocity = Vector3.UP * player_stats.wall_jump_strength
+	player.velocity.y += player_stats.wall_jump_strength
 	custom_acceleration = player_stats.wall_jump_init_acceleration
 	wall_jumped_normal = player.get_last_slide_collision().get_normal().x
 

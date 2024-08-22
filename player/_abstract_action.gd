@@ -13,7 +13,7 @@ static var specials_count: Array[Action]
 
 static var priority_time: bool
 
-static var done: bool = false
+static var done: bool = true
 
 static var wall_jumped_normal = null
 

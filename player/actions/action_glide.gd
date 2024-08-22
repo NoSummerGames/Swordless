@@ -3,7 +3,7 @@ extends Action
 var timer: Timer
 
 func _enter() -> void:
-	var timer = await Utilities.add_timer(true, player_stats.max_glide_duration)
+	var timer = Utilities.add_timer(true, player_stats.max_glide_duration)
 	await timer.timeout
 	_exit()
 
