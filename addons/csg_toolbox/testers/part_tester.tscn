@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://rqkrvnevowmd" path="res://addons/csg_toolbox/testers/part_generator.tscn" id="5_60upc"]
 [ext_resource type="PackedScene" uid="uid://bb16gv65b0el7" path="res://utils/pause.tscn" id="5_apkcv"]
 
-[sub_resource type="Curve3D" id="Curve3D_meq4b"]
+[sub_resource type="Curve3D" id="Curve3D_cfycq"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -61, 0, 0, 0, 0, 0, 0, 0, 0, -64),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 2
+point_count = 4
 
 [node name="PartTester" type="Node3D"]
 script = ExtResource("1_1vda8")
@@ -20,7 +20,7 @@ part_scale = 3
 starting_distance = 20
 
 [node name="PartGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("5_60upc")]
-curve = SubResource("Curve3D_meq4b")
+curve = SubResource("Curve3D_cfycq")
 level = NodePath("..")
 
 [node name="Pause" parent="." instance=ExtResource("5_apkcv")]

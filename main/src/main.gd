@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-signal trigger_set
-
 @export var menus: Dictionary
 @export var world_loader : WorldLoader
 
@@ -10,9 +8,10 @@ var current_menu: Control:
 		current_menu = value
 		var children: Array = []
 		Utilities.get_all_children(current_menu, children)
-		for child in children:
+		for child: Control in children:
 			if child is TriggerButton:
-				child.trigger_pressed.connect(_on_trigger_set)
+				var button: TriggerButton = child
+				button.trigger_pressed.connect(_on_trigger_set)
 
 
 func _ready() -> void:

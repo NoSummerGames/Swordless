@@ -21,5 +21,5 @@ func _physics_process(delta: float) -> void:
 	else:
 		camera.global_transform = camera.global_transform.interpolate_with(camera_point.global_transform, player_stats.camera_speed * delta)
 
-func _on_player_restarted():
+func _on_player_restarted() -> void:
 	camera.global_transform = initial_transform

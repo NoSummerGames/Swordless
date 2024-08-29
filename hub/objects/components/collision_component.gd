@@ -36,4 +36,4 @@ func set_collision_shape(value: VisualInstance3D) -> void:
 		collision.shape = BoxShape3D.new()
 		(collision.shape as BoxShape3D).size = bounding_box.size
 		area.add_child(collision)
-		emit_signal("collision_set", area)
+		collision_set.emit(area)

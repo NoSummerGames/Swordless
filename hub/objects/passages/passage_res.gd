@@ -1,7 +1,6 @@
 class_name PassageResource
 extends CustomResource
 
-signal level_updated
 
 @export_group("Infos")
 @export var name: StringName = ""

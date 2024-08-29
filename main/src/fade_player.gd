@@ -13,13 +13,11 @@ func _ready() -> void:
 	master.connect(fade_out_signal, _on_fade_out_signal)
 
 func _on_fade_in_signal() -> void:
-	print("in")
 	color_rect.show()
 	play("fade_in")
-	emit_signal("finished")
+	finished.emit()
 
 func _on_fade_out_signal() -> void:
-	print("out")
 	play("fade_out")
 	await animation_finished
 	color_rect.hide()

@@ -14,7 +14,7 @@ func _enter() -> void:
 
 	add_child(dash)
 
-	var timer = Utilities.add_timer(true, player_stats.dash_duration)
+	var timer: Timer = Utilities.add_timer(true, player_stats.dash_duration)
 	await timer.timeout
 	if is_instance_valid(dash):
 		dash.queue_free()

@@ -10,4 +10,4 @@ func _ready() -> void:
 
 
 func _on_self_pressed() -> void:
-	emit_signal("trigger_pressed", trigger)
+	trigger_pressed.emit(trigger)

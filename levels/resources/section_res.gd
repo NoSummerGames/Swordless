@@ -15,7 +15,6 @@ extends BaseSection
 
 
 @export var max_segments: int = 2
-@export var fixed_scene: PackedScene
 
 @export_dir var pool_dir : String
 

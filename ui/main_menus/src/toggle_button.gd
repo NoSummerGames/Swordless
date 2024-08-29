@@ -9,5 +9,5 @@ func _ready() -> void:
 	connect("toggled", _on_setting_interacted)
 	add_to_group("settings", true)
 
-func _on_setting_interacted(value: Variant):
-	emit_signal("setting_changed", setting_name, value)
+func _on_setting_interacted(value: Variant) -> void:
+	setting_changed.emit(setting_name, value)

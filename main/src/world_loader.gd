@@ -15,7 +15,6 @@ var current_scene: Node3D = null:
 		if value is Hub:
 			(value as Hub).level_entered.connect(_on_level_entered)
 		if value is Level:
-			(value as Level).level_entered.connect(_on_level_entered)
 			(value as Level).level_finished.connect(_on_level_finished)
 
 var current_packed_scene: PackedScene
@@ -39,7 +38,7 @@ func _on_level_finished() -> void:
 
 func load_scene(scene: PackedScene, skip_transition: bool = false) -> void:
 	if skip_transition == false:
-		emit_signal("level_loading")
+		level_loading.emit()
 		await fade_player.animation_finished
 	call_deferred("_load_scene_deffered", scene, skip_transition)
 
@@ -58,15 +57,15 @@ func _load_scene_deffered(scene: PackedScene, skip_transition: bool = false) -> 
 	# Add it to the main scene
 	add_child(current_scene)
 	if skip_transition == false:
-		emit_signal("level_loaded")
+		level_loaded.emit()
 
-func _change_current_camera_exposure():
-	var camera = get_viewport().get_camera_3d()
+func _change_current_camera_exposure() -> void:
+	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera == null:
 		return
 
 	if camera.attributes == null:
-		var attributes = CameraAttributesPractical.new()
+		var attributes: CameraAttributesPractical = CameraAttributesPractical.new()
 		camera.attributes = attributes
 
 	camera.attributes.exposure_multiplier = Settings.get_setting("exposure")

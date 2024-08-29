@@ -11,7 +11,7 @@ extends AbstractAction
 @export var repeatable: bool = false
 
 @export_group("Properties parameters")
-@export var custom_acceleration: int
+@export var custom_acceleration: float
 
 @export_group("Conditions", "cond_")
 @export var cond_match_input: bool
@@ -101,13 +101,13 @@ func set_current_action() -> void:
 
 	if current_action.cond_cooldown:
 		cooldown_over = false
-		var timer = Utilities.add_timer(true, cooldown_time)
+		var timer: Timer = Utilities.add_timer(true, cooldown_time)
 		await timer.timeout
 		cooldown_over = true
 
 	if current_action.prioritary:
 		priority_time = true
-		var timer = Utilities.add_timer(true, player_stats.priority_buffer)
+		var timer: Timer = Utilities.add_timer(true, player_stats.priority_buffer)
 		await timer.timeout
 		priority_time = false
 

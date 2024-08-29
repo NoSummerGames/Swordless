@@ -1,7 +1,7 @@
 class_name HubLevelPanel
 extends MarginContainer
 
-signal target_changed
+signal passage_interacted
 signal closed
 
 @export var name_label: Label
@@ -20,29 +20,28 @@ var target: HubObject:
 var level: PassageResource:
 	set(value):
 		if value != null and value != level:
-			value.level_updated.connect(_update_level_informations.bind(value))
 			_update_level_informations(value)
 			level = value
-			
+
 
 func _update_level_informations(_level: PassageResource) -> void:
 	name_label.text = _level.name
 	description_label.text = _level.description
 
 	level_container.get_children().clear()
-	
+
 	var classic_button: LevelButton = LevelButton.new()
 	classic_button.text = _level.classic_level
-	classic_button.pressed.connect(target.emit_signal.bind("passage_entered", _level.classic_level_scene))
+	classic_button.pressed.connect(passage_interacted.emit.bind(_level.classic_level_scene))
 	classic_button.pressed.connect(hide)
 	level_container.add_child(classic_button)
 	if _level.classic_finished == true:
 		classic_button.theme_type_variation = "LevelButtonFinished"
-	
+
 	if _level.blackened_unlocked == true:
 		var blackened_button: LevelButton = LevelButton.new()
 		blackened_button.text = _level.blackened_level
-		blackened_button.pressed.connect(target.emit_signal.bind("passage_entered", _level.blackened_level_scene))
+		blackened_button.pressed.connect(passage_interacted.emit.bind(_level.blackened_level_scene))
 		blackened_button.pressed.connect(hide)
 		level_container.add_child(blackened_button)
 		if _level.blackened_finished == true:
@@ -66,4 +65,4 @@ func _input(event: InputEvent) -> void:
 			if not get_global_rect().has_point(Vector2((event as InputEventMouseButton).global_position)):
 				if self.visible:
 					hide()
-					emit_signal("closed")
+					closed.emit()

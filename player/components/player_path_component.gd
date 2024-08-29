@@ -1,5 +1,6 @@
 extends PlayerComponent
 
+
 var default_direction: Vector3 = Vector3.FORWARD
 var previous_direction: Vector3:
 	get:
@@ -24,9 +25,9 @@ func get_path_direction(delta: float) -> Vector3:
 	var closest_offset: float = path.curve.get_closest_offset(path.to_local(player.global_position))
 
 	# Get its interpolated point counterpart on the path
-	var point_a = path.curve.sample_baked(closest_offset + path_offset)
+	var point_a: Vector3 = path.curve.sample_baked(closest_offset + path_offset)
 	# Get an interpolated point slightly past the first
-	var point_b = path.curve.sample_baked(closest_offset + next_offset + path_offset)
+	var point_b: Vector3 = path.curve.sample_baked(closest_offset + next_offset + path_offset)
 
 	# If point_a and point_b are different (i.e. if it's not the path end), stores the direction
 	# the next iteration will interpolate and return the actual path direction

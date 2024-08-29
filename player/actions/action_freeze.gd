@@ -7,6 +7,6 @@ func _enter() -> void:
 	await timer.timeout
 	_exit()
 
-func _execute(delta: float) -> void:
-	var previous_velocity = player.velocity
+func _execute(_delta: float) -> void:
+	var previous_velocity: Vector3 = player.velocity
 	player.velocity = previous_velocity * player_stats.freeze_scale

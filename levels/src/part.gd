@@ -15,7 +15,7 @@ var path_id: int = 0
 				part_path = Path3D.new()
 				add_child(part_path)
 				part_path.set_owner(self)
-				var curve = Curve3D.new()
+				var curve: Curve3D = Curve3D.new()
 				curve.add_point(Vector3.ZERO)
 				curve.add_point(Vector3.FORWARD)
 				part_path.curve = curve

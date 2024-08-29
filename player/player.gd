@@ -51,7 +51,6 @@ func _physics_process(delta: float) -> void:
 
 
 func is_almost_on_floor() -> bool:
-	var almost_on_floor: bool
 	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
 	parameters.from = global_transform
 	parameters.motion = Vector3(0, -player_stats.floor_detection_margin, 0)
@@ -60,7 +59,7 @@ func is_almost_on_floor() -> bool:
 
 	if result.get_collision_count() > 0:
 		for i: int in result.get_collision_count():
-			var normal = result.get_collision_normal(i)
+			var normal: Vector3 = result.get_collision_normal(i)
 			if normal.y > 0.5:
 				on_floor = true
 				return true

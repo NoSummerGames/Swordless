@@ -10,11 +10,10 @@ func _ready() -> void:
 	connect("item_selected", _on_setting_interacted)
 	add_to_group("settings", true)
 
-	var items_dict = Settings.get(data_name)
-	for i in items_dict:
-		add_item(i.capitalize(), items_dict[i])
+	var items_dict: Dictionary = Settings.get(data_name)
+	for i: String in items_dict:
+		var idx: int = items_dict[i]
+		add_item(i.capitalize(), idx)
 
-
-
-func _on_setting_interacted(index: int):
-	emit_signal("setting_changed", setting_name, index)
+func _on_setting_interacted(index: int) -> void:
+	setting_changed.emit(setting_name, index)

@@ -1,8 +1,6 @@
 class_name HubPassage
 extends HubObject
 
-signal passage_entered
-
 @export var passage_resource: PassageResource
 
 var panel: HubLevelPanel:

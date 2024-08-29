@@ -16,7 +16,7 @@ var selected: bool = false:
 @onready var current_color: Color = Color.TRANSPARENT:
 	set(value):
 		current_color = value
-		emit_signal("color_changed", value)
+		color_changed.emit(value)
 
 
 func _setup() -> void:

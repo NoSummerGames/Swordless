@@ -16,6 +16,6 @@ func _remove_timer(timer: Timer) -> void:
 
 func get_all_children(parent: Node, results: Array) -> Array :
 	results.push_back(parent)
-	for child in parent.get_children():
+	for child: Node in parent.get_children():
 		results = get_all_children(child, results)
 	return results
