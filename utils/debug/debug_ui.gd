@@ -161,14 +161,14 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 							action.disabled = !setting_value
 
 				"constant_speed":
-					player.floor_constant_speed = value
+					player.floor_constant_speed = setting_value
 
 				"constant_speed":
-					player.floor_constant_speed = value
+					player.floor_constant_speed = setting_value
 
-func change_stat(stat_name: String, value: Variant):
-	stats[stat_name] = value
-	player_stats.set(stat_name, value)
+func change_stat(stat_name: String, stat_value: Variant):
+	stats[stat_name] = stat_value
+	player_stats.set(stat_name, stat_value)
 
 	if current_level == Levels.RUN:
 		player.player_stats = player_stats
