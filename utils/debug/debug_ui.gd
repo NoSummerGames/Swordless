@@ -19,7 +19,8 @@ var settings : Dictionary = {
 		"timer": false,
 		"action_state": false,
 		"freeze": false,
-		"glide": false
+		"glide": false,
+		"constant_speed" : false
 	},
 	Levels.HUB: {
 		"null": true
@@ -89,13 +90,15 @@ func _process(_delta: float) -> void:
 					past_action = current_action
 				action_label.position = get_viewport().get_camera_3d().unproject_position(player.global_position)
 
+			player.floor_constant_speed = get_setting("constant_speed")
+
 func _physics_process(delta: float) -> void:
 	match current_level:
 		Levels.RUN:
 			if get_setting("speed") == true:
-				var current_position: Vector3 = player.global_position
-				var current_velocity: Vector3 = (current_position - previous_position)/delta
-				var speed: float = Vector3.ZERO.distance_to(Vector3(current_velocity.x, 0, current_velocity.z))
+				var current_position = player.global_position
+				var current_desired_velocity = (current_position - previous_position)/delta
+				var speed = Vector3.ZERO.distance_to(Vector3(current_desired_velocity.x, 0, current_desired_velocity.z))
 				speed_label.text = "Speed : {}".format([snappedf(speed, 0.1)], "{}")
 				previous_position = current_position
 
@@ -157,9 +160,12 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 						if action.name == "glide":
 							action.disabled = !setting_value
 
-func change_stat(stat_name: String, stat_value: Variant) -> void:
-	stats[stat_name] = stat_value
-	player_stats.set(stat_name, stat_value)
+				"constant_speed":
+					player.floor_constant_speed = value
+
+func change_stat(stat_name: String, value: Variant):
+	stats[stat_name] = value
+	player_stats.set(stat_name, value)
 
 	if current_level == Levels.RUN:
 		player.player_stats = player_stats
