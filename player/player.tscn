@@ -27,7 +27,13 @@ lateral_factor = 0.6
 gravity = 35.0
 ground_acceleration = 15.0
 air_acceleration = 6.0
+max_specials = 2
 coyote_time = 0.2
+max_step_height = 0.5
+step_acceleration = 10.0
+step_up_energy = 2.0
+input_buffer = 5
+floor_detection_margin = 0.5
 jump_strength = 13
 double_jump_strength = 13
 dash_strength = 150
@@ -45,12 +51,9 @@ max_glide_duration = 0.7
 dive_strength = 40.0
 freeze_scale = 0.7
 freeze_duration = 0.7
-max_specials = 2
-input_buffer = 5
 priority_buffer = 0.2
 half_jump_buffer = 0.2
 half_jump_deceleration = 1.5
-floor_detection_margin = 0.5
 dash_deceleration = 2.0
 wall_jump_angle_range = 0.5
 diagonal_strafe = true
@@ -73,9 +76,11 @@ material = SubResource("StandardMaterial3D_p8wet")
 size = Vector3(0.5, 1.6, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kdd8"]
+margin = 0.01
 size = Vector3(0.5, 1.6, 0.5)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("coyote_timer")]
+floor_stop_on_slope = false
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.0472
@@ -95,6 +100,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 mesh = SubResource("BoxMesh_tt1qa")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.1)
 shape = SubResource("BoxShape3D_2kdd8")
 

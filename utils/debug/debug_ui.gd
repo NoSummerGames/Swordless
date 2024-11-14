@@ -163,6 +163,9 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 				"constant_speed":
 					player.floor_constant_speed = value
 
+				"constant_speed":
+					player.floor_constant_speed = value
+
 func change_stat(stat_name: String, value: Variant):
 	stats[stat_name] = value
 	player_stats.set(stat_name, value)
