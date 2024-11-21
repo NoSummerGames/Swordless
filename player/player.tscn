@@ -191,6 +191,7 @@ debug_color = Color(0.998354, 0.791112, 0, 1)
 
 [node name="WallJump" type="Node" parent="ActionsController"]
 script = ExtResource("13_v7mrk")
+disabled = true
 override_acceleration = true
 speed_factor = 0.8
 repeatable = true
@@ -201,6 +202,7 @@ debug_color = Color(0.628591, 0.852273, 3.85046e-07, 1)
 
 [node name="DoubleJump" type="Node" parent="ActionsController"]
 script = ExtResource("8_liewp")
+disabled = true
 prioritary = true
 speed_factor = 0.8
 cond_match_input = true
@@ -211,6 +213,7 @@ debug_color = Color(1, 0.566346, 0.0896527, 1)
 
 [node name="Dash" type="Node" parent="ActionsController"]
 script = ExtResource("10_bda80")
+disabled = true
 prioritary = true
 speed_factor = 0.6
 exclusive = true
@@ -224,6 +227,7 @@ debug_color = Color(0.953985, 0.368983, 0.730241, 1)
 
 [node name="Strafe" type="Node" parent="ActionsController"]
 script = ExtResource("10_gw2de")
+disabled = true
 override_acceleration = true
 prioritary = true
 speed_factor = 0.6

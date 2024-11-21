@@ -18,6 +18,9 @@ var settings : Dictionary = {
 		"altitude": false,
 		"timer": false,
 		"action_state": false,
+		"double_jump": false,
+		"dash_strafe": false,
+		"wall_jump": false,
 		"freeze": false,
 		"glide": false,
 		"constant_speed" : false
@@ -95,7 +98,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	match current_level:
 		Levels.RUN:
-			if get_setting("speed") == true:
+			if get_setting("speed") == true and not get_tree().paused:
 				var current_position: Vector3 = player.global_position
 				var current_desired_velocity: Vector3 = (current_position - previous_position)/delta
 				var speed: float = Vector3.ZERO.distance_to(Vector3(current_desired_velocity.x, 0, current_desired_velocity.z))
@@ -125,6 +128,7 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 	match current_level:
 		Levels.RUN:
 			match setting:
+				# HUD
 				"action_state":
 					action_label.visible = setting_value
 					if setting_value == true:
@@ -146,10 +150,24 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 					else:
 						if collision_raycast:
 							collision_raycast.queue_free()
-
 				"timer":
 					timer_label.visible = setting_value
 
+				# SKILLS
+				"double_jump":
+					for action: Action in player.actions:
+						if action.name == "DoubleJump":
+							action.disabled = !setting_value
+				"dash_strafe":
+					for action: Action in player.actions:
+						if action.name == "Dash" or action.name == "Strafe":
+							action.disabled = !setting_value
+				"wall_jump":
+					for action: Action in player.actions:
+						if action.name == "WallJump":
+							action.disabled = !setting_value
+
+				# GAMEPLAY
 				"freeze":
 					for action: Action in player.actions:
 						if action.name == "Freeze":
@@ -158,10 +176,6 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 					for action: Action in player.actions:
 						if action.name == "Glide":
 							action.disabled = !setting_value
-
-				"constant_speed":
-					player.floor_constant_speed = setting_value
-
 				"constant_speed":
 					player.floor_constant_speed = setting_value
 

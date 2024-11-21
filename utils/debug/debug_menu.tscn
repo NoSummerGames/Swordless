@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dim7k1m01584d"]
+[gd_scene load_steps=10 format=3 uid="uid://dim7k1m01584d"]
 
 [ext_resource type="Script" path="res://utils/debug/debug_menu.gd" id="1_n4atj"]
 [ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="1_o2s2v"]
@@ -20,9 +20,63 @@ _bundled = {
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_4cluw"]
 color = Color(0.396484, 0.396484, 0.396484, 1)
 grow_begin = -50.0
-grow_end = -50.0
+grow_end = 50.0
 thickness = 2
 vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_44jhp"]
+color = Color(0.396484, 0.396484, 0.396484, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pfqq"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.396078, 0.396078, 0.396078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s68tk"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.396078, 0.396078, 0.396078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a743u"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.396078, 0.396078, 0.396078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [node name="DebugMenu" type="CanvasLayer"]
 process_mode = 3
@@ -89,7 +143,8 @@ text = "Player Stats"
 
 [node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/Middle/PlayerStats"]
 layout_mode = 2
-theme_override_constants/separation = 5
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxLine_44jhp")
 
 [node name="MenuButton" type="MenuButton" parent="Control/HBoxContainer/Middle/PlayerStats"]
 unique_name_in_owner = true
@@ -130,31 +185,36 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="Hud" type="VBoxContainer" parent="Control/HBoxContainer/Right"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer/Right"]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="HUD" type="Label" parent="Control/HBoxContainer/Right/Hud"]
+[node name="Hud" type="VBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer"]
 layout_mode = 2
+
+[node name="HUD" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("1_o2s2v")
 theme_type_variation = &"HeaderLarge"
-text = "HUD "
+theme_override_styles/normal = SubResource("StyleBoxFlat_2pfqq")
+text = "HUD"
+horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/Right/Hud"]
+[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Count" type="HBoxContainer" parent="Control/HBoxContainer/Right/Hud"]
+[node name="Count" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/Right/Hud/Count"]
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/Count"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Compteur"
 
-[node name="Speed" type="CheckButton" parent="Control/HBoxContainer/Right/Hud/Count"]
+[node name="Speed" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/Count"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -164,16 +224,16 @@ expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "speed"
 
-[node name="Altitude" type="HBoxContainer" parent="Control/HBoxContainer/Right/Hud"]
+[node name="Altitude" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/Right/Hud/Altitude"]
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/Altitude"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Altitude"
 
-[node name="Altitude" type="CheckButton" parent="Control/HBoxContainer/Right/Hud/Altitude"]
+[node name="Altitude" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/Altitude"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -183,16 +243,16 @@ expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "altitude"
 
-[node name="Timer" type="HBoxContainer" parent="Control/HBoxContainer/Right/Hud"]
+[node name="Timer" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/Right/Hud/Timer"]
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/Timer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Timer"
 
-[node name="Timer" type="CheckButton" parent="Control/HBoxContainer/Right/Hud/Timer"]
+[node name="Timer" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/Timer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -202,16 +262,16 @@ expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "timer"
 
-[node name="State" type="HBoxContainer" parent="Control/HBoxContainer/Right/Hud"]
+[node name="State" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/Right/Hud/State"]
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/State"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "État"
 
-[node name="State" type="CheckButton" parent="Control/HBoxContainer/Right/Hud/State"]
+[node name="State" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/State"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -221,32 +281,109 @@ expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "action_state"
 
-[node name="Gameplay Options" type="VBoxContainer" parent="Control/HBoxContainer/Right"]
+[node name="Spacer" type="Control" parent="Control/HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Skills" type="VBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 size_flags_stretch_ratio = 2.0
 
-[node name="Gameplay" type="Label" parent="Control/HBoxContainer/Right/Gameplay Options"]
+[node name="Gameplay" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Skills"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("1_o2s2v")
 theme_type_variation = &"HeaderLarge"
-text = "Gameplay"
+theme_override_styles/normal = SubResource("StyleBoxFlat_s68tk")
+text = "Compétences"
 
-[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/Right/Gameplay Options"]
+[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/Right/VBoxContainer/Skills"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ConstantSpeed" type="HBoxContainer" parent="Control/HBoxContainer/Right/Gameplay Options"]
+[node name="DoubleJump" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Skills"]
 layout_mode = 2
 
-[node name="Freeze" type="Label" parent="Control/HBoxContainer/Right/Gameplay Options/ConstantSpeed"]
+[node name="DoubleJump" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Skills/DoubleJump"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+text = "Double Jump"
+
+[node name="DoubleJumpHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Skills/DoubleJump"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+icon_alignment = 2
+script = ExtResource("2_kajsq")
+setting_name = "double_jump"
+
+[node name="Freeze" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Skills"]
+layout_mode = 2
+
+[node name="DashStrafe" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Skills/Freeze"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+text = "Dash / Strafe"
+
+[node name="DashStrafeHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Skills/Freeze"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+icon_alignment = 2
+script = ExtResource("2_kajsq")
+setting_name = "dash_strafe"
+
+[node name="WallJump" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Skills"]
+layout_mode = 2
+
+[node name="WallJump" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Skills/WallJump"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+text = "Wall Jump"
+
+[node name="WallJumpHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Skills/WallJump"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+icon_alignment = 2
+script = ExtResource("2_kajsq")
+setting_name = "wall_jump"
+
+[node name="Spacer2" type="Control" parent="Control/HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gameplay" type="VBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
+
+[node name="Gameplay" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_o2s2v")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_a743u")
+text = "Gameplay"
+
+[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ConstantSpeed" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
+layout_mode = 2
+
+[node name="Freeze" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/ConstantSpeed"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Constant speed"
 
-[node name="FreezeHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/Gameplay Options/ConstantSpeed"]
+[node name="ConstantHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/ConstantSpeed"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -254,16 +391,16 @@ icon_alignment = 2
 script = ExtResource("2_kajsq")
 setting_name = "constant_speed"
 
-[node name="Freeze" type="HBoxContainer" parent="Control/HBoxContainer/Right/Gameplay Options"]
+[node name="Freeze" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
 layout_mode = 2
 
-[node name="Freeze" type="Label" parent="Control/HBoxContainer/Right/Gameplay Options/Freeze"]
+[node name="Freeze" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Freeze"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Freeze"
 
-[node name="FreezeHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/Gameplay Options/Freeze"]
+[node name="FreezeHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Freeze"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -271,16 +408,16 @@ icon_alignment = 2
 script = ExtResource("2_kajsq")
 setting_name = "freeze"
 
-[node name="Glide" type="HBoxContainer" parent="Control/HBoxContainer/Right/Gameplay Options"]
+[node name="Glide" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
 layout_mode = 2
 
-[node name="Glide" type="Label" parent="Control/HBoxContainer/Right/Gameplay Options/Glide"]
+[node name="Glide" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Glide"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Glide"
 
-[node name="GliseHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/Gameplay Options/Glide"]
+[node name="GlideHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Glide"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -288,33 +425,33 @@ icon_alignment = 2
 script = ExtResource("2_kajsq")
 setting_name = "glide"
 
-[node name="DeadCollision" type="HBoxContainer" parent="Control/HBoxContainer/Right/Gameplay Options"]
+[node name="DeadCollision" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
 visible = false
 layout_mode = 2
 
-[node name="DeadCollision" type="Label" parent="Control/HBoxContainer/Right/Gameplay Options/DeadCollision"]
+[node name="DeadCollision" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/DeadCollision"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Mort par collision"
 
-[node name="DeadCollisionHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/Gameplay Options/DeadCollision"]
+[node name="DeadCollisionHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/DeadCollision"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 icon_alignment = 2
 
-[node name="Marques" type="HBoxContainer" parent="Control/HBoxContainer/Right/Gameplay Options"]
+[node name="Marques" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
 visible = false
 layout_mode = 2
 
-[node name="Marques" type="Label" parent="Control/HBoxContainer/Right/Gameplay Options/Marques"]
+[node name="Marques" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Marques"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
 text = "Activation des marques"
 
-[node name="HSlider" type="OptionButton" parent="Control/HBoxContainer/Right/Gameplay Options/Marques"]
+[node name="HSlider" type="OptionButton" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Marques"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
