@@ -42,8 +42,6 @@ func _physics_process(delta: float) -> void:
 		if floor_constant_speed == false:
 			floor_angle -= get_floor_angle(up_direction) * signf(get_floor_normal().z)
 
-		up_direction = global_basis.y
-
 		if not is_on_floor():
 			velocity.y -= player_stats.gravity * delta
 

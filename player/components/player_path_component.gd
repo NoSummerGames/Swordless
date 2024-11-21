@@ -2,6 +2,8 @@ extends PlayerComponent
 
 signal path_exited
 
+var previous_up_direction: Vector3 = Vector3.UP
+
 var default_direction: Vector3 = Vector3.FORWARD
 var previous_direction: Vector3:
 	get:
@@ -21,8 +23,14 @@ func _ready() -> void:
 	path_exited.connect(player._on_player_exited_path)
 
 func _physics_process(delta: float) -> void:
+	if player.is_on_floor():
+		var closest_offset: float = path.curve.get_closest_offset(path.to_local(player.global_position))
+		var path_up_vector: Vector3 = path.curve.sample_baked_up_vector(closest_offset)
+		player.up_direction = lerp(previous_up_direction, path_up_vector, stiffness * delta)
+		previous_up_direction = player.up_direction
+
 	player.direction = get_path_direction(delta)
-	player.look_at(player.global_position + player.direction.rotated(Vector3.UP, PI * 2))
+	player.look_at(player.global_position + player.direction, player.up_direction)
 
 func get_path_direction(delta: float) -> Vector3:
 	# Get the closest path "offset" to the player

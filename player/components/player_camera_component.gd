@@ -14,6 +14,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	camera_point.position.y = player_stats.camera_height
 	camera_point.rotation.x = -player_stats.camera_pitch
+	camera_point.global_rotation.z = 0
 	# Lerp between camera position and camera_marker
 	if player.current_action.name == "Freeze":
 		camera.global_transform = camera.global_transform.interpolate_with(camera_point.global_transform, player_stats.freeze_camera_speed * delta)
