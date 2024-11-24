@@ -1,7 +1,7 @@
 class_name DebugEmitter
 extends Node
 
-@export var level: DebugUi.Levels
+@export var level: Debug.Levels
 @export var nodes: Dictionary
 
 func _ready() -> void:

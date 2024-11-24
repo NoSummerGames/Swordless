@@ -1,5 +1,5 @@
 class_name HubObjectState
-extends CustomResource
+extends Resource
 
 
 @export var is_ray_pickable: bool = true
@@ -19,4 +19,3 @@ func get_color(is_selected: bool) -> Color:
 		else:
 			printerr("{} has no selected color resource. Returned Color.RED instead.".format([resource_path]))
 			return Color.RED
-

@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://dsk5r3lka7jsh"]
+[gd_scene load_steps=28 format=3 uid="uid://dsk5r3lka7jsh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_iit5d"]
 [ext_resource type="Script" path="res://player/resources/player_stats/player_stats_res.gd" id="2_cd87s"]
+[ext_resource type="Shader" path="res://_placeholder/outline.gdshader" id="3_c35mf"]
 [ext_resource type="Script" path="res://player/components/player_camera_component.gd" id="3_ovvsi"]
 [ext_resource type="Script" path="res://player/components/player_path_component.gd" id="4_l8spp"]
 [ext_resource type="Script" path="res://player/components/player_input_component.gd" id="5_2m8xq"]
@@ -18,17 +19,18 @@
 [ext_resource type="Script" path="res://player/actions/action_slide.gd" id="14_obll8"]
 [ext_resource type="Script" path="res://player/actions/action_dive.gd" id="15_11odp"]
 [ext_resource type="Script" path="res://utils/debug/debug_emitter.gd" id="18_mlrfn"]
+[ext_resource type="PackedScene" uid="uid://bb16gv65b0el7" path="res://utils/pause.tscn" id="20_65viv"]
 
 [sub_resource type="Resource" id="Resource_e1sip"]
 script = ExtResource("2_cd87s")
-speed = 30
+speed = 25
 sprint_speed = 35
 lateral_factor = 0.6
 gravity = 35.0
-ground_acceleration = 15.0
+ground_acceleration = 13.0
 air_acceleration = 6.0
 max_specials = 2
-coyote_time = 0.2
+coyote_time = 0.5
 max_step_height = 0.5
 step_acceleration = 10.0
 step_up_energy = 2.0
@@ -37,10 +39,10 @@ floor_detection_margin = 0.5
 jump_strength = 13
 double_jump_strength = 13
 dash_strength = 150
-strafe_strength = 100
-dash_duration = 0.05
+strafe_strength = 40
+dash_duration = 0.1
 dash_sensitivity = 0.7
-dash_acceleration = 0.001
+dash_acceleration = 0.5
 wall_jump_strength = 10
 wall_jump_init_acceleration = 80.0
 wall_jump_deceleration = 0.8
@@ -61,7 +63,7 @@ interpolation_distance = 5.0
 path_stiffness = 2.0
 path_offset = 5
 camera_speed = 5.0
-freeze_camera_speed = 0.954594
+freeze_camera_speed = 1.0
 strafe_camera_speed = 20.0
 camera_height = 2.0
 camera_pitch = 0.0
@@ -78,6 +80,25 @@ size = Vector3(0.5, 1.6, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2kdd8"]
 margin = 0.01
 size = Vector3(0.5, 1.6, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65viv"]
+render_priority = 0
+shader = ExtResource("3_c35mf")
+shader_parameter/outlineColor = Color(0, 0, 0, 1)
+shader_parameter/depth_threshold = 0.025
+shader_parameter/normal_threshold = 0.5
+shader_parameter/normal_smoothing = 0.25
+shader_parameter/max_thickness = 0.6
+shader_parameter/min_thickness = 0.5
+shader_parameter/max_distance = 70.0
+shader_parameter/min_distance = 2.0
+shader_parameter/grazing_fresnel_power = 5.0
+shader_parameter/grazing_angle_mask_power = 1.0
+shader_parameter/grazing_angle_modulation_factor = 50.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_x7c3f"]
+flip_faces = true
+size = Vector2(2, 2)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("coyote_timer")]
 floor_stop_on_slope = false
@@ -110,6 +131,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 [node name="PlayerCamera" type="Camera3D" parent="CameraPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89941, 2.74201)
 current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPoint/PlayerCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.085)
+material_override = SubResource("ShaderMaterial_65viv")
+mesh = SubResource("QuadMesh_x7c3f")
 
 [node name="CameraComponent" type="Node" parent="." node_paths=PackedStringArray("camera", "camera_point")]
 script = ExtResource("3_ovvsi")
@@ -253,3 +279,5 @@ nodes = {
 "body": NodePath("../_PlayerMesh"),
 "player": NodePath("..")
 }
+
+[node name="Pause" parent="." instance=ExtResource("20_65viv")]

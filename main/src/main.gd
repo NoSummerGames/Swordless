@@ -6,9 +6,7 @@ extends CanvasLayer
 var current_menu: Control:
 	set(value):
 		current_menu = value
-		var children: Array = []
-		Utilities.get_all_children(current_menu, children)
-		for child: Control in children:
+		for child: Control in Utilities.get_all_children(current_menu):
 			if child is TriggerButton:
 				var button: TriggerButton = child
 				button.trigger_pressed.connect(_on_trigger_set)

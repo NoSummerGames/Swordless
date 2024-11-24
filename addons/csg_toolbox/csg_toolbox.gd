@@ -54,7 +54,7 @@ var index : Dictionary = {
 	"Part": {"type": Part,
 			"attributes" : {}
 			},
-			
+
 	"ExitArea": {"type": ExitArea,
 			"attributes" : {}
 			},
@@ -91,7 +91,7 @@ func _on_create_button_pressed(button) -> void:
 			object.material = default_material
 	elif object.get("material") != null:
 		object.material = default_material
-		
+
 	emit_signal("csg_added", object)
 
 func _on_material_button_pressed(mat: StandardMaterial3D) -> void:

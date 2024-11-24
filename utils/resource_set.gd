@@ -1,6 +1,6 @@
 @tool
 class_name ResourceSet
-extends CustomResource
+extends Resource
 ## A resource that stores mutltiple resources of a specified type.
 ##
 ## Assign to exported variable in any class to provide a specified type of resources.[br]
@@ -34,7 +34,7 @@ extends CustomResource
 		if not resource_set.is_empty():
 			for i: Resource in resource_set:
 				if i != null and i.resource_name.is_empty():
-					print("{} : the 'resource_name' hasn't been set for this resource".format([i, self.type_name], "{}"))
+					printerr("{} : the 'resource_name' hasn't been set for this resource".format([i, self.type_name], "{}"))
 
 ## A debug_resource that will be returned if a requested_resource hasn't been found.
 @export var debug_resource: Resource:

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://tpirfdba5tdj"]
+
+[ext_resource type="Script" path="res://levels/src/level_generator.gd" id="1_8mvm8"]
+[ext_resource type="Script" path="res://levels/src/level_creator.gd" id="2_mr56g"]
+[ext_resource type="Script" path="res://levels/src/part_loader.gd" id="3_0dx8r"]
+[ext_resource type="Script" path="res://levels/src/section_loader.gd" id="6_fdi38"]
+[ext_resource type="Script" path="res://levels/src/mesh_deform.gd" id="8_hggdv"]
+
+[node name="LevelGenerator" type="Path3D"]
+script = ExtResource("1_8mvm8")
+
+[node name="LevelCreator" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_mr56g")
+
+[node name="PartLoader" type="Node" parent="LevelCreator"]
+unique_name_in_owner = true
+script = ExtResource("3_0dx8r")
+
+[node name="SectionLoader" type="Node" parent="LevelCreator"]
+unique_name_in_owner = true
+script = ExtResource("6_fdi38")
+
+[node name="MeshDeformer" type="Node" parent="LevelCreator"]
+unique_name_in_owner = true
+script = ExtResource("8_hggdv")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

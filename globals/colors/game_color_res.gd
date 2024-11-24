@@ -1,4 +1,4 @@
 class_name GameColor
-extends CustomResource
+extends Resource
 
 @export var color: Color

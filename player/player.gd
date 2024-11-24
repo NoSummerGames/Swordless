@@ -35,9 +35,9 @@ var on_floor: bool = true
 		else:
 			return current_action.speed_factor * player_stats.speed
 
-func _ready() -> void:
-	## FIXME : added for testing purpose before having a proper "paths finding" script
-	position = path.curve.get_point_position(1)
+#func _ready() -> void:
+	### FIXME : added for testing purpose before having a proper "paths finding" script
+	#position = path.curve.get_point_position(1)
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:

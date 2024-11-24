@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_ihc5x")
-name = &"Ville basse"
-description = "Lorem Ipsum"
-classic_level = &"La ville était en ruines"
+name = &"Beaux quartiers"
+description = "<insérer description, ambiance, phrase énigmatique ou autre>"
+classic_level = &"<insérer phrase niveau classique>"
 classic_level_scene = ExtResource("1_pmd2s")
-blackened_level = &"La ville était abandonné"
+blackened_level = &"<insérer phrase manière noire>"

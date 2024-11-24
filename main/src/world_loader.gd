@@ -24,6 +24,11 @@ func _ready() -> void:
 	Settings.connect("exposure_changed", _change_current_camera_exposure)
 	load_scene(title_scene, true)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if is_instance_valid(current_scene):
+		if event.is_action_pressed("start") and current_scene is Level:
+			load_scene(current_packed_scene)
+
 func launch_game() -> void:
 	load_scene(hub_scene)
 

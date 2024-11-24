@@ -39,4 +39,4 @@ func get_command_inputs() -> void:
 		command_input.emit(Data.Actions.GLIDE, Data.ActionParams.END)
 
 	if Input.is_action_pressed("freeze"):
-		command_input.emit(Data.Actions.FREEZE)
+		command_input.emit(Data.Actions.FREEZE, 0)

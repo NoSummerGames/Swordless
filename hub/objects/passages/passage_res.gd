@@ -1,5 +1,5 @@
 class_name PassageResource
-extends CustomResource
+extends Resource
 
 
 @export_group("Infos")

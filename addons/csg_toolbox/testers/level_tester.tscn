@@ -1,70 +1,64 @@
-[gd_scene load_steps=17 format=3 uid="uid://cu11ecv4dqgl5"]
+[gd_scene load_steps=12 format=3 uid="uid://cu11ecv4dqgl5"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/level_tester.gd" id="1_6voa2"]
-[ext_resource type="Script" path="res://levels/resources/entry_scene.gd" id="2_7otan"]
-[ext_resource type="PackedScene" uid="uid://71b12n0o2sjs" path="res://levels/level_00/parts/fixed/entry_scene.tscn" id="2_ydw6m"]
-[ext_resource type="Script" path="res://levels/resources/level_res.gd" id="3_a2nix"]
-[ext_resource type="Script" path="res://levels/resources/exit_scene.gd" id="3_l1ts6"]
-[ext_resource type="PackedScene" uid="uid://dm1qp5de7rf3y" path="res://levels/level_00/parts/fixed/exit_scene.tscn" id="4_oo27p"]
-[ext_resource type="Script" path="res://levels/resources/section_res.gd" id="5_ftf6v"]
-[ext_resource type="PackedScene" uid="uid://clki6hn2uymhx" path="res://addons/csg_toolbox/testers/level_generator.tscn" id="7_mjqw5"]
-[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="7_xian1"]
-[ext_resource type="PackedScene" uid="uid://crq8d388gq7ml" path="res://utils/restart.tscn" id="8_p5ohv"]
-[ext_resource type="PackedScene" uid="uid://bb16gv65b0el7" path="res://utils/pause.tscn" id="9_sccc6"]
+[ext_resource type="Script" path="res://levels/src/resources/level_res.gd" id="2_k621k"]
+[ext_resource type="Script" path="res://levels/src/resources/section_res.gd" id="3_8ftby"]
+[ext_resource type="PackedScene" uid="uid://cpkdf2w8emggg" path="res://utils/restart.tscn" id="8_p5ohv"]
+[ext_resource type="PackedScene" uid="uid://tpirfdba5tdj" path="res://levels/level_generator.tscn" id="9_4shd5"]
+[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="10_h5nw6"]
 
-[sub_resource type="Resource" id="Resource_gayxb"]
-script = ExtResource("2_7otan")
-fixed_scene = ExtResource("2_ydw6m")
-scale = 2.0
-parts_distance = Vector2i(2, 100)
+[sub_resource type="Resource" id="Resource_4shd5"]
+script = ExtResource("2_k621k")
+sections = Array[ExtResource("3_8ftby")]([])
+metadata/_custom_type_script = ExtResource("2_k621k")
 
-[sub_resource type="Resource" id="Resource_ay48r"]
-script = ExtResource("3_l1ts6")
-fixed_scene = ExtResource("4_oo27p")
-scale = 10.0
-parts_distance = Vector2i(2, 5)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qy1rd"]
+sky_top_color = Color(0.337716, 0.402262, 0.492051, 1)
+sky_horizon_color = Color(0.812125, 0.818152, 0.827671, 1)
+sky_curve = 0.261164
+ground_bottom_color = Color(0.28, 0.279207, 0.2772, 1)
+ground_horizon_color = Color(0.95, 0.95, 0.95, 1)
+ground_curve = 0.101965
+ground_energy_multiplier = 0.7
+sun_curve = 0.178381
 
-[sub_resource type="Resource" id="Resource_yvm7d"]
-script = ExtResource("5_ftf6v")
-length = 250
-x_delta = 0.5
-low_delta = -0.5
-high_delta = 0.25
-fixed = false
-max_segments = 1
-pool_dir = "res://level_builder/_pool_blocks/00"
-scale = 3.0
-parts_distance = Vector2i(2, 5)
+[sub_resource type="Sky" id="Sky_qy1rd"]
+sky_material = SubResource("ProceduralSkyMaterial_qy1rd")
 
-[sub_resource type="Resource" id="Resource_s0tap"]
-script = ExtResource("3_a2nix")
-entry_section = SubResource("Resource_gayxb")
-sections = Array[ExtResource("5_ftf6v")]([SubResource("Resource_yvm7d")])
-exit_section = SubResource("Resource_ay48r")
-starting_distance = 20
+[sub_resource type="Environment" id="Environment_8ftby"]
+background_mode = 2
+background_energy_multiplier = 0.93
+sky = SubResource("Sky_qy1rd")
+tonemap_mode = 1
+tonemap_white = 1.3
+adjustment_brightness = 0.8
+adjustment_contrast = 1.5
 
-[sub_resource type="Curve3D" id="Curve3D_skhlh"]
+[sub_resource type="Curve3D" id="Curve3D_qy1rd"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, 0, 0, -51, 0, 0, 0, 0, 0, 0, 0, 0, -63, 0, 0, 0, 0, 0, 0, 0, 0, -134.289, 0, 0, 0, 0, 0, 0, 0, 0, -143.289, 0, 0, 0, 0, 0, 0, -0.42962, -0.67458, -156.937, 0, 0, 0, 0, 0, 0, -0.900994, -1.41472, -171.911, 0, 0, 0, 0, 0, 0, -3.91779, -6.15164, -267.746, 0, 0, 0, 0, 0, 0, -4.20062, -6.59572, -276.731, 0, 0, 0, 0, 0, 0, -4.9049, -6.00787, -288.009, 0, 0, 0, 0, 0, 0, -5.65182, -5.38442, -299.969, 0, 0, 0, 0, 0, 0, -7.42065, -3.908, -328.294, 0, 0, 0, 0, 0, 0, -8.16756, -3.28456, -340.254, 0, 0, 0, 0, 0, 0, -7.92535, -3.765, -353.38, 0, 0, 0, 0, 0, 0, -7.3722, -4.8622, -383.355, 0, 0, 0, 0, 0, 0, -7.18781, -5.22793, -393.346),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
 }
-point_count = 18
+point_count = 2
 
-[node name="LevelTester" type="Node3D" node_paths=PackedStringArray("level_generator")]
+[node name="LevelTester" type="Node3D"]
 script = ExtResource("1_6voa2")
-level_resource = SubResource("Resource_s0tap")
-level_generator = NodePath("LevelGenerator")
+level_resource = SubResource("Resource_4shd5")
 
-[node name="LevelGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("7_mjqw5")]
-curve = SubResource("Curve3D_skhlh")
-starting_distance = 0
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ftby")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1000.0
+
+[node name="Restart" parent="." instance=ExtResource("8_p5ohv")]
+
+[node name="LevelGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("9_4shd5")]
+curve = SubResource("Curve3D_qy1rd")
 level = NodePath("..")
 
-[node name="Restart" parent="." node_paths=PackedStringArray("player", "level_generator") instance=ExtResource("8_p5ohv")]
-player = NodePath("../Player")
-level_generator = NodePath("../LevelGenerator")
-
-[node name="Pause" parent="." instance=ExtResource("9_sccc6")]
-
-[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("7_xian1")]
+[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("10_h5nw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16457, 0)
 path = NodePath("../LevelGenerator")

@@ -1,119 +1,55 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbjx4qeaf824d"]
+[gd_scene load_steps=9 format=3 uid="uid://cbjx4qeaf824d"]
 
-[ext_resource type="Script" path="res://levels/src/level.gd" id="1_3vs0d"]
-[ext_resource type="Resource" uid="uid://byt4l7w33y588" path="res://levels/level_00/level_00.tres" id="2_sxx6m"]
-[ext_resource type="Script" path="res://levels/src/level_generator.gd" id="4_7aqnq"]
-[ext_resource type="Material" uid="uid://d4fok1o40mu5r" path="res://levels/blanks_mat.tres" id="5_f0kor"]
-[ext_resource type="PackedScene" uid="uid://bb16gv65b0el7" path="res://utils/pause.tscn" id="7_i4vvw"]
-[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="7_si85d"]
-[ext_resource type="PackedScene" uid="uid://crq8d388gq7ml" path="res://utils/restart.tscn" id="9_n53j1"]
+[ext_resource type="Script" path="res://levels/src/level.gd" id="1_8m8in"]
+[ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="2_gignc"]
+[ext_resource type="PackedScene" uid="uid://tpirfdba5tdj" path="res://levels/level_generator.tscn" id="4_n3tc2"]
+[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="5_xv5dn"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iqygv"]
-sky_top_color = Color(0.388235, 0.529412, 0.690196, 1)
-sky_horizon_color = Color(0.584314, 0.568627, 0.545098, 1)
-sky_curve = 0.0750002
-sky_energy_multiplier = 1.3
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_curve = 0.03249
-ground_energy_multiplier = 0.8
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_te2qc"]
+sky_top_color = Color(0.337716, 0.402262, 0.492051, 1)
+sky_horizon_color = Color(0.812125, 0.818152, 0.827671, 1)
+sky_curve = 0.261164
+ground_bottom_color = Color(0.28, 0.279207, 0.2772, 1)
+ground_horizon_color = Color(0.95, 0.95, 0.95, 1)
+ground_curve = 0.101965
+ground_energy_multiplier = 0.7
+sun_curve = 0.178381
 
-[sub_resource type="Sky" id="Sky_7xxvs"]
-sky_material = SubResource("ProceduralSkyMaterial_iqygv")
+[sub_resource type="Sky" id="Sky_k621k"]
+sky_material = SubResource("ProceduralSkyMaterial_te2qc")
 
-[sub_resource type="Environment" id="Environment_k0rdy"]
+[sub_resource type="Environment" id="Environment_a1syf"]
 background_mode = 2
-sky = SubResource("Sky_7xxvs")
-tonemap_mode = 2
-glow_enabled = true
+background_energy_multiplier = 0.93
+sky = SubResource("Sky_k621k")
+tonemap_mode = 1
+tonemap_white = 1.3
+adjustment_brightness = 0.8
+adjustment_contrast = 1.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gwye"]
-shading_mode = 0
-diffuse_mode = 3
-specular_mode = 2
-albedo_color = Color(0.945098, 0.941176, 0.894118, 1)
-
-[sub_resource type="Curve3D" id="Curve3D_kxx46"]
+[sub_resource type="Curve3D" id="Curve3D_4bkrn"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0, 0, 0, 0, -22, 0, 0, 0, 0, 0, 0, 0, 0, -25, 0, 0, 0, 0, 0, 0, 0, 0, -34, 0, 0, 0, 0, 0, 0, -1.18915, -0.425686, -41.7024, 0, 0, 0, 0, 0, 0, -1.57265, -1.19016, -52.1318, 0, 0, 0, 0, 0, 0, -2.01243, -2.06682, -64.0917, 0, 0, 0, 0, 0, 0, -2.23233, -2.50515, -70.0716, 0, 0, 0, 0, 0, 0, -2.67211, -3.38181, -82.0314, 0, 0, 0, 0, 0, 0, -3.31191, -4.64218, -93.6425, 0, 0, 0, 0, 0, 0, -2.8423, -5.67404, -107.974, 0, 0, 0, 0, 0, 0, -2.64631, -6.1047, -113.955, 0, 0, 0, 0, 0, 0, -2.59731, -6.21237, -115.45, 0, 0, 0, 0, 0, 0, -2.10731, -7.28903, -130.403, 0, 0, 0, 0, 0, 0, -1.88685, -6.80013, -139.251, 0, 0, 0, 0, 0, 0, -2.93379, -6.6182, -146.259, 0, 0, 0, 0, 0, 0, -5.14943, -6.2332, -161.089, 0, 0, 0, 0, 0, 0, -5.59255, -6.1562, -164.055, 0, 0, 0, 0, 0, 0, -6.92193, -5.92519, -172.954, 0, 0, 0, 0, 0, 0, -5.8144, -6.42608, -186.925, 0, 0, 0, 0, 0, 0, -5.19902, -5.92854, -199.431, 0, 0, 0, 0, 0, 0, -4.75707, -5.57121, -208.413, 0, 0, 0, 0, 0, 0, -4.46244, -5.333, -214.401, 0, 0, 0, 0, 0, 0, -3.87317, -4.85657, -226.377, 0, 0, 0, 0, 0, 0, -3.32048, -5.58955, -236.567, 0, 0, 0, 0, 0, 0, -4.13585, -6.6801, -251.241, 0, 0, 0, 0, 0, 0, -4.46783, -7.12413, -257.215, 0, 0, 0, 0, 0, 0, -4.79982, -7.56815, -263.189, 0, 0, 0, 0, 0, 0, -5.29779, -8.2342, -272.151, 0, 0, 0, 0, 0, 0, -4.03378, -9.68441, -286.414, 0, 0, 0, 0, 0, 0, -5.44202, -10.2355, -301.205, 0, 0, 0, 0, 0, 0, -5.82087, -10.3837, -305.185, 0, 0, 0, 0, 0, 0, -5.91558, -10.4208, -306.179),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, -0.0104306, -0.00128542, -0.999945, 0, 0, 0, 0.0190341, -0.000121677, 0.999819, -0.0190341, 0.000121677, -0.999819, -0.500751, -0.0617103, -24, 0.0022589, -0.00136664, 0.999997, -0.0022589, 0.00136664, -0.999997, -0.707279, -0.0279366, -36, -0.0063455, 4.05329e-05, 0.99998, 0, 0, 0, -0.478827, -0.0293959, -54, 0, 0, 0, -0.146638, 0.012682, -0.989109, -0.478827, -0.0293959, -114, 0.0924552, -0.00722335, 0.995691, -0.0924552, 0.00722335, -0.995691, -2.29815, 0.127948, -120, -0.122163, -0.0317855, 0.992001, 0.122163, 0.0317855, -0.992001, 0.332541, -0.136116, -144, 0.0845003, -0.0520301, 0.995064, -0.0845003, 0.0520301, -0.995064, 1.15313, 0.31596, -150, 0.137399, -0.00880296, 0.990477, -0.137399, 0.00880296, -0.990477, -0.734581, 0.486341, -156, -0.0145388, 0.00486038, 0.999883, 0, 0, 0, -0.211, 0.311305, -174, 0, 0, 0, -0.111329, -0.00711661, -0.993758, -0.211, 0.311305, -221, -0.0414583, -0.00966269, 0.999093, 0.0414583, 0.00966269, -0.999093, -1.5725, 0.224273, -227, -0.168454, -0.0183674, 0.985538, 0.168454, 0.0183674, -0.985538, 0.324362, 0.430733, -233, 0.0340143, -0.012578, 0.999342, -0.0340143, 0.012578, -0.999342, 0.713936, 0.473904, -245, -0.00977496, -0.0164248, 0.999817, 0.00977496, 0.0164248, -0.999817, 0.108806, 0.603611, -251, 0.0940557, 0.019333, 0.995379, -0.0940557, -0.019333, -0.995379, 1.55636, 0.73834, -263, 0.128552, 0.0207817, 0.991485, -0.128552, -0.0207817, -0.991485, -0.357154, 0.429948, -269, -0.0253149, -0.00401729, 0.999671, 0, 0, 0, 0.251003, 0.526458, -281, 0, 0, 0, 0, 0, 0, 0.251003, 0.526458, -341, 0, 0, 0, 0.0571054, -0.0322874, -0.997846, 0.251003, 0.526458, -661, -0.147653, 0.0489551, 0.987827, 0.147653, -0.0489551, -0.987827, 0.940728, 0.136487, -667, 0.0281511, -0.0145869, 0.999497, -0.0281511, 0.0145869, -0.999497, 2.04647, -0.0674414, -673, 0.047395, -0.0358542, 0.998233, -0.047395, 0.0358542, -0.998233, 0.585467, 0.315568, -679, -0.0290742, -0.00991383, 0.999528, 0.0290742, 0.00991383, -0.999528, 2.32062, 0.418319, -691, 0.0308007, -0.00144814, 0.999525, -0.0308007, 0.00144814, -0.999525, 0.778866, 0.621097, -709, -0.0119153, 0.00416625, 0.99992, 0, 0, 0, 1.20792, 0.471076, -727, 0, 0, 0, -0.12618, -0.00782134, -0.991977, 1.20792, 0.471076, -787, 0.17391, -0.0153617, 0.984642, -0.17391, 0.0153617, -0.984642, -0.343687, 0.374899, -793, -0.116943, -0.0367726, 0.992458, 0.116943, 0.0367726, -0.992458, -0.924535, 0.653281, -799, -0.125541, -0.0331072, 0.991536, 0.125541, 0.0331072, -0.991536, 1.13685, 0.816626, -805, 0.0759639, 0.0234446, 0.996835, -0.0759639, -0.0234446, -0.996835, 0.661044, 1.05208, -811, 0.0376108, 0.0450072, 0.998278, -0.0376108, -0.0450072, -0.998278, 0.222431, 0.533467, -817, -0.00167839, -0.00130117, 0.999998, 0.00167839, 0.00130117, -0.999998, 0.177904, 0.461526, -835, -0.00291521, -0.00329951, 0.99999, 0, 0, 0, 0.282855, 0.580312, -853, 0, 0, 0, -0.00456546, 0.00594339, -0.999972, 0.282855, 0.580312, -900, -0.016821, 0.00602516, 0.99984, 0.016821, -0.00602516, -0.99984, 0.0636947, 0.865618, -924, -0.00403436, 0.0345094, 0.999396, 0.00403436, -0.0345094, -0.999396, 0.577383, 0.578104, -936, 0.0206552, 0.0114535, 0.999721, -0.0206552, -0.0114535, -0.999721, 0.368884, 0.307472, -942, 0.00240377, -0.0118763, 0.999927, -0.00240377, 0.0118763, -0.999927, 0.329337, 0.440351, -948, 0, 0, 0, 0, 0, 0, 0.350722, 0.459677, -960, 0, 0, 1, 0, 0, 0, 0.350722, 0.459677, -1020),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 36
+point_count = 41
 
-[node name="Level00_A" type="Node3D" node_paths=PackedStringArray("level_generator")]
-script = ExtResource("1_3vs0d")
-level_resource = ExtResource("2_sxx6m")
-level_generator = NodePath("LevelGenerator")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
+[node name="Level00_A" type="Node3D"]
+script = ExtResource("1_8m8in")
+level_resource = ExtResource("2_gignc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_k0rdy")
+environment = SubResource("Environment_a1syf")
 
-[node name="Floor" type="CSGPolygon3D" parent="."]
-use_collision = true
-polygon = PackedVector2Array(-15, -1, -15, 0, 15, 0, 15, -1)
-mode = 2
-path_node = NodePath("../LevelGenerator")
-path_interval_type = 1
-path_interval = 1.26
-path_simplify_angle = 0.0
-path_rotation = 1
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-material = SubResource("StandardMaterial3D_7gwye")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1000.0
 
-[node name="WallRight" type="CSGPolygon3D" parent="."]
-visible = false
-material_override = ExtResource("5_f0kor")
-use_collision = true
-polygon = PackedVector2Array(13, 10, 15, 10, 15, 0, 13, 0)
-mode = 2
-path_node = NodePath("../LevelGenerator")
-path_interval_type = 1
-path_interval = 1.0
-path_simplify_angle = 0.0
-path_rotation = 1
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-material = ExtResource("5_f0kor")
-
-[node name="WallLeft" type="CSGPolygon3D" parent="."]
-visible = false
-material_override = ExtResource("5_f0kor")
-use_collision = true
-polygon = PackedVector2Array(-15, 10, -13, 10, -13, 0, -15, 0)
-mode = 2
-path_node = NodePath("../LevelGenerator")
-path_interval_type = 1
-path_interval = 1.0
-path_simplify_angle = 0.1
-path_rotation = 0
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-smooth_faces = true
-material = ExtResource("5_f0kor")
-
-[node name="LevelGenerator" type="Path3D" parent="." node_paths=PackedStringArray("level")]
-curve = SubResource("Curve3D_kxx46")
-script = ExtResource("4_7aqnq")
+[node name="LevelGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("4_n3tc2")]
+curve = SubResource("Curve3D_4bkrn")
 level = NodePath("..")
 
-[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("7_si85d")]
+[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("5_xv5dn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44963, 0)
 path = NodePath("../LevelGenerator")
-
-[node name="Restart" parent="." node_paths=PackedStringArray("player", "level_generator") instance=ExtResource("9_n53j1")]
-player = NodePath("../Player")
-level_generator = NodePath("../LevelGenerator")
-
-[node name="Pause" parent="." instance=ExtResource("7_i4vvw")]
-
-[connection signal="visibility_changed" from="LevelGenerator" to="LevelGenerator" method="_on_visibility_changed"]
-[connection signal="child_entered_tree" from="LevelGenerator/PoolBlockTemplate" to="LevelGenerator/PoolBlockTemplate" method="_on_child_entered_tree"]

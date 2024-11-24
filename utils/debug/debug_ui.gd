@@ -38,7 +38,7 @@ var current_level: Levels = Levels.NONE:
 	set(value):
 		await get_tree().process_frame
 		if value != current_level and value == Levels.RUN:
-			player.restarted.connect(set.bind("time", 0))
+			time = 0
 
 		current_level = value
 		_load_settings()
@@ -103,14 +103,13 @@ func _physics_process(delta: float) -> void:
 				previous_position = current_position
 
 			if get_setting("altitude") == true:
-				if collision_raycast:
+				if is_instance_valid(collision_raycast):
 					if collision_raycast.is_colliding():
 						var collision_point: Vector3 = collision_raycast.get_collision_point()
 						var altitude: float = player.global_position.distance_to(collision_point)
 						altitude_label.text = "Altitude : {}".format([snappedf(altitude, 0.1)], "{}")
 						if snappedf(altitude, 0.1) > highest_altitude :
 							highest_altitude = snappedf(altitude, 0.1)
-							#print(highest_altitude)
 					else:
 						altitude_label.text = "Altitude : 0"
 
@@ -157,7 +156,7 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 							action.disabled = !setting_value
 				"glide":
 					for action: Action in player.actions:
-						if action.name == "glide":
+						if action.name == "Glide":
 							action.disabled = !setting_value
 
 				"constant_speed":
