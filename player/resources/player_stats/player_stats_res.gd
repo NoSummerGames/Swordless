@@ -7,9 +7,10 @@ var current_action: Action
 @export var speed: int = 25
 @export var sprint_speed: int = 35
 @export var lateral_factor: float = 0.6
-@export var gravity: float = 35
+@export var gravity: float = 40
 @export var ground_acceleration: float = 13
 @export var air_acceleration: float = 6
+@export_range(0.0, 1.0) var min_slope_speed: float = 0.5
 
 @export_group("Misc")
 @export var max_specials: int = 2
@@ -19,6 +20,9 @@ var current_action: Action
 @export var step_up_energy: float = 2
 @export var input_buffer: int = 5
 @export var floor_detection_margin: float = 0.5
+@export var freeze_scale: float = 0.2
+@export var freeze_duration: float = 0.7
+
 
 @export_group("Actions")
 @export var jump_strength: int = 13
@@ -36,8 +40,6 @@ var current_action: Action
 @export var glide_acceleration: float = 0.5
 @export var max_glide_duration: float = 0.7
 @export var dive_strength: float = 40
-@export var freeze_scale: float = 0.7
-@export var freeze_duration: float = 0.7
 
 @export_group("Actions Misc")
 @export var priority_buffer: float = 0.2
@@ -55,7 +57,6 @@ var current_action: Action
 
 @export_group("Camera")
 @export var camera_speed: float = 5.0
-@export var freeze_camera_speed: float = 1
 @export var strafe_camera_speed: float = 20
 @export var camera_height: float = 2
 @export_range(-0.5, 0.5) var camera_pitch: float = 0

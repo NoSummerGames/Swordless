@@ -1,29 +1,53 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmedatsx87v4o"]
+[gd_scene load_steps=10 format=3 uid="uid://bmedatsx87v4o"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester.gd" id="1_1vda8"]
-[ext_resource type="PackedScene" uid="uid://ckj5clqxxei5u" path="res://levels/level_00/fixed/00_f01_gallery_c.tscn" id="2_jqafy"]
+[ext_resource type="PackedScene" uid="uid://cotimn8ya0oc3" path="res://utils/debug/test_scenes/lateral_slopes.tscn" id="2_g33i2"]
 [ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="4_g4c6e"]
-[ext_resource type="PackedScene" uid="uid://rqkrvnevowmd" path="res://addons/csg_toolbox/testers/part_generator.tscn" id="5_60upc"]
+[ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester_gen.gd" id="5_boggy"]
 [ext_resource type="PackedScene" uid="uid://cpkdf2w8emggg" path="res://utils/restart.tscn" id="5_g33i2"]
 
-[sub_resource type="Curve3D" id="Curve3D_boggy"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g33i2"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_boggy"]
+sky_material = SubResource("ProceduralSkyMaterial_g33i2")
+
+[sub_resource type="Environment" id="Environment_onucc"]
+background_mode = 2
+sky = SubResource("Sky_boggy")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_g33i2"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -101, 0, 0, 0, 0, 0, 0, 0, 0, -421),
-"tilts": PackedFloat32Array(0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -472.552),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 8
+point_count = 3
 
 [node name="PartTester" type="Node3D"]
 script = ExtResource("1_1vda8")
-part = ExtResource("2_jqafy")
+part = ExtResource("2_g33i2")
+part_scale = 5
 
-[node name="PartGenerator" parent="." node_paths=PackedStringArray("part_tester") instance=ExtResource("5_60upc")]
-unique_name_in_owner = true
-curve = SubResource("Curve3D_boggy")
-part_tester = NodePath("..")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_onucc")
 
 [node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("4_g4c6e")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10321, 0)
 path = NodePath("../PartGenerator")
 
 [node name="Restart" parent="." instance=ExtResource("5_g33i2")]
+
+[node name="PartGenerator" type="Path3D" parent="." node_paths=PackedStringArray("part_tester")]
+unique_name_in_owner = true
+curve = SubResource("Curve3D_g33i2")
+script = ExtResource("5_boggy")
+part_tester = NodePath("..")
+metadata/_custom_type_script = ExtResource("5_boggy")

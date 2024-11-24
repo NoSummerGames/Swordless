@@ -7,7 +7,7 @@ func _ready() -> void:
 	timer.one_shot = true
 
 func _enter() -> void:
-	player.velocity.y = player.direction.y * player.speed + player_stats.jump_strength
+	player.velocity.y = player_stats.jump_strength
 	timer.wait_time = player_stats.half_jump_buffer
 	timer.start()
 

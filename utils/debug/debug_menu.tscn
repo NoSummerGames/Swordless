@@ -374,23 +374,6 @@ text = "Gameplay"
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ConstantSpeed" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
-layout_mode = 2
-
-[node name="Freeze" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/ConstantSpeed"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_o2s2v")
-text = "Constant speed"
-
-[node name="ConstantHSlider" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/ConstantSpeed"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_o2s2v")
-icon_alignment = 2
-script = ExtResource("2_kajsq")
-setting_name = "constant_speed"
-
 [node name="Freeze" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
 layout_mode = 2
 

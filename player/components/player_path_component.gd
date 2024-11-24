@@ -25,13 +25,14 @@ func _ready() -> void:
 	path_exited.connect(player._on_player_exited_path)
 
 func _physics_process(delta: float) -> void:
-	if player.is_on_floor():
-		path_up_vector = player.get_floor_normal()
-	#else:
-		#var closest_offset: float = path.curve.get_closest_offset(path.to_local(player.global_position))
-		#path_up_vector = path.curve.sample_baked_up_vector(closest_offset)
+	if player.is_almost_on_floor():
+		path_up_vector = player.floor_normal
+		player.up_direction = lerp(previous_up_direction, path_up_vector, player_stats.ground_acceleration * delta)
+	else:
+		var closest_offset: float = path.curve.get_closest_offset(path.to_local(player.global_position))
+		path_up_vector = path.curve.sample_baked_up_vector(closest_offset)
+		player.up_direction = lerp(previous_up_direction, path_up_vector, player_stats.air_acceleration * delta)
 
-	player.up_direction = lerp(previous_up_direction, path_up_vector, stiffness * delta)
 	previous_up_direction = player.up_direction
 
 	player.direction = get_path_direction(delta)

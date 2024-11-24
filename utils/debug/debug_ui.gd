@@ -22,8 +22,7 @@ var settings : Dictionary = {
 		"dash_strafe": false,
 		"wall_jump": false,
 		"freeze": false,
-		"glide": false,
-		"constant_speed" : false
+		"glide": false
 	},
 	Levels.HUB: {
 		"null": true
@@ -47,7 +46,7 @@ var current_level: Levels = Levels.NONE:
 		_load_settings()
 
 var excluded_stats: Array[String] = ["dash_duration", "dash_sensitivity", "dash_acceleration", \
-"input_buffer", "priority_buffer", "half_jump_buffer", "half_jump_deceleration"]
+ "priority_buffer", "half_jump_buffer", "half_jump_deceleration"]
 
 var previous_position: Vector3
 var collision_raycast: RayCast3D
@@ -92,8 +91,6 @@ func _process(_delta: float) -> void:
 						(material as StandardMaterial3D).albedo_color = current_action.debug_color
 					past_action = current_action
 				action_label.position = get_viewport().get_camera_3d().unproject_position(player.global_position)
-
-			player.floor_constant_speed = get_setting("constant_speed")
 
 func _physics_process(delta: float) -> void:
 	match current_level:
@@ -169,15 +166,12 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 
 				# GAMEPLAY
 				"freeze":
-					for action: Action in player.actions:
-						if action.name == "Freeze":
-							action.disabled = !setting_value
+					player.freeze_component.disabled = !setting_value
+
 				"glide":
 					for action: Action in player.actions:
 						if action.name == "Glide":
 							action.disabled = !setting_value
-				"constant_speed":
-					player.floor_constant_speed = setting_value
 
 func change_stat(stat_name: String, stat_value: Variant) -> void:
 	stats[stat_name] = stat_value

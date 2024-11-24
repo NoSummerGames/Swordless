@@ -46,9 +46,7 @@ var conditions : Dictionary = {
 	func() -> bool: return false if disabled else true,
 	func() -> bool: return false if not prioritary and priority_time == true else true,
 	func() -> bool:
-		if get("exclusive") :
-			return true
-		elif get("current_action").exclusive and done == false:
+		if get("current_action").exclusive and done == false:
 			return false
 		else:
 			return true

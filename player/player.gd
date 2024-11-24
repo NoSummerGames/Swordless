@@ -23,8 +23,10 @@ var acceleration: float:
 			return player_stats.air_acceleration
 
 var on_floor: bool = true
+var floor_normal: Vector3 = Vector3.UP
 
 @onready var coyote_timer: Timer = %CoyoteTimer
+@onready var freeze_component: FreezeComponent = %FreezeComponent
 @onready var collider: CollisionShape3D = %PlayerCollision
 @onready var collider_margin: float = collider.shape.margin
 @onready var speed: float = player_stats.speed:
@@ -37,10 +39,8 @@ var on_floor: bool = true
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
-		var floor_angle: float = 1.0
 
-		if floor_constant_speed == false:
-			floor_angle -= get_floor_angle(up_direction) * signf(get_floor_normal().z)
+		var floor_angle: float = clamp(1.0 - get_floor_normal().z, player_stats.min_slope_speed, 1.0)
 
 		if not is_on_floor():
 			velocity.y -= player_stats.gravity * delta
@@ -64,6 +64,7 @@ func is_almost_on_floor() -> bool:
 			var normal: Vector3 = result.get_collision_normal(i)
 			if normal.y > 0.5:
 				on_floor = true
+				floor_normal = normal
 				return true
 
 	if on_floor == true:

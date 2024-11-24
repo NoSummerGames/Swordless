@@ -20,8 +20,9 @@ func _create_level(part_scene: PackedScene):
 
 	var meshes: Array
 
-	for i in part_tester.starting_blocks:
-		meshes.append(await load_part(part_tester.starting_block_scene))
+	if is_instance_valid(part_tester.starting_block_scene):
+		for i in part_tester.starting_blocks:
+			meshes.append(await load_part(part_tester.starting_block_scene))
 
 	meshes.append(await load_part(part_scene))
 
@@ -42,6 +43,7 @@ func load_part(_part: PackedScene):
 	var last_position: Vector3 = curve.get_point_position(curve.point_count -1)
 	# Set its final position at the end of the curve
 	part.global_position = last_position
+	part.scale *= part_tester.part_scale
 
 	# Add local object path points - if any - to the level curve
 	if part.has_path == true:
