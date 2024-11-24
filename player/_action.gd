@@ -85,6 +85,9 @@ func _check_conditions() -> void:
 
 
 func set_current_action() -> void:
+	if _check() == false:
+		return
+
 	input.clear()
 	_enter()
 	current_action._exit()
@@ -110,6 +113,9 @@ func set_current_action() -> void:
 		var timer: Timer = Utilities.add_timer(true, player_stats.priority_buffer)
 		await timer.timeout
 		priority_time = false
+
+func _check() -> bool:
+	return true
 
 func _enter() -> void:
 	pass

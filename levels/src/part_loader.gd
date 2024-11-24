@@ -1,12 +1,13 @@
 @tool
+class_name PartLoader
 extends Node
 
 
-func load_part(part: Part, path: Path3D):
-	var length = path.curve.get_baked_length()
+func load_part(part: Part, path: Path3D) -> float:
+	var length: float = path.curve.get_baked_length()
 
 	if not is_instance_valid(part):
-		return
+		return float()
 
 	path.add_child(part)
 
@@ -42,7 +43,7 @@ func _calculate_spatial_bounds(parent : Node3D, exclude_top_level_transform: boo
 		bounds = (parent as VisualInstance3D).get_aabb();
 
 	for i: int in range(parent.get_child_count()):
-		var child = parent.get_child(i)
+		var child: Node3D = parent.get_child(i)
 		if child is VisualInstance3D:
 			var child_bounds : AABB = _calculate_spatial_bounds(child, false)
 			if bounds.size == Vector3.ZERO && parent:

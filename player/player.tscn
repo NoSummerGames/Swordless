@@ -58,6 +58,7 @@ half_jump_buffer = 0.2
 half_jump_deceleration = 1.5
 dash_deceleration = 2.0
 wall_jump_angle_range = 0.5
+wall_jump_input_tolerance = 0.5
 diagonal_strafe = true
 interpolation_distance = 5.0
 path_stiffness = 2.0
@@ -100,7 +101,7 @@ shader_parameter/grazing_angle_modulation_factor = 50.0
 flip_faces = true
 size = Vector2(2, 2)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("coyote_timer")]
+[node name="Player" type="CharacterBody3D"]
 floor_stop_on_slope = false
 floor_constant_speed = true
 floor_block_on_wall = false
@@ -108,7 +109,6 @@ floor_max_angle = 1.0472
 floor_snap_length = 0.5
 script = ExtResource("1_iit5d")
 player_stats = SubResource("Resource_e1sip")
-coyote_timer = NodePath("CoyoteTimer")
 
 [node name="PlayerArea" type="Area3D" parent="."]
 
@@ -161,7 +161,6 @@ prioritary = true
 speed_factor = 0.8
 exclusive = true
 disable_sprint = true
-custom_acceleration = 8
 cond_match_input = true
 cond_cooldown = true
 input_required = 6
@@ -174,7 +173,6 @@ override_acceleration = true
 prioritary = true
 speed_factor = 0.5
 disable_sprint = true
-custom_acceleration = 4
 cond_match_input = true
 cond_in_air = true
 cond_cooldown = true
@@ -231,7 +229,6 @@ prioritary = true
 speed_factor = 0.6
 exclusive = true
 disable_sprint = true
-custom_acceleration = 1
 cond_match_input = true
 cond_special = true
 cond_cooldown = true
@@ -269,6 +266,7 @@ disabled = true
 debug_color = Color(0.79179, 0, 0.11008, 1)
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 process_callback = 0
 one_shot = true
 

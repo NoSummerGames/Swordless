@@ -326,6 +326,7 @@ fit_to_longest_item = false
 allow_reselect = true
 item_count = 3
 popup/item_0/text = "Action 1"
+popup/item_0/id = 0
 popup/item_1/text = "Action 2"
 popup/item_1/id = 1
 popup/item_2/text = "Action 3"

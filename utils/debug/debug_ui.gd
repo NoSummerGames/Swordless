@@ -96,9 +96,9 @@ func _physics_process(delta: float) -> void:
 	match current_level:
 		Levels.RUN:
 			if get_setting("speed") == true:
-				var current_position = player.global_position
-				var current_desired_velocity = (current_position - previous_position)/delta
-				var speed = Vector3.ZERO.distance_to(Vector3(current_desired_velocity.x, 0, current_desired_velocity.z))
+				var current_position: Vector3 = player.global_position
+				var current_desired_velocity: Vector3 = (current_position - previous_position)/delta
+				var speed: float = Vector3.ZERO.distance_to(Vector3(current_desired_velocity.x, 0, current_desired_velocity.z))
 				speed_label.text = "Speed : {}".format([snappedf(speed, 0.1)], "{}")
 				previous_position = current_position
 
@@ -165,7 +165,7 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 				"constant_speed":
 					player.floor_constant_speed = setting_value
 
-func change_stat(stat_name: String, stat_value: Variant):
+func change_stat(stat_name: String, stat_value: Variant) -> void:
 	stats[stat_name] = stat_value
 	player_stats.set(stat_name, stat_value)
 

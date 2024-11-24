@@ -9,7 +9,6 @@ func _ready() -> void:
 	initial_transform = camera_point.global_transform
 
 	# Camera doesn't inherit position from its parents
-	player.restarted.connect(_on_player_restarted)
 	camera.top_level = true
 
 func _physics_process(delta: float) -> void:
@@ -20,6 +19,3 @@ func _physics_process(delta: float) -> void:
 		camera.global_transform = camera.global_transform.interpolate_with(camera_point.global_transform, player_stats.freeze_camera_speed * delta)
 	else:
 		camera.global_transform = camera.global_transform.interpolate_with(camera_point.global_transform, player_stats.camera_speed * delta)
-
-func _on_player_restarted() -> void:
-	camera.global_transform = initial_transform

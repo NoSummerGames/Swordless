@@ -2,13 +2,10 @@ class_name Player
 extends CharacterBody3D
 
 signal exited_path
-signal restarted
 
 ## FIXME : added for testing purpose before having a proper "paths finding" script
 @export var path: Path3D
 @export var player_stats: PlayerStatsResource
-@export var coyote_timer: Timer
-
 
 
 var current_action: Action
@@ -27,7 +24,9 @@ var acceleration: float:
 
 var on_floor: bool = true
 
-@onready var collider_margin: float = %PlayerCollision.shape.margin
+@onready var coyote_timer: Timer = %CoyoteTimer
+@onready var collider: CollisionShape3D = %PlayerCollision
+@onready var collider_margin: float = collider.shape.margin
 @onready var speed: float = player_stats.speed:
 	get:
 		if Input.is_action_pressed("sprint") and current_action.disable_sprint == false:
@@ -35,13 +34,10 @@ var on_floor: bool = true
 		else:
 			return current_action.speed_factor * player_stats.speed
 
-#func _ready() -> void:
-	### FIXME : added for testing purpose before having a proper "paths finding" script
-	#position = path.curve.get_point_position(1)
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
-		var floor_angle = 1.0
+		var floor_angle: float = 1.0
 
 		if floor_constant_speed == false:
 			floor_angle -= get_floor_angle(up_direction) * signf(get_floor_normal().z)
@@ -56,7 +52,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	test_stairs_up(delta)
-
 
 
 func is_almost_on_floor() -> bool:
@@ -79,13 +74,13 @@ func is_almost_on_floor() -> bool:
 	on_floor = false
 	return false
 
-func test_stairs_up(delta: float):
+func test_stairs_up(delta: float) -> void:
 	# Minor rework of "Stairs Character" script by Andicraft
-	const HORIZONTAL = Vector3(1, 0, 1)
-	var motion_velocity = velocity * HORIZONTAL * delta
+	const HORIZONTAL: Vector3 = Vector3(1, 0, 1)
+	var motion_velocity: Vector3 = velocity * HORIZONTAL * delta
 
 	# Test collision
-	var motion_transform = global_transform
+	var motion_transform: Transform3D = global_transform
 	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
 	parameters.from = motion_transform
 	parameters.motion = motion_velocity
@@ -99,15 +94,15 @@ func test_stairs_up(delta: float):
 		return
 
 	# Move to collision
-	var remainder = result.get_remainder()
+	var remainder: Vector3 = result.get_remainder()
 	motion_transform = motion_transform.translated(result.get_travel())
 
-	var step_up = player_stats.max_step_height * Vector3.UP
+	var step_up: Vector3 = player_stats.max_step_height * Vector3.UP
 	parameters.from = motion_transform
 	parameters.motion = step_up
 	PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
 	motion_transform = motion_transform.translated(result.get_travel())
-	var step_up_distance = result.get_travel().length()
+	var step_up_distance: float = result.get_travel().length()
 
 	parameters.from = motion_transform
 	parameters.motion = remainder
@@ -122,8 +117,11 @@ func test_stairs_up(delta: float):
 
 	motion_transform = motion_transform.translated(result.get_travel())
 
-	var surfaceNormal = result.get_collision_normal(0)
+	var surfaceNormal: Vector3 = result.get_collision_normal(0)
 	if (surfaceNormal.angle_to(Vector3.UP) > floor_max_angle): return
 
 	velocity.y = player_stats.step_up_energy
 	global_position.y = move_toward(global_position.y, motion_transform.origin.y, player_stats.step_acceleration * delta);
+
+func _on_player_exited_path() -> void:
+	emit_signal("exited_path")

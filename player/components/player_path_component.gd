@@ -1,5 +1,6 @@
 extends PlayerComponent
 
+signal path_exited
 
 var default_direction: Vector3 = Vector3.FORWARD
 var previous_direction: Vector3:
@@ -15,6 +16,9 @@ var previous_direction: Vector3:
 @onready var next_offset: float = player_stats.interpolation_distance
 @onready var stiffness: float = player_stats.path_stiffness
 @onready var path_offset: float = player_stats.path_offset
+
+func _ready() -> void:
+	path_exited.connect(player._on_player_exited_path)
 
 func _physics_process(delta: float) -> void:
 	player.direction = get_path_direction(delta)
@@ -44,5 +48,5 @@ func get_path_direction(delta: float) -> Vector3:
 
 	# HACK : while waiting for the above part to be written, return the default direction:
 	else:
-		player.emit_signal("exited_path")
+		emit_signal("path_exited")
 		return lerp(previous_direction, default_direction, stiffness * delta)

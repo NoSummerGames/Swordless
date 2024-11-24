@@ -1,9 +1,10 @@
 @tool
+class_name SectionLoader
 extends Node
 
 var junction_path_points: Array[int]
 
-func load_section(section: Section, loader: Node, path: Path3D):
+func load_section(section: Section, loader: PartLoader, path: Path3D) -> void:
 	if not is_instance_valid(section):
 		printerr("Not is_instance_valid : {}".format(section, "{}"))
 		return
@@ -26,12 +27,12 @@ func load_section(section: Section, loader: Node, path: Path3D):
 				if section_length < section.length :
 					var part_scene: PackedScene = pool_parts.pop_front()
 					var part: Part = part_scene.instantiate()
-					var part_length = loader.load_part(part, path)
+					var part_length: float = loader.load_part(part, path)
 					section_length += part_length
 				else:
 					continue
 
-func _load_junctions(section: Section, loader: Node, path: Path3D):
+func _load_junctions(section: Section, loader: PartLoader, path: Path3D) -> void:
 	if section.junctions_directory != null:
 		var junction_parts: Array[PackedScene] = _load_pool(section.junctions_directory)
 		var length: float = 0
@@ -43,12 +44,12 @@ func _load_junctions(section: Section, loader: Node, path: Path3D):
 			var junction_part: Part = junction_scene.instantiate()
 			junctions.append(junction_part)
 
-			var junction_length = loader.load_part(junction_part, path)
+			var junction_length: float = loader.load_part(junction_part, path)
 			length += junction_length
 
 		var junction_point_count: int = path.curve.point_count - starting_point
 
-		for i in junction_point_count - 1:
+		for i: int in junction_point_count - 1:
 			junction_path_points.append(starting_point + i)
 
 

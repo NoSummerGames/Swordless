@@ -1,16 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cu11ecv4dqgl5"]
+[gd_scene load_steps=10 format=3 uid="uid://cu11ecv4dqgl5"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/level_tester.gd" id="1_6voa2"]
-[ext_resource type="Script" path="res://levels/src/resources/level_res.gd" id="2_k621k"]
-[ext_resource type="Script" path="res://levels/src/resources/section_res.gd" id="3_8ftby"]
+[ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="2_87vud"]
 [ext_resource type="PackedScene" uid="uid://cpkdf2w8emggg" path="res://utils/restart.tscn" id="8_p5ohv"]
 [ext_resource type="PackedScene" uid="uid://tpirfdba5tdj" path="res://levels/level_generator.tscn" id="9_4shd5"]
 [ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="10_h5nw6"]
-
-[sub_resource type="Resource" id="Resource_4shd5"]
-script = ExtResource("2_k621k")
-sections = Array[ExtResource("3_8ftby")]([])
-metadata/_custom_type_script = ExtResource("2_k621k")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qy1rd"]
 sky_top_color = Color(0.337716, 0.402262, 0.492051, 1)
@@ -34,16 +28,16 @@ tonemap_white = 1.3
 adjustment_brightness = 0.8
 adjustment_contrast = 1.5
 
-[sub_resource type="Curve3D" id="Curve3D_qy1rd"]
+[sub_resource type="Curve3D" id="Curve3D_87vud"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, -0.075339, -0.0265918, -0.996803, 0, 0, 0, 0.195535, 0.022106, 0.980448, -0.195535, -0.022106, -0.980448, -0.912831, -0.322195, -6, 0.118553, -0.0101747, 0.992896, -0.118553, 0.0101747, -0.992896, -2.39805, -0.267371, -12, -0.181329, -0.0252337, 0.983099, 0.181329, 0.0252337, -0.983099, -2.27842, 0.00443375, -36, -0.153836, -0.0145544, 0.987989, 0.153836, 0.0145544, -0.987989, -0.0204868, 0.250445, -42, 0.0254235, 0.00493038, 0.999665, 0, 0, 0, -0.936656, 0.0727721, -60, 0, 0, 0, 0.0349959, 0.000573933, -0.999387, -0.936656, 0.0727721, -120, 0.00374088, 0.00396185, 0.999985, -0.00374088, -0.00396185, -0.999985, 0.325515, 0.0934718, -138, 0.0130919, 0.000208105, 0.999914, -0.0130919, -0.000208105, -0.999914, -1.538, -0.124372, -162, -0.0256495, -0.00431841, 0.999662, 0, 0, 0, -0.921784, -0.0206251, -174, 0, 0, 0, 0.0551509, 0.0324201, -0.997952, -0.921784, -0.0206251, -221, -0.050232, -0.025672, 0.998408, 0.050232, 0.025672, -0.998408, -0.255879, 0.370823, -227, -0.0779868, 0.0067797, 0.996931, 0.0779868, -0.0067797, -0.996931, -0.433569, 0.12787, -245, -0.0115587, -0.0170343, 0.999788, 0.0115587, 0.0170343, -0.999788, 0.571676, 0.127802, -251, -0.0350769, -0.0134638, 0.999294, 0.0350769, 0.0134638, -0.999294, -0.292013, 0.332016, -257, -0.0485198, -0.008185, 0.998789, 0.0485198, 0.008185, -0.998789, 1.00594, 0.287983, -263, 0.0525238, -0.0047138, 0.998609, -0.0525238, 0.0047138, -0.998609, 0.306785, 0.428887, -269, -0.00544696, 0.00695673, 0.999961, 0, 0, 0, 0.372157, 0.345397, -275, 0, 0, 0, 0, 0, 0, 0.372157, 0.345397, -335, 0, 0, 0, 0.0261951, 0.0111282, -0.999595, 0.372157, 0.345397, -655, 0.0140288, -0.00938609, 0.999858, -0.0140288, 0.00938609, -0.999858, 1.0016, 0.612799, -667, -0.0175496, -0.0119364, 0.999775, 0.0175496, 0.0119364, -0.999775, -0.933363, 0.528088, -691, -0.0335117, 0.00109768, 0.999438, 0.0335117, -0.00109768, -0.999438, 0.459917, 0.857693, -703, 0.0242689, 0.0147363, 0.999597, 0, 0, 0, 0.168338, 0.680643, -709, 0, 0, 0, 0.0746491, 0.0140151, -0.997111, 0.168338, 0.680643, -756, -0.0448599, -0.00121179, 0.998993, 0.0448599, 0.00121179, -0.998993, 1.07196, 0.850295, -762, -0.00520854, 0.00829081, 0.999952, 0.00520854, -0.00829081, -0.999952, 0.713192, 0.696733, -768, -0.0217995, 0.0100645, 0.999712, 0.0217995, -0.0100645, -0.999712, 2.39891, 0.913165, -792, 0.027985, 0.0128077, 0.999526, -0.027985, -0.0128077, -0.999526, 2.23965, 0.738445, -798, 0.0147214, -0.00174292, 0.99989, 0, 0, 0, 1.88622, 0.780289, -810, 0, 0, 0, 0.00537414, 0.000876966, -0.999985, 1.88622, 0.780289, -870, 0.00530501, 0.00522182, 0.999972, -0.00530501, -0.00522182, -0.999972, 2.14419, 0.822385, -894, 0.00535013, 0.0023245, 0.999983, -0.00535013, -0.0023245, -0.999983, 1.63148, 0.529594, -918, 0, 0, 0, 0, 0, 0, 1.82335, 0.665466, -936, 0, 0, 1, 0, 0, 0, 1.82335, 0.665466, -996),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 35
 
 [node name="LevelTester" type="Node3D"]
 script = ExtResource("1_6voa2")
-level_resource = SubResource("Resource_4shd5")
+level_resource = ExtResource("2_87vud")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8ftby")
@@ -56,7 +50,7 @@ directional_shadow_max_distance = 1000.0
 [node name="Restart" parent="." instance=ExtResource("8_p5ohv")]
 
 [node name="LevelGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("9_4shd5")]
-curve = SubResource("Curve3D_qy1rd")
+curve = SubResource("Curve3D_87vud")
 level = NodePath("..")
 
 [node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("10_h5nw6")]

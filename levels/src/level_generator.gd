@@ -7,17 +7,17 @@ extends Path3D
 
 var dirty: bool = false
 
-@onready var level_creator: Node = %LevelCreator
+@onready var level_creator: LevelCreator = %LevelCreator
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_instance_valid(level):
 		if not dirty:
 			dirty = true
 			level_creator.create_level(level.level_resource, self, deform_level)
 
 
-func regenerate_level():
-	for child in Utilities.get_all_children(self):
+func regenerate_level() -> void:
+	for child: Node in Utilities.get_all_children(self):
 		if child is Part:
 			child.queue_free()
 	dirty = false
