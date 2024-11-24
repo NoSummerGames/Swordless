@@ -8,53 +8,56 @@ var dirty: bool = false
 
 var parts: Array[Part] = []
 
-func _ready() -> void:
-	# Add a new curve to the level path
+func _process(delta: float) -> void:
+	if not dirty :
+		if part_tester != null and part_tester.part != null:
+			_create_level(part_tester.part)
+
+func _create_level(part_scene: PackedScene):
 	curve = Curve3D.new()
+	curve.add_point(Vector3.BACK)
 	curve.add_point(Vector3.ZERO)
-	curve.add_point(Vector3.FORWARD)
 
-func _process(_delta: float) -> void:
-	if not dirty and part_tester != null and part_tester.part != null:
-		call_deferred("_create_level", part_tester.part)
+	var meshes: Array
 
-func _create_level(_part: PackedScene) -> void:
+	for i in part_tester.starting_blocks:
+		meshes.append(await load_part(part_tester.starting_block_scene))
+
+	meshes.append(await load_part(part_scene))
+
+	for i in meshes:
+		for child: Node in Utilities.get_all_children(i):
+			if child is MeshInstance3D:
+				child.create_trimesh_collision()
+
+
+func load_part(_part: PackedScene):
 	var part: Part = _part.instantiate()
-	call_deferred("load_part", part)
-	dirty = true
+	# Important order between above an below lines ! The part must be instantiated before awaiting
+	await get_tree().process_frame
 
-func load_part(_part: Part) -> void:
-	add_child(_part)
-	parts.append(_part)
-	_part.scale *= part_tester.part_scale
-	# Get lastest two points in the curve and the direction between them
+	add_child(part)
+	parts.append(part)
+
 	var last_position: Vector3 = curve.get_point_position(curve.point_count -1)
-	var before_last_postion: Vector3 = curve.get_point_position(curve.point_count -2)
-	var direction: Vector3 = before_last_postion.direction_to(last_position)
-
-	# Add a forward point in that direction to prevent placing the part in an angle
-	curve.add_point(last_position  + direction * part_tester.starting_distance * part_tester.part_scale)
-
-	# Rotate the part so that it matches the path direction
-	_part.global_position = before_last_postion
-	_part.look_at(last_position, Vector3.UP, false)
-
 	# Set its final position at the end of the curve
-	last_position = curve.get_point_position(curve.point_count -1)
-	_part.global_position = last_position
+	part.global_position = last_position
 
-	# Add local object path points - if any - to the part_tester curve
-	if _part.has_path == true:
-		var b_curve: Curve3D = _part.part_path.curve
+	# Add local object path points - if any - to the level curve
+	if part.has_path == true:
+		var b_curve = part.part_path.curve
 		if b_curve.get_point_position(0) != Vector3.ZERO:
-			curve.add_point(_part.to_global(b_curve.get_point_position(0)))
-		for i: int in b_curve.point_count -1:
-			curve.add_point(_part.to_global(b_curve.get_point_position(i +1)))
+			curve.add_point(part.to_global(b_curve.get_point_position(0)))
+		for i in b_curve.point_count -1:
+			curve.add_point(part.to_global(b_curve.get_point_position(i +1)))
 	else:
 		# Get part AABB to add next point at the end of the part
-		var part_aabb: AABB = _calculate_spatial_bounds(_part, true)
-		_part.global_position.z -= (part_aabb.position.z + part_aabb.size.z) * part_tester.part_scale
-		curve.add_point(last_position + (direction * part_aabb.size.z) * part_tester.part_scale)
+		var part_aabb = _calculate_spatial_bounds(part, false)
+		#part.global_position.z -= (part_aabb.position.z + part_aabb.size.z)
+		curve.add_point(last_position + Vector3.FORWARD * part_aabb.size.z)
+
+	dirty = true
+	return part
 
 
 func _calculate_spatial_bounds(parent : Node3D, exclude_top_level_transform: bool) -> AABB:
@@ -78,21 +81,16 @@ func _calculate_spatial_bounds(parent : Node3D, exclude_top_level_transform: boo
 
 	return bounds
 
-func _on_visibility_changed() -> void:
-	regenerate_part()
 
-func _on_player_exited_path() -> void:
-	for part: Part in parts:
-		part.queue_free()
-	parts.clear()
-	dirty = false
 
 func regenerate_part() -> void:
-	for part: Part in parts:
-		part.queue_free()
-	parts.clear()
-	# Add a new curve to the level path
-	curve = Curve3D.new()
-	curve.add_point(Vector3.ZERO)
-	curve.add_point(Vector3.FORWARD)
-	dirty = false
+	if not Engine.is_editor_hint():
+		pass
+	else:
+		for part in parts:
+			part.queue_free()
+		parts.clear()
+		dirty = false
+
+func _on_visibility_changed() -> void:
+	regenerate_part()

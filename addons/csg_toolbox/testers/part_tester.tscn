@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmedatsx87v4o"]
+[gd_scene load_steps=8 format=3 uid="uid://bmedatsx87v4o"]
 
 [ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester.gd" id="1_1vda8"]
 [ext_resource type="PackedScene" uid="uid://ckj5clqxxei5u" path="res://levels/level_00/fixed/00_f01_gallery_c.tscn" id="2_jqafy"]
@@ -11,7 +11,7 @@ _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -101, 0, 0, 0, 0, 0, 0, 0, 0, -421),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 4
+point_count = 8
 
 [node name="PartTester" type="Node3D"]
 script = ExtResource("1_1vda8")
