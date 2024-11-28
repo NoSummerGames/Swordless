@@ -26,9 +26,6 @@ signal type_changed
 ## Called when fill is changed.
 signal fill_changed
 
-## Called when ramp/staircase is changed in any noticable way.
-signal something_changed
-
 ## Calculation mode for the staircase.
 enum Calculation {
 	STAIRCASE_DIMENSIONS, 	## Width, depth and height are the same size as the whole staircase.
@@ -302,7 +299,7 @@ func set_type(value: Type) -> void:
 					_depth = (_depth + epsilon) * steps
 	refresh_type()
 	type_changed.emit()
-	something_changed.emit()
+	update_gizmos()
 
 ## Resets the steps and regenerates ramp/stairs.
 func refresh_type() -> void:
@@ -338,25 +335,25 @@ func set_width(value: float) -> void:
 	_width = value
 	refresh_children()
 	width_changed.emit()
-	something_changed.emit()
+	update_gizmos()
 
 func set_height(value: float) -> void:
 	_height = value
 	refresh_children()
 	height_changed.emit()
-	something_changed.emit()
+	update_gizmos()
 
 func set_depth(value: float) -> void:
 	_depth = value
 	refresh_children()
 	depth_changed.emit()
-	something_changed.emit()
+	update_gizmos()
 
 func set_fill(value: bool) -> void:
 	_fill = value
 	refresh_children()
 	fill_changed.emit()
-	something_changed.emit()
+	update_gizmos()
 
 ## Translates the ramp/staircase to a new anchor point in local space.
 ## Then recalculates the stairs/ramp with the new offset.
@@ -366,7 +363,7 @@ func set_anchor(value: Anchor) -> void:
 	_anchor = value
 	refresh_children()
 	anchor_changed.emit()
-	something_changed.emit()
+	update_gizmos()
 
 ## Translates the ramp/staircase to a new anchor point in local space if anchor is not fixed.
 func translate_anchor(from_anchor: Anchor, to_anchor: Anchor) -> void:
@@ -385,7 +382,7 @@ func set_steps(value: int) -> void:
 	_steps = value
 	refresh_steps(value)
 	step_count_changed.emit()
-	something_changed.emit()
+	update_gizmos()
 
 ## Deletes all children and generates new steps/ramp.
 func refresh_steps(new_steps: int) -> void:
@@ -470,11 +467,20 @@ func refresh_step(i: int) -> void:
 func refresh_all() -> void:
 	set_steps(steps)
 
+## Using dynamic type for gizmos to avoid packaging errors.
+## See proto_ramp_gizmos.gd for more information.
+var gizmos = null
+
 func _enter_tree() -> void:
 	# is_entered_tree is used to avoid setting properties traditionally on initialization
 	set_steps(steps)
 	if material:
 		set_material(material)
+	if Engine.is_editor_hint():
+		var ProtoRampGizmos = load("res://addons/proto_shape/proto_ramp/proto_ramp_gizmos.gd")
+		gizmos = ProtoRampGizmos.new()
+		gizmos.attach_ramp(self)
+
 	is_entered_tree = true
 
 func _exit_tree() -> void:
@@ -482,3 +488,5 @@ func _exit_tree() -> void:
 	for child in csg_shapes:
 		child.queue_free()
 	csg_shapes.clear()
+	if Engine.is_editor_hint():
+		gizmos.remove_ramp()

@@ -89,7 +89,9 @@ func _on_create_button_pressed(button) -> void:
 	if object is CSGCombiner3D:
 		if object is ProtoRamp:
 			object.material = default_material
-	elif object.get("material") != null:
+	elif object is ExitArea:
+		pass
+	else:
 		object.material = default_material
 
 	emit_signal("csg_added", object)
