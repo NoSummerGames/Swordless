@@ -77,13 +77,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -106.0
+offset_left = -129.0
 offset_top = -26.0
 grow_horizontal = 0
 grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_type_variation = &"HeaderMedium"
 theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
-text = "0.3.0.0 build 1"
+text = "Prototype 0.3.0.1"
 
 [node name="WorldLoader" type="Node" parent="."]
 script = ExtResource("5_hq6oa")

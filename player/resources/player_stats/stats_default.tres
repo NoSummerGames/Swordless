@@ -4,15 +4,15 @@
 
 [resource]
 script = ExtResource("1_1buy4")
-speed = 25
-sprint_speed = 35
+speed = 30
+sprint_speed = 40
 lateral_factor = 0.6
-gravity = 40.0
-ground_acceleration = 13.0
-air_acceleration = 6.0
-min_slope_speed = 0.5
+gravity = 45.0
+ground_acceleration = 18.0
+air_acceleration = 9.0
+min_slope_speed = 0.6
 max_specials = 2
-coyote_time = 0.5
+coyote_time = 0.2
 max_step_height = 0.5
 step_acceleration = 10.0
 step_up_energy = 2.0
