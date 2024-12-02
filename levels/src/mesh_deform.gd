@@ -3,8 +3,9 @@ class_name MeshDeformer
 extends Node
 
 var array_mesh: ArrayMesh
+var min_z: float
 
-func deform_mesh(targets: Array[MeshInstance3D], path: Path3D) -> void:
+func deform_mesh(targets: Array[MeshInstance3D], path: Path3D, last: bool) -> void:
 	if path == null or path.curve.get_point_count() == 0:
 		push_error("Deform path is not set or has no points.")
 		return
@@ -13,17 +14,10 @@ func deform_mesh(targets: Array[MeshInstance3D], path: Path3D) -> void:
 		push_error("No targets specified for deformation.")
 		return
 
-	_deform_mesh(targets, path)
-
-
-
-func _deform_mesh(targets: Array[MeshInstance3D], path: Path3D) -> void:
-	path.curve.remove_point(0)
-
-	_conform_last_control_point(path.curve)
 
 	# Deform each MeshInstance3D targets provided
 	for mesh_instance: MeshInstance3D in targets:
+
 		# Copy mesh materials to the mesh_instance
 		for i: int in mesh_instance.mesh.get_surface_count():
 			mesh_instance.set_surface_override_material(i, mesh_instance.mesh.surface_get_material(i))
@@ -34,34 +28,38 @@ func _deform_mesh(targets: Array[MeshInstance3D], path: Path3D) -> void:
 			push_warning("Failed to create MeshDataTool from MeshInstance: " + str(mesh_instance.name))
 			continue
 
+
+		if last == true:
+			min_z = 0
+			for i: int in mdt.get_vertex_count():
+				if mdt.get_vertex(i).z < min_z:
+					min_z = mdt.get_vertex(i).z
+
 		for i: int in mdt.get_vertex_count():
 			# Get vertex global position
-			var vertex_global: Vector3 = mdt.get_vertex(i) * mesh_instance.global_transform.inverse()
+			var vertex_local: Vector3 = mdt.get_vertex(i)
+			var vertex_global: Vector3 = vertex_local * mesh_instance.global_transform.inverse()
 
-			var curve_point_transform: Transform3D = path.curve.sample_baked_with_rotation(-vertex_global.z)
+			var curve_point_transform: Transform3D
+
+			if last == true and is_equal_approx(vertex_local.z, min_z):
+				curve_point_transform = path.curve.sample_baked_with_rotation(path.curve.get_baked_length())
+			else:
+				var closest_offset: float = path.curve.get_closest_offset(vertex_global)
+				curve_point_transform = path.curve.sample_baked_with_rotation(closest_offset, false, true)
 #
 			var normal: Vector3 = mdt.get_vertex(i).x * curve_point_transform.basis.x
 			var binormal: Vector3 = mdt.get_vertex(i).y * curve_point_transform.basis.y
 
 			var new_pos: Vector3 =  curve_point_transform.origin + normal + binormal
 
-			mdt.set_vertex(i, new_pos * mesh_instance.global_transform + Vector3(mesh_instance.global_position.x, mesh_instance.global_position.y, 0))
+			mdt.set_vertex(i, new_pos * mesh_instance.global_transform)
 
 		array_mesh.clear_surfaces()
 		mdt.commit_to_surface(array_mesh)
 		mesh_instance.mesh = array_mesh
 
 		mesh_instance.create_trimesh_collision()
-
-# Prevent the last point of the curve to == Vector3.ZERO
-func _conform_last_control_point(curve: Curve3D) -> void:
-	if curve.get_point_in(curve.point_count - 1) == Vector3.ZERO:
-		var prev_point: Vector3 = curve.get_point_position(curve.point_count - 2)
-		var prev_point_out: Vector3 = curve.get_point_out(curve.point_count - 2)
-		var p_point: Vector3 = curve.get_point_position(curve.point_count - 1)
-
-		var direction: Vector3 = p_point.direction_to(prev_point_out + prev_point)
-		curve.set_point_in(curve.point_count - 1, direction)
 
 func _prepare_mesh(mesh_instance: MeshInstance3D) -> MeshDataTool:
 		if not mesh_instance is MeshInstance3D:

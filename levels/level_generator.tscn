@@ -21,7 +21,7 @@ script = ExtResource("3_0dx8r")
 unique_name_in_owner = true
 script = ExtResource("6_fdi38")
 
-[node name="MeshDeformer" type="Node" parent="LevelCreator"]
+[node name="MeshDeformer" type="Node" parent="LevelCreator/SectionLoader"]
 unique_name_in_owner = true
 script = ExtResource("8_hggdv")
 

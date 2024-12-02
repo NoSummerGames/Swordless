@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://iegyrtt8xhdn"
 path.s3tc="res://.godot/imported/light.png-b0bea74c75dd140098beee73c8edf051.s3tc.ctex"
+path.etc2="res://.godot/imported/light.png-b0bea74c75dd140098beee73c8edf051.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/csg_toolbox/materials/png/light.png"
-dest_files=["res://.godot/imported/light.png-b0bea74c75dd140098beee73c8edf051.s3tc.ctex"]
+dest_files=["res://.godot/imported/light.png-b0bea74c75dd140098beee73c8edf051.s3tc.ctex", "res://.godot/imported/light.png-b0bea74c75dd140098beee73c8edf051.etc2.ctex"]
 
 [params]
 

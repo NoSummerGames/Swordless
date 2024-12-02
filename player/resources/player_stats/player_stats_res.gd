@@ -4,17 +4,17 @@ extends Resource
 var current_action: Action
 
 @export_group("Velocity")
-@export var speed: int = 25
-@export var sprint_speed: int = 35
+@export var speed: int = 30
+@export var sprint_speed: int = 40
 @export var lateral_factor: float = 0.6
-@export var gravity: float = 40
-@export var ground_acceleration: float = 13
-@export var air_acceleration: float = 6
-@export_range(0.0, 1.0) var min_slope_speed: float = 0.5
+@export var gravity: float = 45
+@export var ground_acceleration: float = 18
+@export var air_acceleration: float = 9
+@export_range(0.0, 1.0) var min_slope_speed: float = 0.6
 
 @export_group("Misc")
 @export var max_specials: int = 2
-@export var coyote_time: float = 0.5
+@export var coyote_time: float = 0.2
 @export var max_step_height: float = 0.5
 @export var step_acceleration: float = 10
 @export var step_up_energy: float = 2

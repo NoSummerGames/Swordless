@@ -4,7 +4,6 @@ extends PlayerComponent
 signal command_input(action: Data.Actions, param: Data.ActionParams)
 
 var input_x: float = 0
-var input_y: float = 0
 
 func _physics_process(delta: float) -> void:
 	get_command_inputs()
@@ -13,7 +12,20 @@ func _physics_process(delta: float) -> void:
 
 func _get_lateral_input(delta: float) -> float:
 	# Lerp between left and right user action strengh
-	var raw_input_x: float = Input.get_action_strength("right") - Input.get_action_strength("left")
+	var wall_normal: float = 0
+	if player.is_on_wall():
+		var collision: KinematicCollision3D = player.get_last_slide_collision()
+		for i: int in collision.get_collision_count():
+			var normal: Vector3 = collision.get_normal(i)
+			var abs_normal: Vector3 = abs(normal)
+			if abs_normal.dot(player.global_basis.x) > 0.5:
+				wall_normal = normal.x
+
+
+	var input_right: float = Input.get_action_strength("right") + wall_normal * Input.get_action_strength("right")
+	var input_left: float = Input.get_action_strength("left") - wall_normal * Input.get_action_strength("left")
+
+	var raw_input_x: float = input_right - input_left
 	return lerp(input_x, raw_input_x, player.acceleration * delta)
 
 

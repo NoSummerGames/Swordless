@@ -21,7 +21,7 @@ glow_enabled = true
 
 [sub_resource type="Curve3D" id="Curve3D_g33i2"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -472.552),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -94.5105),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=7 format=3 uid="uid://dvje6j1gsdvaa"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=6 format=3 uid="uid://dvje6j1gsdvaa"]
 
 [ext_resource type="Script" path="res://levels/src/resources/level_res.gd" id="1_t4agd"]
 [ext_resource type="Script" path="res://levels/src/resources/section_res.gd" id="2_qw045"]
@@ -7,37 +7,27 @@
 [sub_resource type="Resource" id="Resource_pb4k6"]
 script = ExtResource("2_qw045")
 length = 1000
-x_delta = 0.5
-low_delta = -0.5
-high_delta = 0.25
+x_delta = 2.0
+hills_range = 0.25
 fixed = false
 pool_directory = "res://levels/level_00/pool"
 junctions_directory = "res://levels/level_00/junctions"
 junctions_length = 50
+smoothing_ratio = 0.5
 metadata/_custom_type_script = ExtResource("2_qw045")
 
 [sub_resource type="Resource" id="Resource_jp3fp"]
 script = ExtResource("2_qw045")
-x_delta = 0.5
-low_delta = -0.5
-high_delta = 0.25
+x_delta = 2.0
+hills_range = 0.25
 fixed = true
 fixed_scene = ExtResource("3_fq2hr")
-metadata/_custom_type_script = ExtResource("2_qw045")
-
-[sub_resource type="Resource" id="Resource_w1tgn"]
-script = ExtResource("2_qw045")
-length = 1000
-x_delta = 0.5
-low_delta = -0.5
-high_delta = 0.25
-fixed = false
-pool_directory = "res://levels/level_00/pool"
 junctions_directory = "res://levels/level_00/junctions"
 junctions_length = 50
+smoothing_ratio = 0.5
 metadata/_custom_type_script = ExtResource("2_qw045")
 
 [resource]
 script = ExtResource("1_t4agd")
-sections = Array[ExtResource("2_qw045")]([SubResource("Resource_pb4k6"), SubResource("Resource_jp3fp"), SubResource("Resource_w1tgn")])
+sections = Array[ExtResource("2_qw045")]([SubResource("Resource_pb4k6"), SubResource("Resource_jp3fp"), SubResource("Resource_pb4k6")])
 metadata/_custom_type_script = ExtResource("1_t4agd")

@@ -70,7 +70,7 @@ func _ready() -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if current_level == Levels.RUN:
 		if Input.is_action_just_pressed("debug"):
-			if get_tree().paused == false:
+			if current_menu == null:
 				get_tree().paused = true
 				current_menu = debug_menu.instantiate()
 				add_child(current_menu)

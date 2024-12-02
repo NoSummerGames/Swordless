@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8ecp21mrepog"
 path.s3tc="res://.godot/imported/orange.png-35ff91e36dc1818af1341f215df2d6fb.s3tc.ctex"
+path.etc2="res://.godot/imported/orange.png-35ff91e36dc1818af1341f215df2d6fb.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/csg_toolbox/materials/png/orange.png"
-dest_files=["res://.godot/imported/orange.png-35ff91e36dc1818af1341f215df2d6fb.s3tc.ctex"]
+dest_files=["res://.godot/imported/orange.png-35ff91e36dc1818af1341f215df2d6fb.s3tc.ctex", "res://.godot/imported/orange.png-35ff91e36dc1818af1341f215df2d6fb.etc2.ctex"]
 
 [params]
 
