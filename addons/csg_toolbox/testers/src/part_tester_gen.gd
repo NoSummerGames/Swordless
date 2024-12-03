@@ -10,8 +10,14 @@ var parts: Array[Part] = []
 
 func _process(delta: float) -> void:
 	if not dirty :
+		if not Engine.is_editor_hint() and %Player.is_inside_tree():
+			%Player.set_physics_process(false)
 		if part_tester != null and part_tester.part != null:
 			_create_level(part_tester.part)
+	else:
+		if not Engine.is_editor_hint() and %Player.is_inside_tree():
+			if %Player.is_physics_processing() == false:
+				%Player.set_physics_process(true)
 
 func _create_level(part_scene: PackedScene):
 	curve = Curve3D.new()

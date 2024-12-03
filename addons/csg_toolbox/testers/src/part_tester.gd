@@ -18,9 +18,22 @@ extends Node3D
 			%PartGenerator.call_deferred("regenerate_part")
 
 @export_category("Misc")
-@export var starting_blocks: int = 5
-@export var starting_block_scene: PackedScene
-@export var exit_restart_time: float = 0.5
+@export var starting_blocks: int = 5:
+	set(value):
+		starting_blocks = value
+		if is_inside_tree():
+			%PartGenerator.call_deferred("regenerate_part")
+
+@export var starting_block_scene: PackedScene:
+	set(value):
+		starting_block_scene = value
+		if is_inside_tree():
+			%PartGenerator.call_deferred("regenerate_part")
+@export var exit_restart_time: float = 0.5:
+	set(value):
+		exit_restart_time = value
+		if is_inside_tree():
+			%PartGenerator.call_deferred("regenerate_part")
 
 @onready var player: Player = %Player
 

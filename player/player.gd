@@ -48,8 +48,9 @@ func _physics_process(delta: float) -> void:
 		velocity.z = lerp(velocity.z, direction.normalized().z * speed * floor_angle, acceleration * delta)
 		velocity.x = lerp(velocity.x, direction.normalized().x * speed, acceleration * delta)
 
-	move_and_slide()
 	test_stairs_up(delta)
+	move_and_slide()
+
 
 
 func is_almost_on_floor() -> bool:
@@ -78,6 +79,7 @@ func test_stairs_up(delta: float) -> void:
 	const HORIZONTAL: Vector3 = Vector3(1, 0, 1)
 	var motion_velocity: Vector3 = velocity * HORIZONTAL * delta
 
+
 	# Test collision
 	var motion_transform: Transform3D = global_transform
 	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
@@ -88,7 +90,7 @@ func test_stairs_up(delta: float) -> void:
 		# No wall was hit
 		return
 
-	if result.get_collision_normal(0).angle_to(Vector3.UP) < floor_max_angle:
+	if result.get_collision_normal(0).angle_to(global_basis.y) < floor_max_angle:
 		# The wall was actually a slope
 		return
 
@@ -96,31 +98,53 @@ func test_stairs_up(delta: float) -> void:
 	var remainder: Vector3 = result.get_remainder()
 	motion_transform = motion_transform.translated(result.get_travel())
 
-	var step_up: Vector3 = player_stats.max_step_height * Vector3.UP
+	# Raise the motion transform according to max_step_height
+	var step_up: Vector3 = player_stats.max_step_height * global_basis.y
 	parameters.from = motion_transform
 	parameters.motion = step_up
 	PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
-	motion_transform = motion_transform.translated(result.get_travel())
-	var step_up_distance: float = result.get_travel().length()
 
+	# motion_transform will be full length if no ceiling was met
+	var step_up_distance: float
+	var ceiling_remainder: Vector3 = result.get_remainder()
+	if ceiling_remainder != Vector3.ZERO:
+		# Deviate the trajectory if a ceiling is met
+		var deviation = ceiling_remainder.slide(result.get_collision_normal(0))
+
+		motion_transform = motion_transform.translated(result.get_travel() + deviation)
+		step_up_distance = (result.get_travel() + deviation).length()
+	else:
+		motion_transform = motion_transform.translated(result.get_travel())
+		step_up_distance = result.get_travel().length()
+
+	# Move forward with remaining velocity
 	parameters.from = motion_transform
 	parameters.motion = remainder
 	PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
 	motion_transform = motion_transform.translated(result.get_travel())
 
-	parameters.from = motion_transform;
-	parameters.motion = Vector3.DOWN * step_up_distance
+	# Move down the step
+	parameters.from = motion_transform
+	parameters.motion = -global_basis.y * step_up_distance
 
-	if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
+	var moved_down: bool = PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
+	if moved_down == false:
 		return
-
 	motion_transform = motion_transform.translated(result.get_travel())
 
-	var surfaceNormal: Vector3 = result.get_collision_normal(0)
-	if (surfaceNormal.angle_to(Vector3.UP) > floor_max_angle): return
-
-	velocity.y = player_stats.step_up_energy
-	global_position.y = move_toward(global_position.y, motion_transform.origin.y, player_stats.step_acceleration * delta);
+	# Check if the step is not a wall
+	if result.get_collision_count() > 0:
+		var surface_normal: Vector3 = result.get_collision_normal(0)
+		if (surface_normal.angle_to(global_basis.y) > floor_max_angle):
+			# Check if the wall can be slided down to a step
+			var deviation = result.get_remainder().slide(surface_normal)
+			parameters.from = motion_transform
+			parameters.motion = deviation
+			if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
+				return
+			else:
+				motion_transform = motion_transform.translated(result.get_travel())
+	global_position.y = move_toward(global_position.y, motion_transform.origin.y + player_stats.step_up_energy, player_stats.step_acceleration * delta);
 
 func _on_player_exited_path() -> void:
 	emit_signal("exited_path")

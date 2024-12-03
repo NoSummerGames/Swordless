@@ -31,8 +31,7 @@ size = Vector3(1, 1.6, 1)
 material = SubResource("StandardMaterial3D_p8wet")
 size = Vector3(0.5, 1.6, 0.3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2kdd8"]
-margin = 0.01
+[sub_resource type="BoxShape3D" id="BoxShape3D_x7c3f"]
 size = Vector3(0.5, 1.6, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_65viv"]
@@ -58,7 +57,6 @@ size = Vector2(2, 2)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 1.0472
-floor_snap_length = 0.5
 script = ExtResource("1_iit5d")
 player_stats = ExtResource("2_x7c3f")
 
@@ -75,7 +73,7 @@ mesh = SubResource("BoxMesh_tt1qa")
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.1)
-shape = SubResource("BoxShape3D_2kdd8")
+shape = SubResource("BoxShape3D_x7c3f")
 
 [node name="CameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)

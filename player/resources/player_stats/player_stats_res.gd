@@ -22,7 +22,7 @@ var current_action: Action
 @export var floor_detection_margin: float = 0.5
 @export var freeze_scale: float = 0.2
 @export var freeze_duration: float = 0.7
-
+@export var raw_lateral_input: bool = true
 
 @export_group("Actions")
 @export var jump_strength: int = 13
@@ -49,6 +49,7 @@ var current_action: Action
 @export_range(0.5, 1) var wall_jump_angle_range: float = 0.5
 @export_range(0,1) var wall_jump_input_tolerance: float = 0.5
 @export var diagonal_strafe: bool = true
+
 
 @export_group("Path")
 @export var interpolation_distance: float = 5.0

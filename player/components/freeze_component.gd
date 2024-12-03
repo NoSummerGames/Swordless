@@ -6,6 +6,7 @@ var disabled: bool = true
 @onready var input_component: PlayerInputComponent = %InputComponent
 
 func _ready() -> void:
+	Engine.time_scale = 1.0
 	input_component.command_input.connect(_on_player_input)
 
 func _on_player_input(action: Data.Actions, _params: Data.ActionParams) -> void:
