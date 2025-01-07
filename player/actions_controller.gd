@@ -22,8 +22,10 @@ func _ready() -> void:
 	player.current_action = default_action
 	input_component.command_input.connect(_on_command_input)
 
-func _physics_process(_delta: float) -> void:
-	if player.is_almost_on_floor():
+func _physics_process(delta: float) -> void:
+	current_action._execute(delta)
+
+	if player.is_on_floor():
 		specials_count.clear()
 		wall_jumped_normal = 0
 

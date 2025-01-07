@@ -1,5 +1,7 @@
-class_name Debug
+class_name DebugSettings
 extends CanvasLayer
+
+signal debug_menu_opened
 
 const SAVE_PATH: String = "user://debug_preferences.cfg"
 
@@ -17,6 +19,7 @@ var settings : Dictionary = {
 		"speed": false,
 		"altitude": false,
 		"timer": false,
+		"fps": false,
 		"action_state": false,
 		"double_jump": false,
 		"dash_strafe": false,
@@ -34,15 +37,16 @@ var settings : Dictionary = {
 
 var stats: Dictionary = {}
 
-var current_menu: Node
+var _debug_menu: Node
 
 var current_level: Levels = Levels.NONE:
 	set(value):
-		await get_tree().process_frame
-		if value != current_level and value == Levels.RUN:
-			time = 0
-
 		current_level = value
+		if current_level == Levels.RUN:
+			visible = true
+			time = 0
+		else:
+			visible = false
 		_load_settings()
 
 var excluded_stats: Array[String] = ["dash_duration", "dash_sensitivity", "dash_acceleration", \
@@ -58,6 +62,7 @@ var highest_altitude: float = 0
 @onready var speed_label: Label = %SpeedLabel
 @onready var altitude_label: Label = %AltitudeLabel
 @onready var timer_label: Label = %TimerLabel
+@onready var fps_label: Label = %FPSLabel
 
 @onready var default_player_stats: PlayerStatsResource
 
@@ -70,14 +75,15 @@ func _ready() -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if current_level == Levels.RUN:
 		if Input.is_action_just_pressed("debug"):
-			if current_menu == null:
+			if _debug_menu == null:
 				get_tree().paused = true
-				current_menu = debug_menu.instantiate()
-				add_child(current_menu)
+				_debug_menu = debug_menu.instantiate()
+				add_child(_debug_menu)
+				emit_signal("debug_menu_opened")
 			else:
 				get_tree().paused = false
-				if is_instance_valid(current_menu):
-					current_menu.queue_free()
+				if is_instance_valid(_debug_menu):
+					_debug_menu.queue_free()
 
 func _process(_delta: float) -> void:
 	match current_level:
@@ -90,7 +96,9 @@ func _process(_delta: float) -> void:
 					if material is StandardMaterial3D:
 						(material as StandardMaterial3D).albedo_color = current_action.debug_color
 					past_action = current_action
-				action_label.position = get_viewport().get_camera_3d().unproject_position(player.global_position)
+				var camera: Camera3D = get_viewport().get_camera_3d()
+				if is_instance_valid(camera):
+					action_label.position = camera.unproject_position(player.global_position)
 
 func _physics_process(delta: float) -> void:
 	match current_level:
@@ -113,6 +121,8 @@ func _physics_process(delta: float) -> void:
 					else:
 						altitude_label.text = "Altitude : 0"
 
+			if get_setting("fps") == true:
+				fps_label.text = str(Engine.get_frames_per_second())
 
 
 			if not get_tree().paused:
@@ -149,6 +159,8 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 							collision_raycast.queue_free()
 				"timer":
 					timer_label.visible = setting_value
+				"fps":
+					fps_label.visible = setting_value
 
 				# SKILLS
 				"double_jump":
@@ -166,7 +178,8 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 
 				# GAMEPLAY
 				"freeze":
-					player.freeze_component.disabled = !setting_value
+					var freeze_component: FreezeComponent = player.get_node("%FreezeComponent")
+					freeze_component.disabled = !setting_value
 
 				"glide":
 					for action: Action in player.actions:

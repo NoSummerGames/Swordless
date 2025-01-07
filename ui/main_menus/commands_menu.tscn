@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dulpuubkcoli3"]
 
 [ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="1_kbpin"]
-[ext_resource type="Script" path="res://ui/main_menus/src/trigger_button.gd" id="2_gi24j"]
+[ext_resource type="Script" uid="uid://cnw7tjqwfmlkm" path="res://ui/main_menus/src/trigger_button.gd" id="2_gi24j"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_6uw0t"]
 thickness = 0
@@ -106,6 +106,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touches directionnelles"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/DirectionsHBoxContainer"]
 layout_mode = 2
@@ -115,6 +116,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Joystick"
+popup/item_0/id = 0
 
 [node name="SautHBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -137,6 +139,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/SautHBoxContainer2"]
 layout_mode = 2
@@ -146,6 +149,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Croix"
+popup/item_0/id = 0
 
 [node name="DashFrontHBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -168,6 +172,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/DashFrontHBoxContainer3"]
 layout_mode = 2
@@ -177,6 +182,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Carré"
+popup/item_0/id = 0
 
 [node name="DiveHBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -199,6 +205,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/DiveHBoxContainer4"]
 layout_mode = 2
@@ -208,6 +215,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Carré"
+popup/item_0/id = 0
 
 [node name="SlideHBoxContainer7" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -230,6 +238,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/SlideHBoxContainer7"]
 layout_mode = 2
@@ -239,6 +248,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Rond"
+popup/item_0/id = 0
 
 [node name="DashRightHBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -261,6 +271,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/DashRightHBoxContainer5"]
 layout_mode = 2
@@ -270,6 +281,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "R2"
+popup/item_0/id = 0
 
 [node name="DashLeftHBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -292,6 +304,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/DashLeftHBoxContainer6"]
 layout_mode = 2
@@ -301,6 +314,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "L2"
+popup/item_0/id = 0
 
 [node name="SprintHBoxContainer8" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -323,6 +337,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/SprintHBoxContainer8"]
 layout_mode = 2
@@ -332,6 +347,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "R1"
+popup/item_0/id = 0
 
 [node name="FreezeHBoxContainer9" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -354,6 +370,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/FreezeHBoxContainer9"]
 layout_mode = 2
@@ -363,6 +380,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "L1"
+popup/item_0/id = 0
 
 [node name="GlideHBoxContainer10" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -385,6 +403,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/GlideHBoxContainer10"]
 layout_mode = 2
@@ -394,6 +413,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Triangle"
+popup/item_0/id = 0
 
 [node name="PauseHBoxContainer11" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -416,6 +436,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/PauseHBoxContainer11"]
 layout_mode = 2
@@ -425,6 +446,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Start"
+popup/item_0/id = 0
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -461,6 +483,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/InteractionsHBoxContainer2"]
 layout_mode = 2
@@ -470,6 +493,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Croix"
+popup/item_0/id = 0
 
 [node name="CancelHBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -492,6 +516,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/CancelHBoxContainer3"]
 layout_mode = 2
@@ -501,6 +526,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Rond"
+popup/item_0/id = 0
 
 [node name="RelicsFrontHBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -523,6 +549,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/RelicsFrontHBoxContainer4"]
 layout_mode = 2
@@ -532,6 +559,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Triangle"
+popup/item_0/id = 0
 
 [node name="BlackOnHBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -554,6 +582,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/BlackOnHBoxContainer5"]
 layout_mode = 2
@@ -563,6 +592,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "R1"
+popup/item_0/id = 0
 
 [node name="BlackHBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -585,6 +615,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/BlackHBoxContainer6"]
 layout_mode = 2
@@ -594,6 +625,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "L1"
+popup/item_0/id = 0
 
 [node name="RefugeMenuPauseHBoxContainer8" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -616,6 +648,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Touche"
+popup/item_0/id = 0
 
 [node name="Label2" type="OptionButton" parent="VBoxContainer/RefugeMenuPauseHBoxContainer8"]
 layout_mode = 2
@@ -625,6 +658,7 @@ flat = true
 selected = 0
 item_count = 1
 popup/item_0/text = "Start"
+popup/item_0/id = 0
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(600, 0)
@@ -634,11 +668,11 @@ size_flags_vertical = 0
 theme = ExtResource("1_kbpin")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
-theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_colors/font_focus_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_554vr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ye0os")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_joyid")
 text = "Retour"
 script = ExtResource("2_gi24j")
-trigger = &"settings_back"
+menu_to_load = 2

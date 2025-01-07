@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://cchm1uusl0n0u"]
 
-[ext_resource type="Script" path="res://ui/main_menus/src/settings.gd" id="1_3pqdy"]
+[ext_resource type="Script" uid="uid://b2kg5eyrov64j" path="res://ui/main_menus/src/settings.gd" id="1_3pqdy"]
 [ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="2_3ro0h"]
-[ext_resource type="Script" path="res://ui/main_menus/src/toggle_button.gd" id="3_dnoxg"]
+[ext_resource type="Script" uid="uid://46btjpigsbsf" path="res://ui/main_menus/src/toggle_button.gd" id="3_dnoxg"]
 [ext_resource type="LabelSettings" uid="uid://c2mtblwxa40ls" path="res://ui/res/menu_label.tres" id="3_kcat6"]
-[ext_resource type="Script" path="res://ui/main_menus/src/dropdown_button.gd" id="4_3gg6u"]
+[ext_resource type="Script" uid="uid://bq6o63ex81flu" path="res://ui/main_menus/src/dropdown_button.gd" id="4_3gg6u"]
 [ext_resource type="FontFile" uid="uid://pxwsh76poo0m" path="res://ui/assets/fonts/WayfinderCF-ExtraBold.ttf" id="4_vg85t"]
-[ext_resource type="Script" path="res://ui/main_menus/src/slider_button.gd" id="6_phn2i"]
-[ext_resource type="Script" path="res://ui/main_menus/src/trigger_button.gd" id="7_yv02v"]
+[ext_resource type="Script" uid="uid://c8haev75avjm8" path="res://ui/main_menus/src/slider_button.gd" id="6_phn2i"]
+[ext_resource type="Script" uid="uid://cnw7tjqwfmlkm" path="res://ui/main_menus/src/trigger_button.gd" id="7_yv02v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2x4tn"]
 
@@ -243,9 +243,9 @@ size_flags_horizontal = 6
 size_flags_vertical = 0
 theme = ExtResource("2_3ro0h")
 theme_override_colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
-theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
-theme_override_colors/font_focus_color = Color(0.901961, 0.901961, 0.901961, 1)
 theme_override_colors/font_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_focus_color = Color(0.901961, 0.901961, 0.901961, 1)
+theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_fonts/font = ExtResource("4_vg85t")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2x4tn")
@@ -277,14 +277,14 @@ size_flags_vertical = 0
 theme = ExtResource("2_3ro0h")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
-theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_colors/font_focus_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2nokc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r76m8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nhqpo")
 text = "Commandes"
 script = ExtResource("7_yv02v")
-trigger = &"commands"
+menu_to_load = 3
 
 [node name="CommandsHSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
@@ -300,11 +300,11 @@ size_flags_vertical = 0
 theme = ExtResource("2_3ro0h")
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_hover_color = Color(0.901961, 0.901961, 0.901961, 1)
-theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_colors/font_focus_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2nokc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r76m8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nhqpo")
 text = "Retour"
 script = ExtResource("7_yv02v")
-trigger = &"main_back"
+menu_to_load = 1

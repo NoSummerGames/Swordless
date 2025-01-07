@@ -5,7 +5,7 @@ extends CanvasLayer
 var categories: Dictionary = {}
 var stats: Dictionary
 
-@onready var debug: Debug = DebugUi
+@onready var debug: DebugSettings = DebugUi
 @onready var menu_button: MenuButton = %MenuButton
 @onready var option_menu: PopupMenu = menu_button.get_popup()
 
@@ -112,6 +112,7 @@ func _add_stat_line(stat: Dictionary) -> void:
 			var spin_box: SpinBox = SpinBox.new()
 			stat_line.add_child(spin_box)
 			spin_box.step = 1
+			spin_box.max_value = 1000
 			spin_box.alignment = HORIZONTAL_ALIGNMENT_CENTER
 			var hint: String = stat["range"]
 			if hint != "":
@@ -124,6 +125,7 @@ func _add_stat_line(stat: Dictionary) -> void:
 			var spin_box: SpinBox = SpinBox.new()
 			stat_line.add_child(spin_box)
 			spin_box.step = 0.1
+			spin_box.max_value = 1000.0
 			spin_box.alignment = HORIZONTAL_ALIGNMENT_CENTER
 			var hint: String = stat["range"]
 			if hint != "":

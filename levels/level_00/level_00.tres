@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=6 format=3 uid="uid://dvje6j1gsdvaa"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=8 format=3 uid="uid://dvje6j1gsdvaa"]
 
-[ext_resource type="Script" path="res://levels/src/resources/level_res.gd" id="1_t4agd"]
-[ext_resource type="Script" path="res://levels/src/resources/section_res.gd" id="2_qw045"]
+[ext_resource type="PackedScene" uid="uid://2qc31rjn5ymw" path="res://levels/level_00/fixed/00_entry.tscn" id="1_qw045"]
+[ext_resource type="Script" uid="uid://blhee3dkvmcs8" path="res://levels/src/resources/level_res.gd" id="1_t4agd"]
+[ext_resource type="PackedScene" uid="uid://bxnb5blblqeuy" path="res://levels/level_00/fixed/00_exit.tscn" id="2_fq2hr"]
+[ext_resource type="Script" uid="uid://dlk5hw4t3fy6g" path="res://levels/src/resources/section_res.gd" id="2_qw045"]
 [ext_resource type="PackedScene" uid="uid://ckj5clqxxei5u" path="res://levels/level_00/fixed/00_f01_gallery_c.tscn" id="3_fq2hr"]
 
 [sub_resource type="Resource" id="Resource_pb4k6"]
@@ -29,5 +31,7 @@ metadata/_custom_type_script = ExtResource("2_qw045")
 
 [resource]
 script = ExtResource("1_t4agd")
+entry_scene = ExtResource("1_qw045")
 sections = Array[ExtResource("2_qw045")]([SubResource("Resource_pb4k6"), SubResource("Resource_jp3fp"), SubResource("Resource_pb4k6")])
+exit_scene = ExtResource("2_fq2hr")
 metadata/_custom_type_script = ExtResource("1_t4agd")

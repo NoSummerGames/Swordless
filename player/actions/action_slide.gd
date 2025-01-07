@@ -2,8 +2,19 @@ extends Action
 
 var timer: Timer
 
+@export var player_collision_shape: CollisionShape3D
+@export var slide_shape: Shape3D
+@export var default_shape: Shape3D
+@export var player_mesh: MeshInstance3D
+@export var slide_mesh: Mesh
+@export var default_mesh: Mesh
+
 func _enter() -> void:
-	player.scale.y = 0.3
+	player_collision_shape.shape = slide_shape
+	player_collision_shape.position = Vector3(0, 0.25, 0.1)
+	player_mesh.mesh = slide_mesh
+	player_mesh.position = Vector3(0, 0.25, 0)
+
 	timer = Utilities.add_timer(true, player_stats.slide_duration)
 
 func _execute(_delta: float) -> void:
@@ -30,5 +41,8 @@ func _test_height() -> bool:
 	return true
 
 func _exit() -> void:
-	player.scale.y = 1
+	player_collision_shape.shape = default_shape
+	player_collision_shape.position = Vector3(0, 0.8, 0.1)
+	player_mesh.mesh = default_mesh
+	player_mesh.position = Vector3(0, 0.8, 0)
 	done = true

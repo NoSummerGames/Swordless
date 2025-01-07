@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0d348q8gqaf1"]
+
+[ext_resource type="Script" uid="uid://cnw7tjqwfmlkm" path="res://ui/main_menus/src/trigger_button.gd" id="1_ai2j0"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Restart" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_bottom = NodePath("../Exit")
+focus_next = NodePath("../Exit")
+theme_type_variation = &"ButtonTitle"
+text = "Réessayer"
+script = ExtResource("1_ai2j0")
+trigger = 3
+hovered = true
+
+[node name="Exit" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Restart")
+focus_neighbor_bottom = NodePath("../Return")
+focus_next = NodePath("../Return")
+focus_previous = NodePath("../Restart")
+theme_type_variation = &"ButtonTitle"
+text = "Abandonner"
+script = ExtResource("1_ai2j0")
+trigger = 4
+
+[node name="Return" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Exit")
+focus_previous = NodePath("../Exit")
+theme_type_variation = &"ButtonTitle"
+text = "Retour"
+script = ExtResource("1_ai2j0")
+trigger = 5

@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://7ljeorsefhsg"]
+
+[ext_resource type="Script" uid="uid://cnw7tjqwfmlkm" path="res://ui/main_menus/src/trigger_button.gd" id="1_fvl7o"]
+[ext_resource type="Shader" uid="uid://d33ip3isf5tpy" path="res://_placeholder/vignette.gdshader" id="1_xfbrv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryj3l"]
+shader = ExtResource("1_xfbrv")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_mqf8x"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fevyf"]
+gradient = SubResource("Gradient_mqf8x")
+
+[node name="DeathMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ryj3l")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_fevyf")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Restart" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"ButtonTitle"
+text = "Réessayer"
+script = ExtResource("1_fvl7o")
+trigger = 3
+hovered = true
+
+[node name="Exit" type="Button" parent="CenterContainer/Menu"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"ButtonTitle"
+text = "Abandonner"
+script = ExtResource("1_fvl7o")
+trigger = 4

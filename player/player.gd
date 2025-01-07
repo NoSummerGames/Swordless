@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
+signal reached_exit
+signal died
 signal exited_path
 
 ## FIXME : added for testing purpose before having a proper "paths finding" script
@@ -13,22 +15,23 @@ var actions: Array[Action]
 
 var velocity_overridden: bool = false
 var direction: Vector3
+var desired_vel: Vector3
 var acceleration: float:
 	get:
 		if current_action.override_acceleration:
 			return current_action.custom_acceleration
-		elif is_almost_on_floor():
+		elif current_action.space == Action.Spaces.GROUND :
 			return player_stats.ground_acceleration
-		else:
+		elif current_action.space == Action.Spaces.AIR:
 			return player_stats.air_acceleration
+		return player_stats.ground_acceleration
 
 var on_floor: bool = true
+
 var floor_normal: Vector3 = Vector3.UP
 
+@onready var area: Area3D = %PlayerArea
 @onready var coyote_timer: Timer = %CoyoteTimer
-@onready var freeze_component: FreezeComponent = %FreezeComponent
-@onready var collider: CollisionShape3D = %PlayerCollision
-@onready var collider_margin: float = collider.shape.margin
 @onready var speed: float = player_stats.speed:
 	get:
 		if Input.is_action_pressed("sprint") and current_action.disable_sprint == false:
@@ -36,6 +39,8 @@ var floor_normal: Vector3 = Vector3.UP
 		else:
 			return current_action.speed_factor * player_stats.speed
 
+func _ready() -> void:
+	area.area_entered.connect(_on_area_entered)
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
@@ -45,12 +50,14 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity.y -= player_stats.gravity * delta
 
-		velocity.z = lerp(velocity.z, direction.normalized().z * speed * floor_angle, acceleration * delta)
-		velocity.x = lerp(velocity.x, direction.normalized().x * speed, acceleration * delta)
+		desired_vel.z = lerp(desired_vel.z, direction.normalized().z * speed * floor_angle, acceleration * delta)
+		desired_vel.x = lerp(desired_vel.x, direction.normalized().x * speed, acceleration * delta)
+		velocity.z = desired_vel.z
+		velocity.x = desired_vel.x
 
-	test_stairs_up(delta)
+		velocity = test_stairs_up(delta)
+
 	move_and_slide()
-
 
 
 func is_almost_on_floor() -> bool:
@@ -74,11 +81,9 @@ func is_almost_on_floor() -> bool:
 	on_floor = false
 	return false
 
-func test_stairs_up(delta: float) -> void:
+func test_stairs_up(delta: float) -> Vector3:
 	# Minor rework of "Stairs Character" script by Andicraft
-	const HORIZONTAL: Vector3 = Vector3(1, 0, 1)
-	var motion_velocity: Vector3 = velocity * HORIZONTAL * delta
-
+	var motion_velocity: Vector3 = direction * speed * delta
 
 	# Test collision
 	var motion_transform: Transform3D = global_transform
@@ -88,11 +93,12 @@ func test_stairs_up(delta: float) -> void:
 	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
 	if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
 		# No wall was hit
-		return
+		return velocity
 
-	if result.get_collision_normal(0).angle_to(global_basis.y) < floor_max_angle:
+	var angle: float = result.get_collision_normal(0).angle_to(global_basis.y)
+	if angle < floor_max_angle:
 		# The wall was actually a slope
-		return
+		return velocity
 
 	# Move to collision
 	var remainder: Vector3 = result.get_remainder()
@@ -109,7 +115,7 @@ func test_stairs_up(delta: float) -> void:
 	var ceiling_remainder: Vector3 = result.get_remainder()
 	if ceiling_remainder != Vector3.ZERO:
 		# Deviate the trajectory if a ceiling is met
-		var deviation = ceiling_remainder.slide(result.get_collision_normal(0))
+		var deviation: Vector3 = ceiling_remainder.slide(result.get_collision_normal(0))
 
 		motion_transform = motion_transform.translated(result.get_travel() + deviation)
 		step_up_distance = (result.get_travel() + deviation).length()
@@ -117,10 +123,17 @@ func test_stairs_up(delta: float) -> void:
 		motion_transform = motion_transform.translated(result.get_travel())
 		step_up_distance = result.get_travel().length()
 
-	# Move forward with remaining velocity
+	# Move in its original direction with remaining velocity
 	parameters.from = motion_transform
 	parameters.motion = remainder
-	PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
+
+	if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == true:
+		# Check if it's an head-on collision
+		var dot: float = result.get_collision_normal(0).dot(global_basis.z)
+		if dot > player_stats.death_accuracy:
+			emit_signal("died")
+
+
 	motion_transform = motion_transform.translated(result.get_travel())
 
 	# Move down the step
@@ -129,7 +142,7 @@ func test_stairs_up(delta: float) -> void:
 
 	var moved_down: bool = PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
 	if moved_down == false:
-		return
+		return velocity
 	motion_transform = motion_transform.translated(result.get_travel())
 
 	# Check if the step is not a wall
@@ -137,14 +150,20 @@ func test_stairs_up(delta: float) -> void:
 		var surface_normal: Vector3 = result.get_collision_normal(0)
 		if (surface_normal.angle_to(global_basis.y) > floor_max_angle):
 			# Check if the wall can be slided down to a step
-			var deviation = result.get_remainder().slide(surface_normal)
+			var deviation: Vector3 = result.get_remainder().slide(surface_normal)
 			parameters.from = motion_transform
 			parameters.motion = deviation
 			if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
-				return
+				return velocity
 			else:
 				motion_transform = motion_transform.translated(result.get_travel())
-	global_position.y = move_toward(global_position.y, motion_transform.origin.y + player_stats.step_up_energy, player_stats.step_acceleration * delta);
+
+	global_position += (motion_transform.origin - global_position) * player_stats.stairs_speed
+	return velocity * player_stats.stairs_speed
+
+func _on_area_entered(area_entered: Area3D) -> void:
+	if area_entered is ExitArea:
+		emit_signal("reached_exit")
 
 func _on_player_exited_path() -> void:
 	emit_signal("exited_path")

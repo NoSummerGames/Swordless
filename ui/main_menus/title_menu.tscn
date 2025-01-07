@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://blaoaiud2cf7r"]
 
 [ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="1_5j4j8"]
-[ext_resource type="Script" path="res://ui/main_menus/src/trigger_button.gd" id="1_q8w38"]
+[ext_resource type="Script" uid="uid://cnw7tjqwfmlkm" path="res://ui/main_menus/src/trigger_button.gd" id="1_q8w38"]
 
 [node name="TitleMenu" type="Control"]
 layout_mode = 3
@@ -31,7 +31,7 @@ focus_neighbor_bottom = NodePath("../Settings")
 theme_type_variation = &"ButtonTitle"
 text = "Nouvelle Partie"
 script = ExtResource("1_q8w38")
-trigger = &"play"
+trigger = 1
 
 [node name="LoadGame" type="Button" parent="CenterContainer/Menu"]
 layout_mode = 2
@@ -50,7 +50,7 @@ theme = ExtResource("1_5j4j8")
 theme_type_variation = &"ButtonTitle"
 text = "Options"
 script = ExtResource("1_q8w38")
-trigger = &"settings"
+menu_to_load = 2
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/Menu"]
 layout_mode = 2
@@ -66,7 +66,7 @@ theme = ExtResource("1_5j4j8")
 theme_type_variation = &"ButtonTitle"
 text = "Quitter"
 script = ExtResource("1_q8w38")
-trigger = &"quit"
+trigger = 2
 
 [node name="Foot" type="VBoxContainer" parent="."]
 layout_mode = 1

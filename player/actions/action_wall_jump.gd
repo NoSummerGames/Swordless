@@ -1,13 +1,16 @@
 extends Action
 
 func _check() -> bool:
-	wall_jumped_normal = player.get_last_slide_collision().get_normal().x
 	var input_dir: float = Input.get_action_strength("right") - Input.get_action_strength("left")
-	if sign(input_dir) == sign(wall_jumped_normal):
-		if abs(input_dir) + player_stats.wall_jump_input_tolerance >= abs(wall_jumped_normal):
+	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
+	parameters.from = player.global_transform
+	parameters.motion = -player.global_basis.x * input_dir
+	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
+	if PhysicsServer3D.body_test_motion(player.get_rid(), parameters, result) == true:
+		var normal: Vector3 = result.get_collision_normal(0)
+		if normal.dot(player.global_basis.x * input_dir) > 0.5:
 			return true
 	return false
-
 
 func _enter() -> void:
 	player.velocity.y += player_stats.wall_jump_strength

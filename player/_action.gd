@@ -1,9 +1,16 @@
 class_name Action
 extends AbstractAction
 
+enum Spaces {AIR, GROUND}
+
 @export_group("Properties")
-@export var disabled: bool
+@export var disabled: bool:
+	set(value):
+		disabled = value
+		set_physics_process(!value)
+
 @export var override_acceleration: bool
+@export var space: Spaces = Spaces.GROUND
 @export var prioritary: bool
 @export var speed_factor: float = 1
 @export var exclusive: bool = false
@@ -31,7 +38,7 @@ extends AbstractAction
 # Dictionary keys must be matching the above boolean var names
 var conditions : Dictionary = {
 	"cond_match_input" : func() -> bool: return false if input_required not in input else true,
-	"cond_on_ground" : func() -> bool: return true if player.is_almost_on_floor() or not player.coyote_timer.is_stopped() else false,
+	"cond_on_ground" : func() -> bool: return true if player.on_floor or not player.coyote_timer.is_stopped() else false,
 	"cond_strictly_on_ground" : func() -> bool: return player.is_on_floor(),
 	"cond_in_air": func() -> bool: return !player.is_on_floor(),
 	"cond_on_wall": func() -> bool: return true if player.is_on_wall_only() and \
@@ -43,7 +50,6 @@ var conditions : Dictionary = {
 	}
 
 @onready var contexts: Array[Callable] = [
-	func() -> bool: return false if disabled else true,
 	func() -> bool: return false if not prioritary and priority_time == true else true,
 	func() -> bool:
 		if get("current_action").exclusive and done == false:
@@ -54,9 +60,7 @@ var conditions : Dictionary = {
 
 var cooldown_over: bool = true
 
-func _physics_process(delta: float) -> void:
-	current_action._execute(delta)
-
+func _physics_process(_delta: float) -> void:
 	for context: Callable in contexts:
 		if context.call() == false:
 			return

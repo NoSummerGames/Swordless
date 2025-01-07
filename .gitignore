@@ -5,6 +5,7 @@
 ### Godot ###
 # Godot 4+ specific ignores
 .godot/
+assets/
 
 # Godot-specific ignores
 .import/

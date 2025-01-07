@@ -1,13 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://nt8ofbydjwgv"]
+[gd_scene load_steps=12 format=3 uid="uid://nt8ofbydjwgv"]
 
-[ext_resource type="Script" path="res://main/src/main.gd" id="1_60bag"]
-[ext_resource type="PackedScene" uid="uid://dulpuubkcoli3" path="res://ui/main_menus/commands_menu.tscn" id="2_3ojpb"]
-[ext_resource type="PackedScene" uid="uid://cchm1uusl0n0u" path="res://ui/main_menus/settings_menu.tscn" id="3_tom6e"]
-[ext_resource type="PackedScene" uid="uid://blaoaiud2cf7r" path="res://ui/main_menus/title_menu.tscn" id="4_83mhk"]
-[ext_resource type="Script" path="res://main/src/world_loader.gd" id="5_hq6oa"]
+[ext_resource type="Script" uid="uid://b0enij55cgpa7" path="res://main/src/main.gd" id="1_60bag"]
+[ext_resource type="Script" uid="uid://dp85u3nyncsj7" path="res://utils/version_label.gd" id="2_4dugh"]
+[ext_resource type="Script" uid="uid://bdhj5lo0wg4u6" path="res://main/src/world_loader.gd" id="5_hq6oa"]
 [ext_resource type="PackedScene" uid="uid://dygyul8i3xpyu" path="res://hub/hub_00.tscn" id="6_2siao"]
+[ext_resource type="Script" uid="uid://cvqvr1iepqwld" path="res://main/main_menu_loader.gd" id="6_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dli7qo2kdbkch" path="res://main/level_title.tscn" id="6_vlcyp"]
-[ext_resource type="Script" path="res://main/src/fade_player.gd" id="7_ingit"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4dugh"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 
 [sub_resource type="Animation" id="Animation_qq4e2"]
 length = 0.001
@@ -26,14 +30,15 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ijb74"]
 resource_name = "fade_in"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
@@ -41,15 +46,14 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_583y6"]
 resource_name = "fade_out"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
@@ -62,14 +66,10 @@ _data = {
 &"fade_out": SubResource("Animation_583y6")
 }
 
-[node name="Main" type="CanvasLayer" node_paths=PackedStringArray("world_loader")]
+[node name="Main" type="CanvasLayer" node_paths=PackedStringArray("world_loader", "menu_loader")]
 script = ExtResource("1_60bag")
-menus = {
-"Commands": ExtResource("2_3ojpb"),
-"Settings": ExtResource("3_tom6e"),
-"Title": ExtResource("4_83mhk")
-}
 world_loader = NodePath("WorldLoader")
+menu_loader = NodePath("MainMenuLoader")
 
 [node name="VersionLabel" type="Label" parent="."]
 anchors_preset = 3
@@ -85,12 +85,16 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_type_variation = &"HeaderMedium"
 theme_override_colors/font_color = Color(1, 1, 1, 0.392157)
-text = "Prototype 0.3.0.1"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4dugh")
+text = "Version"
+horizontal_alignment = 2
+script = ExtResource("2_4dugh")
 
-[node name="WorldLoader" type="Node" parent="."]
+[node name="WorldLoader" type="Node" parent="." node_paths=PackedStringArray("fade_player")]
 script = ExtResource("5_hq6oa")
 title_scene = ExtResource("6_vlcyp")
 hub_scene = ExtResource("6_2siao")
+fade_player = NodePath("FadePlayer")
 
 [node name="ColorRect" type="ColorRect" parent="WorldLoader"]
 anchors_preset = 15
@@ -98,14 +102,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldLoader" node_paths=PackedStringArray("master", "color_rect")]
+[node name="FadePlayer" type="AnimationPlayer" parent="WorldLoader"]
 libraries = {
 &"": SubResource("AnimationLibrary_cejl6")
 }
-script = ExtResource("7_ingit")
-master = NodePath("..")
-fade_in_signal = "level_loading"
-fade_out_signal = "level_loaded"
-color_rect = NodePath("../ColorRect")
+speed_scale = 2.0
+
+[node name="MainMenuLoader" type="CanvasLayer" parent="."]
+script = ExtResource("6_kfbq2")

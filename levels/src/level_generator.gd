@@ -8,6 +8,10 @@ var dirty: bool = false
 
 @onready var level_creator: LevelCreator = %LevelCreator
 
+func _ready() -> void:
+	dirty = true
+	level_creator.create_level(level.level_resource, self)
+
 func _process(_delta: float) -> void:
 	if is_instance_valid(level):
 		if not dirty:

@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dim7k1m01584d"]
 
-[ext_resource type="Script" path="res://utils/debug/debug_menu.gd" id="1_n4atj"]
+[ext_resource type="Script" uid="uid://2h8ktgnwdhte" path="res://utils/debug/debug_menu.gd" id="1_n4atj"]
 [ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="1_o2s2v"]
-[ext_resource type="Script" path="res://ui/main_menus/src/toggle_button.gd" id="2_kajsq"]
+[ext_resource type="Script" uid="uid://46btjpigsbsf" path="res://ui/main_menus/src/toggle_button.gd" id="2_kajsq"]
 
 [sub_resource type="PackedScene" id="PackedScene_c832b"]
 _bundled = {
@@ -261,6 +261,25 @@ vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "timer"
+
+[node name="FPS" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/FPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+text = "FPS"
+
+[node name="Timer" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/FPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+flat = true
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("2_kajsq")
+setting_name = "fps"
 
 [node name="State" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2

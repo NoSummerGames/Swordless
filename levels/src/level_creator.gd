@@ -2,6 +2,7 @@
 class_name LevelCreator
 extends Node
 
+signal exit_area_found
 signal level_created
 
 var meshes: Array[MeshInstance3D]
@@ -25,6 +26,7 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 	if is_instance_valid(level.exit_scene):
 		var exit_part: Part = level.exit_scene.instantiate()
 		part_loader.load_part(exit_part, path)
+		_find_exit_area(exit_part)
 
 	emit_signal("level_created")
 
@@ -37,3 +39,8 @@ func _create_curve() -> Curve3D:
 	level_created.connect(_delete_first_point)
 
 	return curve
+
+func _find_exit_area(part: Part) -> void:
+	for child: Node in Utilities.get_all_children(part):
+		if child is ExitArea:
+			emit_signal("exit_area_found", child)

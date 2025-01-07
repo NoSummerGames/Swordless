@@ -16,13 +16,13 @@ var current_action: Action
 @export var max_specials: int = 2
 @export var coyote_time: float = 0.2
 @export var max_step_height: float = 0.5
-@export var step_acceleration: float = 10
-@export var step_up_energy: float = 2
+@export var stairs_speed: float = 0.5
 @export var input_buffer: int = 5
 @export var floor_detection_margin: float = 0.5
 @export var freeze_scale: float = 0.2
 @export var freeze_duration: float = 0.7
 @export var raw_lateral_input: bool = true
+@export_range(0.0, 1.0, 0.1) var death_accuracy: float = 0.8
 
 @export_group("Actions")
 @export var jump_strength: int = 13
@@ -61,3 +61,5 @@ var current_action: Action
 @export var strafe_camera_speed: float = 20
 @export var camera_height: float = 2
 @export_range(-0.5, 0.5) var camera_pitch: float = 0
+@export_range(50, 170, 5) var camera_fov: int = 85
+@export var fov_reactivity: int = 4
