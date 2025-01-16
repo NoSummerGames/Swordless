@@ -11,13 +11,13 @@ var meshes: Array[MeshInstance3D]
 @onready var section_loader: SectionLoader = %SectionLoader
 
 func create_level(level: LevelResource, path: Path3D) -> void:
+	var start_time: int = Time.get_ticks_msec()
 	path.curve = _create_curve()
 
 	# Load EntryScene
 	if is_instance_valid(level.entry_scene):
 		var entry_part: Part = level.entry_scene.instantiate()
 		part_loader.load_part(entry_part, path)
-
 	# Load sections
 	for section: Section in level.sections:
 		section_loader.load_section(section, part_loader, path)
@@ -28,6 +28,9 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 		part_loader.load_part(exit_part, path)
 		_find_exit_area(exit_part)
 
+	var creation_time: int = Time.get_ticks_msec() - start_time
+	print("Level created in {}ms".format([creation_time], "{}"))
+
 	emit_signal("level_created")
 
 func _create_curve() -> Curve3D:
@@ -37,7 +40,6 @@ func _create_curve() -> Curve3D:
 
 	var _delete_first_point: Callable = func() -> void : curve.remove_point(0)
 	level_created.connect(_delete_first_point)
-
 	return curve
 
 func _find_exit_area(part: Part) -> void:

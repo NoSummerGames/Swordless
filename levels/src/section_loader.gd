@@ -32,7 +32,7 @@ func load_section(section: Section, loader: PartLoader, path: Path3D) -> void:
 					var part_length: float = loader.load_part(part, path)
 					section_length += part_length
 				else:
-					continue
+					break
 
 
 

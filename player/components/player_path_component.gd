@@ -36,7 +36,8 @@ func _physics_process(delta: float) -> void:
 	previous_up_direction = player.up_direction
 
 	player.direction = get_path_direction(delta)
-	player.look_at(player.global_position + player.direction, player.up_direction)
+	const HORIZONTAL: Vector3 = Vector3(1,0,1)
+	player.look_at(player.global_position + player.direction * HORIZONTAL, player.up_direction)
 
 func get_path_direction(delta: float) -> Vector3:
 	# Get the closest path "offset" to the player

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://tpirfdba5tdj"]
 
-[ext_resource type="Script" path="res://levels/src/level_generator.gd" id="1_8mvm8"]
-[ext_resource type="Script" path="res://levels/src/level_creator.gd" id="2_mr56g"]
-[ext_resource type="Script" path="res://levels/src/part_loader.gd" id="3_0dx8r"]
-[ext_resource type="Script" path="res://levels/src/section_loader.gd" id="6_fdi38"]
-[ext_resource type="Script" path="res://levels/src/mesh_deform.gd" id="8_hggdv"]
+[ext_resource type="Script" uid="uid://bcc8mxnpu4b7m" path="res://levels/src/level_generator.gd" id="1_8mvm8"]
+[ext_resource type="Script" uid="uid://f4ufyp13movx" path="res://levels/src/level_creator.gd" id="2_mr56g"]
+[ext_resource type="Script" uid="uid://bqgpn8naqwnm8" path="res://levels/src/part_loader.gd" id="3_0dx8r"]
+[ext_resource type="Script" uid="uid://b5t72281s0tnm" path="res://levels/src/section_loader.gd" id="6_fdi38"]
+[ext_resource type="Script" uid="uid://b4xeutpl1hmh2" path="res://levels/src/mesh_deform.gd" id="8_hggdv"]
 
 [node name="LevelGenerator" type="Path3D"]
 script = ExtResource("1_8mvm8")
