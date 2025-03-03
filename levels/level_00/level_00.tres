@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://blhee3dkvmcs8" path="res://levels/src/resources/level_res.gd" id="1_t4agd"]
 [ext_resource type="PackedScene" uid="uid://bxnb5blblqeuy" path="res://levels/level_00/fixed/00_exit.tscn" id="2_fq2hr"]
 [ext_resource type="Script" uid="uid://dlk5hw4t3fy6g" path="res://levels/src/resources/section_res.gd" id="2_qw045"]
-[ext_resource type="PackedScene" uid="uid://ckj5clqxxei5u" path="res://assets/tscn/2nd_iteration/00_fixed/00_f01_gallery_c.tscn" id="5_g3lhb"]
+[ext_resource type="PackedScene" uid="uid://ckj5clqxxei5u" path="res://assets/tscn/level_00_fixed/00_f01_gallery_c.tscn" id="5_g3lhb"]
 [ext_resource type="PackedScene" uid="uid://bhcobn26ehj2o" path="res://assets/tscn/2nd_iteration/00_fixed/00_f02_bandstand_square_b.tscn" id="6_r6061"]
 [ext_resource type="PackedScene" uid="uid://bpe56rjk65dy4" path="res://assets/tscn/2nd_iteration/00_fixed/00_f03_tower_parvis_b.tscn" id="7_n2p7h"]
 

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://y2lbf5dl6y1v"]
+
+[ext_resource type="Script" uid="uid://cixxy88e7i8xj" path="res://hub/passages/src/passage.gd" id="1_aqwjo"]
+[ext_resource type="Script" uid="uid://caapgvah0e6bp" path="res://hub/generic/src/collision_component.gd" id="2_s6x0u"]
+[ext_resource type="Script" uid="uid://52d8j71ojqv6" path="res://hub/generic/src/input_component.gd" id="3_k0q51"]
+[ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="4_1r8gk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ekst"]
+
+[node name="HubPassage" type="Area3D"]
+script = ExtResource("1_aqwjo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1ekst")
+
+[node name="CollisionComponent" type="Node" parent="." node_paths=PackedStringArray("visual_instance", "collision", "target")]
+script = ExtResource("2_s6x0u")
+visual_instance = NodePath("../DefaultSprite")
+collision = NodePath("../CollisionShape3D")
+target = NodePath("..")
+
+[node name="InputComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_k0q51")
+target = NodePath("..")
+
+[node name="DefaultSprite" type="Sprite3D" parent="."]
+modulate = Color(0.72549, 0, 0, 1)
+alpha_cut = 1
+texture = ExtResource("4_1r8gk")

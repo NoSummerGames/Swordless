@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3npnqsvsi8hq"]
+
+[ext_resource type="Script" uid="uid://cak7iekjjvqx7" path="res://hub/level/src/hub.gd" id="1_5ct4l"]
+[ext_resource type="PackedScene" uid="uid://bxs0nls1r6rgb" path="res://hub/character/character.tscn" id="2_pcq38"]
+[ext_resource type="Script" uid="uid://bcpbw77m7i26w" path="res://hub/character/src/character_resource.gd" id="3_6cfka"]
+[ext_resource type="PackedScene" uid="uid://y2lbf5dl6y1v" path="res://hub/passages/passage.tscn" id="3_7pr2o"]
+[ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="3_qm8sw"]
+[ext_resource type="Resource" uid="uid://dnjgn14wfwfb" path="res://hub/passages/resources/passage_00.tres" id="4_xuvdl"]
+
+[sub_resource type="Resource" id="Resource_ih6ma"]
+script = ExtResource("3_6cfka")
+name = "Occuliste"
+id = 0
+placeholder_texture = ExtResource("3_qm8sw")
+metadata/_custom_type_script = "uid://bcpbw77m7i26w"
+
+[node name="Hub" type="Node3D"]
+script = ExtResource("1_5ct4l")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 6, 10)
+current = true
+fov = 40.0
+
+[node name="Character" parent="." instance=ExtResource("2_pcq38")]
+resource = SubResource("Resource_ih6ma")
+
+[node name="HubPassage" parent="." instance=ExtResource("3_7pr2o")]
+transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -5, 0.5, -2.2)
+passage_resource = ExtResource("4_xuvdl")

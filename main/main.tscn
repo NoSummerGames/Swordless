@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0enij55cgpa7" path="res://main/src/main.gd" id="1_60bag"]
 [ext_resource type="Script" uid="uid://dp85u3nyncsj7" path="res://utils/version_label.gd" id="2_4dugh"]
 [ext_resource type="Script" uid="uid://bdhj5lo0wg4u6" path="res://main/src/world_loader.gd" id="5_hq6oa"]
-[ext_resource type="PackedScene" uid="uid://dygyul8i3xpyu" path="res://hub/hub_00.tscn" id="6_2siao"]
+[ext_resource type="PackedScene" uid="uid://b3npnqsvsi8hq" path="res://hub/level/hub.tscn" id="5_kfbq2"]
 [ext_resource type="Script" uid="uid://cvqvr1iepqwld" path="res://main/main_menu_loader.gd" id="6_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dli7qo2kdbkch" path="res://main/level_title.tscn" id="6_vlcyp"]
 
@@ -93,7 +93,7 @@ script = ExtResource("2_4dugh")
 [node name="WorldLoader" type="Node" parent="." node_paths=PackedStringArray("fade_player")]
 script = ExtResource("5_hq6oa")
 title_scene = ExtResource("6_vlcyp")
-hub_scene = ExtResource("6_2siao")
+hub_scene = ExtResource("5_kfbq2")
 fade_player = NodePath("FadePlayer")
 
 [node name="ColorRect" type="ColorRect" parent="WorldLoader"]

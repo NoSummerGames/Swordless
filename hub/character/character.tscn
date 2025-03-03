@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxs0nls1r6rgb"]
+
+[ext_resource type="Script" uid="uid://b8jdqxcjy8haq" path="res://hub/character/src/character.gd" id="1_qy77l"]
+[ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="2_84hts"]
+[ext_resource type="Script" uid="uid://caapgvah0e6bp" path="res://hub/generic/src/collision_component.gd" id="3_jaki7"]
+[ext_resource type="Script" uid="uid://52d8j71ojqv6" path="res://hub/generic/src/input_component.gd" id="5_u1bws"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jaki7"]
+
+[sub_resource type="GDScript" id="GDScript_84hts"]
+resource_name = "placeholder_sprite"
+script/source = "extends Sprite3D
+
+@export var character: Character
+
+func _ready() -> void:
+	assert(character != null)
+
+	if character.resource:
+		var chr_texture: Texture2D = character.resource.placeholder_texture
+		if chr_texture:
+			texture = chr_texture
+"
+
+[node name="Character" type="Area3D"]
+script = ExtResource("1_qy77l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jaki7")
+
+[node name="CollisionComponent" type="Node" parent="." node_paths=PackedStringArray("visual_instance", "collision")]
+script = ExtResource("3_jaki7")
+visual_instance = NodePath("../PlaceholderSprite")
+collision = NodePath("../CollisionShape3D")
+
+[node name="InputComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_u1bws")
+target = NodePath("..")
+
+[node name="PlaceholderSprite" type="Sprite3D" parent="." node_paths=PackedStringArray("character")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+texture = ExtResource("2_84hts")
+script = SubResource("GDScript_84hts")
+character = NodePath("..")
