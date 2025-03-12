@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GameColor" load_steps=2 format=3 uid="uid://cm8a0xshnn2xn"]
 
-[ext_resource type="Script" path="res://globals/colors/game_color_res.gd" id="1_5fl3k"]
+[ext_resource type="Script" uid="uid://dsuntl4l5qxv6" path="res://globals/colors/game_color_res.gd" id="1_5fl3k"]
 
 [resource]
 resource_name = "NEUTRAL_GREEN"

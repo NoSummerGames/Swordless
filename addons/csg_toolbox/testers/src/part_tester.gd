@@ -26,9 +26,14 @@ extends Node3D
 
 @export var starting_block_scene: PackedScene:
 	set(value):
-		starting_block_scene = value
-		if is_inside_tree():
-			%PartGenerator.call_deferred("regenerate_part")
+		if value == null:
+			starting_block_scene = load("res://addons/csg_toolbox/starting_block.tscn")
+			if is_inside_tree():
+				%PartGenerator.call_deferred("regenerate_part")
+		else:
+			starting_block_scene = value
+			if is_inside_tree():
+				%PartGenerator.call_deferred("regenerate_part")
 @export var exit_restart_time: float = 0.5:
 	set(value):
 		exit_restart_time = value
@@ -38,6 +43,11 @@ extends Node3D
 @onready var player: Player = %Player
 
 func _ready() -> void:
+	editor_state_changed.connect(print.bind("changed"))
+
+	if starting_block_scene == null:
+		starting_block_scene = load("res://addons/csg_toolbox/starting_block.tscn")
+
 	if not Engine.is_editor_hint():
 		player.exited_path.connect(_on_player_exited_path)
 

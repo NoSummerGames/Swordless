@@ -2,8 +2,11 @@
 class_name Part
 extends Node3D
 
-var path_id: int = 0
+signal combo_completed
 
+var path_id: int = 0
+var seal_count: int = 0
+var broken_seal_count: int = 0
 
 @export var has_path: bool:
 	set(value):
@@ -30,6 +33,21 @@ var path_id: int = 0
 
 @export_multiline var notes: String = ""
 
+func _ready() -> void:
+	_connect_seals()
+
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "part_path" and has_path == false:
 		property.usage = PROPERTY_USAGE_READ_ONLY
+
+func _on_seal_broke(direction: Vector3) -> void:
+	broken_seal_count += 1
+	if broken_seal_count == seal_count:
+		combo_completed.emit()
+
+func _connect_seals() -> void:
+	for child in Utilities.get_all_children(self):
+		if child is Seal:
+			seal_count += 1
+			var seal: Seal = child
+			seal.broke.connect(_on_seal_broke)

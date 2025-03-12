@@ -1,6 +1,8 @@
 class_name Action
 extends AbstractAction
 
+signal entered(action: Action)
+
 enum Spaces {AIR, GROUND}
 
 @export_group("Properties")
@@ -35,6 +37,8 @@ enum Spaces {AIR, GROUND}
 
 @export var debug_color: Color
 
+var cooldown_over: bool = true
+
 # Dictionary keys must be matching the above boolean var names
 var conditions : Dictionary = {
 	"cond_match_input" : func() -> bool: return false if input_required not in input else true,
@@ -57,8 +61,6 @@ var conditions : Dictionary = {
 		else:
 			return true
 ]
-
-var cooldown_over: bool = true
 
 func _physics_process(_delta: float) -> void:
 	for context: Callable in contexts:
@@ -91,7 +93,9 @@ func set_current_action() -> void:
 		return
 
 	input.clear()
+
 	_enter()
+
 	current_action._exit()
 	current_action = self
 
@@ -104,6 +108,8 @@ func set_current_action() -> void:
 	if current_action.cond_special:
 		specials_count.append(self)
 
+	entered.emit()
+
 	if current_action.cond_cooldown:
 		cooldown_over = false
 		var timer: Timer = Utilities.add_timer(true, cooldown_time)
@@ -115,6 +121,8 @@ func set_current_action() -> void:
 		var timer: Timer = Utilities.add_timer(true, player_stats.priority_buffer)
 		await timer.timeout
 		priority_time = false
+
+
 
 func _check() -> bool:
 	return true

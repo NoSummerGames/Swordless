@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerStatsResource" load_steps=2 format=3 uid="uid://b40fpy6xu1hyh"]
 
-[ext_resource type="Script" path="res://player/resources/player_stats/player_stats_res.gd" id="1_1buy4"]
+[ext_resource type="Script" uid="uid://515dggxu7kmx" path="res://player/resources/player_stats/player_stats_res.gd" id="1_1buy4"]
 
 [resource]
 script = ExtResource("1_1buy4")
@@ -14,12 +14,13 @@ min_slope_speed = 0.6
 max_specials = 2
 coyote_time = 0.2
 max_step_height = 0.5
-step_acceleration = 10.0
-step_up_energy = 2.0
+stairs_speed = 0.5
 input_buffer = 5
 floor_detection_margin = 0.5
 freeze_scale = 0.2
 freeze_duration = 0.7
+raw_lateral_input = true
+death_accuracy = 0.8
 jump_strength = 13
 double_jump_strength = 13
 dash_strength = 150
@@ -49,3 +50,5 @@ camera_speed = 5.0
 strafe_camera_speed = 20.0
 camera_height = 2.0
 camera_pitch = 0.0
+camera_fov = 85
+fov_reactivity = 4

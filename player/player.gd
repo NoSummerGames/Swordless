@@ -30,6 +30,7 @@ var on_floor: bool = true
 
 var floor_normal: Vector3 = Vector3.UP
 
+@onready var body: MeshInstance3D = %_PlayerMesh
 @onready var area: Area3D = %PlayerArea
 @onready var coyote_timer: Timer = %CoyoteTimer
 @onready var speed: float = player_stats.speed:

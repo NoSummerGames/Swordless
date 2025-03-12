@@ -1,11 +1,12 @@
 @tool
 extends Control
 
-signal csg_added(csg: CSGShape3D)
-signal material_changed(mat: StandardMaterial3D)
-signal part_added
 signal part_tester_opened
 signal level_tester_opened
+signal part_added
+signal seal_added
+signal csg_added(csg: CSGShape3D)
+signal material_changed(mat: StandardMaterial3D)
 
 @export var create_buttons: Control
 @export var material_buttons: Control
@@ -57,8 +58,8 @@ var index : Dictionary = {
 
 	"ExitArea": {"type": ExitArea,
 			"attributes" : {}
-			},
-	}
+			}
+		}
 
 func _enter_tree() -> void:
 	for child in material_buttons.get_children():
@@ -73,10 +74,13 @@ func _on_create_button_pressed(button) -> void:
 		"Level Tester":
 			emit_signal("level_tester_opened")
 			return
+		"Part":
+			emit_signal("part_added")
+			return
+		"Seal":
+			emit_signal("seal_added")
+			return
 
-	if index[button]["type"] == Part:
-		emit_signal("part_added")
-		return
 
 	var object: Node3D = index[button]["type"].new()
 	for property in index[button]["attributes"].keys():

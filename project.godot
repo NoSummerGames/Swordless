@@ -41,6 +41,8 @@ gdscript/warnings/unsafe_call_argument=1
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=1
+window/size/initial_position_type=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -55,6 +57,7 @@ enabled=PackedStringArray("res://addons/csg_toolbox/plugin.cfg", "res://addons/p
 [file_customization]
 
 folder_colors={
+"res://gameplay/": "orange",
 "res://globals/": "purple",
 "res://hub/": "blue",
 "res://levels/": "red",
@@ -189,3 +192,4 @@ hub_activate={
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_3d=1
 anti_aliasing/screen_space_roughness_limiter/enabled=false
+textures/light_projectors/filter=4

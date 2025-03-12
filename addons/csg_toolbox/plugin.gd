@@ -14,6 +14,7 @@ func _enter_tree() -> void:
 	toolbox.part_added.connect(_on_part_added)
 	toolbox.part_tester_opened.connect(_on_part_tester_opened)
 	toolbox.level_tester_opened.connect(_on_level_tester_opened)
+	toolbox.seal_added.connect(_on_seal_added)
 	make_bottom_panel_item_visible(toolbox)
 
 func _exit_tree() -> void:
@@ -54,6 +55,17 @@ func _on_part_added() -> void:
 
 	dialog.file_selected.connect(_on_save_confirmed.bind(scene))
 	EditorInterface.popup_dialog_centered_ratio(dialog, 0.4)
+
+func _on_seal_added() -> void:
+	var seal_scene: PackedScene = load("res://gameplay/seal.tscn")
+	var seal: Seal = seal_scene.instantiate()
+	var current_scene = EditorInterface.get_edited_scene_root()
+	if current_scene != null and current_scene is Part:
+		current_scene.add_child(seal)
+		seal.owner = current_scene
+		EditorInterface.get_selection().clear()
+		EditorInterface.get_selection().add_node(seal)
+
 
 func _on_save_confirmed(path: String, scene: PackedScene):
 	var error = ResourceSaver.save(scene, path)

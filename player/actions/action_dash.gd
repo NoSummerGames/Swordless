@@ -3,6 +3,7 @@ extends Action
 
 var velocity_cached: Vector3
 var dash: DashObject
+var dash_timer: Timer
 
 func _enter() -> void:
 	velocity_cached = player.velocity
@@ -14,8 +15,8 @@ func _enter() -> void:
 
 	add_child(dash)
 
-	var timer: Timer = Utilities.add_timer(true, player_stats.dash_duration)
-	await timer.timeout
+	dash_timer = Utilities.add_timer(true, player_stats.dash_duration)
+	await dash_timer.timeout
 	if is_instance_valid(dash):
 		dash.queue_free()
 	player.velocity = velocity_cached

@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=3 uid="uid://duwp5c2s20jin"]
+
+[ext_resource type="Script" uid="uid://ddph0w04cpf8k" path="res://gameplay/src/seal.gd" id="1_x8xnm"]
+[ext_resource type="Material" uid="uid://dvdjhf0o4c2jv" path="res://gameplay/debug/seal_broke.tres" id="3_bedd7"]
+[ext_resource type="Material" uid="uid://d0s3oemoojl24" path="res://gameplay/debug/seal_unbroke.tres" id="3_nr805"]
+[ext_resource type="Script" uid="uid://cto710swmwva6" path="res://gameplay/debug/seal_debug.gd" id="4_68k5h"]
+[ext_resource type="PackedScene" uid="uid://cn72jojvn21rn" path="res://gameplay/debug/fractured_sphere.tscn" id="6_68k5h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nr805"]
+size = Vector3(1, 1.5, 3.10327)
+
+[sub_resource type="Animation" id="Animation_68k5h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SealDebug:seal_unbroke_material:albedo_texture:noise:fractal_weighted_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SealDebug:seal_unbroke_material:albedo_texture:noise:fractal_gain")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SealDebug:seal_unbroke_material:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_nr805"]
+resource_name = "break"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SealDebug:seal_broke_material:albedo_texture:noise:fractal_weighted_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.594603, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SealDebug:seal_broke_material:albedo_texture:noise:fractal_gain")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SealDebug:seal_broke_material:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.4822, 1),
+"update": 0,
+"values": [1.0, 4.0]
+}
+
+[sub_resource type="Animation" id="Animation_mhdi1"]
+resource_name = "idle"
+length = 20.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhdi1"]
+_data = {
+&"RESET": SubResource("Animation_68k5h"),
+&"break": SubResource("Animation_nr805"),
+&"idle": SubResource("Animation_mhdi1")
+}
+
+[node name="Seal" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_x8xnm")
+metadata/_custom_type_script = "uid://ddph0w04cpf8k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.769312)
+shape = SubResource("BoxShape3D_nr805")
+debug_fill = false
+
+[node name="SealDebug" type="Node" parent="." node_paths=PackedStringArray("seal", "meshes", "debug_anim_player")]
+script = ExtResource("4_68k5h")
+seal = NodePath("..")
+meshes = NodePath("../fractured_sphere")
+seal_unbroke_material = ExtResource("3_nr805")
+seal_broke_material = ExtResource("3_bedd7")
+debug_anim_player = NodePath("../AnimationDebug")
+
+[node name="AnimationDebug" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mhdi1")
+}
+speed_scale = 4.0
+
+[node name="fractured_sphere" parent="." instance=ExtResource("6_68k5h")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

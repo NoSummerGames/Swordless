@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmedatsx87v4o"]
+[gd_scene load_steps=11 format=3 uid="uid://bmedatsx87v4o"]
 
-[ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester.gd" id="1_1vda8"]
-[ext_resource type="PackedScene" uid="uid://cotimn8ya0oc3" path="res://utils/debug/test_scenes/lateral_slopes.tscn" id="2_g33i2"]
+[ext_resource type="Script" uid="uid://d38dc48ab4vq0" path="res://addons/csg_toolbox/testers/src/part_tester.gd" id="1_1vda8"]
+[ext_resource type="PackedScene" uid="uid://cu6186vwfi58m" path="res://assets/tscn/2nd_iteration/00_pool/00_p01_hole_c.tscn" id="2_boggy"]
+[ext_resource type="PackedScene" uid="uid://ct34tj7n2k4qu" path="res://addons/csg_toolbox/starting_block.tscn" id="3_onucc"]
 [ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="4_g4c6e"]
-[ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/part_tester_gen.gd" id="5_boggy"]
+[ext_resource type="Script" uid="uid://dy1h2tbjuek2k" path="res://addons/csg_toolbox/testers/src/part_tester_gen.gd" id="5_boggy"]
 [ext_resource type="PackedScene" uid="uid://cpkdf2w8emggg" path="res://utils/restart.tscn" id="5_g33i2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g33i2"]
@@ -19,17 +20,18 @@ sky = SubResource("Sky_boggy")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Curve3D" id="Curve3D_g33i2"]
+[sub_resource type="Curve3D" id="Curve3D_boggy"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -94.5105),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.25684, 0, 0, 0, 0, 0, 0, 0, 0, -2.51368, 0, 0, 0, 0, 0, 0, 0, 0, -3.77052, 0, 0, 0, 0, 0, 0, 0, 0, -5.02736, 0, 0, 0, 0, 0, 0, 0, 0, -6.2842, 0, 0, 0, 0, 0, 0, 0, 0, -7.54104, 0, 0, 0, 0, 0, 0, 0, 0, -8.79788, 0, 0, 0, 0, 0, 0, 0, 0, -10.0547, 0, 0, 0, 0, 0, 0, 0, 0, -11.3116, 0, 0, 0, 0, 0, 0, 0, 0, -12.5684, 0, 0, 0, 0, 0, 0, 0, 0, -13.8252, 0, 0, 0, 0, 0, 0, 0, 0, -15.0821, 0, 0, 0, 0, 0, 0, 0, 0, -16.3389, 0, 0, 0, 0, 0, 0, 0, 0, -17.5958, 0, 0, 0, 0, 0, 0, 0, 0, -18.8526, 0, 0, 0, 0, 0, 0, 0, 0, -20.1094, 0, 0, 0, 0, 0, 0, 0, 0, -21.3663, 0, 0, 0, 0, 0, 0, 0, 0, -22.6231, 0, 0, 0, 0, 0, 0, 0, 0, -23.88, 0, 0, 0, 0, 0, 0, 0, 0, -25.1368, 0, 0, 0, 0, 0, 0, 0, 0, -89.5368),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 3
+point_count = 23
 
 [node name="PartTester" type="Node3D"]
 script = ExtResource("1_1vda8")
-part = ExtResource("2_g33i2")
-part_scale = 5
+part = ExtResource("2_boggy")
+starting_blocks = 20
+starting_block_scene = ExtResource("3_onucc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -47,7 +49,7 @@ path = NodePath("../PartGenerator")
 
 [node name="PartGenerator" type="Path3D" parent="." node_paths=PackedStringArray("part_tester")]
 unique_name_in_owner = true
-curve = SubResource("Curve3D_g33i2")
+curve = SubResource("Curve3D_boggy")
 script = ExtResource("5_boggy")
 part_tester = NodePath("..")
-metadata/_custom_type_script = ExtResource("5_boggy")
+metadata/_custom_type_script = "uid://dy1h2tbjuek2k"

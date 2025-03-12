@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://b40fpy6xu1hyh" path="res://player/resources/player_stats/stats_default.tres" id="2_x7c3f"]
 [ext_resource type="Shape3D" uid="uid://bkpxc14slisbp" path="res://player/resources/player_slide_collision.tres" id="3_bjvpn"]
 [ext_resource type="Shader" uid="uid://c761ooqye53uo" path="res://_placeholder/outline.gdshader" id="3_c35mf"]
-[ext_resource type="BoxMesh" uid="uid://6mcb2yyre37e" path="res://player/resources/player_stats/player_slide_mesh.tres" id="3_g4c7l"]
+[ext_resource type="BoxMesh" uid="uid://6mcb2yyre37e" path="res://player/resources/player_slide_mesh.tres" id="3_g4c7l"]
 [ext_resource type="Script" uid="uid://bhadpot0vvtjx" path="res://player/components/player_camera_component.gd" id="3_ovvsi"]
 [ext_resource type="Script" uid="uid://brqwxltex16if" path="res://player/components/player_path_component.gd" id="4_l8spp"]
 [ext_resource type="Script" uid="uid://blptioevt15k" path="res://player/components/player_input_component.gd" id="5_2m8xq"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://bmpo3w7vaus5e" path="res://player/actions/action_double_jump.gd" id="8_liewp"]
 [ext_resource type="Script" uid="uid://cane52pe40vn7" path="res://player/actions/action_jump.gd" id="8_re7go"]
 [ext_resource type="Script" uid="uid://bxdmr1fc6wvkr" path="res://player/actions/action_glide.gd" id="8_rreng"]
-[ext_resource type="Script" uid="uid://xmyels6asyes" path="res://player/_player_component_3D.gd" id="8_s7qer"]
 [ext_resource type="Script" uid="uid://dus22nolic7d1" path="res://player/components/player_death_component.gd" id="9_bjvpn"]
 [ext_resource type="Script" uid="uid://jqp45nypg1ve" path="res://player/actions/action_run.gd" id="10_8wi00"]
 [ext_resource type="Script" uid="uid://gx313oguv4c7" path="res://player/actions/action_dash.gd" id="10_bda80"]
@@ -24,10 +23,11 @@
 [ext_resource type="Script" uid="uid://di08v5jw3g0hl" path="res://player/actions/action_dive.gd" id="15_11odp"]
 [ext_resource type="Script" uid="uid://ht3ev0xv60tr" path="res://utils/debug/debug_emitter.gd" id="18_mlrfn"]
 [ext_resource type="Shape3D" uid="uid://cptn8jku3orvv" path="res://player/resources/player_default_collision.tres" id="19_s7qer"]
-[ext_resource type="BoxMesh" uid="uid://dlq8nd3rpswqq" path="res://player/resources/player_stats/player_default_mesh.tres" id="21_knn7v"]
+[ext_resource type="BoxMesh" uid="uid://dlq8nd3rpswqq" path="res://player/resources/player_default_mesh.tres" id="21_knn7v"]
+[ext_resource type="Script" uid="uid://2h2lto8jdri2" path="res://player/components/seal_breaker_component.gd" id="26_7pqkx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
-size = Vector3(1, 1.6, 1)
+size = Vector3(1, 1.6, 0.709961)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_65viv"]
 render_priority = 0
@@ -57,12 +57,15 @@ player_stats = ExtResource("2_x7c3f")
 
 [node name="PlayerArea" type="Area3D" parent="."]
 unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
 
 [node name="AreaCollision" type="CollisionShape3D" parent="PlayerArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("BoxShape3D_bry1c")
 
 [node name="_PlayerMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 mesh = ExtResource("21_knn7v")
 
@@ -97,12 +100,20 @@ script = ExtResource("5_2m8xq")
 [node name="FreezeComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("7_bjvpn")
-metadata/_custom_type_script = ExtResource("8_s7qer")
+metadata/_custom_type_script = "uid://xmyels6asyes"
 
 [node name="DeathComponent" type="Node" parent="." node_paths=PackedStringArray("input_component")]
 script = ExtResource("9_bjvpn")
 input_component = NodePath("../InputComponent")
-metadata/_custom_type_script = ExtResource("8_s7qer")
+metadata/_custom_type_script = "uid://xmyels6asyes"
+
+[node name="SealBreakerComponent" type="Node" parent="." node_paths=PackedStringArray("player_area", "actions_controller", "freeze_component", "breaking_actions")]
+script = ExtResource("26_7pqkx")
+player_area = NodePath("../PlayerArea")
+actions_controller = NodePath("../ActionsController")
+freeze_component = NodePath("../FreezeComponent")
+breaking_actions = [NodePath("../ActionsController/Strafe"), NodePath("../ActionsController/Dash"), NodePath("../ActionsController/Dive"), NodePath("../ActionsController/Jump"), NodePath("../ActionsController/DoubleJump"), NodePath("../ActionsController/WallJump")]
+metadata/_custom_type_script = "uid://xmyels6asyes"
 
 [node name="ActionsController" type="Node" parent="." node_paths=PackedStringArray("input_component", "air_default_action", "ground_default_action")]
 script = ExtResource("8_5ao6g")
@@ -151,6 +162,7 @@ script = ExtResource("8_liewp")
 space = 0
 prioritary = true
 speed_factor = 0.7
+repeatable = true
 cond_match_input = true
 cond_in_air = true
 cond_special = true
@@ -164,6 +176,7 @@ prioritary = true
 speed_factor = 0.6
 exclusive = true
 disable_sprint = true
+repeatable = true
 cond_match_input = true
 cond_special = true
 cond_cooldown = true
@@ -179,6 +192,7 @@ prioritary = true
 speed_factor = 0.6
 exclusive = true
 disable_sprint = true
+repeatable = true
 cond_match_input = true
 cond_special = true
 cond_cooldown = true

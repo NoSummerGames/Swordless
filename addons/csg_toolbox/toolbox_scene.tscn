@@ -1,9 +1,9 @@
 [gd_scene load_steps=30 format=3 uid="uid://bdl3tewmdsd2r"]
 
-[ext_resource type="Script" path="res://addons/csg_toolbox/csg_toolbox.gd" id="1_bnlhj"]
+[ext_resource type="Script" uid="uid://5bphx3jje8go" path="res://addons/csg_toolbox/csg_toolbox.gd" id="1_bnlhj"]
 [ext_resource type="Texture2D" uid="uid://h8w2sxy20iq" path="res://addons/csg_toolbox/icons/CSGBox3D.svg" id="2_0qsy0"]
 [ext_resource type="Material" uid="uid://dcbs7m32su05y" path="res://addons/csg_toolbox/materials/dark.tres" id="2_8p6of"]
-[ext_resource type="Script" path="res://addons/csg_toolbox/create_button.gd" id="3_f47bv"]
+[ext_resource type="Script" uid="uid://briteo2s1xef5" path="res://addons/csg_toolbox/create_button.gd" id="3_f47bv"]
 [ext_resource type="Material" uid="uid://brucj41ccrmoh" path="res://addons/csg_toolbox/materials/green.tres" id="3_sc3b3"]
 [ext_resource type="Texture2D" uid="uid://crp0iedwx1fhc" path="res://addons/csg_toolbox/icons/CSGCylinder3D.svg" id="4_3aqfb"]
 [ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="4_fp44d"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://lx8jqi4bq08y" path="res://addons/csg_toolbox/icons/Stairs.svg" id="9_ueggj"]
 [ext_resource type="Texture2D" uid="uid://b0bvwkx6n0bxs" path="res://addons/csg_toolbox/icons/Part.svg" id="19_7xnql"]
 [ext_resource type="Texture2D" uid="uid://bpv3bdu6m4f44" path="res://addons/csg_toolbox/icons/ExitArea.svg" id="19_a14ms"]
-[ext_resource type="Script" path="res://addons/csg_toolbox/material_button.gd" id="19_dn7pd"]
+[ext_resource type="Script" uid="uid://br2mdkj6puh2e" path="res://addons/csg_toolbox/material_button.gd" id="19_dn7pd"]
 [ext_resource type="Texture2D" uid="uid://btq6qi4v6xejy" path="res://addons/csg_toolbox/materials/png/green.png" id="21_7v6me"]
 [ext_resource type="Texture2D" uid="uid://iegyrtt8xhdn" path="res://addons/csg_toolbox/materials/png/light.png" id="22_oox5w"]
 [ext_resource type="Texture2D" uid="uid://b8ecp21mrepog" path="res://addons/csg_toolbox/materials/png/orange.png" id="23_gu26u"]
@@ -139,6 +139,15 @@ type = &"Combiner"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
+
+[node name="Seal" type="Button" parent="HBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Seal"
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("3_f47bv")
+type = &"Seal"
 
 [node name="ExitArea" type="Button" parent="HBoxContainer"]
 auto_translate_mode = 1

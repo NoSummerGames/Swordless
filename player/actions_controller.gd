@@ -1,6 +1,8 @@
 class_name ActionsController
 extends AbstractAction
 
+signal action_entered
+
 @export var input_component: PlayerInputComponent
 @export var air_default_action: Action
 @export var ground_default_action: Action
@@ -18,6 +20,8 @@ func _init() -> void:
 func _ready() -> void:
 	for action: Action in get_children():
 		player.actions.append(action)
+		action.entered.connect(action_entered.emit.bind(action))
+
 	current_action = default_action
 	player.current_action = default_action
 	input_component.command_input.connect(_on_command_input)
@@ -33,7 +37,6 @@ func _physics_process(delta: float) -> void:
 
 	if input.size() > player_stats.input_buffer :
 		input.pop_front()
-
 
 func _on_command_input(_input: Data.Actions, _action_param: Data.ActionParams) -> void:
 	input.append(_input)

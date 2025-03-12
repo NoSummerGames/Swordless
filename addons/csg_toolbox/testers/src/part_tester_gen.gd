@@ -24,15 +24,15 @@ func _create_level(part_scene: PackedScene):
 	curve.add_point(Vector3.BACK)
 	curve.add_point(Vector3.ZERO)
 
-	var meshes: Array
+	var junctions_meshes: Array
 
 	if is_instance_valid(part_tester.starting_block_scene):
 		for i in part_tester.starting_blocks:
-			meshes.append(await load_part(part_tester.starting_block_scene))
+			junctions_meshes.append(await load_part(part_tester.starting_block_scene))
 
-	meshes.append(await load_part(part_scene))
+	load_part(part_scene)
 
-	for i in meshes:
+	for i in junctions_meshes:
 		for child: Node in Utilities.get_all_children(i):
 			if child is MeshInstance3D:
 				child.create_trimesh_collision()
@@ -75,8 +75,8 @@ func _calculate_spatial_bounds(parent : Node3D, exclude_top_level_transform: boo
 		bounds = _parent.get_aabb();
 
 	for i: int in range(parent.get_child_count()):
-		var child : Node3D = parent.get_child(i)
-		if child:
+		var child : Node = parent.get_child(i)
+		if child is Node3D:
 			var child_bounds : AABB = _calculate_spatial_bounds(child, false)
 			if bounds.size == Vector3.ZERO && parent:
 				bounds = child_bounds

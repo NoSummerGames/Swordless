@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GameRules" load_steps=2 format=3 uid="uid://ddij1d8ycsfqk"]
+
+[ext_resource type="Script" uid="uid://cpjk80us1rx11" path="res://gameplay/resources/game_rules_res.gd" id="1_p8ij1"]
+
+[resource]
+resource_name = "DEFAULT"
+script = ExtResource("1_p8ij1")
+metadata/_custom_type_script = ExtResource("1_p8ij1")

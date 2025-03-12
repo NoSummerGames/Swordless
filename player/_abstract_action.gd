@@ -1,6 +1,7 @@
 class_name AbstractAction
 extends PlayerComponent
 
+
 static var input: Array[Data.Actions]
 
 static var current_action: Action
