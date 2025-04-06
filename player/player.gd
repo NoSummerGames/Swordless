@@ -45,7 +45,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
-
 		var floor_angle: float = clamp(1.0 - get_floor_normal().z, player_stats.min_slope_speed, 1.0)
 
 		if not is_on_floor():
@@ -56,7 +55,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = desired_vel.z
 		velocity.x = desired_vel.x
 
-		velocity = test_stairs_up(delta)
+		if test_stairs_up(delta) == true:
+			velocity *= player_stats.stairs_speed
 
 	move_and_slide()
 
@@ -82,7 +82,7 @@ func is_almost_on_floor() -> bool:
 	on_floor = false
 	return false
 
-func test_stairs_up(delta: float) -> Vector3:
+func test_stairs_up(delta: float) -> bool:
 	# Minor rework of "Stairs Character" script by Andicraft
 	var motion_velocity: Vector3 = direction * speed * delta
 
@@ -94,12 +94,12 @@ func test_stairs_up(delta: float) -> Vector3:
 	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
 	if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
 		# No wall was hit
-		return velocity
+		return false
 
 	var angle: float = result.get_collision_normal(0).angle_to(global_basis.y)
 	if angle < floor_max_angle:
 		# The wall was actually a slope
-		return velocity
+		return false
 
 	# Move to collision
 	var remainder: Vector3 = result.get_remainder()
@@ -143,7 +143,7 @@ func test_stairs_up(delta: float) -> Vector3:
 
 	var moved_down: bool = PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
 	if moved_down == false:
-		return velocity
+		return false
 	motion_transform = motion_transform.translated(result.get_travel())
 
 	# Check if the step is not a wall
@@ -155,16 +155,16 @@ func test_stairs_up(delta: float) -> Vector3:
 			parameters.from = motion_transform
 			parameters.motion = deviation
 			if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
-				return velocity
+				return false
 			else:
 				motion_transform = motion_transform.translated(result.get_travel())
 
 	global_position += (motion_transform.origin - global_position) * player_stats.stairs_speed
-	return velocity * player_stats.stairs_speed
+	return true
 
 func _on_area_entered(area_entered: Area3D) -> void:
 	if area_entered is ExitArea:
-		emit_signal("reached_exit")
+		reached_exit.emit()
 
 func _on_player_exited_path() -> void:
-	emit_signal("exited_path")
+	exited_path.emit()
