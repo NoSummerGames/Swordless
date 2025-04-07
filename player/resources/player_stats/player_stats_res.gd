@@ -49,6 +49,7 @@ var current_action: Action
 @export_range(0.5, 1) var wall_jump_angle_range: float = 0.5
 @export_range(0,1) var wall_jump_input_tolerance: float = 0.5
 @export var diagonal_strafe: bool = true
+@export var local_gravity: bool = true
 
 
 @export_group("Path")
@@ -63,3 +64,4 @@ var current_action: Action
 @export_range(-0.5, 0.5) var camera_pitch: float = 0
 @export_range(50, 170, 5) var camera_fov: int = 85
 @export var fov_reactivity: int = 4
+@export var lock_camera_rotation: bool = true

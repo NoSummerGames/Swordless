@@ -31,7 +31,8 @@ func _physics_process(delta: float) -> void:
 		camera.fov = lerp(camera.fov, death_fov, player_stats.fov_reactivity * delta)
 
 	# Lock Z axis camera rotation
-	target.global_rotation.z = 0
+	if player_stats.lock_camera_rotation:
+		target.global_rotation.z = 0
 
 	# Lerp between camera position and camera_marker
 	camera.global_transform = camera.global_transform.interpolate_with(target.global_transform, player_stats.camera_speed * delta)

@@ -29,9 +29,12 @@ func _physics_process(delta: float) -> void:
 		path_up_vector = player.floor_normal
 		player.up_direction = lerp(previous_up_direction, path_up_vector, player_stats.ground_acceleration * delta)
 	else:
-		var closest_offset: float = path.curve.get_closest_offset(path.to_local(player.global_position))
-		path_up_vector = path.curve.sample_baked_up_vector(closest_offset)
-		player.up_direction = lerp(previous_up_direction, path_up_vector, player_stats.air_acceleration * delta)
+		if player_stats.local_gravity:
+			player.up_direction = previous_up_direction
+		else:
+			var closest_offset: float = path.curve.get_closest_offset(path.to_local(player.global_position))
+			path_up_vector = path.curve.sample_baked_up_vector(closest_offset)
+			player.up_direction = lerp(previous_up_direction, path_up_vector, player_stats.air_acceleration * delta)
 
 	previous_up_direction = player.up_direction
 
