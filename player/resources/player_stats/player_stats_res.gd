@@ -4,7 +4,7 @@ extends Resource
 var current_action: Action
 
 @export_group("Velocity")
-@export var speed: int = 30
+@export var speed: int = 25
 @export var sprint_speed: int = 40
 @export var lateral_factor: float = 0.6
 @export var gravity: float = 45
@@ -26,17 +26,20 @@ var current_action: Action
 
 @export_group("Actions")
 @export var jump_strength: int = 13
+@export var jump_time: float = 0.5
 @export var double_jump_strength: int = 13
 @export_range(100, 600) var dash_strength: int = 150
 @export var strafe_strength: int = 40
 @export var dash_duration: float = 0.1
 @export var dash_sensitivity: float = 0.7
 @export var dash_acceleration: float = 0.5
-@export var wall_jump_strength: int = 10
+@export var wall_jump_strength: int = 13
+@export var wall_jump_time: float = 0.5
 @export var wall_jump_init_acceleration: float = 80
 @export var wall_jump_deceleration: float = 0.8
 @export var slide_duration: float = 0.6
 @export var glide_strength: float = 4.0
+@export var glide_gravity: float = 25
 @export var glide_acceleration: float = 0.5
 @export var max_glide_duration: float = 0.7
 @export var dive_strength: float = 40

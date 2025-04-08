@@ -15,6 +15,8 @@ var actions: Array[Action]
 
 var velocity_overridden: bool = false
 var direction: Vector3
+var gravity: Vector3 = Vector3.DOWN
+var action_velocity: Vector3 = Vector3.ZERO
 var desired_vel: Vector3
 var acceleration: float:
 	get:
@@ -47,24 +49,21 @@ func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
 		var floor_angle: float = clamp(1.0 - get_floor_normal().z, player_stats.min_slope_speed, 1.0)
 
-		if not is_on_floor():
-			velocity.y -= player_stats.gravity * delta
+		desired_vel = lerp(desired_vel, direction.normalized() * Vector3(1,0,1) * speed * floor_angle, acceleration * delta)
 
-		desired_vel.z = lerp(desired_vel.z, direction.normalized().z * speed * floor_angle, acceleration * delta)
-		desired_vel.x = lerp(desired_vel.x, direction.normalized().x * speed, acceleration * delta)
-		velocity.z = desired_vel.z
-		velocity.x = desired_vel.x
+		velocity = desired_vel - gravity + action_velocity
 
 		if test_stairs_up(delta) == true:
 			velocity *= player_stats.stairs_speed
 
 	move_and_slide()
-
+	action_velocity = Vector3.ZERO
 
 func is_almost_on_floor() -> bool:
 	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
 	parameters.from = global_transform
-	parameters.motion = Vector3(0, -player_stats.floor_detection_margin, 0)
+	parameters.motion = - global_basis.y * player_stats.floor_detection_margin
+
 	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
 	PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
 
