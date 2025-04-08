@@ -63,6 +63,7 @@ var current_action: Action
 @export_group("Camera")
 @export var camera_speed: float = 5.0
 @export var strafe_camera_speed: float = 20
+@export var camera_min_distance: float = 1.0
 @export var camera_height: float = 2
 @export_range(-0.5, 0.5) var camera_pitch: float = 0
 @export_range(50, 170, 5) var camera_fov: int = 85

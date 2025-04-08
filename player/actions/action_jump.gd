@@ -22,6 +22,3 @@ func _execute(delta: float) -> void:
 		player.action_velocity = player.up_direction * player_stats.jump_strength * strength
 	else:
 		_exit()
-
-	#if Input.is_action_just_released("jump") and not timer.is_stopped():
-		#player.velocity.y = lerpf(player.velocity.y, player.direction.y, player_stats.half_jump_deceleration * delta)

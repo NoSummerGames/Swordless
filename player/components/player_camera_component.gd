@@ -11,6 +11,7 @@ var initial_fov: float
 var _dead: bool = false
 
 func _ready() -> void:
+	target.position.z = player_stats.camera_min_distance
 	initial_transform = target.global_transform
 	initial_fov = player_stats.camera_fov
 	camera.fov = initial_fov
