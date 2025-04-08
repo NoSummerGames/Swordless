@@ -1,3 +1,4 @@
+class_name ActionSlide
 extends Action
 
 var timer: Timer
@@ -18,10 +19,12 @@ func _enter() -> void:
 	timer = Utilities.add_timer(true, player_stats.slide_duration)
 
 func _execute(_delta: float) -> void:
+	done = false
 	if is_instance_valid(timer):
 		await timer.timeout
 
 	if _test_height() == false:
+		exclusive = true
 		return
 
 	_exit()

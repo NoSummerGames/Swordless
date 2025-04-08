@@ -210,7 +210,6 @@ slide_mesh = ExtResource("3_g4c7l")
 default_mesh = ExtResource("21_knn7v")
 prioritary = true
 speed_factor = 0.7
-exclusive = true
 disable_sprint = true
 cond_match_input = true
 cond_strictly_on_ground = true

@@ -92,6 +92,9 @@ func set_current_action() -> void:
 	if _check() == false:
 		return
 
+	if player.current_action is ActionSlide and player.current_action.done == false and self.cond_match_input == false:
+		return
+
 	input.clear()
 
 	_enter()
