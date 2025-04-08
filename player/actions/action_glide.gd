@@ -1,16 +1,15 @@
 extends Action
 
+var timer: Timer
+
 func _enter() -> void:
-	var timer: Timer = Utilities.add_timer(true, player_stats.max_glide_duration)
+	timer = Utilities.add_timer(true, player_stats.max_glide_duration)
 	await timer.timeout
 	_exit()
 
 func _execute(delta: float) -> void:
-	match action_param:
-		Data.ActionParams.START:
-			player.velocity.y = lerpf(player.velocity.y, player_stats.glide_strength, player_stats.glide_acceleration * delta)
-		Data.ActionParams.END:
-			_exit()
+	player.gravity += player.up_direction * player_stats.glide_gravity * delta
 
 	if player.is_almost_on_floor() == true:
+		timer.queue_free()
 		_exit()
