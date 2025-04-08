@@ -1,0 +1,177 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq75wk74j05hp"]
+
+[ext_resource type="Script" uid="uid://bdtfy37yfo71k" path="res://levels/src/part.gd" id="1_w4xmo"]
+[ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="2_gpjdf"]
+[ext_resource type="Material" uid="uid://brucj41ccrmoh" path="res://addons/csg_toolbox/materials/green.tres" id="5_gpjdf"]
+
+[node name="Part" type="Node3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+script = ExtResource("1_w4xmo")
+
+[node name="Floor7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000500107, -11)
+use_collision = true
+size = Vector3(3, 0.001, 22)
+material = ExtResource("2_gpjdf")
+
+[node name="@CSGTorus3D@39552" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22, -22.56)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.9995, -35.6)
+use_collision = true
+size = Vector3(3, 0.001, 30)
+material = ExtResource("2_gpjdf")
+
+[node name="Floor2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.9995, -55.6)
+use_collision = true
+size = Vector3(3, 0.001, 20)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39552" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.22, -53.16)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.5995, -72.1)
+use_collision = true
+size = Vector3(3, 0.001, 25)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39553" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.42, -69.16)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.9995, -92.1)
+use_collision = true
+size = Vector3(3, 0.001, 25)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39554" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.82, -89.16)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.3995, -113.1)
+use_collision = true
+size = Vector3(3, 0.001, 25)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39555" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -19.22, -110.16)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27.7995, -135.1)
+use_collision = true
+size = Vector3(3, 0.001, 25)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39557" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23.62, -132.16)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.1995, -157.7)
+use_collision = true
+size = Vector3(3, 0.001, 25)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39558" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -28.02, -155.16)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -36.5995, -187.3)
+use_collision = true
+size = Vector3(3, 0.001, 25)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39559" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32.42, -178.76)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Floor10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40.9995, -217.9)
+use_collision = true
+size = Vector3(3, 0.001, 25)
+material = ExtResource("2_gpjdf")
+
+[node name="_CSGTorus3D_39560" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -36.82, -209.36)
+use_collision = true
+inner_radius = 1.017
+outer_radius = 1.557
+smooth_faces = false
+material = ExtResource("5_gpjdf")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0.4, -22)
+text = "0m"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -4.8, -50.6)
+text = "25m"
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -9.8, -65.6)
+text = "50m"
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -14.4, -84.6)
+text = "75m"
+
+[node name="Label3D5" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -18.6, -104.4)
+text = "100m"
+
+[node name="Label3D6" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -23, -125.6)
+text = "125m"
+
+[node name="Label3D7" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -27.6, -147.6)
+text = "150m"
+
+[node name="Label3D8" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -31.8, -170.2)
+text = "175m"
+
+[node name="Label3D9" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -36.2, -199.6)
+text = "200m"

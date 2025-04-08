@@ -1,0 +1,148 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch4t08ggykb0a"]
+
+[ext_resource type="Script" uid="uid://bdtfy37yfo71k" path="res://levels/src/part.gd" id="1_am18p"]
+[ext_resource type="Material" uid="uid://dtf2kyct7iire" path="res://addons/csg_toolbox/materials/light.tres" id="2_feir0"]
+[ext_resource type="Material" uid="uid://dcbs7m32su05y" path="res://addons/csg_toolbox/materials/dark.tres" id="3_8tp8a"]
+
+[node name="Part" type="Node3D"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+script = ExtResource("1_am18p")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000499994, -40)
+use_collision = true
+size = Vector3(3, 0.001, 80)
+material = ExtResource("2_feir0")
+
+[node name="@CSGBox3D@30321" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -11.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30321" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -11.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30322" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -16.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30323" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -21.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30324" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -21.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30325" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -25.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30326" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -32.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30327" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -32.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30328" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -35.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30329" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -41.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30330" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -41.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30331" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -43.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30332" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -49.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30333" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -49.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30334" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -51)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30335" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -57.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30336" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -57.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30337" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -58.9)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30338" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -65.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30339" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -65.5)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="_CSGBox3D_30340" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -66.8)
+use_collision = true
+material = ExtResource("3_8tp8a")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -11)
+text = "20m"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -21)
+text = "15m"
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -32)
+text = "10m"
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -41)
+text = "5m"
+
+[node name="Label3D5" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -49)
+text = "2.5m"
+
+[node name="Label3D6" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -57)
+text = "2m"
+
+[node name="Label3D7" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, -65)
+text = "1.5m"
