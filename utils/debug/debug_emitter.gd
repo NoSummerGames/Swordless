@@ -8,7 +8,6 @@ extends Node
 func _ready() -> void:
 	DebugUi.current_level = level
 
-	player.died.connect(func(): DebugUi.death_count += 1)
 
 	for i: String in nodes.keys():
 		var path: NodePath = nodes[i]

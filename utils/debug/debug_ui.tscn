@@ -45,32 +45,37 @@ size_flags_horizontal = 0
 
 [node name="SpeedLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Speed :"
 label_settings = ExtResource("4_fmf0a")
 
 [node name="AltitudeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Speed :"
 label_settings = ExtResource("4_fmf0a")
 
 [node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Speed :"
 label_settings = ExtResource("4_fmf0a")
 
-[node name="DeathLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="RunLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 2
-text = "Deaths : 0"
+text = "Runs : 0"
 label_settings = ExtResource("4_fmf0a")
 vertical_alignment = 2
 
 [node name="FPSLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 10
 text = "FPS :"

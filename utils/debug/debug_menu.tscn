@@ -262,16 +262,16 @@ expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "timer"
 
-[node name="DeathCount" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
+[node name="RunCounter" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/DeathCount"]
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/RunCounter"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
-text = "Deaths"
+text = "Run counter"
 
-[node name="Timer" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/DeathCount"]
+[node name="Timer" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/RunCounter"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
@@ -279,7 +279,7 @@ flat = true
 vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("2_kajsq")
-setting_name = "death_count"
+setting_name = "run_count"
 
 [node name="FPS" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
