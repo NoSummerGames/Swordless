@@ -27,7 +27,6 @@ var current_action: Action
 @export_group("Actions")
 @export var jump_strength: int = 15
 @export var jump_time: float = 0.4
-@export var double_jump_strength: int = 13
 @export_range(100, 600) var dash_strength: int = 150
 @export var strafe_strength: int = 40
 @export var dash_duration: float = 0.1
@@ -61,7 +60,6 @@ var current_action: Action
 
 @export_group("Camera")
 @export var camera_speed: float = 5.0
-@export var strafe_camera_speed: float = 20
 @export var camera_min_distance: float = 0.5
 @export var camera_height: float = 2.5
 @export_range(-0.5, 0.5) var camera_pitch: float = 0.1

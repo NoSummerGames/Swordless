@@ -1,6 +1,8 @@
 class_name PlayerComponent
 extends Node
 
+signal action_entered
+
 var player: Player
 var player_stats: PlayerStatsResource:
 	get:

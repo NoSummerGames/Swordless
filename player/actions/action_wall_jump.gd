@@ -24,7 +24,6 @@ func _ready() -> void:
 
 func _enter() -> void:
 	player.gravity = Vector3.ZERO
-	#player.action_velocity.y += player_stats.wall_jump_strength
 	custom_acceleration = player_stats.wall_jump_init_acceleration
 	timer.wait_time = player_stats.wall_jump_time
 	timer.start()

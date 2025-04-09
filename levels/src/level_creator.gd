@@ -33,6 +33,9 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 
 	emit_signal("level_created")
 
+	print("Total vertex count: " + str(part_loader.vertex_count))
+	part_loader.vertex_count = 0
+
 func _create_curve() -> Curve3D:
 	var curve: Curve3D = Curve3D.new()
 	curve.add_point(Vector3.BACK)
