@@ -75,7 +75,13 @@ size = Vector3(3, 1, 4)
 material = ExtResource("3_ky1v5")
 
 [node name="_CSGBox3D_126381" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -66.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -67.7)
+use_collision = true
+size = Vector3(3, 1, 4)
+material = ExtResource("3_ky1v5")
+
+[node name="_CSGBox3D_126382" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -79.7)
 use_collision = true
 size = Vector3(3, 1, 4)
 material = ExtResource("3_ky1v5")
@@ -108,4 +114,9 @@ text = "22m50"
 [node name="Label3D6" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.2, -59.7)
 pixel_size = 0.01
-text = "25"
+text = "25m"
+
+[node name="Label3D7" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.2, -67.3)
+pixel_size = 0.01
+text = "30m"
