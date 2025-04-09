@@ -10,6 +10,8 @@ func _init(broken_seal: Seal) -> void:
 	seal = broken_seal
 
 func attract(target: Player, delta: float) -> bool:
+	target.gravity = Vector3.ZERO
+
 	var target_pos: Vector3 = target.body.position / 2 + target.global_position
 	var seal_pos: Vector3 = seal.global_position
 	var direction: Vector3 = seal_pos - target_pos
