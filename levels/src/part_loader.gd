@@ -40,6 +40,11 @@ func load_part(part: Part, path: Path3D) -> float:
 			mdt.create_from_surface(mesh_array, 0)
 			vertex_count += mdt.get_vertex_count()
 
+			# Set meshes collisions and static body 3D
+			if mesh_instance.find_child("StaticBody3D") == null:
+				print(true)
+				mesh_instance.create_trimesh_collision()
+
 	return path.curve.get_baked_length() - length
 
 
