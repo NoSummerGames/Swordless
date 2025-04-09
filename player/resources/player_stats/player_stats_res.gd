@@ -46,8 +46,7 @@ var current_action: Action
 
 @export_group("Actions Misc")
 @export var priority_buffer: float = 0.2
-@export var half_jump_buffer: float = 0.2
-@export var half_jump_deceleration: float = 1.5
+@export var half_jump_timer: float = 0.2
 @export var dash_deceleration: float = 2.0
 @export_range(0.5, 1) var wall_jump_angle_range: float = 0.5
 @export_range(0,1) var wall_jump_input_tolerance: float = 0.5
