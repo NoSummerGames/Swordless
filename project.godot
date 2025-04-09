@@ -66,6 +66,10 @@ folder_colors={
 "res://ui/": "green"
 }
 
+[global_group]
+
+gameplay_elements=""
+
 [gui]
 
 theme/custom="res://ui/res/main_theme.tres"

@@ -32,7 +32,7 @@ func load_part(part: Part, path: Path3D) -> float:
 
 	# Get vertex count for each mesh
 	for child: Node in Utilities.get_all_children(part):
-		if child is MeshInstance3D:
+		if child is MeshInstance3D and not child.is_in_group("gameplay_elements"):
 			var mesh_array = ArrayMesh.new()
 			var mesh_instance: MeshInstance3D = child
 			mesh_array.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_instance.mesh.surface_get_arrays(0))
@@ -42,7 +42,6 @@ func load_part(part: Part, path: Path3D) -> float:
 
 			# Set meshes collisions and static body 3D
 			if mesh_instance.find_child("StaticBody3D") == null:
-				print(true)
 				mesh_instance.create_trimesh_collision()
 
 	return path.curve.get_baked_length() - length
