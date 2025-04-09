@@ -4,7 +4,7 @@ extends Node
 
 static var vertex_count: int = 0
 
-func load_part(part: Part, path: Path3D) -> float:
+func load_part(part: Part, path: Path3D, create_collision: bool = true) -> float:
 	var length: float = path.curve.get_baked_length()
 
 	if not is_instance_valid(part):
@@ -31,18 +31,19 @@ func load_part(part: Part, path: Path3D) -> float:
 		path.curve.add_point(curve_transform.origin + (-curve_transform.basis.z * part_aabb.size.z))
 
 	# Get vertex count for each mesh
-	for child: Node in Utilities.get_all_children(part):
-		if child is MeshInstance3D and not child.is_in_group("gameplay_elements"):
-			var mesh_array = ArrayMesh.new()
-			var mesh_instance: MeshInstance3D = child
-			mesh_array.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_instance.mesh.surface_get_arrays(0))
-			var mdt = MeshDataTool.new()
-			mdt.create_from_surface(mesh_array, 0)
-			vertex_count += mdt.get_vertex_count()
+	if create_collision:
+		for child: Node in Utilities.get_all_children(part):
+			if child is MeshInstance3D and not child.is_in_group("gameplay_elements"):
+				var mesh_array = ArrayMesh.new()
+				var mesh_instance: MeshInstance3D = child
+				mesh_array.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, mesh_instance.mesh.surface_get_arrays(0))
+				var mdt = MeshDataTool.new()
+				mdt.create_from_surface(mesh_array, 0)
+				vertex_count += mdt.get_vertex_count()
 
-			# Set meshes collisions and static body 3D
-			if mesh_instance.find_child("StaticBody3D") == null:
-				mesh_instance.create_trimesh_collision()
+				# Set meshes collisions and static body 3D
+				if mesh_instance.find_child("StaticBody3D") == null:
+					mesh_instance.create_trimesh_collision()
 
 	return path.curve.get_baked_length() - length
 
