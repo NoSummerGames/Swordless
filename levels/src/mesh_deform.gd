@@ -59,8 +59,6 @@ func deform_mesh(targets: Array[MeshInstance3D], path: Path3D, last: bool) -> vo
 		mdt.commit_to_surface(array_mesh)
 		mesh_instance.mesh = array_mesh
 
-		mesh_instance.create_trimesh_collision()
-
 func _prepare_mesh(mesh_instance: MeshInstance3D) -> MeshDataTool:
 		if not mesh_instance is MeshInstance3D:
 			push_warning("Skipping a deformation target that is not a MeshInstance3D: " + str(mesh_instance.name))

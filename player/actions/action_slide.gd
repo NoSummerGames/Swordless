@@ -19,6 +19,10 @@ func _enter() -> void:
 	timer = Utilities.add_timer(true, player_stats.slide_duration)
 
 func _execute(delta: float) -> void:
+	if not is_instance_valid(timer) or Input.is_action_just_released("slide"):
+		_exit()
+		return
+
 	if not player.is_on_floor():
 		player.gravity += player.up_direction * player_stats.gravity * delta
 	else:
@@ -28,13 +32,6 @@ func _execute(delta: float) -> void:
 
 	if _test_height() == false:
 		exclusive = true
-		return
-
-	if Input.is_action_just_released("slide"):
-		_exit()
-
-	if not is_instance_valid(timer):
-		_exit()
 
 
 func _test_height() -> bool:
