@@ -50,12 +50,12 @@ func load_part(part: Part, path: Path3D, create_collision: bool = true) -> float
 
 func _calculate_spatial_bounds(parent : Node3D, exclude_top_level_transform: bool) -> AABB:
 	var bounds : AABB = AABB()
-	if parent is VisualInstance3D:
-		bounds = (parent as VisualInstance3D).get_aabb();
+	if parent is MeshInstance3D:
+		bounds = (parent as MeshInstance3D).get_aabb();
 
 	for i: int in range(parent.get_child_count()):
 		var child: Node3D = parent.get_child(i)
-		if child is VisualInstance3D:
+		if child is MeshInstance3D:
 			var child_bounds : AABB = _calculate_spatial_bounds(child, false)
 			if bounds.size == Vector3.ZERO && parent:
 				bounds = child_bounds

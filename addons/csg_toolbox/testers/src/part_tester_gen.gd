@@ -77,8 +77,8 @@ func load_part(_part: PackedScene):
 
 func _calculate_spatial_bounds(parent : Node3D, exclude_top_level_transform: bool) -> AABB:
 	var bounds : AABB = AABB()
-	if parent is VisualInstance3D:
-		var _parent: VisualInstance3D = parent
+	if parent is MeshInstance3D:
+		var _parent: MeshInstance3D = parent
 		bounds = _parent.get_aabb();
 
 	for i: int in range(parent.get_child_count()):
