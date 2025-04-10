@@ -31,13 +31,14 @@ var acceleration: float:
 var on_floor: bool = true
 
 var floor_normal: Vector3 = Vector3.UP
+var can_sprint: bool = true
 
 @onready var body: MeshInstance3D = %_PlayerMesh
 @onready var area: Area3D = %PlayerArea
 @onready var coyote_timer: Timer = %CoyoteTimer
 @onready var speed: float = player_stats.speed:
 	get:
-		if Input.is_action_pressed("sprint") and current_action.disable_sprint == false:
+		if Input.is_action_pressed("sprint") and can_sprint and current_action.disable_sprint == false:
 			return current_action.speed_factor * player_stats.sprint_speed
 		else:
 			return current_action.speed_factor * player_stats.speed
@@ -49,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
 		var floor_angle: float = clamp(1.0 - get_floor_normal().z, player_stats.min_slope_speed, 1.0)
 
-		desired_vel = lerp(desired_vel, direction.normalized() * speed * floor_angle, acceleration * delta)
+		desired_vel = lerp(desired_vel, direction.normalized()* Vector3(1, 0, 1) * speed * floor_angle, acceleration * delta)
 
 		velocity = desired_vel - gravity + action_velocity
 
@@ -93,12 +94,16 @@ func test_stairs_up(delta: float) -> bool:
 	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
 	if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
 		# No wall was hit
+		can_sprint = true
 		return false
+
 
 	var angle: float = result.get_collision_normal(0).angle_to(global_basis.y)
 	if angle < floor_max_angle:
 		# The wall was actually a slope
 		return false
+
+	can_sprint = false
 
 	# Move to collision
 	var remainder: Vector3 = result.get_remainder()
