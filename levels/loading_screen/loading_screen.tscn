@@ -1,0 +1,182 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0gkxo4f4r61m"]
+
+[ext_resource type="Script" uid="uid://c0hul2dmncqr3" path="res://levels/loading_screen/src/loading_screen.gd" id="1_c6ulp"]
+[ext_resource type="Environment" uid="uid://7nrja0ht0n7g" path="res://levels/level_00/environment_00.tres" id="2_gj10x"]
+[ext_resource type="PackedScene" uid="uid://dwvujbrrm22t3" path="res://levels/loading_screen/loading_player.tscn" id="3_gj10x"]
+[ext_resource type="Texture2D" uid="uid://172xy8y1rfth" path="res://levels/loading_screen/controls.png" id="4_gj10x"]
+
+[sub_resource type="GDScript" id="GDScript_gj10x"]
+script/source = "extends SpotLight3D
+
+var initial_position: float = 0
+
+func _ready() -> void:
+	initial_position = position.y
+
+func _physics_process(delta: float) -> void:
+	global_position.y = initial_position
+"
+
+[sub_resource type="Gradient" id="Gradient_gj10x"]
+offsets = PackedFloat32Array(0.383099, 0.529577, 0.592697, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.450601, 0, 0, 0, 0.0510376, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lf636"]
+gradient = SubResource("Gradient_gj10x")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Curve3D" id="Curve3D_860t7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -2000),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lf636"]
+albedo_color = Color(0.118581, 0.118581, 0.118581, 1)
+emission = Color(2.40654e-08, 0.489223, 1.82897e-06, 1)
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv2_scale = Vector3(2, 2, 2)
+
+[sub_resource type="GDScript" id="GDScript_lf636"]
+script/source = "extends Control
+
+signal progress_bar_completed
+
+@onready var progress_bar: ProgressBar = %ProgressBar
+@onready var label: Label = %Label
+
+var tween: Tween
+
+func _ready() -> void:
+	progress_bar.value_changed.connect(_on_value_changed)
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"start\"):
+		label.label_settings.font_color = Color.WHITE
+	if Input.is_action_just_released(\"start\"):
+		progress_bar.value = 0
+		label.label_settings.font_color = Color(\"90e0af\")
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed(\"start\"):
+
+		progress_bar.value += 0.01 + progress_bar.value * delta
+
+func _on_value_changed(value: float) -> void:
+	if value >= progress_bar.max_value:
+		progress_bar_completed.emit()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obklk"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hplt"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gj10x"]
+font_size = 32
+font_color = Color(0.564706, 0.878431, 0.686275, 1)
+
+[node name="LoadingScreen" type="Node3D"]
+script = ExtResource("1_c6ulp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_gj10x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
+light_cull_mask = 4294967293
+shadow_enabled = true
+
+[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_gj10x")]
+path = NodePath("../Path3D")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, -1)
+light_color = Color(0.575691, 1, 0.587968, 1)
+light_energy = 3.404
+light_cull_mask = 4294967294
+spot_range = 19.248
+spot_attenuation = 0.15
+spot_angle = 75.0
+script = SubResource("GDScript_gj10x")
+
+[node name="Decal" type="Decal" parent="Player"]
+size = Vector3(2, 6, 2)
+texture_albedo = SubResource("GradientTexture2D_lf636")
+cull_mask = 1048574
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_860t7")
+
+[node name="@CSGBox3D@93669" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.5)
+layers = 2
+use_collision = true
+size = Vector3(400000, 1, 400000)
+material = SubResource("StandardMaterial3D_lf636")
+
+[node name="ControlsUI" type="Control" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.564706, 0.878431, 0.686275, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_lf636")
+
+[node name="ProgressBar" type="ProgressBar" parent="ControlsUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_obklk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4hplt")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlsUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="ControlsUI/MarginContainer"]
+modulate = Color(0.564706, 0.878431, 0.686275, 1)
+clip_contents = true
+custom_minimum_size = Vector2(700, 400)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_gj10x")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ControlsUI/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.564706, 0.878431, 0.686275, 1)
+text = "PRESS START TO PLAY"
+label_settings = SubResource("LabelSettings_gj10x")
