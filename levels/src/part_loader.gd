@@ -24,6 +24,8 @@ func load_part(part: Part, path: Path3D, create_collision: bool = true) -> float
 		if part_curve.get_point_position(0) != Vector3.ZERO:
 			path.curve.add_point(part.to_global(part_curve.get_point_position(0)))
 		for i: int in part_curve.point_count -1:
+			# Add a point in past curve transform to preserve overall path orientation
+			path.curve.add_point(part.to_global(part_curve.get_point_position(i +1)) + curve_transform.basis.z * 0.1)
 			path.curve.add_point(part.to_global(part_curve.get_point_position(i +1)))
 	else:
 		# Get part AABB to add next point at the end of the part
@@ -54,7 +56,7 @@ func _calculate_spatial_bounds(parent : Node3D, exclude_top_level_transform: boo
 		bounds = (parent as VisualInstance3D).get_aabb();
 
 	for i: int in range(parent.get_child_count()):
-		var child: Node3D = parent.get_child(i)
+		var child: Node = parent.get_child(i)
 		if child is VisualInstance3D:
 			var child_bounds : AABB = _calculate_spatial_bounds(child, false)
 			if bounds.size == Vector3.ZERO && parent:
