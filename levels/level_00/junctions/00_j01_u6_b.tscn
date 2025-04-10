@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://cm56t2l4rswep"]
 
-[ext_resource type="Script" path="res://levels/src/part.gd" id="1_r3cwe"]
+[ext_resource type="Script" uid="uid://bdtfy37yfo71k" path="res://levels/src/part.gd" id="1_r3cwe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqwdv"]
 
