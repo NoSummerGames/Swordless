@@ -34,7 +34,15 @@ var broken_seal_count: int = 0
 @export_multiline var notes: String = ""
 
 func _ready() -> void:
-	_connect_seals()
+	if not Engine.is_editor_hint():
+		_connect_seals()
+
+		# Make .blend child local
+		for child: Node in get_children():
+			if not child is MeshInstance3D:
+				for blend_child: Node in child.get_children():
+					blend_child.reparent(self)
+				child.queue_free()
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "part_path" and has_path == false:
