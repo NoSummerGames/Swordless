@@ -16,7 +16,8 @@ extends Resource
 
 @export_dir var pool_directory : String
 @export_dir var junctions_directory : String
-@export var junctions_length: int = 10
+# HACK: a low junctions_length value can prevent loading any junction and cause errors
+@export var junctions_length: int = 50
 @export_range(0, 1) var smoothing_ratio: float = 0.5
 
 
