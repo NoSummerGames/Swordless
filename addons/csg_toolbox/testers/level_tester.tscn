@@ -1,10 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu11ecv4dqgl5"]
+[gd_scene load_steps=13 format=3 uid="uid://cu11ecv4dqgl5"]
 
 [ext_resource type="Script" uid="uid://dpb3awd61qpq3" path="res://addons/csg_toolbox/testers/src/level_tester.gd" id="1_6voa2"]
-[ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="2_87vud"]
+[ext_resource type="Script" uid="uid://blhee3dkvmcs8" path="res://levels/src/resources/level_res.gd" id="2_qy1rd"]
+[ext_resource type="Script" uid="uid://dlk5hw4t3fy6g" path="res://levels/src/resources/section_res.gd" id="3_k621k"]
 [ext_resource type="Script" uid="uid://dolu6wjdt0x1h" path="res://levels/level_menu_loader.gd" id="6_qy1rd"]
 [ext_resource type="PackedScene" uid="uid://tpirfdba5tdj" path="res://levels/level_generator.tscn" id="9_4shd5"]
 [ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="10_h5nw6"]
+
+[sub_resource type="Resource" id="Resource_qy1rd"]
+script = ExtResource("3_k621k")
+length = 1000
+x_delta = 2.5
+hills_range = 0.5
+fixed = false
+pool_directory = "res://assets/tscn/00_pool"
+junctions_directory = "res://levels/level_00/junctions"
+junctions_length = 100
+smoothing_ratio = 0.5
+metadata/_custom_type_script = "uid://dlk5hw4t3fy6g"
+
+[sub_resource type="Resource" id="Resource_k621k"]
+script = ExtResource("2_qy1rd")
+sections = Array[ExtResource("3_k621k")]([SubResource("Resource_qy1rd")])
+metadata/_custom_type_script = "uid://blhee3dkvmcs8"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qy1rd"]
 sky_top_color = Color(0.337716, 0.402262, 0.492051, 1)
@@ -43,7 +61,7 @@ point_count = 45
 
 [node name="LevelTester" type="Node3D"]
 script = ExtResource("1_6voa2")
-level_resource = ExtResource("2_87vud")
+level_resource = SubResource("Resource_k621k")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8ftby")
