@@ -60,14 +60,6 @@ func _physics_process(delta: float) -> void:
 	action_velocity = Vector3.ZERO
 
 func is_almost_on_floor() -> bool:
-	if is_on_floor():
-		on_floor = true
-		floor_normal = get_floor_normal()
-		return true
-	else:
-		on_floor = false
-		return false
-
 	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
 	parameters.from = global_transform
 	parameters.motion = -global_basis.y * player_stats.floor_detection_margin
