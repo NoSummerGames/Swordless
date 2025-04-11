@@ -48,17 +48,17 @@ func _ready() -> void:
 	area.area_entered.connect(_on_area_entered)
 
 func _physics_process(delta: float) -> void:
-
 	if not velocity_overridden:
 		var floor_angle: float = clamp(1.0 - floor_normal.z, player_stats.min_slope_speed, 1.0)
 
-		if floor_normal.z >= DOWNWARD_LIMIT:
-			desired_vel = lerp(desired_vel, direction.normalized() * Vector3(1, 0, 1) * speed * floor_angle, acceleration * delta)
-		else:
+		if floor_normal.z <= DOWNWARD_LIMIT and is_almost_on_floor():
 			var forward_normal: Vector3 = floor_normal.cross(global_basis.x)
 			var angle: float = forward_normal.angle_to(-global_basis.z)
 			var new_direction: Vector3 = direction.normalized().rotated(global_basis.x, -angle)
 			desired_vel = lerp(desired_vel, new_direction * speed, acceleration * delta)
+		else:
+			desired_vel = lerp(desired_vel, direction.normalized() * Vector3(1, 0, 1) * speed * floor_angle, acceleration * delta)
+
 
 		velocity = desired_vel - gravity + action_velocity
 
