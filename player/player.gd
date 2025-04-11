@@ -48,6 +48,7 @@ func _ready() -> void:
 	area.area_entered.connect(_on_area_entered)
 
 func _physics_process(delta: float) -> void:
+
 	if not velocity_overridden:
 		var floor_angle: float = clamp(1.0 - floor_normal.z, player_stats.min_slope_speed, 1.0)
 
@@ -65,6 +66,10 @@ func _physics_process(delta: float) -> void:
 			velocity *= player_stats.stairs_speed
 
 	move_and_slide()
+
+	if gravity.y > 100:
+		died.emit()
+
 	action_velocity = Vector3.ZERO
 
 func is_almost_on_floor() -> bool:

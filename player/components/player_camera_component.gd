@@ -1,12 +1,12 @@
 extends PlayerComponent
 
-const max_fov: int = 179
+const max_fov: int = 125.0
 
 @export var camera: Camera3D
 @export var target: Marker3D
 @export var slide_height: float = 0.5
 
-var death_fov: float = 100.0
+var death_fov: float = 125.0
 var initial_transform: Transform3D
 var initial_fov: float
 var initial_height: float
