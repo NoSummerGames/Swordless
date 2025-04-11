@@ -69,7 +69,3 @@ directional_shadow_max_distance = 200.0
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("5_8m8in")
-
-[node name="@CSGBox3D@131198" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, -0.5)
-size = Vector3(4000, 1, 4000)
