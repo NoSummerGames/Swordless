@@ -34,6 +34,8 @@ var on_floor: bool = true
 var floor_normal: Vector3 = Vector3.UP
 var can_sprint: bool = true
 
+var path_progression: float = 0.0
+
 @onready var body: MeshInstance3D = %_PlayerMesh
 @onready var area: Area3D = %PlayerArea
 @onready var coyote_timer: Timer = %CoyoteTimer

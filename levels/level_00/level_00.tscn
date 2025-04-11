@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbjx4qeaf824d"]
+[gd_scene load_steps=15 format=3 uid="uid://cbjx4qeaf824d"]
 
 [ext_resource type="Script" uid="uid://ci8hhoih467hp" path="res://levels/src/level.gd" id="1_8m8in"]
 [ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="2_gignc"]
@@ -41,6 +41,47 @@ fog_aerial_perspective = 1.0
 adjustment_brightness = 0.8
 adjustment_contrast = 1.5
 
+[sub_resource type="GDScript" id="GDScript_83kqv"]
+script/source = "extends Control
+
+@onready var progress_bar: ProgressBar = %ProgressBar
+@export var target: Player
+@export var path: Path3D
+
+var length: float = 0.0
+var progression: float = 0.0
+
+@onready var progression_label: Label = %ProgressionLabel
+
+func _ready() -> void:
+	hide()
+	length = path.curve.get_baked_length()
+	target.died.connect(_on_player_death)
+
+func _physics_process(delta: float) -> void:
+	progression = target.path_progression / length
+	progress_bar.value = progression
+
+func _on_player_death() -> void:
+	progression_label.text = str(snappedf(progression * 100, 0.1)) + \" %\"
+	show()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3tc2"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv5dn"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8m8in"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_gignc"]
+font_size = 56
+
 [node name="Level00_A" type="Node3D"]
 script = ExtResource("1_8m8in")
 level_resource = ExtResource("2_gignc")
@@ -69,3 +110,51 @@ directional_shadow_max_distance = 200.0
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("5_8m8in")
+
+[node name="ProgressUI" type="Control" parent="." node_paths=PackedStringArray("target", "path")]
+unique_name_in_owner = true
+modulate = Color(0.564706, 0.878431, 0.686275, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_83kqv")
+target = NodePath("../Player")
+path = NodePath("../LevelGenerator")
+
+[node name="ProgressBar" type="ProgressBar" parent="ProgressUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_n3tc2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xv5dn")
+max_value = 1.0
+step = 0.001
+value = 0.5
+show_percentage = false
+
+[node name="ProgressionLabel" type="Label" parent="ProgressUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -34.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8m8in")
+text = "58 %"
+label_settings = SubResource("LabelSettings_gignc")
