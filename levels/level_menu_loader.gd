@@ -12,6 +12,9 @@ func _input(_event: InputEvent) -> void:
 			display_menu(Menus.PAUSE)
 			get_tree().paused = true
 
+	if Input.is_action_pressed("select"):
+		get_tree().paused = not get_tree().paused
+
 func _ready() -> void:
 	DebugUi.debug_menu_opened.connect(_close_menus)
 
