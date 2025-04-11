@@ -30,10 +30,10 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 
 	var creation_time: int = Time.get_ticks_msec() - start_time
 	print("Level created in {}ms".format([creation_time], "{}"))
+	print("Total vertex count: " + str(part_loader.vertex_count))
 
 	emit_signal("level_created")
 
-	print("Total vertex count: " + str(part_loader.vertex_count))
 	part_loader.vertex_count = 0
 
 func _create_curve() -> Curve3D:
@@ -41,8 +41,7 @@ func _create_curve() -> Curve3D:
 	curve.add_point(Vector3.BACK)
 	curve.add_point(Vector3.ZERO)
 
-	var _delete_first_point: Callable = func() -> void : curve.remove_point(0)
-	level_created.connect(_delete_first_point)
+	level_created.connect(func() -> void : curve.remove_point(0))
 	return curve
 
 func _find_exit_area(part: Part) -> void:
