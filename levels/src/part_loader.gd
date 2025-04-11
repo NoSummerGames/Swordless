@@ -40,10 +40,12 @@ func load_part(part: Part, path: Path3D, create_collision: bool = true) -> float
 
 		# Set materials
 			const ACCENT_MATERIAL: String = "Black"
-			if path.accent_material and mesh_instance.get_active_material(0).resource_name.begins_with(ACCENT_MATERIAL):
-				mesh_instance.set_surface_override_material(0, path.accent_material)
-			elif path.default_material:
-				mesh_instance.set_surface_override_material(0, path.default_material)
+			if mesh_instance.get_active_material(0).resource_name.begins_with(ACCENT_MATERIAL):
+				if path.accent_material:
+					mesh_instance.set_surface_override_material(0, path.accent_material)
+			else:
+				if path.default_material:
+					mesh_instance.set_surface_override_material(0, path.default_material)
 
 			# Get vertex count
 			var mesh_array = ArrayMesh.new()
