@@ -19,8 +19,8 @@ func deform_mesh(targets: Array[MeshInstance3D], path: Path3D, last: bool) -> vo
 	for mesh_instance: MeshInstance3D in targets:
 
 		# Copy mesh materials to the mesh_instance
-		for i: int in mesh_instance.mesh.get_surface_count():
-			mesh_instance.set_surface_override_material(i, mesh_instance.mesh.surface_get_material(i))
+		#for i: int in mesh_instance.mesh.get_surface_count():
+			#mesh_instance.set_surface_override_material(i, mesh_instance.mesh.surface_get_material(i))
 
 		var mdt: MeshDataTool = _prepare_mesh(mesh_instance)
 
