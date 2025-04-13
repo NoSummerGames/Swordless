@@ -50,8 +50,6 @@ signal progress_bar_completed
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var label: Label = %Label
 
-var tween: Tween
-
 func _ready() -> void:
 	progress_bar.value_changed.connect(_on_value_changed)
 

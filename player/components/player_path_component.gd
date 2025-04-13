@@ -45,6 +45,7 @@ func _physics_process(delta: float) -> void:
 func get_path_direction(delta: float) -> Vector3:
 	# Get the closest path "offset" to the player
 	var closest_offset: float = path.curve.get_closest_offset(path.to_local(player.global_position))
+	player.path_progression = closest_offset
 
 	# Get its interpolated point counterpart on the path
 	var point_a: Vector3 = path.curve.sample_baked(closest_offset + path_offset)
