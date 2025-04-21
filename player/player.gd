@@ -5,6 +5,7 @@ signal reached_exit
 signal died
 signal exited_path
 
+const DOWNWARD_LIMIT: float = -0.05
 ## FIXME : added for testing purpose before having a proper "paths finding" script
 @export var path: Path3D
 @export var player_stats: PlayerStatsResource
@@ -15,6 +16,8 @@ var actions: Array[Action]
 
 var velocity_overridden: bool = false
 var direction: Vector3
+var gravity: Vector3 = Vector3.DOWN
+var action_velocity: Vector3 = Vector3.ZERO
 var desired_vel: Vector3
 var acceleration: float:
 	get:
@@ -29,13 +32,16 @@ var acceleration: float:
 var on_floor: bool = true
 
 var floor_normal: Vector3 = Vector3.UP
+var can_sprint: bool = true
+
+var path_progression: float = 0.0
 
 @onready var body: MeshInstance3D = %_PlayerMesh
 @onready var area: Area3D = %PlayerArea
 @onready var coyote_timer: Timer = %CoyoteTimer
 @onready var speed: float = player_stats.speed:
 	get:
-		if Input.is_action_pressed("sprint") and current_action.disable_sprint == false:
+		if Input.is_action_pressed("sprint") and can_sprint and current_action.disable_sprint == false:
 			return current_action.speed_factor * player_stats.sprint_speed
 		else:
 			return current_action.speed_factor * player_stats.speed
@@ -45,26 +51,34 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not velocity_overridden:
+		var floor_angle: float = clamp(1.0 - floor_normal.z, player_stats.min_slope_speed, 1.0)
 
-		var floor_angle: float = clamp(1.0 - get_floor_normal().z, player_stats.min_slope_speed, 1.0)
+		if floor_normal.z <= DOWNWARD_LIMIT and is_almost_on_floor():
+			var forward_normal: Vector3 = floor_normal.cross(global_basis.x)
+			var angle: float = forward_normal.angle_to(-global_basis.z)
+			var new_direction: Vector3 = direction.normalized().rotated(global_basis.x, -angle)
+			desired_vel = lerp(desired_vel, new_direction * speed, acceleration * delta)
+		else:
+			desired_vel = lerp(desired_vel, direction.normalized() * Vector3(1, 0, 1) * speed * floor_angle, acceleration * delta)
 
-		if not is_on_floor():
-			velocity.y -= player_stats.gravity * delta
 
-		desired_vel.z = lerp(desired_vel.z, direction.normalized().z * speed * floor_angle, acceleration * delta)
-		desired_vel.x = lerp(desired_vel.x, direction.normalized().x * speed, acceleration * delta)
-		velocity.z = desired_vel.z
-		velocity.x = desired_vel.x
+		velocity = desired_vel - gravity + action_velocity
 
-		velocity = test_stairs_up(delta)
+		if test_stairs_up(delta) == true:
+			velocity *= player_stats.stairs_speed
 
 	move_and_slide()
 
+	if gravity.y > 100:
+		died.emit()
+
+	action_velocity = Vector3.ZERO
 
 func is_almost_on_floor() -> bool:
 	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
 	parameters.from = global_transform
-	parameters.motion = Vector3(0, -player_stats.floor_detection_margin, 0)
+	parameters.motion = -global_basis.y * player_stats.floor_detection_margin
+
 	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
 	PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
 
@@ -82,7 +96,7 @@ func is_almost_on_floor() -> bool:
 	on_floor = false
 	return false
 
-func test_stairs_up(delta: float) -> Vector3:
+func test_stairs_up(delta: float) -> bool:
 	# Minor rework of "Stairs Character" script by Andicraft
 	var motion_velocity: Vector3 = direction * speed * delta
 
@@ -94,12 +108,16 @@ func test_stairs_up(delta: float) -> Vector3:
 	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
 	if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
 		# No wall was hit
-		return velocity
+		can_sprint = true
+		return false
+
 
 	var angle: float = result.get_collision_normal(0).angle_to(global_basis.y)
 	if angle < floor_max_angle:
 		# The wall was actually a slope
-		return velocity
+		return false
+
+	can_sprint = false
 
 	# Move to collision
 	var remainder: Vector3 = result.get_remainder()
@@ -143,7 +161,7 @@ func test_stairs_up(delta: float) -> Vector3:
 
 	var moved_down: bool = PhysicsServer3D.body_test_motion(get_rid(), parameters, result)
 	if moved_down == false:
-		return velocity
+		return false
 	motion_transform = motion_transform.translated(result.get_travel())
 
 	# Check if the step is not a wall
@@ -155,16 +173,16 @@ func test_stairs_up(delta: float) -> Vector3:
 			parameters.from = motion_transform
 			parameters.motion = deviation
 			if PhysicsServer3D.body_test_motion(get_rid(), parameters, result) == false:
-				return velocity
+				return false
 			else:
 				motion_transform = motion_transform.translated(result.get_travel())
 
 	global_position += (motion_transform.origin - global_position) * player_stats.stairs_speed
-	return velocity * player_stats.stairs_speed
+	return true
 
 func _on_area_entered(area_entered: Area3D) -> void:
 	if area_entered is ExitArea:
-		emit_signal("reached_exit")
+		reached_exit.emit()
 
 func _on_player_exited_path() -> void:
-	emit_signal("exited_path")
+	exited_path.emit()

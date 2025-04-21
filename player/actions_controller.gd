@@ -1,7 +1,6 @@
 class_name ActionsController
 extends AbstractAction
 
-signal action_entered
 
 @export var input_component: PlayerInputComponent
 @export var air_default_action: Action

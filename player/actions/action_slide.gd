@@ -1,3 +1,4 @@
+class_name ActionSlide
 extends Action
 
 var timer: Timer
@@ -17,14 +18,21 @@ func _enter() -> void:
 
 	timer = Utilities.add_timer(true, player_stats.slide_duration)
 
-func _execute(_delta: float) -> void:
-	if is_instance_valid(timer):
-		await timer.timeout
-
-	if _test_height() == false:
+func _execute(delta: float) -> void:
+	if not is_instance_valid(timer) or Input.is_action_just_released("slide"):
+		_exit()
 		return
 
-	_exit()
+	if not player.is_on_floor():
+		player.gravity += player.up_direction * player_stats.gravity * delta
+	else:
+		player.gravity = Vector3.ZERO
+
+	done = false
+
+	if _test_height() == false:
+		exclusive = true
+
 
 func _test_height() -> bool:
 	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
@@ -46,3 +54,6 @@ func _exit() -> void:
 	player_mesh.mesh = default_mesh
 	player_mesh.position = Vector3(0, 0.8, 0)
 	done = true
+	if self != actions_controller.default_action:
+		current_action = actions_controller.default_action
+		player.current_action = current_action

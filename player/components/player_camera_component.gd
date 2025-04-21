@@ -1,6 +1,6 @@
 extends PlayerComponent
 
-const max_fov: int = 179
+const max_fov: int = 125.0
 
 @export var camera: Camera3D
 @export var target: Marker3D
@@ -20,7 +20,8 @@ func _ready() -> void:
 	player.died.connect(_on_player_dead)
 
 func _physics_process(delta: float) -> void:
-	target.position.y = player_stats.camera_height
+	# HACK: Costy
+	target.position.z = player_stats.camera_min_distance
 	target.rotation.x = -player_stats.camera_pitch
 
 	# Modulate camera fov based on velocity
@@ -31,7 +32,8 @@ func _physics_process(delta: float) -> void:
 		camera.fov = lerp(camera.fov, death_fov, player_stats.fov_reactivity * delta)
 
 	# Lock Z axis camera rotation
-	target.global_rotation.z = 0
+	if player_stats.lock_camera_rotation:
+		target.global_rotation.z = 0
 
 	# Lerp between camera position and camera_marker
 	camera.global_transform = camera.global_transform.interpolate_with(target.global_transform, player_stats.camera_speed * delta)
