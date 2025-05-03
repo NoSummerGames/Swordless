@@ -20,6 +20,7 @@ var settings : Dictionary = {
 		"altitude": false,
 		"timer": false,
 		"fps": false,
+		"run_count": false,
 		"action_state": false,
 		"double_jump": false,
 		"dash_strafe": false,
@@ -56,6 +57,11 @@ var previous_position: Vector3
 var collision_raycast: RayCast3D
 var time: float
 
+var run_count: int = 0:
+	set(value):
+		run_count = value
+		run_label.text = "Runs : " + str(value)
+
 var highest_altitude: float = 0
 
 @onready var action_label: Label = %ActionLabel
@@ -63,6 +69,7 @@ var highest_altitude: float = 0
 @onready var altitude_label: Label = %AltitudeLabel
 @onready var timer_label: Label = %TimerLabel
 @onready var fps_label: Label = %FPSLabel
+@onready var run_label: Label = %RunLabel
 
 @onready var default_player_stats: PlayerStatsResource
 
@@ -161,6 +168,8 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 					timer_label.visible = setting_value
 				"fps":
 					fps_label.visible = setting_value
+				"run_count":
+					run_label.visible = setting_value
 
 				# SKILLS
 				"double_jump":

@@ -124,7 +124,7 @@ func _add_stat_line(stat: Dictionary) -> void:
 		3:
 			var spin_box: SpinBox = SpinBox.new()
 			stat_line.add_child(spin_box)
-			spin_box.step = 0.1
+			spin_box.step = 0.01
 			spin_box.max_value = 1000.0
 			spin_box.alignment = HORIZONTAL_ALIGNMENT_CENTER
 			var hint: String = stat["range"]

@@ -45,6 +45,8 @@ func _ready() -> void:
 		else:
 			menu.exit_pressed.connect(level_exited.emit)
 
+		menu.restart_pressed.connect(func(): DebugUi.run_count += 1)
+
 func _regenerate_level() -> void:
 	level_generator.regenerate_level()
 

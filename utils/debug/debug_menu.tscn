@@ -262,6 +262,25 @@ expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "timer"
 
+[node name="RunCounter" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/RunCounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+text = "Run counter"
+
+[node name="Timer" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/RunCounter"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+flat = true
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("2_kajsq")
+setting_name = "run_count"
+
 [node name="FPS" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
 layout_mode = 2
 
@@ -288,7 +307,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_o2s2v")
-text = "État"
+text = "Couleur d'état joueur"
 
 [node name="State" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/State"]
 layout_mode = 2
