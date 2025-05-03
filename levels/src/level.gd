@@ -17,7 +17,6 @@ var standalone: bool = true
 @onready var player: Player = %Player
 @onready var menu: MenuLoader = %LevelMenuLoader
 
-
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		DebugUi.current_level = DebugUi.Levels.RUN
@@ -30,6 +29,7 @@ func _ready() -> void:
 		player.died.connect(level_failed.emit)
 		player.died.connect(player.set_block_signals.bind(true))
 
+		menu.level = self
 		menu.restart_pressed.connect(player.set_block_signals.bind(false))
 		if standalone:
 			var tree: SceneTree = get_tree()
@@ -38,6 +38,7 @@ func _ready() -> void:
 			menu.restart_pressed.connect(level_restarted.emit)
 
 		menu.exit_pressed.connect(player.set_block_signals.bind(false))
+
 		if standalone:
 			var tree: SceneTree = get_tree()
 			menu.exit_pressed.connect(tree.quit)

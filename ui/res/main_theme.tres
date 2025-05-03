@@ -214,11 +214,10 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_3m0dc"]
-color = Color(0.117647, 0.117647, 0.117647, 0.509804)
-thickness = 3
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fv6qj"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_alc37"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t4ymy"]
+bg_color = Color(0.498039, 0.937255, 0.521569, 0.313726)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2cjq"]
 
@@ -292,10 +291,10 @@ OptionButton/styles/normal = SubResource("StyleBoxFlat_1yal0")
 OptionButton/styles/normal_mirrored = SubResource("StyleBoxFlat_n55tj")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_do7rt")
 OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_idmwn")
-ProgressBar/colors/font_color = Color(0.117647, 0.117647, 0.117647, 1)
-ProgressBar/font_sizes/font_size = 16
-ProgressBar/fonts/font = ExtResource("3_jlv1u")
-ProgressBar/styles/background = SubResource("StyleBoxLine_3m0dc")
-ProgressBar/styles/fill = SubResource("StyleBoxLine_alc37")
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/font_sizes/font_size = 36
+ProgressBar/fonts/font = ExtResource("2_r1ljo")
+ProgressBar/styles/background = SubResource("StyleBoxEmpty_fv6qj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_t4ymy")
 VSeparator/constants/separation = 16
 VSeparator/styles/separator = SubResource("StyleBoxEmpty_h2cjq")

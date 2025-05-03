@@ -1,5 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbjx4qeaf824d"]
-[gd_scene load_steps=15 format=3 uid="uid://cbjx4qeaf824d"]
+[gd_scene load_steps=12 format=3 uid="uid://cbjx4qeaf824d"]
 
 [ext_resource type="Script" uid="uid://ci8hhoih467hp" path="res://levels/src/level.gd" id="1_8m8in"]
 [ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="2_gignc"]
@@ -34,7 +33,6 @@ sky_material = SubResource("ProceduralSkyMaterial_4bkrn")
 
 [sub_resource type="Environment" id="Environment_8m8in"]
 background_mode = 2
-background_energy_multiplier = 0.93
 background_energy_multiplier = 0.8
 sky = SubResource("Sky_87vud")
 tonemap_mode = 1
