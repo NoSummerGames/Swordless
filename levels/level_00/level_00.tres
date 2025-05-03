@@ -1,65 +1,52 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=12 format=3 uid="uid://dvje6j1gsdvaa"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=10 format=3 uid="uid://dvje6j1gsdvaa"]
 
-[ext_resource type="PackedScene" uid="uid://dj62d734ocgwo" path="res://assets/tscn/2nd_iteration/00_fixed/00_f00_entry_stairs_a.tscn" id="1_g3lhb"]
+[ext_resource type="PackedScene" uid="uid://bfmxh76ghtou7" path="res://assets/tscn/00_fixed/00_f00_entry_corridor_a_blend.tscn" id="1_5tb42"]
 [ext_resource type="Script" uid="uid://blhee3dkvmcs8" path="res://levels/src/resources/level_res.gd" id="1_t4agd"]
-[ext_resource type="PackedScene" uid="uid://bxnb5blblqeuy" path="res://levels/level_00/fixed/00_exit.tscn" id="2_fq2hr"]
+[ext_resource type="PackedScene" uid="uid://cuvlsadht5s3a" path="res://assets/tscn/00_fixed/00_f03_tower_parvis_b_blend.tscn" id="2_g3lhb"]
 [ext_resource type="Script" uid="uid://dlk5hw4t3fy6g" path="res://levels/src/resources/section_res.gd" id="2_qw045"]
-[ext_resource type="PackedScene" uid="uid://ckj5clqxxei5u" path="res://assets/tscn/level_00_fixed/00_f01_gallery_c.tscn" id="5_g3lhb"]
-[ext_resource type="PackedScene" uid="uid://bhcobn26ehj2o" path="res://assets/tscn/2nd_iteration/00_fixed/00_f02_bandstand_square_b.tscn" id="6_r6061"]
-[ext_resource type="PackedScene" uid="uid://bpe56rjk65dy4" path="res://assets/tscn/2nd_iteration/00_fixed/00_f03_tower_parvis_b.tscn" id="7_n2p7h"]
+[ext_resource type="PackedScene" uid="uid://djgfngrmaf6e1" path="res://assets/tscn/00_fixed/00_f00_entry_stairs_a_blend.tscn" id="5_r6061"]
+[ext_resource type="PackedScene" uid="uid://cvd1e6lh8b0je" path="res://assets/tscn/00_fixed/00_f01_gallery_c_blend.tscn" id="6_g3lhb"]
 
-[sub_resource type="Resource" id="Resource_g3lhb"]
-resource_name = "FIXED_A"
+[sub_resource type="Resource" id="Resource_lj8gp"]
+resource_name = "STAIRS"
 script = ExtResource("2_qw045")
 x_delta = 2.0
 hills_range = 0.25
 fixed = true
-fixed_scene = ExtResource("5_g3lhb")
+fixed_scene = ExtResource("5_r6061")
 junctions_directory = "res://levels/level_00/junctions"
 junctions_length = 50
 smoothing_ratio = 0.5
-metadata/_custom_type_script = ExtResource("2_qw045")
+metadata/_custom_type_script = "uid://dlk5hw4t3fy6g"
 
-[sub_resource type="Resource" id="Resource_t4agd"]
-resource_name = "POOL_00"
+[sub_resource type="Resource" id="Resource_gpti8"]
+resource_name = "POOL_A"
 script = ExtResource("2_qw045")
 length = 250
 x_delta = 2.0
 hills_range = 0.25
 fixed = false
-pool_directory = "res://assets/tscn/2nd_iteration/00_pool/"
+pool_directory = "res://assets/tscn/00_pool"
 junctions_directory = "res://levels/level_00/junctions"
 junctions_length = 50
 smoothing_ratio = 0.5
-metadata/_custom_type_script = ExtResource("2_qw045")
+metadata/_custom_type_script = "uid://dlk5hw4t3fy6g"
 
-[sub_resource type="Resource" id="Resource_r6061"]
-resource_name = "FIXED_B"
+[sub_resource type="Resource" id="Resource_ybchb"]
+resource_name = "FIXED_A"
 script = ExtResource("2_qw045")
-x_delta = 2.0
+x_delta = 0.5
 hills_range = 0.25
 fixed = true
-fixed_scene = ExtResource("6_r6061")
+fixed_scene = ExtResource("6_g3lhb")
 junctions_directory = "res://levels/level_00/junctions"
 junctions_length = 50
 smoothing_ratio = 0.5
-metadata/_custom_type_script = ExtResource("2_qw045")
-
-[sub_resource type="Resource" id="Resource_5tb42"]
-resource_name = "FIXED_C"
-script = ExtResource("2_qw045")
-x_delta = 2.0
-hills_range = 0.25
-fixed = true
-fixed_scene = ExtResource("7_n2p7h")
-junctions_directory = "res://levels/level_00/junctions"
-junctions_length = 50
-smoothing_ratio = 0.5
-metadata/_custom_type_script = ExtResource("2_qw045")
+metadata/_custom_type_script = "uid://dlk5hw4t3fy6g"
 
 [resource]
 script = ExtResource("1_t4agd")
-entry_scene = ExtResource("1_g3lhb")
-sections = Array[ExtResource("2_qw045")]([SubResource("Resource_g3lhb"), SubResource("Resource_t4agd"), SubResource("Resource_r6061"), SubResource("Resource_t4agd"), SubResource("Resource_5tb42")])
-exit_scene = ExtResource("2_fq2hr")
-metadata/_custom_type_script = ExtResource("1_t4agd")
+entry_scene = ExtResource("1_5tb42")
+sections = Array[ExtResource("2_qw045")]([SubResource("Resource_lj8gp"), SubResource("Resource_gpti8"), SubResource("Resource_ybchb"), SubResource("Resource_gpti8")])
+exit_scene = ExtResource("2_g3lhb")
+metadata/_custom_type_script = "uid://blhee3dkvmcs8"

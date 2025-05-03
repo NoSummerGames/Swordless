@@ -64,6 +64,13 @@ func load_part(_part: PackedScene):
 		#part.global_position.z -= (part_aabb.position.z + part_aabb.size.z)
 		curve.add_point(last_position + Vector3.FORWARD * part_aabb.size.z)
 
+	for child: Node in Utilities.get_all_children(part):
+		if child is MeshInstance3D and not child.is_in_group("gameplay_elements"):
+			var mesh_instance: MeshInstance3D = child
+			# Set meshes collisions and static body 3D
+			if mesh_instance.find_child("StaticBody3D") == null:
+				mesh_instance.create_trimesh_collision()
+
 	dirty = true
 	return part
 

@@ -2,6 +2,9 @@
 class_name LevelGenerator
 extends Path3D
 
+@export var accent_material: Material
+@export var default_material: Material
+
 @export var level: Level
 
 @onready var level_creator: LevelCreator = %LevelCreator

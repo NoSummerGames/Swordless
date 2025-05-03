@@ -1,4 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://cbjx4qeaf824d"]
+[gd_scene load_steps=15 format=3 uid="uid://cbjx4qeaf824d"]
 
 [ext_resource type="Script" uid="uid://ci8hhoih467hp" path="res://levels/src/level.gd" id="1_8m8in"]
 [ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="2_gignc"]
@@ -12,6 +13,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gignc"]
+albedo_color = Color(0.351563, 0.351563, 0.351563, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m8in"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4bkrn"]
 sky_top_color = Color(0.337716, 0.402262, 0.492051, 1)
@@ -29,6 +35,7 @@ sky_material = SubResource("ProceduralSkyMaterial_4bkrn")
 [sub_resource type="Environment" id="Environment_8m8in"]
 background_mode = 2
 background_energy_multiplier = 0.93
+background_energy_multiplier = 0.8
 sky = SubResource("Sky_87vud")
 tonemap_mode = 1
 tonemap_white = 1.3
@@ -48,6 +55,8 @@ level_resource = ExtResource("2_gignc")
 [node name="LevelGenerator" parent="." node_paths=PackedStringArray("level") instance=ExtResource("4_n3tc2")]
 unique_name_in_owner = true
 curve = SubResource("Curve3D_8m8in")
+accent_material = SubResource("StandardMaterial3D_gignc")
+default_material = SubResource("StandardMaterial3D_8m8in")
 level = NodePath("..")
 
 [node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("5_xv5dn")]
@@ -61,7 +70,11 @@ environment = SubResource("Environment_8m8in")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 light_bake_mode = 1
+transform = Transform3D(0.258819, -0.836516, 0.482963, 0, 0.5, 0.866026, -0.965925, -0.224144, 0.12941, 0, 0, 0)
+light_color = Color(0.88214, 0.930954, 0.878547, 1)
+light_energy = 0.5
 shadow_enabled = true
+directional_shadow_max_distance = 200.0
 
 [node name="LevelMenuLoader" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

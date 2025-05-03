@@ -50,7 +50,7 @@ func _load_junctions(section: Section, loader: PartLoader, path: Path3D) -> void
 			var junction_scene: PackedScene = junction_scenes.pick_random()
 			var junction_part: Part = junction_scene.instantiate()
 			junction_parts.append(junction_part)
-			var junction_length: float = loader.load_part(junction_part, path)
+			var junction_length: float = loader.load_part(junction_part, path, false)
 			length += junction_length
 
 		var junction_point_count: int = path.curve.point_count - starting_point

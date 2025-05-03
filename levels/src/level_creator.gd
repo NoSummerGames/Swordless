@@ -15,7 +15,7 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 	path.curve = _create_curve()
 
 	# Load EntryScene
-	if is_instance_valid(level.entry_scene):
+	if level.entry_scene:
 		var entry_part: Part = level.entry_scene.instantiate()
 		part_loader.load_part(entry_part, path)
 	# Load sections
@@ -23,23 +23,25 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 		section_loader.load_section(section, part_loader, path)
 
 	# Load ExitScene
-	if is_instance_valid(level.exit_scene):
+	if level.exit_scene:
 		var exit_part: Part = level.exit_scene.instantiate()
 		part_loader.load_part(exit_part, path)
 		_find_exit_area(exit_part)
 
 	var creation_time: int = Time.get_ticks_msec() - start_time
 	print("Level created in {}ms".format([creation_time], "{}"))
+	print("Total vertex count: " + str(part_loader.vertex_count))
 
 	emit_signal("level_created")
+
+	part_loader.vertex_count = 0
 
 func _create_curve() -> Curve3D:
 	var curve: Curve3D = Curve3D.new()
 	curve.add_point(Vector3.BACK)
 	curve.add_point(Vector3.ZERO)
 
-	var _delete_first_point: Callable = func() -> void : curve.remove_point(0)
-	level_created.connect(_delete_first_point)
+	level_created.connect(func() -> void : curve.remove_point(0))
 	return curve
 
 func _find_exit_area(part: Part) -> void:
