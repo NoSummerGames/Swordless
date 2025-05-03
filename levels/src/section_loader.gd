@@ -37,9 +37,8 @@ func load_section(section: Section, loader: PartLoader, path: Path3D) -> void:
 
 
 func _load_junctions(section: Section, loader: PartLoader, path: Path3D) -> void:
-	var junction_path_points: Array[int] = []
-
 	if section.junctions_directory != null:
+		var junction_path_points: Array[int] = []
 		var length: float = 0
 
 		var junction_scenes: Array[PackedScene] = _load_pool(section.junctions_directory)
@@ -58,8 +57,11 @@ func _load_junctions(section: Section, loader: PartLoader, path: Path3D) -> void
 		for i: int in junction_point_count:
 			junction_path_points.append(starting_point + i)
 
-		_deform_path(section, path, junction_path_points)
-		_deform_meshes(junction_parts, path)
+		# Prevent deforming junctions that aren't long enough
+		const MIN_JUNCTION_POINTS: int = 2
+		if junction_path_points.size() >= MIN_JUNCTION_POINTS:
+			_deform_path(section, path, junction_path_points)
+			_deform_meshes(junction_parts, path)
 
 
 
