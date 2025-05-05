@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://8dolklc4nqgj"]
+
+[ext_resource type="Script" uid="uid://dgv3ohf2xvx76" path="res://hub/ui/src/dialogue_screen.gd" id="1_j5e4g"]
+[ext_resource type="Resource" uid="uid://but5tv5d6fnx1" path="res://ui/res/ui_settings_default.tres" id="2_uumb8"]
+[ext_resource type="Shader" uid="uid://d33ip3isf5tpy" path="res://_placeholder/vignette.gdshader" id="3_5mjr2"]
+[ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="4_nrfk3"]
+[ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="5_iv24i"]
+[ext_resource type="Script" uid="uid://pjujkp6xp7sy" path="res://hub/ui/dialogue_label.gd" id="6_wf7v7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3a3un"]
+shader = ExtResource("3_5mjr2")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_mqf8x"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m2kgc"]
+gradient = SubResource("Gradient_mqf8x")
+
+[node name="DialoguePopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j5e4g")
+settings = ExtResource("2_uumb8")
+
+[node name="BlurryViewport" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_3a3un")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_m2kgc")
+
+[node name="Portrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_nrfk3")
+
+[node name="DialogueLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 50.0
+offset_top = 523.0
+offset_right = 901.0
+offset_bottom = 557.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("5_iv24i")
+theme_type_variation = &"DialogueLabel"
+text = "Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum"
+horizontal_alignment = 1
+autowrap_mode = 3
+script = ExtResource("6_wf7v7")
+
+[node name="DialogueContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftBox" type="MarginContainer" parent="DialogueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_iv24i")
+theme_type_variation = &"DialogueBox"
+
+[node name="RightBox" type="MarginContainer" parent="DialogueContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_iv24i")
+theme_type_variation = &"DialogueBox"

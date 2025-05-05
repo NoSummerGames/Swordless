@@ -25,3 +25,14 @@ func get_all_children(parent: Node) -> Array :
 	var results: Array = temp.duplicate()
 	temp.clear()
 	return results
+
+static func get_blurred_viewport(viewport: Viewport, blur_scale: float = 0.01, resize_scale: float = 5.0) -> ImageTexture:
+	var viewport_image: Image = viewport.get_texture().get_image()
+	var original_img_size: Vector2i = viewport_image.get_size()
+	var img_size: Vector2i = original_img_size * blur_scale
+	viewport_image.resize(img_size.x, img_size.y, Image.INTERPOLATE_LANCZOS)
+	img_size *= resize_scale
+	viewport_image.resize(img_size.x, img_size.y, Image.INTERPOLATE_CUBIC)
+
+	var texture: ImageTexture = ImageTexture.create_from_image(viewport_image)
+	return texture
