@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://d33ip3isf5tpy" path="res://_placeholder/vignette.gdshader" id="3_5mjr2"]
 [ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="4_nrfk3"]
 [ext_resource type="Theme" uid="uid://bfnwwchrg6lcr" path="res://ui/res/main_theme.tres" id="5_iv24i"]
-[ext_resource type="Script" uid="uid://pjujkp6xp7sy" path="res://hub/ui/dialogue_label.gd" id="6_wf7v7"]
+[ext_resource type="Script" uid="uid://pjujkp6xp7sy" path="res://hub/ui/src/dialogue_label.gd" id="6_wf7v7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3a3un"]
 shader = ExtResource("3_5mjr2")
