@@ -25,7 +25,7 @@ func _ready() -> void:
 	path_exited.connect(player._on_player_exited_path)
 
 func _physics_process(delta: float) -> void:
-	if player.is_almost_on_floor():
+	if player.on_floor:
 		path_up_vector = player.floor_normal
 		player.up_direction = lerp(previous_up_direction, path_up_vector, player_stats.ground_acceleration * delta)
 	else:

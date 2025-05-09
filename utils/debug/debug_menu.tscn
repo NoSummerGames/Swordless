@@ -317,7 +317,7 @@ flat = true
 vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("2_kajsq")
-setting_name = "action_state"
+setting_name = "command_state"
 
 [node name="Spacer" type="Control" parent="Control/HBoxContainer/Right/VBoxContainer"]
 layout_mode = 2
@@ -413,6 +413,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Freeze" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
+visible = false
 layout_mode = 2
 
 [node name="Freeze" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Freeze"]
@@ -430,6 +431,7 @@ script = ExtResource("2_kajsq")
 setting_name = "freeze"
 
 [node name="Glide" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay"]
+visible = false
 layout_mode = 2
 
 [node name="Glide" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Gameplay/Glide"]

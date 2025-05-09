@@ -39,7 +39,7 @@ func _ready() -> void:
 
 		# HACK Make .blend child local
 		for child: Node in get_children():
-			if child is Node3D:
+			if child is Node3D and not child.is_in_group("gameplay_elements"):
 				for blend_child: Node in child.get_children():
 					blend_child.reparent(self)
 

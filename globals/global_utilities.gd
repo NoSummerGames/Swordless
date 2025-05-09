@@ -25,3 +25,11 @@ func get_all_children(parent: Node) -> Array :
 	var results: Array = temp.duplicate()
 	temp.clear()
 	return results
+
+func test_collision(rid: RID, motion_transform: Transform3D, motion_velocity: Vector3) -> PhysicsTestMotionResult3D:
+	var parameters: PhysicsTestMotionParameters3D = PhysicsTestMotionParameters3D.new()
+	parameters.from = motion_transform
+	parameters.motion = motion_velocity
+	var result : PhysicsTestMotionResult3D = PhysicsTestMotionResult3D.new()
+	PhysicsServer3D.body_test_motion(rid, parameters, result)
+	return result

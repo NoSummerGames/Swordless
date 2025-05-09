@@ -8,26 +8,6 @@ enum Inputs {
 }
 
 
-enum Actions {
-	NONE = 0,
-	JUMP = 1,
-	SPRINT = 2,
-	DASH = 3,
-	SLIDE = 4,
-	STRAFE = 5,
-	FREEZE = 6,
-	GLIDE = 7
-
-}
-
-enum ActionParams {
-	NONE = 0,
-	LEFT = 1,
-	RIGHT = 2,
-	START = 3,
-	END = 4
-}
-
 enum PartDifficulties {
 	EASY = 0,
 	MEDIUM = 1,

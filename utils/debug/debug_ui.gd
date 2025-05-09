@@ -12,7 +12,7 @@ enum Levels {NONE, HUB, RUN}
 
 var player: Player
 var body: MeshInstance3D
-var past_action: Action
+var past_command: Command
 
 var settings : Dictionary = {
 	Levels.RUN : {
@@ -21,7 +21,7 @@ var settings : Dictionary = {
 		"timer": false,
 		"fps": false,
 		"run_count": false,
-		"action_state": false,
+		"command_state": false,
 		"double_jump": false,
 		"dash_strafe": false,
 		"wall_jump": false,
@@ -50,8 +50,7 @@ var current_level: Levels = Levels.NONE:
 			visible = false
 		_load_settings()
 
-var excluded_stats: Array[String] = ["dash_duration", "dash_sensitivity", "dash_acceleration", \
- "priority_buffer", "half_jump_buffer", "half_jump_deceleration"]
+var excluded_stats: Array[String] = ["dash_duration", "half_jump_buffer", "half_jump_deceleration"]
 
 var previous_position: Vector3
 var collision_raycast: RayCast3D
@@ -64,7 +63,7 @@ var run_count: int = 0:
 
 var highest_altitude: float = 0
 
-@onready var action_label: Label = %ActionLabel
+@onready var command_label: Label = %CommandLabel
 @onready var speed_label: Label = %SpeedLabel
 @onready var altitude_label: Label = %AltitudeLabel
 @onready var timer_label: Label = %TimerLabel
@@ -95,17 +94,17 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	match current_level:
 		Levels.RUN:
-			if get_setting("action_state") == true:
-				if player.current_action !=  past_action:
-					var current_action: Action = player.current_action
-					action_label.text = current_action.name
+			if get_setting("command_state") == true:
+				if player.command_controller.current_command !=  past_command:
+					var current_command: Command = player.command_controller.current_command
+					command_label.text = current_command.name
 					var material: Material = body.get_active_material(0)
 					if material is StandardMaterial3D:
-						(material as StandardMaterial3D).albedo_color = current_action.debug_color
-					past_action = current_action
+						(material as StandardMaterial3D).albedo_color = current_command.debug_color
+					past_command = current_command
 				var camera: Camera3D = get_viewport().get_camera_3d()
 				if is_instance_valid(camera):
-					action_label.position = camera.unproject_position(player.global_position)
+					command_label.position = camera.unproject_position(player.global_position)
 
 func _physics_process(delta: float) -> void:
 	match current_level:
@@ -143,12 +142,12 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 		Levels.RUN:
 			match setting:
 				# HUD
-				"action_state":
-					action_label.visible = setting_value
+				"command_state":
+					command_label.visible = setting_value
 					if setting_value == true:
 						var material: Material = body.get_active_material(0)
 						if material is StandardMaterial3D:
-							(material as StandardMaterial3D).albedo_color = player.current_action.debug_color
+							(material as StandardMaterial3D).albedo_color = player.command_controller.current_command.debug_color
 					else:
 						var material: Material = body.get_active_material(0)
 						if material is StandardMaterial3D:
@@ -173,27 +172,19 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 
 				# SKILLS
 				"double_jump":
-					for action: Action in player.actions:
-						if action.name == "DoubleJump":
-							action.disabled = !setting_value
+					for command: Command in player.command_controller.active_commands:
+						if command.name == "DoubleJump":
+							command.disabled = !setting_value
 				"dash_strafe":
-					for action: Action in player.actions:
-						if action.name == "Dash" or action.name == "Strafe":
-							action.disabled = !setting_value
+					for command: Command in player.command_controller.active_commands:
+						if command.name == "Dash" or command.name == "Strafe":
+							command.disabled = !setting_value
 				"wall_jump":
-					for action: Action in player.actions:
-						if action.name == "WallJump":
-							action.disabled = !setting_value
+					for command: Command in player.command_controller.active_commands:
+						if command.name == "WallJump":
+							command.disabled = !setting_value
 
 				# GAMEPLAY
-				"freeze":
-					var freeze_component: FreezeComponent = player.get_node("%FreezeComponent")
-					freeze_component.disabled = !setting_value
-
-				"glide":
-					for action: Action in player.actions:
-						if action.name == "Glide":
-							action.disabled = !setting_value
 
 func change_stat(stat_name: String, stat_value: Variant) -> void:
 	stats[stat_name] = stat_value

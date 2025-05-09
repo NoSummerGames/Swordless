@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cu11ecv4dqgl5"]
 
-[ext_resource type="Script" path="res://addons/csg_toolbox/testers/src/level_tester.gd" id="1_6voa2"]
+[ext_resource type="Script" uid="uid://dpb3awd61qpq3" path="res://addons/csg_toolbox/testers/src/level_tester.gd" id="1_6voa2"]
 [ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="2_87vud"]
-[ext_resource type="Script" path="res://levels/level_menu_loader.gd" id="6_qy1rd"]
+[ext_resource type="PackedScene" uid="uid://br0m2iefkwaeq" path="res://player/player.tscn" id="5_87vud"]
+[ext_resource type="Script" uid="uid://dolu6wjdt0x1h" path="res://levels/level_menu_loader.gd" id="6_qy1rd"]
 [ext_resource type="PackedScene" uid="uid://tpirfdba5tdj" path="res://levels/level_generator.tscn" id="9_4shd5"]
-[ext_resource type="PackedScene" uid="uid://dsk5r3lka7jsh" path="res://player/player.tscn" id="10_h5nw6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qy1rd"]
 sky_top_color = Color(0.337716, 0.402262, 0.492051, 1)
@@ -58,12 +58,11 @@ unique_name_in_owner = true
 curve = SubResource("Curve3D_87vud")
 level = NodePath("..")
 
-[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("10_h5nw6")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16457, 0)
-path = NodePath("../LevelGenerator")
-
 [node name="LevelMenuLoader" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("6_qy1rd")
+
+[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("5_87vud")]
+unique_name_in_owner = true
+path = NodePath("../LevelGenerator")

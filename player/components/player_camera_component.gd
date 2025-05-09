@@ -8,7 +8,7 @@ const max_fov: int = 125.0
 var death_fov: float = 125.0
 var initial_transform: Transform3D
 var initial_fov: float
-var _dead: bool = false
+var player_dead: bool = false
 
 func _ready() -> void:
 	initial_transform = target.global_transform
@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 
 	# Modulate camera fov based on velocity
 	var target_fov: float = clamp(initial_fov + player.velocity.length() - player_stats.speed, initial_fov, max_fov)
-	if not _dead:
+	if not player_dead:
 		camera.fov = lerp(camera.fov, float(target_fov), player_stats.fov_reactivity * delta)
 	else:
 		camera.fov = lerp(camera.fov, death_fov, player_stats.fov_reactivity * delta)
@@ -39,4 +39,4 @@ func _physics_process(delta: float) -> void:
 	camera.global_transform = camera.global_transform.interpolate_with(target.global_transform, player_stats.camera_speed * delta)
 
 func _on_player_dead() -> void:
-	_dead = true
+	player_dead = true

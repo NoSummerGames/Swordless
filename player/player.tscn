@@ -1,37 +1,35 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsk5r3lka7jsh"]
+[gd_scene load_steps=27 format=3 uid="uid://br0m2iefkwaeq"]
 
-[ext_resource type="Script" uid="uid://4070xhfrbqj5" path="res://player/player.gd" id="1_iit5d"]
-[ext_resource type="Resource" uid="uid://b40fpy6xu1hyh" path="res://player/resources/player_stats/stats_default.tres" id="2_knn7v"]
-[ext_resource type="Shape3D" uid="uid://bkpxc14slisbp" path="res://player/resources/player_slide_collision.tres" id="3_bjvpn"]
-[ext_resource type="Shader" uid="uid://c761ooqye53uo" path="res://_placeholder/outline.gdshader" id="3_c35mf"]
-[ext_resource type="BoxMesh" uid="uid://6mcb2yyre37e" path="res://player/resources/player_slide_mesh.tres" id="3_g4c7l"]
-[ext_resource type="Script" uid="uid://bhadpot0vvtjx" path="res://player/components/player_camera_component.gd" id="3_ovvsi"]
-[ext_resource type="Script" uid="uid://brqwxltex16if" path="res://player/components/player_path_component.gd" id="4_l8spp"]
-[ext_resource type="Script" uid="uid://blptioevt15k" path="res://player/components/player_input_component.gd" id="5_2m8xq"]
-[ext_resource type="Script" uid="uid://c8tej5sllwhwo" path="res://player/components/player_freeze_component.gd" id="7_bjvpn"]
-[ext_resource type="Script" uid="uid://5btslpd58iiu" path="res://player/actions_controller.gd" id="8_5ao6g"]
-[ext_resource type="Script" uid="uid://bmpo3w7vaus5e" path="res://player/actions/action_double_jump.gd" id="8_liewp"]
-[ext_resource type="Script" uid="uid://cane52pe40vn7" path="res://player/actions/action_jump.gd" id="8_re7go"]
-[ext_resource type="Script" uid="uid://bxdmr1fc6wvkr" path="res://player/actions/action_glide.gd" id="8_rreng"]
-[ext_resource type="Script" uid="uid://dus22nolic7d1" path="res://player/components/player_death_component.gd" id="9_bjvpn"]
-[ext_resource type="Script" uid="uid://jqp45nypg1ve" path="res://player/actions/action_run.gd" id="10_8wi00"]
-[ext_resource type="Script" uid="uid://gx313oguv4c7" path="res://player/actions/action_dash.gd" id="10_bda80"]
-[ext_resource type="Script" uid="uid://plc51r5aibe4" path="res://player/actions/action_strafe.gd" id="10_gw2de"]
-[ext_resource type="Script" uid="uid://ds5eaj5c03aly" path="res://player/actions/action_fall.gd" id="11_53bcr"]
-[ext_resource type="Script" uid="uid://cih23njrnktlw" path="res://player/actions/action_wall_jump.gd" id="13_v7mrk"]
-[ext_resource type="Script" uid="uid://xoxee25c5ijg" path="res://player/actions/action_slide.gd" id="14_obll8"]
-[ext_resource type="Script" uid="uid://di08v5jw3g0hl" path="res://player/actions/action_dive.gd" id="15_11odp"]
-[ext_resource type="Script" uid="uid://ht3ev0xv60tr" path="res://utils/debug/debug_emitter.gd" id="18_mlrfn"]
-[ext_resource type="Shape3D" uid="uid://cptn8jku3orvv" path="res://player/resources/player_default_collision.tres" id="19_s7qer"]
-[ext_resource type="BoxMesh" uid="uid://dlq8nd3rpswqq" path="res://player/resources/player_default_mesh.tres" id="21_knn7v"]
-[ext_resource type="Script" uid="uid://2h2lto8jdri2" path="res://player/components/seal_breaker_component.gd" id="26_7pqkx"]
+[ext_resource type="Script" uid="uid://4070xhfrbqj5" path="res://player/player.gd" id="1_g4jbq"]
+[ext_resource type="Resource" uid="uid://b40fpy6xu1hyh" path="res://player/resources/player_stats/stats_default.tres" id="2_w62sd"]
+[ext_resource type="BoxMesh" uid="uid://dlq8nd3rpswqq" path="res://player/resources/player_default_mesh.tres" id="3_wlsi0"]
+[ext_resource type="Shape3D" uid="uid://cptn8jku3orvv" path="res://player/resources/player_default_collision.tres" id="4_hpw07"]
+[ext_resource type="Shader" uid="uid://c761ooqye53uo" path="res://_placeholder/outline.gdshader" id="5_5jjdk"]
+[ext_resource type="Script" uid="uid://bhadpot0vvtjx" path="res://player/components/player_camera_component.gd" id="6_0ja4r"]
+[ext_resource type="Script" uid="uid://brqwxltex16if" path="res://player/components/player_path_component.gd" id="7_2yosf"]
+[ext_resource type="Script" uid="uid://blptioevt15k" path="res://player/components/player_input_component.gd" id="8_mka4r"]
+[ext_resource type="Script" uid="uid://c8tej5sllwhwo" path="res://player/components/player_freeze_component.gd" id="9_3w53a"]
+[ext_resource type="Script" uid="uid://dus22nolic7d1" path="res://player/components/player_death_component.gd" id="10_fkshx"]
+[ext_resource type="Script" uid="uid://2h2lto8jdri2" path="res://player/components/player_seal_breaker_component.gd" id="11_3ijcp"]
+[ext_resource type="Shape3D" uid="uid://bkpxc14slisbp" path="res://player/resources/player_slide_collision.tres" id="20_st5iw"]
+[ext_resource type="BoxMesh" uid="uid://6mcb2yyre37e" path="res://player/resources/player_slide_mesh.tres" id="21_or8ns"]
+[ext_resource type="Script" uid="uid://ht3ev0xv60tr" path="res://utils/debug/debug_emitter.gd" id="25_g8j8o"]
+[ext_resource type="Script" uid="uid://cdpigas6ayto" path="res://player/components/player_command_component.gd" id="26_w62sd"]
+[ext_resource type="Script" uid="uid://dswrqm4vvifgi" path="res://player/commands/command_wall_jump.gd" id="27_0ja4r"]
+[ext_resource type="Script" uid="uid://7fj3r32memop" path="res://player/commands/command_jump.gd" id="27_5jjdk"]
+[ext_resource type="Script" uid="uid://c11hdti2qbmkg" path="res://player/commands/command_run.gd" id="28_0ja4r"]
+[ext_resource type="Script" uid="uid://cvy8gko4tinry" path="res://player/commands/command_fall.gd" id="29_2yosf"]
+[ext_resource type="Script" uid="uid://0x20rscx80kg" path="res://player/commands/command_dive.gd" id="31_2uvqg"]
+[ext_resource type="Script" uid="uid://i5pdlwu844yy" path="res://player/commands/command_strafe.gd" id="31_jd2rm"]
+[ext_resource type="Script" uid="uid://cct15e4waxlx7" path="res://player/commands/command_dash.gd" id="32_1s1yo"]
+[ext_resource type="Script" uid="uid://bp0dyc8jqjdfn" path="res://player/commands/command_slide.gd" id="34_jd2rm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bry1c"]
 size = Vector3(1, 1.6, 0.709961)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_65viv"]
 render_priority = 0
-shader = ExtResource("3_c35mf")
+shader = ExtResource("5_5jjdk")
 shader_parameter/outlineColor = Color(0, 0, 0, 1)
 shader_parameter/depth_threshold = 0.025
 shader_parameter/normal_threshold = 0.5
@@ -52,8 +50,9 @@ size = Vector2(2, 2)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 floor_max_angle = 1.0472
-script = ExtResource("1_iit5d")
-player_stats = ExtResource("2_knn7v")
+floor_snap_length = 0.5
+script = ExtResource("1_g4jbq")
+player_stats = ExtResource("2_w62sd")
 
 [node name="PlayerArea" type="Area3D" parent="."]
 unique_name_in_owner = true
@@ -67,11 +66,11 @@ shape = SubResource("BoxShape3D_bry1c")
 [node name="_PlayerMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-mesh = ExtResource("21_knn7v")
+mesh = ExtResource("3_wlsi0")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0.1)
-shape = ExtResource("19_s7qer")
+shape = ExtResource("4_hpw07")
 
 [node name="CameraPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -86,166 +85,154 @@ material_override = SubResource("ShaderMaterial_65viv")
 mesh = SubResource("QuadMesh_x7c3f")
 
 [node name="CameraComponent" type="Node" parent="." node_paths=PackedStringArray("camera", "target")]
-script = ExtResource("3_ovvsi")
+script = ExtResource("6_0ja4r")
 camera = NodePath("../CameraPoint/PlayerCamera")
 target = NodePath("../CameraPoint")
 
 [node name="PathComponent" type="Node" parent="."]
-script = ExtResource("4_l8spp")
+script = ExtResource("7_2yosf")
 
 [node name="InputComponent" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("5_2m8xq")
+script = ExtResource("8_mka4r")
 
 [node name="FreezeComponent" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("7_bjvpn")
+script = ExtResource("9_3w53a")
 metadata/_custom_type_script = "uid://xmyels6asyes"
 
 [node name="DeathComponent" type="Node" parent="." node_paths=PackedStringArray("input_component")]
-script = ExtResource("9_bjvpn")
+script = ExtResource("10_fkshx")
 input_component = NodePath("../InputComponent")
 metadata/_custom_type_script = "uid://xmyels6asyes"
 
-[node name="SealBreakerComponent" type="Node" parent="." node_paths=PackedStringArray("player_area", "actions_controller", "freeze_component", "breaking_actions")]
-script = ExtResource("26_7pqkx")
+[node name="SealBreakerComponent" type="Node" parent="." node_paths=PackedStringArray("player_area", "command_controller", "freeze_component")]
+script = ExtResource("11_3ijcp")
 player_area = NodePath("../PlayerArea")
-actions_controller = NodePath("../ActionsController")
+command_controller = NodePath("../CommandsController")
 freeze_component = NodePath("../FreezeComponent")
-breaking_actions = [NodePath("../ActionsController/Strafe"), NodePath("../ActionsController/Dash"), NodePath("../ActionsController/Dive"), NodePath("../ActionsController/Jump"), NodePath("../ActionsController/DoubleJump"), NodePath("../ActionsController/WallJump")]
 metadata/_custom_type_script = "uid://xmyels6asyes"
-
-[node name="ActionsController" type="Node" parent="." node_paths=PackedStringArray("input_component", "air_default_action", "ground_default_action")]
-script = ExtResource("8_5ao6g")
-input_component = NodePath("../InputComponent")
-air_default_action = NodePath("Fall")
-ground_default_action = NodePath("Run")
-
-[node name="Glide" type="Node" parent="ActionsController"]
-script = ExtResource("8_rreng")
-override_acceleration = true
-space = 0
-prioritary = true
-speed_factor = 0.5
-disable_sprint = true
-cond_match_input = true
-cond_in_air = true
-cond_cooldown = true
-input_required = 7
-cooldown_time = 2.0
-debug_color = Color(0.534244, 0.701483, 0.830614, 1)
-
-[node name="Jump" type="Node" parent="ActionsController"]
-script = ExtResource("8_re7go")
-space = 0
-prioritary = true
-speed_factor = 0.75
-cond_match_input = true
-cond_on_ground = true
-input_required = 1
-debug_color = Color(0.998354, 0.791112, 0, 1)
-
-[node name="WallJump" type="Node" parent="ActionsController"]
-script = ExtResource("13_v7mrk")
-override_acceleration = true
-space = 0
-prioritary = true
-speed_factor = 0.75
-repeatable = true
-cond_match_input = true
-cond_on_wall = true
-input_required = 1
-debug_color = Color(0.628591, 0.852273, 3.85046e-07, 1)
-
-[node name="DoubleJump" type="Node" parent="ActionsController"]
-script = ExtResource("8_liewp")
-space = 0
-prioritary = true
-speed_factor = 0.75
-repeatable = true
-cond_match_input = true
-cond_in_air = true
-cond_special = true
-input_required = 1
-debug_color = Color(1, 0.566346, 0.0896527, 1)
-
-[node name="Dash" type="Node" parent="ActionsController"]
-script = ExtResource("10_bda80")
-space = 0
-prioritary = true
-speed_factor = 0.6
-exclusive = true
-disable_sprint = true
-repeatable = true
-cond_match_input = true
-cond_special = true
-cond_cooldown = true
-input_required = 3
-cooldown_time = 0.6
-debug_color = Color(0.953985, 0.368983, 0.730241, 1)
-
-[node name="Strafe" type="Node" parent="ActionsController"]
-script = ExtResource("10_gw2de")
-override_acceleration = true
-space = 0
-prioritary = true
-speed_factor = 0.6
-exclusive = true
-disable_sprint = true
-repeatable = true
-cond_match_input = true
-cond_special = true
-cond_cooldown = true
-input_required = 5
-cooldown_time = 0.25
-debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
-
-[node name="Slide" type="Node" parent="ActionsController" node_paths=PackedStringArray("player_collision_shape", "player_mesh")]
-script = ExtResource("14_obll8")
-player_collision_shape = NodePath("../../PlayerCollision")
-slide_shape = ExtResource("3_bjvpn")
-default_shape = ExtResource("19_s7qer")
-player_mesh = NodePath("../../_PlayerMesh")
-slide_mesh = ExtResource("3_g4c7l")
-default_mesh = ExtResource("21_knn7v")
-prioritary = true
-speed_factor = 0.75
-cond_match_input = true
-cond_strictly_on_ground = true
-input_required = 4
-cooldown_time = 2.0
-debug_color = Color(0, 0.750218, 0.472003, 1)
-
-[node name="Dive" type="Node" parent="ActionsController"]
-script = ExtResource("15_11odp")
-space = 0
-speed_factor = 0.0
-cond_match_input = true
-cond_in_air = true
-input_required = 4
-debug_color = Color(0.748874, 0.506265, 1, 1)
-
-[node name="Run" type="Node" parent="ActionsController"]
-script = ExtResource("10_8wi00")
-cond_strictly_on_ground = true
-debug_color = Color(0.591498, 0.836485, 0.823248, 1)
-
-[node name="Fall" type="Node" parent="ActionsController"]
-script = ExtResource("11_53bcr")
-space = 0
-speed_factor = 0.7
-debug_color = Color(1, 0, 0, 1)
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-process_callback = 0
 one_shot = true
 
 [node name="DebugEmitter" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("18_mlrfn")
+script = ExtResource("25_g8j8o")
 level = 2
 nodes = {
 "body": NodePath("../_PlayerMesh"),
 "player": NodePath("..")
 }
 player = NodePath("..")
+
+[node name="CommandsController" type="Node" parent="." node_paths=PackedStringArray("input_controller", "default_command")]
+script = ExtResource("26_w62sd")
+input_controller = NodePath("../InputComponent")
+default_command = NodePath("Fall")
+
+[node name="WallJump" type="Node" parent="CommandsController"]
+unique_name_in_owner = true
+script = ExtResource("27_0ja4r")
+match_input = 1
+repeatable = true
+space = 1
+speed_factor = 0.75
+override_acceleration = true
+conditions = 4
+debug_color = Color(0.628591, 0.852273, 3.85046e-07, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="DoubleJump" type="Node" parent="CommandsController"]
+script = ExtResource("27_5jjdk")
+match_input = 1
+special = true
+space = 1
+speed_factor = 0.75
+conditions = 2
+debug_color = Color(1, 0.566346, 0.0896527, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="Jump" type="Node" parent="CommandsController"]
+script = ExtResource("27_5jjdk")
+match_input = 1
+space = 1
+speed_factor = 0.75
+conditions = 1
+debug_color = Color(0.998354, 0.791112, 0, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="Dive" type="Node" parent="CommandsController"]
+script = ExtResource("31_2uvqg")
+match_input = 6
+speed_factor = 0.0
+conditions = 2
+debug_color = Color(0.748874, 0.506265, 1, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="Dash" type="Node" parent="CommandsController"]
+script = ExtResource("32_1s1yo")
+match_input = 3
+special = true
+space = 1
+disable_sprint = true
+speed_factor = 0.6
+override_acceleration = true
+cooldown_time = 0.6
+debug_color = Color(0.953985, 0.368983, 0.730241, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="StrafeLeft" type="Node" parent="CommandsController"]
+script = ExtResource("31_jd2rm")
+match_input = 4
+repeatable = true
+special = true
+disable_sprint = true
+speed_factor = 0.6
+override_acceleration = true
+cooldown_time = 0.25
+debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="StrafeRight" type="Node" parent="CommandsController"]
+script = ExtResource("31_jd2rm")
+strafe_direction = 1
+match_input = 5
+repeatable = true
+special = true
+disable_sprint = true
+speed_factor = 0.6
+override_acceleration = true
+cooldown_time = 0.25
+debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="Slide" type="Node" parent="CommandsController" node_paths=PackedStringArray("player_collision_shape", "player_mesh")]
+unique_name_in_owner = true
+script = ExtResource("34_jd2rm")
+player_collision_shape = NodePath("../../PlayerCollision")
+slide_shape = ExtResource("20_st5iw")
+default_shape = ExtResource("4_hpw07")
+player_mesh = NodePath("../../_PlayerMesh")
+slide_mesh = ExtResource("21_or8ns")
+default_mesh = ExtResource("3_wlsi0")
+match_input = 6
+speed_factor = 0.75
+conditions = 1
+cooldown_time = 2.0
+debug_color = Color(0, 0.750218, 0.472003, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="Run" type="Node" parent="CommandsController"]
+script = ExtResource("28_0ja4r")
+conditions = 1
+debug_color = Color(0.591498, 0.836485, 0.823248, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
+
+[node name="Fall" type="Node" parent="CommandsController"]
+script = ExtResource("29_2yosf")
+space = 1
+speed_factor = 0.75
+conditions = 2
+debug_color = Color(1, 0, 0, 1)
+metadata/_custom_type_script = "uid://cwrgdorhd3d00"
