@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=4 uid="uid://d0gkxo4f4r61m"]
 
-[ext_resource type="Script" uid="uid://c0hul2dmncqr3" path="res://levels/loading_screen/src/loading_screen.gd" id="1_c6ulp"]
-[ext_resource type="Shader" uid="uid://dfay3ym35keog" path="res://levels/loading_screen/assets/black_sky_shader.gdshader" id="2_gj10x"]
-[ext_resource type="PackedScene" uid="uid://dwvujbrrm22t3" path="res://levels/loading_screen/loading_player.tscn" id="3_gj10x"]
-[ext_resource type="Texture2D" uid="uid://172xy8y1rfth" path="res://levels/loading_screen/controls.png" id="4_gj10x"]
+[ext_resource type="Script" uid="uid://c0hul2dmncqr3" path="res://levels/tutorial_level/src/tutorial_level.gd" id="1_naxxa"]
+[ext_resource type="Shader" uid="uid://dfay3ym35keog" path="res://levels/tutorial_level/assets/black_sky_shader.gdshader" id="2_5x0m2"]
+[ext_resource type="PackedScene" uid="uid://dwvujbrrm22t3" path="res://levels/tutorial_level/tutorial_player.tscn" id="3_uvbd6"]
+[ext_resource type="Texture2D" uid="uid://172xy8y1rfth" path="res://levels/tutorial_level/controls.png" id="4_qhkif"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f78bm"]
-shader = ExtResource("2_gj10x")
+shader = ExtResource("2_5x0m2")
 shader_parameter/add_clouds = true
 shader_parameter/clouds_below = false
 shader_parameter/cloud_scale = 0.25
@@ -96,6 +96,8 @@ script/source = "extends Control
 
 signal progress_bar_completed
 
+var is_ready: bool = false
+
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var label: Label = %Label
 
@@ -110,8 +112,7 @@ func _input(event: InputEvent) -> void:
 		label.label_settings.font_color = Color(\"90e0af\")
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed(\"start\"):
-
+	if Input.is_action_pressed(\"start\") and is_ready:
 		progress_bar.value += 0.01 + progress_bar.value * delta
 
 func _on_value_changed(value: float) -> void:
@@ -129,13 +130,13 @@ bg_color = Color(1, 1, 1, 1)
 font_size = 32
 font_color = Color(0.564706, 0.878431, 0.686275, 1)
 
-[node name="LoadingScreen" type="Node3D"]
-script = ExtResource("1_c6ulp")
+[node name="TutorialLevel" type="Node3D"]
+script = ExtResource("1_naxxa")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lf636")
 
-[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_gj10x")]
+[node name="Player" parent="." node_paths=PackedStringArray("path") instance=ExtResource("3_uvbd6")]
 path = NodePath("../Path3D")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player"]
@@ -221,7 +222,7 @@ custom_minimum_size = Vector2(700, 400)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("4_gj10x")
+texture = ExtResource("4_qhkif")
 expand_mode = 1
 stretch_mode = 4
 

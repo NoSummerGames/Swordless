@@ -3,6 +3,7 @@ extends AbstractWorldLoader
 
 @export var title_scene: PackedScene
 @export var hub_scene: PackedScene
+@export var tutorial_scene: PackedScene
 
 func _ready() -> void:
 	level_loaded.connect(_change_current_camera_exposure)
@@ -11,7 +12,6 @@ func _ready() -> void:
 
 func launch_game() -> void:
 	load_scene(hub_scene)
-
 
 func _change_current_camera_exposure() -> void:
 	var camera: Camera3D = get_viewport().get_camera_3d()
@@ -26,8 +26,17 @@ func _change_current_camera_exposure() -> void:
 
 func _on_level_changed(level: Node3D) -> void:
 		if level is Hub:
-			(level as Hub).level_entered.connect(load_scene)
+			(level as Hub).level_entered.connect(_load_tutorial)
+		if level is TutorialLevel:
+			var tutorial: TutorialLevel = level
+			tutorial.level_exited.connect(load_scene)
 		if level is Level:
 			(level as Level).level_exited.connect(load_scene.bind(hub_scene))
 			(level as Level).level_restarted.connect(load_scene.bind(current_scene, true))
 			(level as Level).standalone = false
+
+func _load_tutorial(next_level: PackedScene) -> void:
+	load_scene(tutorial_scene)
+	await level_loaded
+	var tutorial: TutorialLevel = current_level
+	tutorial.next_level = next_level
