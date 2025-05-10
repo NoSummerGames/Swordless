@@ -6,6 +6,7 @@ func _enter() -> void:
 	# Reset gravity, especially for double jumping
 	player.gravity = Vector3.ZERO
 	timer =  Utilities.add_timer(true, player_stats.jump_time)
+	timer.timeout.connect(fall_command.enter.bind(false))
 	wall_jump_timer = Utilities.add_timer(true, player_stats.wall_jump_grace_time)
 
 

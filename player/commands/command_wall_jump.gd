@@ -9,6 +9,7 @@ func _enter() -> void:
 	custom_acceleration = player_stats.wall_jump_init_acceleration
 
 	timer = Utilities.add_timer(true, player_stats.wall_jump_time)
+	timer.timeout.connect(fall_command.enter.bind(false))
 
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "custom_acceleration", player_stats.air_acceleration, player_stats.wall_jump_time)

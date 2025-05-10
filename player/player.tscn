@@ -230,6 +230,7 @@ debug_color = Color(0.591498, 0.836485, 0.823248, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 
 [node name="Fall" type="Node" parent="CommandsController"]
+unique_name_in_owner = true
 script = ExtResource("29_2yosf")
 space = 1
 speed_factor = 0.75
