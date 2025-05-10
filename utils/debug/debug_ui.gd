@@ -22,6 +22,7 @@ var settings : Dictionary = {
 		"fps": false,
 		"run_count": false,
 		"command_state": false,
+		"display_part_name": false,
 		"double_jump": false,
 		"dash_strafe": false,
 		"wall_jump": false,
@@ -63,12 +64,16 @@ var run_count: int = 0:
 
 var highest_altitude: float = 0
 
+static var parts_offset_and_name: Array[PartOffset] = []
+static var part_index: int = 0
+
 @onready var command_label: Label = %CommandLabel
 @onready var speed_label: Label = %SpeedLabel
 @onready var altitude_label: Label = %AltitudeLabel
 @onready var timer_label: Label = %TimerLabel
 @onready var fps_label: Label = %FPSLabel
 @onready var run_label: Label = %RunLabel
+@onready var part_name_label: Label = %PartNameLabel
 
 @onready var default_player_stats: PlayerStatsResource
 
@@ -77,6 +82,10 @@ var highest_altitude: float = 0
 func _ready() -> void:
 	default_player_stats = player_stats.duplicate()
 	_load_settings()
+
+
+	for part: PartOffset in parts_offset_and_name:
+		part.path_offset = part.path_offset / player.path.curve.get_baked_length()
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if current_level == Levels.RUN:
@@ -130,6 +139,14 @@ func _physics_process(delta: float) -> void:
 			if get_setting("fps") == true:
 				fps_label.text = str(Engine.get_frames_per_second())
 
+			if get_setting("display_part_name") == true:
+				if part_index + 1 < parts_offset_and_name.size():
+					if player.path_progression > parts_offset_and_name[part_index + 1].path_offset:
+						part_index += 1
+						part_name_label.text = parts_offset_and_name[part_index].part_name
+					else:
+						part_name_label.text = parts_offset_and_name[part_index].part_name
+
 
 			if not get_tree().paused:
 				time += delta
@@ -169,6 +186,8 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 					fps_label.visible = setting_value
 				"run_count":
 					run_label.visible = setting_value
+				"display_part_name":
+					part_name_label.visible = setting_value
 
 				# SKILLS
 				"double_jump":
@@ -177,7 +196,7 @@ func change_setting(setting: String, setting_value: Variant) -> void:
 							command.disabled = !setting_value
 				"dash_strafe":
 					for command: Command in player.command_controller.active_commands:
-						if command.name == "Dash" or command.name == "Strafe":
+						if command.name == "Dash" or command.name.begins_with("Strafe"):
 							command.disabled = !setting_value
 				"wall_jump":
 					for command: Command in player.command_controller.active_commands:
@@ -271,3 +290,19 @@ func save_setting(setting: String, setting_value: Variant) -> void:
 
 	if error != OK:
 		printerr("Settings couldn't be saved, error : {_}".format(error))
+
+static func store_part(offset: float, path: String) -> void:
+	var part_offset: PartOffset = PartOffset.new(offset, path.get_file())
+	parts_offset_and_name.append(part_offset)
+
+static func reset_parts_list() -> void:
+	part_index = 0
+	parts_offset_and_name.clear()
+
+class PartOffset:
+	var path_offset: float = 0.0
+	var part_name: String = ""
+
+	func _init(offset: float, name: String) -> void:
+		path_offset = offset
+		part_name = name

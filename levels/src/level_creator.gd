@@ -17,6 +17,7 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 	# Load EntryScene
 	if level.entry_scene:
 		var entry_part: Part = level.entry_scene.instantiate()
+		DebugSettings.store_part(path.curve.get_baked_length(), level.entry_scene.resource_path)
 		part_loader.load_part(entry_part, path)
 	# Load sections
 	for section: Section in level.sections:
@@ -25,6 +26,7 @@ func create_level(level: LevelResource, path: Path3D) -> void:
 	# Load ExitScene
 	if level.exit_scene:
 		var exit_part: Part = level.exit_scene.instantiate()
+		DebugSettings.store_part(path.curve.get_baked_length(), level.exit_scene.resource_path)
 		part_loader.load_part(exit_part, path)
 		_find_exit_area(exit_part)
 

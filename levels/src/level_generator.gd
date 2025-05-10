@@ -16,7 +16,9 @@ func _ready() -> void:
 
 func _create_level() -> void:
 	if is_instance_valid(level):
+		DebugSettings.reset_parts_list()
 		level_creator.create_level(level.level_resource, self)
+
 
 
 func regenerate_level() -> void:

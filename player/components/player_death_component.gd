@@ -15,6 +15,5 @@ func _physics_process(delta: float) -> void:
 		player.velocity = player.global_basis.z * max(0, initial_energy)
 
 func _on_player_dead() -> void:
-	player.path_progression = player.path.curve.get_closest_offset(player.global_position)
 	input_component.disabled = true
 	player.velocity_overridden = true

@@ -81,3 +81,13 @@ size_flags_vertical = 10
 text = "FPS :"
 label_settings = ExtResource("4_fmf0a")
 vertical_alignment = 2
+
+[node name="PartNameLabel" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "part_name"
+label_settings = ExtResource("4_fmf0a")
+vertical_alignment = 2

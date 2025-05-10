@@ -319,6 +319,25 @@ expand_icon = true
 script = ExtResource("2_kajsq")
 setting_name = "command_state"
 
+[node name="PartName" type="HBoxContainer" parent="Control/HBoxContainer/Right/VBoxContainer/Hud"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/PartName"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+text = "Noms des parts"
+
+[node name="PartName" type="CheckButton" parent="Control/HBoxContainer/Right/VBoxContainer/Hud/PartName"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_o2s2v")
+flat = true
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("2_kajsq")
+setting_name = "display_part_name"
+
 [node name="Spacer" type="Control" parent="Control/HBoxContainer/Right/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

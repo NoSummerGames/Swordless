@@ -1,7 +1,7 @@
 class_name LevelProgressBar
 extends ProgressBar
 
-const ANIM_TIME: float = 3.0
+const ANIM_TIME: float = 1.5
 
 var level: Level
 

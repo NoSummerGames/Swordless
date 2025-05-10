@@ -15,6 +15,7 @@ func load_section(section: Section, loader: PartLoader, path: Path3D) -> void:
 		_load_junctions(section, loader, path)
 		if is_instance_valid(section.fixed_scene) :
 			var fixed_part: Part = section.fixed_scene.instantiate()
+			DebugSettings.store_part(path.curve.get_baked_length(), section.fixed_scene.resource_path)
 			loader.load_part(fixed_part, path)
 		else:
 			printerr("No PackedScene set")
@@ -29,6 +30,7 @@ func load_section(section: Section, loader: PartLoader, path: Path3D) -> void:
 				if section_length < section.length :
 					var part_scene: PackedScene = pool_parts.pop_front()
 					var part: Part = part_scene.instantiate()
+					DebugSettings.store_part(path.curve.get_baked_length(), part_scene.resource_path)
 					var part_length: float = loader.load_part(part, path)
 					section_length += part_length
 				else:
@@ -48,6 +50,7 @@ func _load_junctions(section: Section, loader: PartLoader, path: Path3D) -> void
 		while length <= section.junctions_length:
 			var junction_scene: PackedScene = junction_scenes.pick_random()
 			var junction_part: Part = junction_scene.instantiate()
+			DebugSettings.store_part(path.curve.get_baked_length(), junction_scene.resource_path)
 			junction_parts.append(junction_part)
 			var junction_length: float = loader.load_part(junction_part, path, false)
 			length += junction_length
