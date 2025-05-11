@@ -18,4 +18,4 @@ func _connect_passages() -> void:
 	for child in Utilities.get_all_children(self):
 		if child is Passage:
 			var passage: Passage = child
-			passage.interacted.connect(level_entered.emit.bind(passage.passage_resource.classic_level_scene))
+			passage.interacted.connect(level_entered.emit.bind(passage.classic_level_scene))
