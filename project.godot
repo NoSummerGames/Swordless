@@ -27,6 +27,7 @@ Data="*res://globals/global_data.gd"
 Utilities="*res://globals/global_utilities.gd"
 Settings="*res://globals/global_settings.gd"
 DebugUi="*res://utils/debug/debug_ui.tscn"
+Events="*res://globals/global_events.gd"
 
 [debug]
 

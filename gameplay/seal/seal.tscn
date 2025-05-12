@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://duwp5c2s20jin"]
 
-[ext_resource type="Script" uid="uid://ddph0w04cpf8k" path="res://gameplay/src/seal.gd" id="1_x8xnm"]
-[ext_resource type="Material" uid="uid://dvdjhf0o4c2jv" path="res://gameplay/debug/seal_broke.tres" id="3_bedd7"]
-[ext_resource type="Material" uid="uid://d0s3oemoojl24" path="res://gameplay/debug/seal_unbroke.tres" id="3_nr805"]
-[ext_resource type="Script" uid="uid://cto710swmwva6" path="res://gameplay/debug/seal_debug.gd" id="4_68k5h"]
-[ext_resource type="PackedScene" uid="uid://cn72jojvn21rn" path="res://gameplay/debug/fractured_sphere.tscn" id="6_68k5h"]
+[ext_resource type="Script" uid="uid://ddph0w04cpf8k" path="res://gameplay/seal/src/seal.gd" id="1_x8xnm"]
+[ext_resource type="Material" uid="uid://dvdjhf0o4c2jv" path="res://gameplay/seal/debug/seal_broke.tres" id="3_bedd7"]
+[ext_resource type="Material" uid="uid://d0s3oemoojl24" path="res://gameplay/seal/debug/seal_unbroke.tres" id="3_nr805"]
+[ext_resource type="Script" uid="uid://cto710swmwva6" path="res://gameplay/seal/debug/seal_debug.gd" id="4_68k5h"]
+[ext_resource type="PackedScene" uid="uid://cn72jojvn21rn" path="res://gameplay/seal/debug/fractured_sphere.tscn" id="6_68k5h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nr805"]
 size = Vector3(1, 1.5, 3.10327)
