@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://br0m2iefkwaeq"]
+[gd_scene load_steps=30 format=3 uid="uid://br0m2iefkwaeq"]
 
 [ext_resource type="Script" uid="uid://4070xhfrbqj5" path="res://player/player.gd" id="1_g4jbq"]
 [ext_resource type="Resource" uid="uid://b40fpy6xu1hyh" path="res://player/resources/player_stats/stats_default.tres" id="2_w62sd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dus22nolic7d1" path="res://player/components/player_death_component.gd" id="10_fkshx"]
 [ext_resource type="Script" uid="uid://2h2lto8jdri2" path="res://player/components/player_seal_breaker_component.gd" id="11_3ijcp"]
 [ext_resource type="Shape3D" uid="uid://bkpxc14slisbp" path="res://player/resources/player_slide_collision.tres" id="20_st5iw"]
+[ext_resource type="BoxMesh" uid="uid://6mcb2yyre37e" path="res://player/resources/player_slide_mesh.tres" id="23_knn7v"]
 [ext_resource type="Script" uid="uid://ht3ev0xv60tr" path="res://utils/debug/debug_emitter.gd" id="25_g8j8o"]
 [ext_resource type="Script" uid="uid://cdpigas6ayto" path="res://player/components/player_command_component.gd" id="26_w62sd"]
 [ext_resource type="Script" uid="uid://dswrqm4vvifgi" path="res://player/commands/command_wall_jump.gd" id="27_0ja4r"]
@@ -291,12 +292,15 @@ cooldown_time = 0.25
 debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 
-[node name="Slide" type="Node" parent="CommandsController" node_paths=PackedStringArray("player_collision_shape")]
+[node name="Slide" type="Node" parent="CommandsController" node_paths=PackedStringArray("player_collision_shape", "player_mesh")]
 unique_name_in_owner = true
 script = ExtResource("34_jd2rm")
 player_collision_shape = NodePath("../../PlayerCollision")
 slide_shape = ExtResource("20_st5iw")
 default_shape = ExtResource("4_hpw07")
+player_mesh = NodePath("../../_PlayerMesh")
+slide_mesh = ExtResource("23_knn7v")
+default_mesh = ExtResource("3_wlsi0")
 match_input = 6
 speed_factor = 0.75
 conditions = 1

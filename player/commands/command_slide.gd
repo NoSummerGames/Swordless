@@ -6,9 +6,9 @@ var timer: Timer
 @export var player_collision_shape: CollisionShape3D
 @export var slide_shape: Shape3D
 @export var default_shape: Shape3D
-@export var player_mesh: MeshInstance3D
-@export var slide_mesh: Mesh
-@export var default_mesh: Mesh
+@export var player_mesh: MeshInstance3D #DEBUG
+@export var slide_mesh: Mesh #DEBUG
+@export var default_mesh: Mesh #DEBUG
 
 
 func _enter() -> void:
@@ -44,5 +44,5 @@ func _exit() -> void:
 func _update_shape_and_mesh(shape: Shape3D, mesh: Mesh) -> void:
 	player_collision_shape.shape = shape
 	player_collision_shape.position = Vector3(0, shape.get_debug_mesh().get_aabb().size.y / 2, 0.1)
-	player_mesh.mesh = mesh
-	player_mesh.position = Vector3(0, mesh.get_aabb().size.y / 2, 0)
+	player_mesh.mesh = mesh #DEBUG
+	player_mesh.position = Vector3(0, mesh.get_aabb().size.y / 2, 0) #DEBUG
