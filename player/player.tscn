@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://c761ooqye53uo" path="res://_placeholder/outline.gdshader" id="5_5jjdk"]
 [ext_resource type="Script" uid="uid://bhadpot0vvtjx" path="res://player/components/player_camera_component.gd" id="6_0ja4r"]
 [ext_resource type="Script" uid="uid://brqwxltex16if" path="res://player/components/player_path_component.gd" id="7_2yosf"]
-[ext_resource type="SpriteFrames" path="res://player/resources/player_animations.tres" id="7_knn7v"]
+[ext_resource type="SpriteFrames" uid="uid://bnbr5qcvv4g2t" path="res://player/resources/player_animations.tres" id="7_knn7v"]
 [ext_resource type="Script" uid="uid://d1034t3xeah1p" path="res://player/components/player_animation_component.gd" id="7_s7qer"]
 [ext_resource type="Script" uid="uid://blptioevt15k" path="res://player/components/player_input_component.gd" id="8_mka4r"]
 [ext_resource type="Script" uid="uid://c8tej5sllwhwo" path="res://player/components/player_freeze_component.gd" id="9_3w53a"]
@@ -94,6 +94,7 @@ mesh = SubResource("QuadMesh_x7c3f")
 offset = Vector2(0, 500)
 pixel_size = 0.003
 billboard = 1
+alpha_cut = 1
 sprite_frames = ExtResource("7_knn7v")
 animation = &"run"
 script = ExtResource("7_s7qer")
