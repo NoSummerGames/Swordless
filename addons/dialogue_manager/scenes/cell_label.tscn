@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1yet23jglnrj"]
+
+[ext_resource type="Script" uid="uid://87krip7pgmek" path="res://addons/dialogue_manager/src/cell_label.gd" id="1_23doa"]
+
+[node name="DialogueEditorLabel" type="RichTextLabel" node_paths=PackedStringArray("close_button")]
+custom_minimum_size = Vector2(100, 50)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+focus_mode = 2
+text = "..."
+scroll_active = false
+selection_enabled = true
+script = ExtResource("1_23doa")
+close_button = NodePath("Button")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "X"

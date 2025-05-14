@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj8n4w3mfqp6a"]
+
+[ext_resource type="Script" uid="uid://wdo57u5q1h8" path="res://addons/dialogue_manager/src/table_cell.gd" id="1_enpko"]
+
+[node name="TableCell" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_enpko")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+
+[node name="DialoguesContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NewDialogue" type="MenuButton" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+"
+flat = false
+alignment = 0

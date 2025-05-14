@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://csjewjqkvrnc4"]
+
+[ext_resource type="Script" uid="uid://igcpiyiedwbs" path="res://addons/dialogue_manager/src/event_row.gd" id="1_6mvbu"]
+[ext_resource type="Script" uid="uid://wdo57u5q1h8" path="res://addons/dialogue_manager/src/table_cell.gd" id="2_j6kr1"]
+
+[node name="EventRow" type="HBoxContainer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 2659.0
+offset_bottom = 17.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_6mvbu")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Event"
+
+[node name="TableCell" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("2_j6kr1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TableCell"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+
+[node name="DialoguesContainer" type="VBoxContainer" parent="TableCell/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NewDialogue" type="MenuButton" parent="TableCell/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+"
+flat = false
+alignment = 0
