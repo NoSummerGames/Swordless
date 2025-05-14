@@ -202,6 +202,7 @@ disable_sprint = true
 speed_factor = 0.6
 override_acceleration = true
 cooldown_time = 0.25
+animation = "strafe_left"
 debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 
@@ -231,7 +232,6 @@ match_input = 6
 speed_factor = 0.75
 conditions = 1
 cooldown_time = 2.0
-enter_animation = "slide_enter"
 animation = "slide"
 exit_animation = "slide_exit"
 debug_color = Color(0, 0.750218, 0.472003, 1)
