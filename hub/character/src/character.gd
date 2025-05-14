@@ -1,7 +1,7 @@
 class_name Character
 extends HubObject
 
-enum Status{NEUTRAL, HOSTILE, FRIENDLY, DEAD, HIDDEN}
+enum Status{NEUTRAL, FRIENDLY, HOSTILE, GONE, HIDDEN}
 
 # State signals
 signal status_changed(status: Status)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://dcrb1y63nm5pn"]
+
+[ext_resource type="Script" uid="uid://bcpbw77m7i26w" path="res://hub/character/src/character_resource.gd" id="1_g5w8d"]
+
+[resource]
+script = ExtResource("1_g5w8d")
+name = "La Secrétaire"
+id = 1
+metadata/_custom_type_script = "uid://bcpbw77m7i26w"

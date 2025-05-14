@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GameData" load_steps=6 format=3 uid="uid://bpk0kk4fktje2"]
+
+[ext_resource type="Script" uid="uid://bcpbw77m7i26w" path="res://hub/character/src/character_resource.gd" id="1_3jxr8"]
+[ext_resource type="Script" uid="uid://blhee3dkvmcs8" path="res://levels/src/resources/level_res.gd" id="2_5o8ka"]
+[ext_resource type="Resource" uid="uid://dcrb1y63nm5pn" path="res://hub/character/resources/character_01.tres" id="2_gouoy"]
+[ext_resource type="Script" uid="uid://b7ulxby8jyhen" path="res://globals/data/game_data_res.gd" id="3_gouoy"]
+[ext_resource type="Resource" uid="uid://dvje6j1gsdvaa" path="res://levels/level_00/level_00.tres" id="4_gouoy"]
+
+[resource]
+script = ExtResource("3_gouoy")
+characters = Array[ExtResource("1_3jxr8")]([ExtResource("2_gouoy")])
+levels = Array[ExtResource("2_5o8ka")]([ExtResource("4_gouoy")])
+metadata/_custom_type_script = "uid://b7ulxby8jyhen"
