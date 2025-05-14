@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://br0m2iefkwaeq"]
+[gd_scene load_steps=29 format=3 uid="uid://br0m2iefkwaeq"]
 
 [ext_resource type="Script" uid="uid://4070xhfrbqj5" path="res://player/player.gd" id="1_g4jbq"]
 [ext_resource type="Resource" uid="uid://b40fpy6xu1hyh" path="res://player/resources/player_stats/stats_default.tres" id="2_w62sd"]
@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://c761ooqye53uo" path="res://_placeholder/outline.gdshader" id="5_5jjdk"]
 [ext_resource type="Script" uid="uid://bhadpot0vvtjx" path="res://player/components/player_camera_component.gd" id="6_0ja4r"]
 [ext_resource type="Script" uid="uid://brqwxltex16if" path="res://player/components/player_path_component.gd" id="7_2yosf"]
-[ext_resource type="Texture2D" uid="uid://bc8ixqjtcrkqd" path="res://icon.svg" id="7_g4c7l"]
+[ext_resource type="SpriteFrames" path="res://player/resources/player_animations.tres" id="7_knn7v"]
 [ext_resource type="Script" uid="uid://d1034t3xeah1p" path="res://player/components/player_animation_component.gd" id="7_s7qer"]
 [ext_resource type="Script" uid="uid://blptioevt15k" path="res://player/components/player_input_component.gd" id="8_mka4r"]
 [ext_resource type="Script" uid="uid://c8tej5sllwhwo" path="res://player/components/player_freeze_component.gd" id="9_3w53a"]
@@ -47,100 +47,6 @@ shader_parameter/grazing_angle_modulation_factor = 50.0
 [sub_resource type="QuadMesh" id="QuadMesh_x7c3f"]
 flip_faces = true
 size = Vector2(2, 2)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_s7qer"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}],
-"loop": true,
-"name": &"fall",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}],
-"loop": false,
-"name": &"fall_exit",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}],
-"loop": false,
-"name": &"jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}],
-"loop": true,
-"name": &"run",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}],
-"loop": false,
-"name": &"slide",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}],
-"loop": false,
-"name": &"slide_enter",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_g4c7l")
-}],
-"loop": false,
-"name": &"slide_exit",
-"speed": 5.0
-}]
 
 [node name="Player" type="CharacterBody3D"]
 floor_stop_on_slope = false
@@ -185,10 +91,11 @@ material_override = SubResource("ShaderMaterial_65viv")
 mesh = SubResource("QuadMesh_x7c3f")
 
 [node name="PlayerAnimation" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("commands_controller")]
-centered = false
+offset = Vector2(0, 500)
+pixel_size = 0.003
 billboard = 1
-sprite_frames = SubResource("SpriteFrames_s7qer")
-animation = &"fall_exit"
+sprite_frames = ExtResource("7_knn7v")
+animation = &"run"
 script = ExtResource("7_s7qer")
 commands_controller = NodePath("../CommandsController")
 
