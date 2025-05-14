@@ -1,8 +1,7 @@
 class_name CommandController
 extends AbstractCommand
 
-signal command_entered(command: Command)
-signal command_exited(command: Command)
+signal command_entered(from:Command, to: Command)
 
 @export var input_controller: PlayerInputComponent
 @export var default_command: Command

@@ -4,37 +4,33 @@ extends AnimatedSprite3D
 
 func _ready() -> void:
 	commands_controller.command_entered.connect(_on_command_entered)
-	commands_controller.command_exited.connect(_on_command_exited)
 	animation_changed.connect(_on_animation_changed)
 
 
-func _on_command_entered(command: Command) -> void:
-	if command in commands_controller.active_commands:
-		if play_animation("enter_animation"):
+func _on_command_entered(from: Command, to: Command) -> void:
+	if to not in commands_controller.active_commands:
+		if play_animation(from, "exit_animation"):
 			await animation_finished
 
-		play_animation("animation")
+	if play_animation(to, "enter_animation"):
+		await animation_finished
 
-	else:
-		if is_playing():
-			await animation_finished
-		play_animation(command.animation)
+	play_animation(to, "animation")
 
-func _on_command_exited(command: Command) -> void:
-		if sprite_frames.has_animation(command.exit_animation):
-			play_animation(command.exit_animation)
 
-func play_animation(property: String) -> bool:
-	var desired_animation: String = commands_controller.get(property)
+func play_animation(command: Command, property: String) -> bool:
+	var get_property: Variant = command.get(property)
 
-	if not property == null:
+	var get_anim: Callable = func() -> String: return "" if get_property == null else get_property
+	var desired_animation: String = get_anim.call()
+
+	if not desired_animation == "":
 		if sprite_frames.has_animation(desired_animation):
 			play(desired_animation)
 			return true
 		else:
 			printerr(desired_animation + " animation couldn't be found.")
-	else:
-		printerr(property + " player property couldn't be found.")
+
 	return false
 
 func _on_animation_changed() -> void:

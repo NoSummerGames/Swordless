@@ -68,8 +68,9 @@ func enter(prioritary: bool = true) -> void:
 	current_command.exit()
 
 	# Set the current command as self
+	command_controller.command_entered.emit(current_command, self)
 	current_command = self
-	command_controller.command_entered.emit(self)
+
 
 	# If the command is prioritary (i.e. active) add a timer to prevent a passive command erasing it
 	if prioritary:
@@ -85,8 +86,6 @@ func enter(prioritary: bool = true) -> void:
 
 
 func exit() -> void:
-	command_controller.command_exited.emit(self)
-
 	_exit()
 	set_physics_process(false)
 

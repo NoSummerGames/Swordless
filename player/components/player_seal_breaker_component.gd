@@ -53,9 +53,9 @@ func _break_seal(seal: Seal) -> void:
 	add_child(magnet)
 
 
-func _on_command_entered(command: Command) -> void:
+func _on_command_entered(_from: Command, to: Command) -> void:
 	# If an command is entered and in active commands,
-	if command in command_controller.active_commands and not monitored_seals.is_empty():
+	if to in command_controller.active_commands and not monitored_seals.is_empty():
 		for seal: Seal in monitored_seals:
 			# Unfreeze player whatever the method is to reinforce agency
 			freeze_component.unfreeze()
