@@ -38,6 +38,14 @@ gdscript/warnings/unsafe_method_access=1
 gdscript/warnings/unsafe_cast=1
 gdscript/warnings/unsafe_call_argument=1
 
+[dialogue_manager]
+
+colors/neutral=Color(0.524992, 0.673208, 0.870596, 1)
+colors/hostile=Color(0.591141, 0.136532, 0.0979303, 1)
+colors/friendly=Color(0.425118, 0.780437, 0.420389, 1)
+colors/hidden=Color(0.403437, 0.308983, 0.534148, 1)
+colors/gone=Color(0, 0, 0, 1)
+
 [display]
 
 window/size/viewport_width=1920
@@ -53,7 +61,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/csg_toolbox/plugin.cfg")
+enabled=PackedStringArray("res://addons/csg_toolbox/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
 
 [file_customization]
 
@@ -70,10 +78,6 @@ folder_colors={
 [global_group]
 
 gameplay_elements=""
-
-[gui]
-
-theme/custom="res://ui/res/main_theme.tres"
 
 [importer_defaults]
 
