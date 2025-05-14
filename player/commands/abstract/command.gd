@@ -24,6 +24,11 @@ enum Space {GROUND, AIR}
 	) var conditions
 @export var cooldown_time: float = 0.0
 
+@export_category("Animation")
+@export var enter_animation: String
+@export var animation: String
+@export var exit_animation: String
+
 @export_category("Debug")
 @export var debug_color: Color
 
@@ -80,6 +85,8 @@ func enter(prioritary: bool = true) -> void:
 
 
 func exit() -> void:
+	command_controller.command_exited.emit(self)
+
 	_exit()
 	set_physics_process(false)
 
