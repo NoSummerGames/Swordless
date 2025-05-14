@@ -233,7 +233,6 @@ speed_factor = 0.75
 conditions = 1
 cooldown_time = 2.0
 animation = "slide"
-exit_animation = "slide_exit"
 debug_color = Color(0, 0.750218, 0.472003, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 

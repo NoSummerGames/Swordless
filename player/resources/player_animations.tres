@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=58 format=3 uid="uid://bg5h10mt2ca5e"]
+[gd_resource type="SpriteFrames" load_steps=58 format=3 uid="uid://bnbr5qcvv4g2t"]
 
 [ext_resource type="Texture2D" uid="uid://yrl31sovwqoj" path="res://player/resources/PNG_JUMP_V2/jump_v20012.png" id="1_45aqe"]
 [ext_resource type="Texture2D" uid="uid://dapaddqhmicr7" path="res://player/resources/PNG_DASH_V2/dash_v20007.png" id="1_s07hu"]
@@ -218,11 +218,6 @@ animations = [{
 "loop": false,
 "name": &"slide",
 "speed": 24.0
-}, {
-"frames": [],
-"loop": false,
-"name": &"slide_exit",
-"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
