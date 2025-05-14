@@ -91,6 +91,7 @@ material_override = SubResource("ShaderMaterial_65viv")
 mesh = SubResource("QuadMesh_x7c3f")
 
 [node name="PlayerAnimation" type="AnimatedSprite3D" parent="." node_paths=PackedStringArray("commands_controller")]
+layers = 2
 offset = Vector2(0, 500)
 pixel_size = 0.003
 billboard = 1
@@ -203,7 +204,7 @@ disable_sprint = true
 speed_factor = 0.6
 override_acceleration = true
 cooldown_time = 0.25
-animation = "strafe_left"
+animation = "strafe"
 debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 
@@ -217,6 +218,8 @@ disable_sprint = true
 speed_factor = 0.6
 override_acceleration = true
 cooldown_time = 0.25
+animation = "strafe"
+mirror_animation = true
 debug_color = Color(0.96671, 0.000128413, 0.780272, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 

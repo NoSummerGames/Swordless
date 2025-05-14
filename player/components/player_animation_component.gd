@@ -26,6 +26,10 @@ func play_animation(command: Command, property: String) -> bool:
 
 	if not desired_animation == "":
 		if sprite_frames.has_animation(desired_animation):
+			# Mirror animation
+			if command.mirror_animation: flip_h = true
+			else: flip_h = false
+
 			play(desired_animation)
 			return true
 		else:
