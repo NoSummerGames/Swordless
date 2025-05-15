@@ -30,6 +30,10 @@ func play_animation(command: Command, property: String) -> bool:
 			if command.mirror_animation: flip_h = true
 			else: flip_h = false
 
+			# If the animation is the same set its progress to zero
+			if desired_animation == animation:
+				frame = 0
+
 			play(desired_animation)
 			return true
 		else:

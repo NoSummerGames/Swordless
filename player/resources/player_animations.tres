@@ -218,7 +218,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("46_1plwc")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 24.0
 }, {
