@@ -29,6 +29,7 @@ enum Space {GROUND, AIR}
 @export var animation: String
 @export var exit_animation: String
 @export var mirror_animation: bool = false
+@export var sprint_factor: float = 1.0
 
 @export_category("Debug")
 @export var debug_color: Color

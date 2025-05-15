@@ -41,5 +41,11 @@ func play_animation(command: Command, property: String) -> bool:
 
 	return false
 
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("sprint") and commands_controller.player.can_sprint:
+		speed_scale = commands_controller.current_command.sprint_factor
+	else:
+		speed_scale = 1.0
+
 func _on_animation_changed() -> void:
 	print(animation)
