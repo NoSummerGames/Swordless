@@ -53,3 +53,6 @@ extends Resource
 @export_range(50, 170, 5) var camera_fov: int = 85
 @export var fov_reactivity: int = 4
 @export var lock_camera_rotation: bool = false
+
+@export_group("Debug")
+@export var game_speed: float = 1.0
