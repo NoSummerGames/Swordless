@@ -4,6 +4,7 @@ extends PlayerComponent
 var timer: Timer
 
 func _ready() -> void:
+	await get_tree().process_frame
 	Engine.time_scale = 1.0 * player_stats.game_speed
 
 func freeze() -> void:
