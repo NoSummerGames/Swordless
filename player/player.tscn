@@ -97,7 +97,8 @@ pixel_size = 0.003
 billboard = 1
 alpha_cut = 1
 sprite_frames = ExtResource("7_knn7v")
-animation = &"run"
+animation = &"fall"
+frame_progress = 1.0
 script = ExtResource("7_s7qer")
 commands_controller = NodePath("../CommandsController")
 
@@ -162,6 +163,7 @@ special = true
 space = 1
 speed_factor = 0.75
 conditions = 2
+animation = "jump"
 debug_color = Color(1, 0.566346, 0.0896527, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 
@@ -192,6 +194,7 @@ disable_sprint = true
 speed_factor = 0.6
 override_acceleration = true
 cooldown_time = 0.6
+animation = "dash"
 debug_color = Color(0.953985, 0.368983, 0.730241, 1)
 metadata/_custom_type_script = "uid://cwrgdorhd3d00"
 
