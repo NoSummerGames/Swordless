@@ -18,7 +18,7 @@ func _enter() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_instance_valid(timer):
+	if not is_instance_valid(timer) or not Input.is_action_pressed("slide"):
 		if _test_height() == true:
 			exclusive = false
 
